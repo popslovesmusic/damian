@@ -1,0 +1,91 @@
+{
+  "registry_id": "tower_engine_domain_conquest_outcomes_v001",
+  "outcome_modes": [
+    {
+      "outcome_id": "ATTACKER_CONQUEST",
+      "description": "Attacker reaches and claims the domain core objective.",
+      "attacker_effects": [
+        "conquest_reward_eligible",
+        "attacker_residue_written",
+        "temporary_influence_claim_possible"
+      ],
+      "defender_effects": [
+        "defender_residue_written",
+        "domain_stability_loss",
+        "recovery_window_triggered"
+      ]
+    },
+    {
+      "outcome_id": "DEFENDER_HOLD",
+      "description": "Defender domain repels attacker or attacker party fails.",
+      "attacker_effects": [
+        "invasion_cost_lost",
+        "attack_failure_residue_written",
+        "possible_floor_or_domain_regression"
+      ],
+      "defender_effects": [
+        "defense_reward_eligible",
+        "defender_residue_written",
+        "domain_confidence_gain"
+      ]
+    },
+    {
+      "outcome_id": "ATTACKER_RETREAT",
+      "description": "Attacker exits before conquest or defeat.",
+      "attacker_effects": [
+        "partial_residue_written",
+        "partial_cost_loss",
+        "no_conquest_reward"
+      ],
+      "defender_effects": [
+        "minor_residue_written",
+        "minor_stability_shift"
+      ]
+    },
+    {
+      "outcome_id": "CONTESTED_STALEMATE",
+      "description": "Session ends after objective progress without clear conquest or hold.",
+      "attacker_effects": [
+        "partial_residue_written",
+        "partial_reward_possible"
+      ],
+      "defender_effects": [
+        "partial_residue_written",
+        "temporary_instability"
+      ]
+    },
+    {
+      "outcome_id": "SESSION_UNRESOLVED",
+      "description": "Disconnect or failure prevents a clean result.",
+      "attacker_effects": [
+        "safe_resolution_required",
+        "no_full_conquest"
+      ],
+      "defender_effects": [
+        "safe_resolution_required",
+        "no_permanent_domain_loss"
+      ]
+    },
+    {
+      "outcome_id": "FAILED_SAFE",
+      "description": "Validation failure or impossible state forces protected rollback/resolution.",
+      "attacker_effects": [
+        "invalid_reward_blocked",
+        "residue_written_as_failed_safe"
+      ],
+      "defender_effects": [
+        "domain_protected_from_invalid_state",
+        "residue_written_as_failed_safe"
+      ]
+    }
+  ],
+  "global_rules": [
+    "conquest_grants_influence_not_permanent_theft",
+    "owner_domain_must_remain_recoverable",
+    "attacker_and_defender_residue_must_be_written",
+    "unresolved_sessions_cannot_award_full_conquest",
+    "failed_safe_blocks_rewards_if_validation_fails",
+    "outcomes_must_preserve_domain_playability",
+    "risk_advantage_equilibrium_applies_to_all_parties"
+  ]
+}

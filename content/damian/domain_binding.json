@@ -1,0 +1,39 @@
+{
+  "binding_id": "binding_damian_tower_001",
+  "content_pack_id": "damian",
+  "title": "Damian: What Survives the Tower",
+  "home_domain_id": "damians_tower",
+  "home_domain_display_name": "Damian's Tower",
+  "domain_archetype": "tower_domain",
+  "domain_theme": "vertical recursion, floor memory, survivor marks, adaptive replay mutation",
+  "story_identity": "A dark procedural tower where what survives each descent alters the next ascent.",
+  "generation_biases": [
+    "vertical_floor_progression",
+    "collapsed_corridors",
+    "residue_echoes",
+    "survivor_marks"
+  ],
+  "signature_hazards": [
+    "unstable_stairs",
+    "echo_knights",
+    "residue_fractures",
+    "fallback_floor_mutations"
+  ],
+  "signature_rewards": [
+    "memory_fragments",
+    "rare_caches",
+    "orientation_upgrades"
+  ],
+  "conquest_role": {
+    "must_conquer_home_first": true,
+    "dashboard_unlocks_after_conquest": true,
+    "can_attack_other_domains": true,
+    "can_be_attacked_by_other_players": true
+  },
+  "engine_rule_compliance": {
+    "inherits_bounded_progression": true,
+    "inherits_risk_advantage_equilibrium": true,
+    "inherits_playability_constraints": true,
+    "inherits_optional_gpu_boundary": true
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "player_id": "player_example_001",
+  "profile_id": "profile_example_001",
+  "content_pack_id": "damian",
+  "level": 8,
+  "highest_floor_reached": 5,
+  "active_orientation": "anchorite",
+  "stats": {
+    "health": 135.0,
+    "damage": 22.0,
+    "defense": 8.5,
+    "speed": 1.05,
+    "recovery": 3.0
+  },
+  "unlocked_skills": [
+    "dash_slash",
+    "anchor_guard",
+    "ember_burst"
+  ],
+  "equipped_items": [
+    "rusted_relic_blade",
+    "charred_guard_charm"
+  ],
+  "residue_pressure": {
+    "dominant_build_visibility": 0.34,
+    "power_use_strain": 0.21,
+    "overoptimization_pressure": 0.18
+  },
+  "forbidden_flags": {
+    "permanent_invulnerability": false,
+    "infinite_damage_scaling": false,
+    "residue_immunity": false,
+    "death_consequence_immunity": false
+  }
+}

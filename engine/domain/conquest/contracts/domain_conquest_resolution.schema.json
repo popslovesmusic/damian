@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Domain Conquest Resolution Schema",
+  "description": "Schema for validating resolved invasion/conquest outcome records.",
+  "type": "object",
+  "required": [
+    "resolution_id",
+    "invasion_event_id",
+    "session_id",
+    "target_domain_state_id",
+    "attacker_player_ids",
+    "defender_player_id",
+    "outcome_id",
+    "objective_progress_percent",
+    "attacker_costs_lost",
+    "defender_costs_incurred",
+    "attacker_rewards_granted",
+    "defender_rewards_granted",
+    "domain_effects",
+    "residue_results",
+    "playability_results",
+    "forbidden_flags"
+  ],
+  "properties": {
+    "resolution_id": {
+      "type": "string",
+      "description": "Unique identifier for this conquest resolution record."
+    },
+    "invasion_event_id": {
+      "type": "string",
+      "description": "The ID of the invasion event this resolution pertains to."
+    },
+    "session_id": {
+      "type": "string",
+      "description": "The ID of the multiplayer session where this resolution occurred."
+    },
+    "target_domain_state_id": {
+      "type": "string",
+      "description": "The ID of the target domain state."
+    },
+    "attacker_player_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of player IDs who attacked the domain."
+    },
+    "defender_player_id": {
+      "type": "string",
+      "description": "The player ID of the defender."
+    },
+    "outcome_id": {
+      "type": "string",
+      "enum": [
+        "ATTACKER_CONQUEST",
+        "DEFENDER_HOLD",
+        "ATTACKER_RETREAT",
+        "CONTESTED_STALEMATE",
+        "SESSION_UNRESOLVED",
+        "FAILED_SAFE"
+      ],
+      "description": "The determined outcome of the invasion attempt."
+    },
+    "objective_progress_percent": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 100.0,
+      "description": "Percentage of the invasion objective completed."
+    },
+    "attacker_costs_lost": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total costs lost by the attacker(s) (e.g., resources, stability)."
+    },
+    "defender_costs_incurred": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total costs incurred by the defender (e.g., resources, stability)."
+    },
+    "attacker_rewards_granted": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of rewards granted to attackers."
+    },
+    "defender_rewards_granted": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of rewards granted to defenders."
+    },
+    "domain_effects": {
+      "type": "object",
+      "description": "Effects applied to the domain as a result of the resolution.",
+      "required": [
+        "stability_delta",
+        "deviation_delta",
+        "temporary_influence_claimed",
+        "recovery_window_triggered",
+        "domain_remains_owner_recoverable"
+      ],
+      "properties": {
+        "stability_delta": {
+          "type": "number",
+          "description": "Change in domain stability."
+        },
+        "deviation_delta": {
+          "type": "number",
+          "description": "Change in domain deviation."
+        },
+        "temporary_influence_claimed": {
+          "type": "boolean",
+          "description": "True if attackers gained temporary influence over the domain."
+        },
+        "recovery_window_triggered": {
+          "type": "boolean",
+          "description": "True if a recovery window is triggered for the defender."
+        },
+        "domain_remains_owner_recoverable": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. The domain must always remain recoverable by its owner."
+        }
+      }
+    },
+    "residue_results": {
+      "type": "object",
+      "description": "Flags indicating residue writing status.",
+      "required": [
+        "attacker_residue_written",
+        "defender_residue_written",
+        "domain_residue_written"
+      ],
+      "properties": {
+        "attacker_residue_written": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Attacker residue must be written."
+        },
+        "defender_residue_written": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Defender residue must be written."
+        },
+        "domain_residue_written": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Domain residue must be written."
+        }
+      }
+    },
+    "playability_results": {
+      "type": "object",
+      "description": "Flags indicating domain playability status after resolution.",
+      "required": [
+        "playability_preserved",
+        "primary_route_preserved",
+        "no_softlock_detected"
+      ],
+      "properties": {
+        "playability_preserved": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Domain playability must be preserved."
+        },
+        "primary_route_preserved": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Primary routes must be preserved."
+        },
+        "no_softlock_detected": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. No softlock should be detected."
+        }
+      }
+    },
+    "forbidden_flags": {
+      "type": "object",
+      "description": "Flags to ensure fair play and prevent exploits.",
+      "required": [
+        "permanent_domain_theft",
+        "full_conquest_from_unresolved_session",
+        "reward_without_resolution",
+        "impossible_domain_after_resolution"
+      ],
+      "properties": {
+        "permanent_domain_theft": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Domain cannot be permanently stolen."
+        },
+        "full_conquest_from_unresolved_session": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Full conquest cannot happen from unresolved session."
+        },
+        "reward_without_resolution": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. No reward without proper resolution."
+        },
+        "impossible_domain_after_resolution": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Domain should not be impossible after resolution."
+        }
+      }
+    }
+  }
+}

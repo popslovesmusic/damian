@@ -1,0 +1,41 @@
+{
+  "registry_id": "tower_engine_home_domain_registry_v001",
+  "domain_archetypes": [
+    {
+      "domain_id": "tower_domain",
+      "theme": "vertical recursion and adaptive floors",
+      "example_owner": "damian",
+      "core_risks": [
+        "instability_growth",
+        "recursive_enemy_adaptation"
+      ]
+    },
+    {
+      "domain_id": "swamp_domain",
+      "theme": "concealment, decay, poison ecology",
+      "example_owner": "jacob",
+      "core_risks": [
+        "visibility_loss",
+        "terrain_attrition"
+      ]
+    },
+    {
+      "domain_id": "castle_domain",
+      "theme": "fortification, halls, siege memory",
+      "example_owner": "james",
+      "core_risks": [
+        "predictable_routes",
+        "siege_pressure"
+      ]
+    }
+  ],
+  "global_rules": [
+    "home_domain_must_be_conquered_before_dashboard_unlock",
+    "all_dashboard_changes_require_cost",
+    "all_advantages_require_equal_or_greater_risk",
+    "domain_owner_not_immune_to_domain_effects",
+    "domains_must_remain_invadable",
+    "domains_must_remain_playable",
+    "no_impossible_domains"
+  ]
+}

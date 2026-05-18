@@ -1,0 +1,55 @@
+{
+  "ruleset_id": "tower_engine_bounded_player_progression_v001",
+  "core_principle": "Player growth improves survivability, options, efficiency, and depth access, but must not remove risk, adaptation, or residue consequences.",
+  "allowed_growth_vectors": [
+    {
+      "growth_id": "stat_growth",
+      "description": "Incremental increases to health, damage, defense, speed, or recovery."
+    },
+    {
+      "growth_id": "skill_unlocks",
+      "description": "New active/passive abilities that expand play options."
+    },
+    {
+      "growth_id": "gear_progression",
+      "description": "Loot-based improvement through rarity, affixes, relics, and crafting."
+    },
+    {
+      "growth_id": "orientation_mastery",
+      "description": "Persistent refinement of playstyle identity without absolute invulnerability."
+    },
+    {
+      "growth_id": "tower_knowledge",
+      "description": "Player-facing and system-facing familiarity with floor behavior, hidden marks, and mutation patterns."
+    }
+  ],
+  "forbidden_growth_results": [
+    "permanent_invulnerability",
+    "infinite_damage_scaling",
+    "resource_cost_elimination_without_tradeoff",
+    "complete_enemy_trivialization",
+    "residue_immunity",
+    "mutation_immunity",
+    "death_consequence_immunity",
+    "guaranteed_easter_egg_detection",
+    "floor_skip_without_cost"
+  ],
+  "residue_pressure_checks": [
+    {
+      "check_id": "dominant_build_visibility",
+      "description": "Repeated dominant strategies become visible to tower adaptation."
+    },
+    {
+      "check_id": "power_use_strain",
+      "description": "High-output abilities may increase deviation or mutation pressure."
+    },
+    {
+      "check_id": "overoptimization_response",
+      "description": "Excessive reliance on one damage type, skill, or tactic becomes eligible mutation input."
+    },
+    {
+      "check_id": "survivability_not_supremacy",
+      "description": "Progression should help the player survive deeper floors, not erase threat."
+    }
+  ]
+}

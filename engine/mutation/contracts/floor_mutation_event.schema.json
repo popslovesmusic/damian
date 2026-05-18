@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Floor Mutation Event Schema",
+  "description": "Schema for validating mutation events applied to replayed floors.",
+  "type": "object",
+  "required": [
+    "mutation_event_id",
+    "floor_id",
+    "source_outcome",
+    "triggering_residue_id",
+    "applied_channels",
+    "mutations",
+    "floor_identity_preserved",
+    "playability_preserved",
+    "mutation_timestamp"
+  ],
+  "properties": {
+    "mutation_event_id": {
+      "type": "string",
+      "description": "Unique identifier for this mutation event."
+    },
+    "floor_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The ID of the floor this mutation event applies to."
+    },
+    "source_outcome": {
+      "type": "string",
+      "enum": [
+        "VICTORY_ASCEND",
+        "DEFEAT_DROP",
+        "RETREAT_TO_HUB",
+        "SESSION_DISCONNECT",
+        "EXIT_GAME"
+      ],
+      "description": "The outcome that triggered this mutation event."
+    },
+    "triggering_residue_id": {
+      "type": "string",
+      "description": "The ID of the residue record that triggered this mutation event."
+    },
+    "applied_channels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of mutation channels that were affected by this event."
+    },
+    "mutations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "channel_id",
+          "mutation_id",
+          "severity",
+          "preserves_floor_identity",
+          "preserves_playability"
+        ],
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The ID of the mutation channel this mutation belongs to."
+          },
+          "mutation_id": {
+            "type": "string",
+            "description": "Unique identifier for this specific mutation."
+          },
+          "severity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "description": "Severity level of the mutation (1-5)."
+          },
+          "preserves_floor_identity": {
+            "type": "boolean",
+            "description": "True if this mutation is designed to preserve floor identity."
+          },
+          "preserves_playability": {
+            "type": "boolean",
+            "description": "True if this mutation is designed to preserve floor playability."
+          }
+        }
+      },
+      "description": "List of individual mutations applied during this event."
+    },
+    "floor_identity_preserved": {
+      "type": "boolean",
+      "description": "Overall status: True if the floor's identity is preserved after this event."
+    },
+    "playability_preserved": {
+      "type": "boolean",
+      "description": "Overall status: True if the floor's playability is preserved after this event."
+    },
+    "mutation_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this mutation event occurred."
+    }
+  }
+}

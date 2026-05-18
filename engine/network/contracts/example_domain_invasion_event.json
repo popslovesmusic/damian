@@ -1,0 +1,35 @@
+{
+  "invasion_event_id": "invasion_event_001",
+  "session_id": "session_001",
+  "attacker_player_ids": [
+    "player_jacob_001",
+    "player_james_001"
+  ],
+  "defender_player_id": "player_damian_001",
+  "target_domain_state_id": "domain_state_001",
+  "target_domain_archetype": "tower_domain",
+  "invasion_cost_paid": 750,
+  "attacker_advantage_used": [
+    "temporary_resistance_boost"
+  ],
+  "attacker_risk_incurred": [
+    "higher_visibility_to_defender_domain",
+    "residue_pressure_increase"
+  ],
+  "defender_advantage_active": [
+    "increased_enemy_density"
+  ],
+  "defender_risk_incurred": [
+    "higher_domain_upkeep",
+    "owner_affected_by_enemy_density"
+  ],
+  "outcome": "DEFENDER_HOLD",
+  "residue_written_to_attacker": true,
+  "residue_written_to_defender": true,
+  "playability_preserved": true,
+  "forbidden_flags": {
+    "impossible_domain": false,
+    "free_advantage_detected": false,
+    "reward_spoof_risk": false
+  }
+}

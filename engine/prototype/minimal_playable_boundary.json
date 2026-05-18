@@ -1,0 +1,41 @@
+{
+  "prototype_id": "tower_engine_mvp_001",
+  "prototype_goal": "Prove that a player can enter a generated floor, fight enemies, collect loot, lose or win, write residue, and see a replayed floor mutate while preserving identity.",
+  "included_systems": [
+    "single_player_runtime",
+    "basic_player_controller",
+    "basic_enemy_controller",
+    "basic_combat",
+    "simple_loot_drops",
+    "three_floor_progression",
+    "defeat_drop_one_floor",
+    "floor_memory_write",
+    "basic_residue_capture",
+    "basic_floor_mutation",
+    "hidden_survivor_mark_stub",
+    "local_json_save"
+  ],
+  "excluded_systems": [
+    "live_multiplayer",
+    "domain_invasion_runtime",
+    "domain_dashboard_ui",
+    "full_campaign_story",
+    "advanced_gpu_compute",
+    "real_money_economy",
+    "public matchmaking",
+    "procedural content marketplace",
+    "large-scale MMO systems"
+  ],
+  "prototype_limits": {
+    "players": 1,
+    "floors": 3,
+    "enemy_types": 3,
+    "bosses": 1,
+    "skills": 3,
+    "loot_items": 20,
+    "mutation_rules": 5,
+    "survivor_marks": 3,
+    "content_pack": "damian"
+  },
+  "success_condition": "Player reaches floor 3, is defeated, drops to floor 2, and floor 2 is recognizably the same but changed by residue."
+}

@@ -1,0 +1,71 @@
+{
+  "registry_id": "tower_engine_survivor_mark_registry_v001",
+  "mark_classes": [
+    {
+      "mark_class_id": "visual_glyph",
+      "description": "A subtle visible symbol integrated into wall, floor, object, or environmental texture.",
+      "discoverability_modes": [
+        "visual_hint",
+        "angle_visibility",
+        "lighting_reveal"
+      ]
+    },
+    {
+      "mark_class_id": "audio_echo",
+      "description": "A faint sound cue or repeated whisper indicating hidden residue nearby.",
+      "discoverability_modes": [
+        "proximity_audio",
+        "directional_audio",
+        "repeated_phrase"
+      ]
+    },
+    {
+      "mark_class_id": "object_anomaly",
+      "description": "A repeated object or misplaced detail that signals hidden reward state.",
+      "discoverability_modes": [
+        "environmental_pattern_break",
+        "object_repetition",
+        "unusual_placement"
+      ]
+    },
+    {
+      "mark_class_id": "residue_fracture",
+      "description": "A distortion, shimmer, or unstable geometry trace linked to replay-floor mutation.",
+      "discoverability_modes": [
+        "visual_distortion",
+        "interaction_prompt",
+        "instability_pulse"
+      ]
+    }
+  ],
+  "reward_classes": [
+    {
+      "reward_class_id": "minor_cache",
+      "description": "Small loot, currency, or consumable reward."
+    },
+    {
+      "reward_class_id": "rare_cache",
+      "description": "Higher rarity loot or crafting material."
+    },
+    {
+      "reward_class_id": "memory_fragment",
+      "description": "Lore, story echo, or tower-memory progression."
+    },
+    {
+      "reward_class_id": "orientation_upgrade",
+      "description": "Small persistent build/progression modifier, never a god-mode unlock."
+    },
+    {
+      "reward_class_id": "hidden_event_trigger",
+      "description": "Optional encounter, room, or echo event."
+    }
+  ],
+  "global_rules": [
+    "marks_must_be_optional",
+    "marks_must_have_at_least_one_hint",
+    "claimed_marks_must_be_recorded",
+    "unclaimed_marks_may_persist_or_mutate",
+    "rewards_must_be_bounded",
+    "marks_must_not_softlock_progression"
+  ]
+}

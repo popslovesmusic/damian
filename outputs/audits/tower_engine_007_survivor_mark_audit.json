@@ -1,0 +1,50 @@
+{
+  "patch_id": "TOWER-ENGINE-007",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Survivor mark registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry declares at least 4 mark classes",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry declares at least 5 reward classes",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include marks_must_have_at_least_one_hint",
+      "status": "PASS"
+    },
+    {
+      "check": "Survivor mark schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example survivor mark validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example mark is_optional = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example mark is_discoverable = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example has at least one hint mode",
+      "status": "PASS"
+    },
+    {
+      "check": "Example progression_break_risk is NONE or LOW",
+      "status": "PASS"
+    },
+    {
+      "check": "Reward class orientation_upgrade is bounded and not god-mode",
+      "status": "PASS"
+    }
+  ]
+}

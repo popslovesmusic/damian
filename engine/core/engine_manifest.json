@@ -1,0 +1,22 @@
+{
+  "engine_name": "Tower Engine",
+  "engine_version": "0.0.1",
+  "supported_titles": [
+    "Damian: What Survives the Tower",
+    "Jacob's Bane"
+  ],
+  "core_systems": [
+    "GameLoop",
+    "PlayerSystem",
+    "CombatSystem",
+    "EnemySystem",
+    "LootSystem",
+    "FloorGenerator",
+    "ResidueSystem",
+    "MutationSystem",
+    "EasterEggSystem",
+    "MultiplayerSystem",
+    "SaveSystem",
+    "ContentPackSystem"
+  ]
+}

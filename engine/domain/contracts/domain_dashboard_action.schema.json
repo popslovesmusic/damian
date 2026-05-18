@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Domain Dashboard Action Schema",
+  "description": "Schema for validating bounded parameter modifications applied through the domain dashboard.",
+  "type": "object",
+  "required": [
+    "action_id",
+    "parameter_modified",
+    "advantage_gained",
+    "risk_incurred",
+    "resource_cost",
+    "stability_cost",
+    "playability_preserved",
+    "owner_affected"
+  ],
+  "properties": {
+    "action_id": {
+      "type": "string",
+      "description": "Unique identifier for the dashboard action."
+    },
+    "parameter_modified": {
+      "type": "string",
+      "description": "The specific domain parameter modified by this action (e.g., 'enemy_density')."
+    },
+    "advantage_gained": {
+      "type": "string",
+      "description": "Description of the advantage gained by this action."
+    },
+    "risk_incurred": {
+      "type": "string",
+      "description": "Description of the risk incurred or drawback of this action."
+    },
+    "resource_cost": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Resource cost to perform this action."
+    },
+    "stability_cost": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Stability cost incurred by this action (0.0 - 1.0)."
+    },
+    "playability_preserved": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Action must preserve domain playability."
+    },
+    "owner_affected": {
+      "type": "boolean",
+      "description": "True if the domain owner is directly affected by this change (e.g., increased difficulty for self)."
+    }
+  }
+}

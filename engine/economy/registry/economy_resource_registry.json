@@ -1,0 +1,40 @@
+{
+  "registry_id": "tower_engine_economy_resource_registry_v001",
+  "economy_principle": "The player may receive large visible loot amounts, but progression, survival, domain maintenance, and strategic influence continuously drain resources.",
+  "resource_classes": [
+    {
+      "resource_id": "gold",
+      "role": "liquid_currency",
+      "description": "Common high-volume currency used for potions, repairs, travel, basic crafting, and maintenance."
+    },
+    {
+      "resource_id": "domain_essence",
+      "role": "domain_influence_currency",
+      "description": "Resource spent to adjust conquered home-domain parameters."
+    },
+    {
+      "resource_id": "stability_shards",
+      "role": "stability_resource",
+      "description": "Resource used to suppress dangerous mutation, reinforce anchors, and maintain domain coherence."
+    },
+    {
+      "resource_id": "residue_fragments",
+      "role": "mutation_resource",
+      "description": "Resource used to bias mutation, reveal hidden marks, or interact with replay-floor memory."
+    },
+    {
+      "resource_id": "rare_materials",
+      "role": "strategic_upgrade_resource",
+      "description": "Lower-frequency materials used for gear upgrades, relic crafting, and high-value dashboard actions."
+    }
+  ],
+  "global_rules": [
+    "large_loot_numbers_allowed",
+    "small_unit_costs_allowed",
+    "aggregate_use_creates_pressure",
+    "upkeep_scales_with_domain_advantage",
+    "wealth_does_not_cancel_residue",
+    "wealth_does_not_cancel_death_consequence",
+    "no_single_resource_solves_all_systems"
+  ]
+}

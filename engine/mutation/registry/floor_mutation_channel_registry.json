@@ -1,0 +1,74 @@
+{
+  "channels": [
+    {
+      "channel_id": "layout",
+      "description": "Alters routes, doors, corridors, room accessibility, and structural topology while preserving floor recognizability.",
+      "allowed_examples": [
+        "collapsed_corridor",
+        "opened_shortcut",
+        "sealed_room",
+        "shifted_hallway"
+      ]
+    },
+    {
+      "channel_id": "enemy_ecology",
+      "description": "Alters enemy composition, migration, elite presence, and behavioral pressure.",
+      "allowed_examples": [
+        "ash_resistant_enemies",
+        "predator_migration",
+        "elite_density_increase",
+        "echo_spawn"
+      ]
+    },
+    {
+      "channel_id": "hazards",
+      "description": "Alters environmental hazards and traversal risks.",
+      "allowed_examples": [
+        "fire_vents",
+        "corruption_pools",
+        "unstable_floor_tiles",
+        "darkness_zones"
+      ]
+    },
+    {
+      "channel_id": "loot",
+      "description": "Alters reward distribution and relic emergence.",
+      "allowed_examples": [
+        "hidden_cache",
+        "corrupted_relic",
+        "rare_drop_bias",
+        "abandoned_supply"
+      ]
+    },
+    {
+      "channel_id": "easter_eggs",
+      "description": "Introduces or alters hidden survivor marks, echoes, and discoverable secrets.",
+      "allowed_examples": [
+        "survivor_mark_spawn",
+        "ghost_cache",
+        "echo_message",
+        "hidden_symbol_variant"
+      ]
+    },
+    {
+      "channel_id": "story_echoes",
+      "description": "Injects persistent narrative traces from previous runs or failures.",
+      "allowed_examples": [
+        "fallen_adventurer_remains",
+        "repeated_last_words",
+        "memory_projection",
+        "boss_echo"
+      ]
+    },
+    {
+      "channel_id": "stability",
+      "description": "Adjusts floor coherence, visibility, corruption pressure, and mutation intensity.",
+      "allowed_examples": [
+        "reduced_visibility",
+        "increased_instability",
+        "coherence_pulse",
+        "mutation_decay"
+      ]
+    }
+  ]
+}

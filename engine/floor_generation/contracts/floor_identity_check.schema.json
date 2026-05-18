@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Floor Identity Check Schema",
+  "description": "Schema for validating identity-check payloads produced by future generation/mutation systems.",
+  "type": "object",
+  "required": [
+    "identity_check_id",
+    "floor_id",
+    "original_layout_seed",
+    "mutated_layout_seed",
+    "source_mutation_event_id",
+    "anchors_checked",
+    "forbidden_results_detected",
+    "entry_reachable",
+    "exit_reachable",
+    "primary_route_exists",
+    "landmark_continuity_score",
+    "theme_continuity_score",
+    "secret_discoverability_score",
+    "identity_status",
+    "playability_preserved"
+  ],
+  "properties": {
+    "identity_check_id": {
+      "type": "string",
+      "description": "Unique identifier for this identity check result."
+    },
+    "floor_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The ID of the floor being checked."
+    },
+    "original_layout_seed": {
+      "type": "string",
+      "description": "The layout seed of the original floor instance."
+    },
+    "mutated_layout_seed": {
+      "type": "string",
+      "description": "The layout seed of the mutated floor instance."
+    },
+    "source_mutation_event_id": {
+      "type": "string",
+      "description": "The ID of the mutation event that created this mutated floor."
+    },
+    "anchors_checked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of identity anchors that were checked."
+    },
+    "forbidden_results_detected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of forbidden mutation results detected."
+    },
+    "entry_reachable": {
+      "type": "boolean",
+      "description": "True if the floor's entry point is reachable."
+    },
+    "exit_reachable": {
+      "type": "boolean",
+      "description": "True if the floor's exit point is reachable."
+    },
+    "primary_route_exists": {
+      "type": "boolean",
+      "description": "True if at least one primary route from entry to objective exists."
+    },
+    "landmark_continuity_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Score indicating how well major landmarks were preserved (0.0 - 1.0)."
+    },
+    "theme_continuity_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Score indicating how well the floor's original theme was preserved (0.0 - 1.0)."
+    },
+    "secret_discoverability_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Score indicating how well secrets remain discoverable (0.0 - 1.0)."
+    },
+    "identity_status": {
+      "type": "string",
+      "enum": [
+        "PRESERVED",
+        "WEAKENED_BUT_VALID",
+        "FAILED"
+      ],
+      "description": "Overall status of the floor's identity after mutation."
+    },
+    "playability_preserved": {
+      "type": "boolean",
+      "description": "True if the mutated floor is considered playable."
+    }
+  }
+}

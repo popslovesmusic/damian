@@ -1,0 +1,38 @@
+{
+  "registry_id": "tower_engine_multiplayer_mode_registry_v001",
+  "supported_modes": [
+    {
+      "mode_id": "solo",
+      "description": "Single-player tower/domain progression."
+    },
+    {
+      "mode_id": "private_coop",
+      "description": "2-4 player private session using room code or invite."
+    },
+    {
+      "mode_id": "domain_invasion",
+      "description": "One party attacks another player's conquered home domain."
+    },
+    {
+      "mode_id": "domain_defense",
+      "description": "Owner defends or asynchronously prepares a conquered home domain."
+    }
+  ],
+  "authority_model": {
+    "preferred": "server_authoritative",
+    "prototype_allowed": "host_authoritative_with_validation",
+    "client_trust": "limited",
+    "reason": "Domain conquest requires authoritative state to avoid impossible domains, reward spoofing, and unfair invasion outcomes."
+  },
+  "global_rules": [
+    "sessions_are_small_2_to_4_players",
+    "private_room_codes_allowed",
+    "domain_state_is_shared_during_invasion",
+    "loot_policy_must_be_declared",
+    "party_defeat_may_trigger_floor_or_domain_regression",
+    "disconnects_must_resolve_to_safe_unresolved_state",
+    "invasion_success_writes_residue_to_attacker_and_defender",
+    "invasion_failure_writes_residue_to_attacker_and_defender",
+    "no_invasion_may_create_unplayable_domain"
+  ]
+}

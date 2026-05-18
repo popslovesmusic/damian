@@ -1,0 +1,71 @@
+{
+  "registry_id": "tower_engine_domain_dashboard_parameters_v001",
+  "unlock_rule": "dashboard_unlocked only after home_domain conquered = true",
+  "core_principle": "Dashboard changes influence generation but never grant free advantage; every benefit must create cost, exposure, instability, maintenance, or counterplay.",
+  "parameters": [
+    {
+      "parameter_id": "enemy_density_bias",
+      "benefit": "Increases defender pressure and potential loot density.",
+      "required_risks": [
+        "higher_domain_upkeep",
+        "owner_faces_same_density",
+        "increased_residue_visibility"
+      ]
+    },
+    {
+      "parameter_id": "hazard_bias",
+      "benefit": "Increases environmental pressure against invaders.",
+      "required_risks": [
+        "owner_affected_by_hazards",
+        "higher_stability_cost",
+        "possible_route_fragility"
+      ]
+    },
+    {
+      "parameter_id": "loot_cache_bias",
+      "benefit": "Increases chance of hidden caches and rare rewards.",
+      "required_risks": [
+        "higher_invasion_visibility",
+        "stronger_elite_attention",
+        "increased_mutation_pressure"
+      ]
+    },
+    {
+      "parameter_id": "secret_frequency_bias",
+      "benefit": "Increases hidden survivor mark and secret event opportunities.",
+      "required_risks": [
+        "higher_discoverability_by_invaders",
+        "higher_memory_fragment_cost",
+        "secret_mutation_if_unclaimed"
+      ]
+    },
+    {
+      "parameter_id": "boss_behavior_bias",
+      "benefit": "Influences boss tendencies toward aggression, defense, summons, traps, or mobility.",
+      "required_risks": [
+        "boss_unpredictability",
+        "owner_training_cost",
+        "higher_failed_defense_residue"
+      ]
+    },
+    {
+      "parameter_id": "route_complexity_bias",
+      "benefit": "Makes domain navigation less direct.",
+      "required_risks": [
+        "owner_navigation_cost",
+        "must_preserve_primary_route",
+        "higher_softlock_validation_cost"
+      ]
+    }
+  ],
+  "forbidden_dashboard_results": [
+    "free_advantage",
+    "owner_immunity",
+    "invader_softlock",
+    "unreachable_domain_core",
+    "guaranteed_defense",
+    "guaranteed_reward",
+    "riskless_loot_increase",
+    "positive_only_upgrade"
+  ]
+}

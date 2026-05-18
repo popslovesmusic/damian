@@ -1,0 +1,39 @@
+{
+  "binding_id": "binding_jacobs_swamp_001",
+  "content_pack_id": "jacobs_bane",
+  "title": "Jacob's Bane",
+  "home_domain_id": "jacobs_swamp",
+  "home_domain_display_name": "Jacob's Swamp",
+  "domain_archetype": "swamp_domain",
+  "domain_theme": "decay, concealment, poison ecology, drowned paths, ambush pressure",
+  "story_identity": "A cursed swamp-domain where rot preserves what should have vanished.",
+  "generation_biases": [
+    "waterlogged_paths",
+    "mist_visibility_pressure",
+    "poison_ecology",
+    "sunken_ruins"
+  ],
+  "signature_hazards": [
+    "bog_traps",
+    "toxic_mist",
+    "leeches",
+    "submerged_enemy_spawns"
+  ],
+  "signature_rewards": [
+    "swamp_relics",
+    "venom_materials",
+    "buried_caches"
+  ],
+  "conquest_role": {
+    "must_conquer_home_first": true,
+    "dashboard_unlocks_after_conquest": true,
+    "can_attack_other_domains": true,
+    "can_be_attacked_by_other_players": true
+  },
+  "engine_rule_compliance": {
+    "inherits_bounded_progression": true,
+    "inherits_risk_advantage_equilibrium": true,
+    "inherits_playability_constraints": true,
+    "inherits_optional_gpu_boundary": true
+  }
+}

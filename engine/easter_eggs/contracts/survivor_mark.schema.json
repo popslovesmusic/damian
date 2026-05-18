@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Survivor Mark Contract Schema",
+  "description": "Schema for validating hidden survivor mark definitions.",
+  "type": "object",
+  "required": [
+    "survivor_mark_id",
+    "floor_id",
+    "source_mutation_event_id",
+    "mark_class_id",
+    "hint_modes",
+    "placement_context",
+    "claim_condition",
+    "reward_class_id",
+    "reward_payload_ref",
+    "is_optional",
+    "is_discoverable",
+    "claimed",
+    "can_mutate_if_unclaimed",
+    "progression_break_risk"
+  ],
+  "properties": {
+    "survivor_mark_id": {
+      "type": "string",
+      "description": "Unique identifier for this survivor mark instance."
+    },
+    "floor_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The ID of the floor where this mark is placed."
+    },
+    "source_mutation_event_id": {
+      "type": "string",
+      "description": "The ID of the mutation event that placed this mark."
+    },
+    "mark_class_id": {
+      "type": "string",
+      "enum": [
+        "visual_glyph",
+        "audio_echo",
+        "object_anomaly",
+        "residue_fracture"
+      ],
+      "description": "The class of survivor mark (e.g., visual, audio)."
+    },
+    "hint_modes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "List of discoverability modes for this mark (e.g., visual_hint, lighting_reveal)."
+    },
+    "placement_context": {
+      "type": "string",
+      "description": "Textual description of where and how the mark is integrated into the environment."
+    },
+    "claim_condition": {
+      "type": "string",
+      "description": "Description of the condition required to claim the mark (e.g., player_interacts_with_mark)."
+    },
+    "reward_class_id": {
+      "type": "string",
+      "enum": [
+        "minor_cache",
+        "rare_cache",
+        "memory_fragment",
+        "orientation_upgrade",
+        "hidden_event_trigger"
+      ],
+      "description": "The class of reward associated with this mark."
+    },
+    "reward_payload_ref": {
+      "type": "string",
+      "description": "Reference to the actual reward payload definition."
+    },
+    "is_optional": {
+      "type": "boolean",
+      "description": "True if finding and claiming this mark is optional for progression."
+    },
+    "is_discoverable": {
+      "type": "boolean",
+      "description": "True if the mark provides sufficient hints for discovery."
+    },
+    "claimed": {
+      "type": "boolean",
+      "description": "True if the mark has been claimed."
+    },
+    "can_mutate_if_unclaimed": {
+      "type": "boolean",
+      "description": "True if this mark can change or be removed if not claimed in a run."
+    },
+    "progression_break_risk": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "LOW",
+        "INVALID"
+      ],
+      "description": "Risk level of this mark breaking player progression."
+    }
+  }
+}

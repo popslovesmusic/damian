@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Operational Cost Profile Schema",
+  "description": "Schema for validating operational cost profiles for players/domains, emphasizing continuous drain.",
+  "type": "object",
+  "required": [
+    "profile_id",
+    "player_id",
+    "content_pack_id",
+    "surface_loot_recent",
+    "recurring_costs",
+    "pressure_indicators"
+  ],
+  "properties": {
+    "profile_id": {
+      "type": "string",
+      "description": "Unique identifier for this operational cost profile."
+    },
+    "player_id": {
+      "type": "string",
+      "description": "The player ID this profile belongs to."
+    },
+    "content_pack_id": {
+      "type": "string",
+      "description": "The ID of the content pack this profile is associated with."
+    },
+    "surface_loot_recent": {
+      "type": "object",
+      "description": "Recent visible loot collected by the player.",
+      "required": [
+        "gold_collected",
+        "items_collected",
+        "rare_materials_collected"
+      ],
+      "properties": {
+        "gold_collected": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Amount of gold collected recently."
+        },
+        "items_collected": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of items collected recently."
+        },
+        "rare_materials_collected": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of rare materials collected recently."
+        }
+      }
+    },
+    "recurring_costs": {
+      "type": "object",
+      "description": "Breakdown of recurring operational costs.",
+      "required": [
+        "potions",
+        "repairs",
+        "travel",
+        "crafting",
+        "domain_maintenance",
+        "mutation_control",
+        "hazard_upkeep",
+        "invasion_preparation"
+      ],
+      "properties": {
+        "potions": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for potions."
+        },
+        "repairs": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for repairs."
+        },
+        "travel": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for travel."
+        },
+        "crafting": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for crafting."
+        },
+        "domain_maintenance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for domain maintenance."
+        },
+        "mutation_control": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for mutation control."
+        },
+        "hazard_upkeep": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for hazard upkeep."
+        },
+        "invasion_preparation": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cost for invasion preparation."
+        }
+      }
+    },
+    "pressure_indicators": {
+      "type": "object",
+      "description": "Indicators of economic pressure and player's financial state.",
+      "required": [
+        "net_gold_after_costs",
+        "maintenance_ratio",
+        "farming_needed",
+        "risk_removed_by_wealth"
+      ],
+      "properties": {
+        "net_gold_after_costs": {
+          "type": "number",
+          "description": "Net gold after all recurring costs."
+        },
+        "maintenance_ratio": {
+          "type": "number",
+          "minimum": 0.0,
+          "description": "Ratio of maintenance costs to total income/gold."
+        },
+        "farming_needed": {
+          "type": "boolean",
+          "description": "True if the player needs to farm resources."
+        },
+        "risk_removed_by_wealth": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Wealth should not remove core gameplay risks."
+        }
+      }
+    }
+  }
+}

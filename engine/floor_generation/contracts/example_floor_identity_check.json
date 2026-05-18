@@ -1,0 +1,25 @@
+{
+  "identity_check_id": "identity_check_001",
+  "floor_id": 2,
+  "original_layout_seed": "floor_002_seed_a",
+  "mutated_layout_seed": "floor_002_seed_a_mutation_001",
+  "source_mutation_event_id": "mutation_event_001",
+  "anchors_checked": [
+    "layout_seed_lineage",
+    "entry_exit_continuity",
+    "primary_route_survivability",
+    "landmark_continuity",
+    "floor_theme_continuity",
+    "difficulty_bounds",
+    "secret_discoverability"
+  ],
+  "forbidden_results_detected": [],
+  "entry_reachable": true,
+  "exit_reachable": true,
+  "primary_route_exists": true,
+  "landmark_continuity_score": 0.82,
+  "theme_continuity_score": 0.91,
+  "secret_discoverability_score": 0.74,
+  "identity_status": "PRESERVED",
+  "playability_preserved": true
+}

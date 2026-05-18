@@ -1,0 +1,32 @@
+{
+  "mutation_input_id": "mutation_input_example_001",
+  "tower_state_id": "tower_state_example_001",
+  "content_pack_id": "damian",
+  "floor_id": 2,
+  "source_outcome": "DEFEAT_DROP",
+  "residue_summary": {
+    "dominant_damage_type": "fire",
+    "dominant_play_pattern": "aggressive",
+    "exploration_percent": 62.0,
+    "party_size": 1,
+    "death_count": 1,
+    "visit_count": 2,
+    "stability": 0.72,
+    "deviation": 0.28,
+    "mutation_level": 1
+  },
+  "eligible_mutation_channels": [
+    "layout",
+    "enemy_ecology",
+    "hazards",
+    "loot",
+    "easter_eggs",
+    "stability"
+  ],
+  "mutation_constraints": {
+    "must_preserve_floor_identity": true,
+    "must_remain_playable": true,
+    "may_increase_difficulty": true,
+    "may_reveal_rewards": true
+  }
+}

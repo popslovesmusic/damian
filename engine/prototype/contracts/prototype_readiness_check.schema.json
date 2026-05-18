@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Prototype Readiness Check Schema",
+  "description": "Schema for validating whether the repository is ready to begin implementation for the first playable prototype.",
+  "type": "object",
+  "required": [
+    "readiness_check_id",
+    "prototype_id",
+    "content_pack_id",
+    "required_prior_patches_passed",
+    "included_systems_confirmed",
+    "excluded_systems_confirmed",
+    "scope_creep_detected",
+    "ready_for_runtime_implementation",
+    "implementation_start_patch"
+  ],
+  "properties": {
+    "readiness_check_id": {
+      "type": "string",
+      "description": "Unique identifier for this readiness check instance."
+    },
+    "prototype_id": {
+      "type": "string",
+      "description": "The ID of the prototype being checked (e.g., 'tower_engine_mvp_001')."
+    },
+    "content_pack_id": {
+      "type": "string",
+      "description": "The content pack ID for which the prototype is being built (e.g., 'damian')."
+    },
+    "required_prior_patches_passed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of patch IDs that must have successfully passed their audits."
+    },
+    "included_systems_confirmed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of systems confirmed to be within the prototype's scope."
+    },
+    "excluded_systems_confirmed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of systems confirmed to be explicitly outside the prototype's scope."
+    },
+    "scope_creep_detected": {
+      "type": "boolean",
+      "const": false,
+      "description": "Must be false. True if any systems beyond the defined prototype scope were introduced."
+    },
+    "ready_for_runtime_implementation": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Indicates all architectural groundwork is complete for runtime implementation."
+    },
+    "implementation_start_patch": {
+      "type": "string",
+      "description": "The patch ID where runtime implementation is expected to begin."
+    }
+  }
+}

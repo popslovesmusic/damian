@@ -1,0 +1,26 @@
+{
+  "profile_id": "economy_profile_001",
+  "player_id": "player_damian_001",
+  "content_pack_id": "damian",
+  "surface_loot_recent": {
+    "gold_collected": 10000,
+    "items_collected": 37,
+    "rare_materials_collected": 2
+  },
+  "recurring_costs": {
+    "potions": 250,
+    "repairs": 120,
+    "travel": 80,
+    "crafting": 1400,
+    "domain_maintenance": 1200,
+    "mutation_control": 900,
+    "hazard_upkeep": 400,
+    "invasion_preparation": 700
+  },
+  "pressure_indicators": {
+    "net_gold_after_costs": 4950,
+    "maintenance_ratio": 0.505,
+    "farming_needed": true,
+    "risk_removed_by_wealth": false
+  }
+}

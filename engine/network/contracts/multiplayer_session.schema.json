@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Multiplayer Session Schema",
+  "description": "Schema for validating multiplayer session state payloads.",
+  "type": "object",
+  "required": [
+    "session_id",
+    "mode_id",
+    "authority_model",
+    "content_pack_id",
+    "host_player_id",
+    "player_ids",
+    "target_domain_state_id",
+    "session_state",
+    "loot_policy",
+    "risk_profile",
+    "safe_resolution_required"
+  ],
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Unique identifier for this multiplayer session."
+    },
+    "mode_id": {
+      "type": "string",
+      "enum": [
+        "solo",
+        "private_coop",
+        "domain_invasion",
+        "domain_defense"
+      ],
+      "description": "The multiplayer mode of this session."
+    },
+    "authority_model": {
+      "type": "string",
+      "enum": [
+        "server_authoritative",
+        "host_authoritative_with_validation"
+      ],
+      "description": "The authority model for this session."
+    },
+    "content_pack_id": {
+      "type": "string",
+      "description": "The ID of the content pack this session is associated with."
+    },
+    "host_player_id": {
+      "type": "string",
+      "description": "The player ID of the session host."
+    },
+    "player_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 4,
+      "description": "List of player IDs participating in the session (1-4 players)."
+    },
+    "target_domain_state_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The domain state ID targeted by this session, if applicable (e.g., for domain invasion)."
+    },
+    "session_state": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "LOBBY",
+        "LOADING",
+        "ACTIVE",
+        "RESOLVING",
+        "COMPLETE",
+        "DISCONNECTED",
+        "FAILED_SAFE"
+      ],
+      "description": "Current state of the multiplayer session."
+    },
+    "loot_policy": {
+      "type": "string",
+      "enum": [
+        "INSTANCED",
+        "PARTY_ROLL",
+        "OWNER_LOCKED",
+        "NO_LOOT"
+      ],
+      "description": "Policy governing loot distribution within the session."
+    },
+    "risk_profile": {
+      "type": "object",
+      "description": "Description of risks for different participants in the session.",
+      "required": [
+        "attacker_risk",
+        "defender_risk",
+        "shared_risk"
+      ],
+      "properties": {
+        "attacker_risk": {
+          "type": "string",
+          "description": "Risks specific to attacking players."
+        },
+        "defender_risk": {
+          "type": "string",
+          "description": "Risks specific to defending players/domains."
+        },
+        "shared_risk": {
+          "type": "string",
+          "description": "Risks shared by all participants."
+        }
+      }
+    },
+    "safe_resolution_required": {
+      "type": "boolean",
+      "description": "True if the session must always resolve to a safe, non-corrupted state."
+    }
+  }
+}

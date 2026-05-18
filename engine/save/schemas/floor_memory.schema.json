@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Floor Memory Schema",
+  "description": "Schema for validating per-floor memory records.",
+  "type": "object",
+  "required": [
+    "floor_id",
+    "visit_count",
+    "death_count",
+    "victory_count",
+    "stability",
+    "deviation",
+    "mutation_level",
+    "known_layout_seed",
+    "active_mutations",
+    "discovered_easter_eggs",
+    "unclaimed_easter_eggs",
+    "residue_history"
+  ],
+  "properties": {
+    "floor_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Unique identifier for the floor."
+    },
+    "visit_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of times this floor has been visited."
+    },
+    "death_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of player deaths on this floor."
+    },
+    "victory_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of times this floor was successfully cleared."
+    },
+    "stability": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Current stability of the floor, influencing generation."
+    },
+    "deviation": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Current deviation of the floor, influencing generation."
+    },
+    "mutation_level": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Current mutation level of the floor."
+    },
+    "known_layout_seed": {
+      "type": "string",
+      "description": "Seed used for generating the layout of this floor."
+    },
+    "active_mutations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of active mutations affecting this floor."
+    },
+    "discovered_easter_eggs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of discovered easter eggs on this floor."
+    },
+    "unclaimed_easter_eggs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of unclaimed easter eggs on this floor."
+    },
+    "residue_history": {
+      "type": "array",
+      "items": {
+        "$ref": "residue_record.schema.json"
+      },
+      "description": "Array of residue records associated with this floor."
+    }
+  }
+}

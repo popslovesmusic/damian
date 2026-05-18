@@ -1,0 +1,83 @@
+{
+  "save_bundle_id": "runtime_save_bundle_example_001",
+  "engine_version": "0.0.1",
+  "content_pack_id": "damian",
+  "contains": [
+    "tower_state",
+    "player_progression_state",
+    "domain_state"
+  ],
+  "notes": [
+    "This bundle is for local runtime skeleton tests only.",
+    "Authoritative schema validation remains per-payload."
+  ],
+  "tower_state": {
+    "tower_state_id": "tower_state_example_001",
+    "engine_version": "0.0.1",
+    "content_pack_id": "damian",
+    "current_floor": 1,
+    "highest_floor_reached": 1,
+    "total_runs": 0,
+    "total_deaths": 0,
+    "last_outcome": "NONE",
+    "updated_at": "2026-05-18T00:00:00Z",
+    "global_residue": {
+      "dominant_damage_type": "none",
+      "dominant_play_pattern": "none",
+      "tower_instability": 0.0
+    },
+    "floor_memory": []
+  },
+  "player_progression_state": {
+    "player_id": "player_example_001",
+    "profile_id": "profile_example_001",
+    "content_pack_id": "damian",
+    "level": 1,
+    "highest_floor_reached": 0,
+    "active_orientation": "none",
+    "stats": {
+      "health": 100.0,
+      "damage": 10.0,
+      "defense": 5.0,
+      "speed": 1.0,
+      "recovery": 1.0
+    },
+    "unlocked_skills": [],
+    "equipped_items": [],
+    "residue_pressure": {
+      "dominant_build_visibility": 0.0,
+      "power_use_strain": 0.0,
+      "overoptimization_pressure": 0.0
+    },
+    "forbidden_flags": {
+      "permanent_invulnerability": false,
+      "infinite_damage_scaling": false,
+      "residue_immunity": false,
+      "death_consequence_immunity": false
+    }
+  },
+  "domain_state": {
+    "domain_state_id": "domain_state_initial_001",
+    "owner_player_id": "none",
+    "content_pack_id": "damian",
+    "domain_archetype": "none",
+    "conquered": false,
+    "dashboard_unlocked": false,
+    "domain_level": 0,
+    "stability": 1.0,
+    "deviation": 0.0,
+    "active_modifiers": [],
+    "operational_costs": {
+      "maintenance": 0,
+      "mutation_control": 0,
+      "hazard_upkeep": 0,
+      "resource_transport": 0
+    },
+    "invasion_history": [],
+    "forbidden_flags": {
+      "playability_failure": false,
+      "owner_immunity": false,
+      "impossible_layout": false
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "protection_state_id": "protection_state_001",
+  "domain_state_id": "domain_state_001",
+  "owner_player_id": "player_damian_001",
+  "current_protection_state": "RECOVERY_WINDOW",
+  "triggering_resolution_id": "conquest_resolution_001",
+  "recent_attack_count": 3,
+  "same_attacker_repeat_count": 2,
+  "recovery_required": true,
+  "recovery_progress": 0.35,
+  "protection_expires": true,
+  "permanent_immunity_granted": false,
+  "domain_recoverable": true,
+  "playability_restored_before_next_invasion": true,
+  "escalating_cost_required_for_repeat_attack": true,
+  "forbidden_flags": {
+    "permanent_domain_lock": false,
+    "permanent_immunity": false,
+    "unrecoverable_damage": false,
+    "repeat_attack_without_cost": false,
+    "full_conquest_from_failed_safe": false
+  }
+}

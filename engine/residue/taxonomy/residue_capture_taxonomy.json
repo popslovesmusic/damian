@@ -1,0 +1,83 @@
+{
+  "taxonomy_id": "tower_engine_residue_capture_taxonomy_v001",
+  "categories": [
+    {
+      "category_id": "outcome_residue",
+      "description": "Captures victory, defeat, retreat, disconnect, or exit outcomes.",
+      "signals": [
+        "last_outcome",
+        "death_event",
+        "victory_event",
+        "retreat_event"
+      ]
+    },
+    {
+      "category_id": "combat_residue",
+      "description": "Captures dominant combat behavior without implementing combat logic.",
+      "signals": [
+        "dominant_damage_type",
+        "most_used_skill",
+        "damage_taken_total",
+        "damage_dealt_total",
+        "elite_kills",
+        "boss_attempts"
+      ]
+    },
+    {
+      "category_id": "movement_residue",
+      "description": "Captures movement and traversal behavior.",
+      "signals": [
+        "rooms_entered",
+        "corridors_traversed",
+        "dash_count",
+        "backtrack_count",
+        "time_stationary_seconds"
+      ]
+    },
+    {
+      "category_id": "exploration_residue",
+      "description": "Captures how thoroughly the floor was explored.",
+      "signals": [
+        "exploration_percent",
+        "hidden_rooms_found",
+        "easter_eggs_discovered",
+        "easter_eggs_claimed",
+        "unclaimed_easter_eggs"
+      ]
+    },
+    {
+      "category_id": "loot_residue",
+      "description": "Captures loot interaction behavior.",
+      "signals": [
+        "items_collected",
+        "items_ignored",
+        "rarity_highest_collected",
+        "relics_claimed",
+        "gold_collected"
+      ]
+    },
+    {
+      "category_id": "party_residue",
+      "description": "Captures small-session multiplayer-relevant state without implementing networking.",
+      "signals": [
+        "party_size",
+        "revives_performed",
+        "party_downs",
+        "shared_defeat",
+        "disconnect_count"
+      ]
+    },
+    {
+      "category_id": "floor_stability_residue",
+      "description": "Captures accumulated floor-level memory relevant to future mutation.",
+      "signals": [
+        "visit_count",
+        "death_count",
+        "victory_count",
+        "stability",
+        "deviation",
+        "mutation_level"
+      ]
+    }
+  ]
+}

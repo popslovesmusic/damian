@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Domain Invasion Event Schema",
+  "description": "Schema for validating domain invasion event records.",
+  "type": "object",
+  "required": [
+    "invasion_event_id",
+    "session_id",
+    "attacker_player_ids",
+    "defender_player_id",
+    "target_domain_state_id",
+    "target_domain_archetype",
+    "invasion_cost_paid",
+    "attacker_advantage_used",
+    "attacker_risk_incurred",
+    "defender_advantage_active",
+    "defender_risk_incurred",
+    "outcome",
+    "residue_written_to_attacker",
+    "residue_written_to_defender",
+    "playability_preserved",
+    "forbidden_flags"
+  ],
+  "properties": {
+    "invasion_event_id": {
+      "type": "string",
+      "description": "Unique identifier for this invasion event."
+    },
+    "session_id": {
+      "type": "string",
+      "description": "The ID of the multiplayer session where this invasion occurred."
+    },
+    "attacker_player_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 4,
+      "description": "List of player IDs attacking the domain (1-4 players)."
+    },
+    "defender_player_id": {
+      "type": "string",
+      "description": "The player ID of the defender/owner of the target domain."
+    },
+    "target_domain_state_id": {
+      "type": "string",
+      "description": "The ID of the domain state being invaded."
+    },
+    "target_domain_archetype": {
+      "type": "string",
+      "description": "The archetype of the target domain."
+    },
+    "invasion_cost_paid": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Cost paid by attackers to initiate the invasion."
+    },
+    "attacker_advantage_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of advantages attackers used (e.g., temporary buffs)."
+    },
+    "attacker_risk_incurred": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of risks attackers incurred (e.g., higher visibility)."
+    },
+    "defender_advantage_active": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of advantages defenders had active (e.g., increased enemy density)."
+    },
+    "defender_risk_incurred": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of risks defenders incurred (e.g., higher domain upkeep)."
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "ATTACKER_CONQUEST",
+        "DEFENDER_HOLD",
+        "ATTACKER_RETREAT",
+        "SESSION_UNRESOLVED",
+        "FAILED_SAFE"
+      ],
+      "description": "The outcome of the domain invasion."
+    },
+    "residue_written_to_attacker": {
+      "type": "boolean",
+      "description": "True if residue was written to the attacker's history."
+    },
+    "residue_written_to_defender": {
+      "type": "boolean",
+      "description": "True if residue was written to the defender's domain/history."
+    },
+    "playability_preserved": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Invasion must not leave domain unplayable."
+    },
+    "forbidden_flags": {
+      "type": "object",
+      "description": "Flags to ensure fair play and prevent exploits.",
+      "required": [
+        "impossible_domain",
+        "free_advantage_detected",
+        "reward_spoof_risk"
+      ],
+      "properties": {
+        "impossible_domain": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Invasion should not create an impossible domain."
+        },
+        "free_advantage_detected": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. No free advantages should be detected."
+        },
+        "reward_spoof_risk": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. No reward spoofing risk should be detected."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_pack_id": "jacobs_bane_campaign_001",
+  "title": "Jacob's Bane",
+  "campaign_role": "placeholder_campaign",
+  "engine_required": "Tower Engine >=0.0.1",
+  "enabled": false,
+  "directories": {
+    "enemies": "content/jacobs_bane/enemies/",
+    "items": "content/jacobs_bane/items/",
+    "floors": "content/jacobs_bane/floors/",
+    "story": "content/jacobs_bane/story/"
+  }
+}

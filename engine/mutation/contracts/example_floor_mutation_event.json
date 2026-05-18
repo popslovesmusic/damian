@@ -1,0 +1,37 @@
+{
+  "mutation_event_id": "mutation_event_001",
+  "floor_id": 2,
+  "source_outcome": "DEFEAT_DROP",
+  "triggering_residue_id": "residue_001",
+  "applied_channels": [
+    "layout",
+    "enemy_ecology",
+    "easter_eggs"
+  ],
+  "mutations": [
+    {
+      "channel_id": "layout",
+      "mutation_id": "collapsed_corridor",
+      "severity": 2,
+      "preserves_floor_identity": true,
+      "preserves_playability": true
+    },
+    {
+      "channel_id": "enemy_ecology",
+      "mutation_id": "predator_migration",
+      "severity": 3,
+      "preserves_floor_identity": true,
+      "preserves_playability": true
+    },
+    {
+      "channel_id": "easter_eggs",
+      "mutation_id": "survivor_mark_spawn",
+      "severity": 1,
+      "preserves_floor_identity": true,
+      "preserves_playability": true
+    }
+  ],
+  "floor_identity_preserved": true,
+  "playability_preserved": true,
+  "mutation_timestamp": "2026-05-18T00:00:00Z"
+}

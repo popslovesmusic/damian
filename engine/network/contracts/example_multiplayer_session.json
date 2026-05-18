@@ -1,0 +1,20 @@
+{
+  "session_id": "session_001",
+  "mode_id": "domain_invasion",
+  "authority_model": "server_authoritative",
+  "content_pack_id": "damian",
+  "host_player_id": "player_damian_001",
+  "player_ids": [
+    "player_jacob_001",
+    "player_james_001"
+  ],
+  "target_domain_state_id": "domain_state_001",
+  "session_state": "ACTIVE",
+  "loot_policy": "INSTANCED",
+  "risk_profile": {
+    "attacker_risk": "invasion_cost_loss_and_attack_residue",
+    "defender_risk": "domain_mutation_and_stability_loss",
+    "shared_risk": "session_failure_writes_residue"
+  },
+  "safe_resolution_required": true
+}

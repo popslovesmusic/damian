@@ -1,0 +1,38 @@
+{
+  "patch_id": "TOWER-ENGINE-002",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "All runtime_states have unique state_id values",
+      "status": "PASS"
+    },
+    {
+      "check": "Every transition source and target exists in runtime_states",
+      "status": "PASS"
+    },
+    {
+      "check": "BOOT_ENGINE has no incoming required transition",
+      "status": "PASS"
+    },
+    {
+      "check": "SHUTDOWN_ENGINE has no outgoing required transition",
+      "status": "PASS"
+    },
+    {
+      "check": "ACTIVE_FLOOR_LOOP can only resolve through RESOLVE_FLOOR_OUTCOME",
+      "status": "PASS"
+    },
+    {
+      "check": "DEFEAT_DROP explicitly routes to current_floor - 1",
+      "status": "PASS"
+    },
+    {
+      "check": "Returned floor mutation is declared for DEFEAT_DROP",
+      "status": "PASS"
+    },
+    {
+      "check": "Content packs do not define or override the engine runtime state machine",
+      "status": "PASS"
+    }
+  ]
+}

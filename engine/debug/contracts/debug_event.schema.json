@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Debug Event Schema",
+  "description": "Schema for validating structured debug event records.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "timestamp",
+    "patch_id",
+    "system",
+    "severity",
+    "event_type",
+    "message",
+    "context",
+    "safe_to_persist"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for this debug event."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 formatted timestamp of when the event occurred."
+    },
+    "patch_id": {
+      "type": "string",
+      "description": "The ID of the architectural patch associated with this event."
+    },
+    "system": {
+      "type": "string",
+      "description": "The game system or module where the event originated (e.g., 'SaveManager', 'GameLoop')."
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "DEBUG",
+        "INFO",
+        "WARNING",
+        "ERROR",
+        "CRITICAL"
+      ],
+      "description": "The severity level of the debug event."
+    },
+    "event_type": {
+      "type": "string",
+      "description": "A specific type or category for the event (e.g., 'FileReadError', 'ValidationSuccess')."
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable message describing the event."
+    },
+    "context": {
+      "type": "object",
+      "description": "A dictionary of additional contextual data, with PII fields redacted."
+    },
+    "safe_to_persist": {
+      "type": "boolean",
+      "description": "True if the event contains no sensitive data and is safe to be persisted or shared."
+    }
+  }
+}

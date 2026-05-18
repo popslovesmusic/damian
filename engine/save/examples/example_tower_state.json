@@ -1,0 +1,52 @@
+{
+  "tower_state_id": "tower_state_example_001",
+  "engine_version": "0.0.1",
+  "content_pack_id": "damian",
+  "current_floor": 2,
+  "highest_floor_reached": 3,
+  "total_runs": 1,
+  "total_deaths": 1,
+  "last_outcome": "DEFEAT_DROP",
+  "updated_at": "2026-05-18T00:00:00Z",
+  "global_residue": {
+    "dominant_damage_type": "fire",
+    "dominant_play_pattern": "aggressive",
+    "tower_instability": 0.18
+  },
+  "floor_memory": [
+    {
+      "floor_id": 2,
+      "visit_count": 2,
+      "death_count": 0,
+      "victory_count": 1,
+      "stability": 0.72,
+      "deviation": 0.28,
+      "mutation_level": 1,
+      "known_layout_seed": "floor_002_seed_a",
+      "active_mutations": [
+        "collapsed_side_corridor"
+      ],
+      "discovered_easter_eggs": [],
+      "unclaimed_easter_eggs": [
+        "survivor_mark_001"
+      ],
+      "residue_history": [
+        {
+          "residue_id": "residue_001",
+          "floor_id": 2,
+          "outcome": "DEFEAT_DROP",
+          "dominant_damage_type": "fire",
+          "most_used_skill": "dash_slash",
+          "clear_time_seconds": 440.5,
+          "exploration_percent": 62.0,
+          "party_size": 1,
+          "death_event": true,
+          "mutation_triggered": true,
+          "notes": [
+            "Player dropped from floor 3 to floor 2; floor 2 receives replay mutation."
+          ]
+        }
+      ]
+    }
+  ]
+}

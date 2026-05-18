@@ -1,0 +1,13 @@
+{
+  "content_pack_id": "damian_campaign_001",
+  "title": "Damian: What Survives the Tower",
+  "campaign_role": "main_campaign",
+  "engine_required": "Tower Engine >=0.0.1",
+  "enabled": true,
+  "directories": {
+    "enemies": "content/damian/enemies/",
+    "items": "content/damian/items/",
+    "floors": "content/damian/floors/",
+    "story": "content/damian/story/"
+  }
+}

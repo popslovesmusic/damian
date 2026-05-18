@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Domain Parameter Change Schema",
+  "description": "Schema for validating requested dashboard parameter changes.",
+  "type": "object",
+  "required": [
+    "change_id",
+    "domain_state_id",
+    "owner_player_id",
+    "parameter_id",
+    "requested_delta",
+    "benefit_declared",
+    "costs_paid",
+    "risks_incurred",
+    "owner_affected",
+    "playability_preserved",
+    "primary_route_preserved",
+    "risk_advantage_equilibrium_preserved",
+    "forbidden_flags"
+  ],
+  "properties": {
+    "change_id": {
+      "type": "string",
+      "description": "Unique identifier for this parameter change request."
+    },
+    "domain_state_id": {
+      "type": "string",
+      "description": "The ID of the domain state being modified."
+    },
+    "owner_player_id": {
+      "type": "string",
+      "description": "The player ID requesting the change."
+    },
+    "parameter_id": {
+      "type": "string",
+      "description": "The ID of the parameter being changed (e.g., 'enemy_density_bias')."
+    },
+    "requested_delta": {
+      "type": "number",
+      "description": "The requested change value (e.g., 0.15 for a 15% increase)."
+    },
+    "benefit_declared": {
+      "type": "string",
+      "description": "A description of the declared benefit of this change."
+    },
+    "costs_paid": {
+      "type": "object",
+      "description": "Resources paid to enact this change.",
+      "required": [
+        "gold",
+        "domain_essence",
+        "stability_shards",
+        "residue_fragments",
+        "rare_materials"
+      ],
+      "properties": {
+        "gold": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Gold cost."
+        },
+        "domain_essence": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Domain Essence cost."
+        },
+        "stability_shards": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Stability Shards cost."
+        },
+        "residue_fragments": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Residue Fragments cost."
+        },
+        "rare_materials": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Rare Materials cost."
+        }
+      }
+    },
+    "risks_incurred": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "List of risks/drawbacks incurred by this change."
+    },
+    "owner_affected": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. The owner must be affected by this change."
+    },
+    "playability_preserved": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Playability must be preserved."
+    },
+    "primary_route_preserved": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Primary routes must be preserved."
+    },
+    "risk_advantage_equilibrium_preserved": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Risk-advantage equilibrium must be preserved."
+    },
+    "forbidden_flags": {
+      "type": "object",
+      "description": "Flags to ensure anti-exploit principles are maintained.",
+      "required": [
+        "free_advantage",
+        "owner_immunity",
+        "positive_only_upgrade",
+        "softlock_risk"
+      ],
+      "properties": {
+        "free_advantage": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must always be false. No free advantages should be granted."
+        },
+        "owner_immunity": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must always be false. Owner should not be immune to domain effects."
+        },
+        "positive_only_upgrade": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must always be false. Upgrades should have downsides."
+        },
+        "softlock_risk": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must always be false. No risk of softlocking the domain."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "survivor_mark_id": "survivor_mark_001",
+  "floor_id": 2,
+  "source_mutation_event_id": "mutation_event_001",
+  "mark_class_id": "visual_glyph",
+  "hint_modes": [
+    "visual_hint",
+    "lighting_reveal"
+  ],
+  "placement_context": "carved into a cracked archway revealed after corridor collapse",
+  "claim_condition": "player_interacts_with_mark_after_revealing_hint",
+  "reward_class_id": "rare_cache",
+  "reward_payload_ref": "reward_payload_rare_cache_placeholder_001",
+  "is_optional": true,
+  "is_discoverable": true,
+  "claimed": false,
+  "can_mutate_if_unclaimed": true,
+  "progression_break_risk": "LOW"
+}

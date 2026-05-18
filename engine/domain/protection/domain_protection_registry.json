@@ -1,0 +1,41 @@
+{
+  "registry_id": "tower_engine_domain_protection_v001",
+  "protection_states": [
+    {
+      "state_id": "NONE",
+      "description": "Domain is open to normal attack rules."
+    },
+    {
+      "state_id": "RECOVERY_WINDOW",
+      "description": "Temporary post-conquest or post-heavy-damage recovery state."
+    },
+    {
+      "state_id": "LOW_ACTIVITY_SHIELD",
+      "description": "Reduced invasion pressure for inactive or low-activity players."
+    },
+    {
+      "state_id": "FAILED_SAFE_LOCK",
+      "description": "Temporary lock after invalid session, exploit detection, or impossible-domain validation failure."
+    },
+    {
+      "state_id": "COOLDOWN_AFTER_REPEAT_ATTACK",
+      "description": "Temporary restriction after repeated attacks from same attacker or party."
+    }
+  ],
+  "anti_griefing_rules": [
+    "same_attacker_repeat_invasions_require_escalating_cost",
+    "failed_safe_sessions_do_not_award_full_conquest",
+    "offline_players_may_receive_reduced_invasion_exposure",
+    "domain_damage_cannot_stack_to_permanent_unrecoverability",
+    "protection_windows_expire",
+    "protection_windows_do_not_grant_permanent_immunity",
+    "strategic_invasions_remain_allowed_after_recovery"
+  ],
+  "recovery_rules": [
+    "domain_recovery_restores_playability_before_next_valid_invasion",
+    "owner_may_spend_resources_to_accelerate_recovery",
+    "attacker_success_may_trigger_temporary_influence_but_not_permanent_theft",
+    "recovery_costs_scale_with_domain_level_and_recent_damage",
+    "domain_residue_persists_after_recovery"
+  ]
+}

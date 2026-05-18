@@ -1,0 +1,52 @@
+{
+  "required_backend": "cpu",
+  "optional_backends": [
+    {
+      "backend_id": "webgpu",
+      "role": [
+        "browser_rendering",
+        "browser_compute_future"
+      ],
+      "status": "planned"
+    },
+    {
+      "backend_id": "opengl",
+      "role": [
+        "desktop_rendering",
+        "fallback_rendering"
+      ],
+      "status": "planned"
+    },
+    {
+      "backend_id": "vulkan",
+      "role": [
+        "desktop_rendering",
+        "desktop_compute_future"
+      ],
+      "status": "planned"
+    },
+    {
+      "backend_id": "directx",
+      "role": [
+        "windows_rendering"
+      ],
+      "status": "planned"
+    },
+    {
+      "backend_id": "sycl_or_oneapi",
+      "role": [
+        "intel_gpu_compute_future"
+      ],
+      "status": "candidate"
+    }
+  ],
+  "explicitly_not_required": [
+    "cuda",
+    "nvidia_only_stack"
+  ],
+  "fallback_policy": {
+    "cpu_required": true,
+    "gameplay_must_run_without_gpu_compute": true,
+    "gpu_may_accelerate_but_not_define_core_logic": true
+  }
+}

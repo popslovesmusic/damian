@@ -1,0 +1,14 @@
+{
+  "event_id": "debug_event_001",
+  "timestamp": "2026-05-18T00:00:00Z",
+  "patch_id": "TOWER-ENGINE-017",
+  "system": "json_save_manager",
+  "severity": "INFO",
+  "event_type": "FileWriteSuccess",
+  "message": "Successfully wrote save file.",
+  "context": {
+    "file_path": "saves/player_001/game_state.json",
+    "size_bytes": 1024
+  },
+  "safe_to_persist": true
+}

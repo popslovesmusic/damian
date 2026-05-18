@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Residue Record Schema",
+  "description": "Schema for validating residue records written after floor outcomes.",
+  "type": "object",
+  "required": [
+    "residue_id",
+    "floor_id",
+    "outcome",
+    "dominant_damage_type",
+    "most_used_skill",
+    "clear_time_seconds",
+    "exploration_percent",
+    "party_size",
+    "death_event",
+    "mutation_triggered",
+    "notes"
+  ],
+  "properties": {
+    "residue_id": {
+      "type": "string",
+      "description": "Unique identifier for this residue record."
+    },
+    "floor_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The floor ID this residue record is associated with."
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "VICTORY_ASCEND",
+        "DEFEAT_DROP",
+        "RETREAT_TO_HUB",
+        "SESSION_DISCONNECT",
+        "EXIT_GAME"
+      ],
+      "description": "The outcome that generated this residue record."
+    },
+    "dominant_damage_type": {
+      "type": "string",
+      "description": "The dominant damage type dealt/received during the floor."
+    },
+    "most_used_skill": {
+      "type": "string",
+      "description": "The most used skill by the player during the floor."
+    },
+    "clear_time_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Time taken to clear or resolve the floor in seconds."
+    },
+    "exploration_percent": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 100.0,
+      "description": "Percentage of the floor explored."
+    },
+    "party_size": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of players in the party."
+    },
+    "death_event": {
+      "type": "boolean",
+      "description": "True if a death event occurred on this floor."
+    },
+    "mutation_triggered": {
+      "type": "boolean",
+      "description": "True if a mutation was triggered by this floor's outcome."
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Any additional notes or contextual information."
+    }
+  }
+}

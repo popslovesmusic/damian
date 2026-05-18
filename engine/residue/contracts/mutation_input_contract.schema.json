@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mutation Input Contract Schema",
+  "description": "Schema for validating residue-derived mutation input payloads.",
+  "type": "object",
+  "required": [
+    "mutation_input_id",
+    "tower_state_id",
+    "content_pack_id",
+    "floor_id",
+    "source_outcome",
+    "residue_summary",
+    "eligible_mutation_channels",
+    "mutation_constraints"
+  ],
+  "properties": {
+    "mutation_input_id": {
+      "type": "string",
+      "description": "Unique identifier for this mutation input payload."
+    },
+    "tower_state_id": {
+      "type": "string",
+      "description": "ID of the tower state this input is derived from."
+    },
+    "content_pack_id": {
+      "type": "string",
+      "description": "ID of the content pack this input is associated with."
+    },
+    "floor_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The floor ID this input pertains to."
+    },
+    "source_outcome": {
+      "type": "string",
+      "enum": [
+        "VICTORY_ASCEND",
+        "DEFEAT_DROP",
+        "RETREAT_TO_HUB",
+        "SESSION_DISCONNECT",
+        "EXIT_GAME"
+      ],
+      "description": "The outcome that generated this mutation input."
+    },
+    "residue_summary": {
+      "type": "object",
+      "description": "Summarized residue data for mutation calculation.",
+      "required": [
+        "dominant_damage_type",
+        "dominant_play_pattern",
+        "exploration_percent",
+        "party_size",
+        "death_count",
+        "visit_count",
+        "stability",
+        "deviation",
+        "mutation_level"
+      ],
+      "properties": {
+        "dominant_damage_type": {
+          "type": "string",
+          "description": "Dominant damage type from the residue."
+        },
+        "dominant_play_pattern": {
+          "type": "string",
+          "description": "Dominant play pattern from the residue (e.g., aggressive, cautious)."
+        },
+        "exploration_percent": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "description": "Percentage of floor explored."
+        },
+        "party_size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of players in the party."
+        },
+        "death_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of deaths recorded."
+        },
+        "visit_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of times the floor was visited."
+        },
+        "stability": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Floor stability."
+        },
+        "deviation": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Floor deviation."
+        },
+        "mutation_level": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Floor mutation level."
+        }
+      }
+    },
+    "eligible_mutation_channels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of mutation channels that are eligible for this input."
+    },
+    "mutation_constraints": {
+      "type": "object",
+      "description": "Constraints applied to the mutation process.",
+      "required": [
+        "must_preserve_floor_identity",
+        "must_remain_playable",
+        "may_increase_difficulty",
+        "may_reveal_rewards"
+      ],
+      "properties": {
+        "must_preserve_floor_identity": {
+          "type": "boolean",
+          "description": "If true, the floor's core identity must be preserved during mutation."
+        },
+        "must_remain_playable": {
+          "type": "boolean",
+          "description": "If true, the mutated floor must remain playable and not become a dead-end."
+        },
+        "may_increase_difficulty": {
+          "type": "boolean",
+          "description": "If true, the mutation process is allowed to increase floor difficulty."
+        },
+        "may_reveal_rewards": {
+          "type": "boolean",
+          "description": "If true, the mutation process is allowed to reveal new rewards."
+        }
+      }
+    }
+  }
+}

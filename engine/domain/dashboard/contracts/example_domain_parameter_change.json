@@ -1,0 +1,30 @@
+{
+  "change_id": "dashboard_change_001",
+  "domain_state_id": "domain_state_001",
+  "owner_player_id": "player_damian_001",
+  "parameter_id": "enemy_density_bias",
+  "requested_delta": 0.15,
+  "benefit_declared": "increase defender pressure and loot opportunity",
+  "costs_paid": {
+    "gold": 1500,
+    "domain_essence": 4,
+    "stability_shards": 2,
+    "residue_fragments": 1,
+    "rare_materials": 0
+  },
+  "risks_incurred": [
+    "higher_domain_upkeep",
+    "owner_faces_same_density",
+    "increased_residue_visibility"
+  ],
+  "owner_affected": true,
+  "playability_preserved": true,
+  "primary_route_preserved": true,
+  "risk_advantage_equilibrium_preserved": true,
+  "forbidden_flags": {
+    "free_advantage": false,
+    "owner_immunity": false,
+    "positive_only_upgrade": false,
+    "softlock_risk": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "registry_id": "tower_engine_content_domain_binding_registry_v001",
+  "bindings": [
+    {
+      "binding_id": "binding_damian_tower_001",
+      "content_pack_id": "damian",
+      "title": "Damian: What Survives the Tower",
+      "home_domain_id": "damians_tower",
+      "home_domain_display_name": "Damian's Tower",
+      "domain_archetype": "tower_domain"
+    },
+    {
+      "binding_id": "binding_jacobs_swamp_001",
+      "content_pack_id": "jacobs_bane",
+      "title": "Jacob's Bane",
+      "home_domain_id": "jacobs_swamp",
+      "home_domain_display_name": "Jacob's Swamp",
+      "domain_archetype": "swamp_domain"
+    }
+  ],
+  "global_rules": [
+    "content_pack_is_not_engine",
+    "domain_binding_must_reference_known_archetype",
+    "content_may_theme_but_not_weaken_core_constraints",
+    "home_conquest_unlocks_dashboard",
+    "content_modules_are_expandable"
+  ]
+}

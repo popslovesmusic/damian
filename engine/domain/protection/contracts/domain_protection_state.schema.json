@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Domain Protection State Schema",
+  "description": "Schema for validating domain protection and recovery state records.",
+  "type": "object",
+  "required": [
+    "protection_state_id",
+    "domain_state_id",
+    "owner_player_id",
+    "current_protection_state",
+    "triggering_resolution_id",
+    "recent_attack_count",
+    "same_attacker_repeat_count",
+    "recovery_required",
+    "recovery_progress",
+    "protection_expires",
+    "permanent_immunity_granted",
+    "domain_recoverable",
+    "playability_restored_before_next_invasion",
+    "escalating_cost_required_for_repeat_attack",
+    "forbidden_flags"
+  ],
+  "properties": {
+    "protection_state_id": {
+      "type": "string",
+      "description": "Unique identifier for this protection state instance."
+    },
+    "domain_state_id": {
+      "type": "string",
+      "description": "The ID of the domain this protection state applies to."
+    },
+    "owner_player_id": {
+      "type": "string",
+      "description": "The player ID of the domain owner."
+    },
+    "current_protection_state": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "RECOVERY_WINDOW",
+        "LOW_ACTIVITY_SHIELD",
+        "FAILED_SAFE_LOCK",
+        "COOLDOWN_AFTER_REPEAT_ATTACK"
+      ],
+      "description": "The current protection status of the domain."
+    },
+    "triggering_resolution_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The ID of the resolution that triggered this protection state (if applicable)."
+    },
+    "recent_attack_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of recent attacks on this domain."
+    },
+    "same_attacker_repeat_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of repeat attacks from the same attacker/party."
+    },
+    "recovery_required": {
+      "type": "boolean",
+      "description": "True if the domain is currently in a state requiring active recovery."
+    },
+    "recovery_progress": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Current progress of the domain's recovery (0.0 - 1.0)."
+    },
+    "protection_expires": {
+      "type": "boolean",
+      "description": "True if the current protection state will expire naturally."
+    },
+    "permanent_immunity_granted": {
+      "type": "boolean",
+      "const": false,
+      "description": "Must be false. Protection must not grant permanent immunity."
+    },
+    "domain_recoverable": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. The domain must always remain recoverable."
+    },
+    "playability_restored_before_next_invasion": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Playability is restored before next valid invasion."
+    },
+    "escalating_cost_required_for_repeat_attack": {
+      "type": "boolean",
+      "const": true,
+      "description": "Must be true. Repeat attacks require escalating cost."
+    },
+    "forbidden_flags": {
+      "type": "object",
+      "description": "Flags to ensure anti-griefing and fair play.",
+      "required": [
+        "permanent_domain_lock",
+        "permanent_immunity",
+        "unrecoverable_damage",
+        "repeat_attack_without_cost",
+        "full_conquest_from_failed_safe"
+      ],
+      "properties": {
+        "permanent_domain_lock": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Domain cannot be permanently locked."
+        },
+        "permanent_immunity": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Domain cannot have permanent immunity."
+        },
+        "unrecoverable_damage": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Domain cannot incur unrecoverable damage."
+        },
+        "repeat_attack_without_cost": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. Repeat attacks cannot occur without escalating cost."
+        },
+        "full_conquest_from_failed_safe": {
+          "type": "boolean",
+          "const": false,
+          "description": "Must be false. No full conquest from failed safe sessions."
+        }
+      }
+    }
+  }
+}

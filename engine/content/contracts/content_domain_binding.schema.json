@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Content Domain Binding Schema",
+  "description": "Schema for validating content module to home-domain binding records.",
+  "type": "object",
+  "required": [
+    "binding_id",
+    "content_pack_id",
+    "title",
+    "home_domain_id",
+    "home_domain_display_name",
+    "domain_archetype",
+    "domain_theme",
+    "story_identity",
+    "generation_biases",
+    "signature_hazards",
+    "signature_rewards",
+    "conquest_role",
+    "engine_rule_compliance"
+  ],
+  "properties": {
+    "binding_id": {
+      "type": "string",
+      "description": "Unique identifier for this content-domain binding."
+    },
+    "content_pack_id": {
+      "type": "string",
+      "description": "The ID of the content pack this binding belongs to."
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the content pack."
+    },
+    "home_domain_id": {
+      "type": "string",
+      "description": "Unique identifier for the home domain associated with this content pack."
+    },
+    "home_domain_display_name": {
+      "type": "string",
+      "description": "Display name of the home domain."
+    },
+    "domain_archetype": {
+      "type": "string",
+      "description": "The archetype of the home domain (e.g., 'tower_domain', 'swamp_domain')."
+    },
+    "domain_theme": {
+      "type": "string",
+      "description": "A brief description of the domain's thematic identity."
+    },
+    "story_identity": {
+      "type": "string",
+      "description": "A brief narrative description of the content pack's identity within the tower lore."
+    },
+    "generation_biases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Procedural generation biases specific to this content pack's domain."
+    },
+    "signature_hazards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Unique hazards associated with this content pack's domain."
+    },
+    "signature_rewards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Unique rewards associated with this content pack's domain."
+    },
+    "conquest_role": {
+      "type": "object",
+      "description": "Defines the role of this content pack's domain in conquest scenarios.",
+      "required": [
+        "must_conquer_home_first",
+        "dashboard_unlocks_after_conquest",
+        "can_attack_other_domains",
+        "can_be_attacked_by_other_players"
+      ],
+      "properties": {
+        "must_conquer_home_first": {
+          "type": "boolean",
+          "description": "True if the player must conquer their own home domain before other actions."
+        },
+        "dashboard_unlocks_after_conquest": {
+          "type": "boolean",
+          "description": "True if the domain dashboard unlocks after conquering the home domain."
+        },
+        "can_attack_other_domains": {
+          "type": "boolean",
+          "description": "True if players associated with this content pack can attack other domains."
+        },
+        "can_be_attacked_by_other_players": {
+          "type": "boolean",
+          "description": "True if this domain can be targeted by other players for invasion."
+        }
+      }
+    },
+    "engine_rule_compliance": {
+      "type": "object",
+      "description": "Flags indicating compliance with core engine rules.",
+      "required": [
+        "inherits_bounded_progression",
+        "inherits_risk_advantage_equilibrium",
+        "inherits_playability_constraints",
+        "inherits_optional_gpu_boundary"
+      ],
+      "properties": {
+        "inherits_bounded_progression": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Content pack inherits bounded player progression rules."
+        },
+        "inherits_risk_advantage_equilibrium": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Content pack inherits risk-advantage equilibrium rules."
+        },
+        "inherits_playability_constraints": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Content pack inherits playability constraints."
+        },
+        "inherits_optional_gpu_boundary": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true. Content pack inherits optional GPU boundary rules."
+        }
+      }
+    }
+  }
+}

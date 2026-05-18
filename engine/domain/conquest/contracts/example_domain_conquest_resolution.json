@@ -1,0 +1,42 @@
+{
+  "resolution_id": "conquest_resolution_001",
+  "invasion_event_id": "invasion_event_001",
+  "session_id": "session_001",
+  "target_domain_state_id": "domain_state_001",
+  "attacker_player_ids": [
+    "player_jacob_001",
+    "player_james_001"
+  ],
+  "defender_player_id": "player_damian_001",
+  "outcome_id": "DEFENDER_HOLD",
+  "objective_progress_percent": 68.0,
+  "attacker_costs_lost": 750,
+  "defender_costs_incurred": 420,
+  "attacker_rewards_granted": [],
+  "defender_rewards_granted": [
+    "defense_cache_minor"
+  ],
+  "domain_effects": {
+    "stability_delta": 0.03,
+    "deviation_delta": 0.02,
+    "temporary_influence_claimed": false,
+    "recovery_window_triggered": false,
+    "domain_remains_owner_recoverable": true
+  },
+  "residue_results": {
+    "attacker_residue_written": true,
+    "defender_residue_written": true,
+    "domain_residue_written": true
+  },
+  "playability_results": {
+    "playability_preserved": true,
+    "primary_route_preserved": true,
+    "no_softlock_detected": true
+  },
+  "forbidden_flags": {
+    "permanent_domain_theft": false,
+    "full_conquest_from_unresolved_session": false,
+    "reward_without_resolution": false,
+    "impossible_domain_after_resolution": false
+  }
+}

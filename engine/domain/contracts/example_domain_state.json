@@ -1,0 +1,30 @@
+{
+  "domain_state_id": "domain_state_001",
+  "owner_player_id": "player_damian_001",
+  "content_pack_id": "damian",
+  "domain_archetype": "tower_domain",
+  "conquered": true,
+  "dashboard_unlocked": true,
+  "domain_level": 2,
+  "stability": 0.64,
+  "deviation": 0.36,
+  "active_modifiers": [
+    "increased_enemy_density",
+    "rare_cache_bias"
+  ],
+  "operational_costs": {
+    "maintenance": 1200,
+    "mutation_control": 900,
+    "hazard_upkeep": 400,
+    "resource_transport": 250
+  },
+  "invasion_history": [
+    "failed_invasion_001",
+    "successful_defense_002"
+  ],
+  "forbidden_flags": {
+    "playability_failure": false,
+    "owner_immunity": false,
+    "impossible_layout": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "planned_systems": [
+    "GameLoop",
+    "PlayerSystem",
+    "CombatSystem",
+    "EnemySystem",
+    "LootSystem",
+    "FloorGenerator",
+    "ResidueSystem",
+    "MutationSystem",
+    "EasterEggSystem",
+    "MultiplayerSystem",
+    "SaveSystem",
+    "ContentPackSystem"
+  ],
+  "notes": "This registry lists planned core engine systems. Their presence here does not imply implementation or completion."
+}

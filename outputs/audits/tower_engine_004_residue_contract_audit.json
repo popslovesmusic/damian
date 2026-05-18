@@ -1,0 +1,38 @@
+{
+  "patch_id": "TOWER-ENGINE-004",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Residue taxonomy exists and contains at least 7 categories",
+      "status": "PASS"
+    },
+    {
+      "check": "Every taxonomy category has category_id, description, and non-empty signals",
+      "status": "PASS"
+    },
+    {
+      "check": "Mutation input contract schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example mutation input validates against mutation_input_contract.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "eligible_mutation_channels includes easter_eggs",
+      "status": "PASS"
+    },
+    {
+      "check": "DEFEAT_DROP example allows may_reveal_rewards = true",
+      "status": "PASS"
+    },
+    {
+      "check": "mutation_constraints includes must_preserve_floor_identity = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Content pack ID appears as data and does not redefine residue categories",
+      "status": "PASS"
+    }
+  ]
+}

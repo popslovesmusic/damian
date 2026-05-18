@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Content Pack Schema",
+  "description": "Schema for validating content pack metadata.",
+  "type": "object",
+  "required": [
+    "content_pack_id",
+    "title",
+    "campaign_role",
+    "engine_required",
+    "enabled",
+    "directories"
+  ],
+  "properties": {
+    "content_pack_id": {
+      "type": "string",
+      "description": "Unique identifier for the content pack."
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the content pack."
+    },
+    "campaign_role": {
+      "type": "string",
+      "description": "Role of the content pack in the overall game (e.g., 'main_campaign', 'dlc', 'expansion')."
+    },
+    "engine_required": {
+      "type": "string",
+      "description": "Minimum required engine version (e.g., 'Tower Engine >=0.0.1')."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the content pack is enabled."
+    },
+    "directories": {
+      "type": "object",
+      "description": "Paths to various content directories within the pack.",
+      "required": [
+        "enemies",
+        "items",
+        "floors",
+        "story"
+      ],
+      "properties": {
+        "enemies": {
+          "type": "string",
+          "description": "Path to the enemies directory."
+        },
+        "items": {
+          "type": "string",
+          "description": "Path to the items directory."
+        },
+        "floors": {
+          "type": "string",
+          "description": "Path to the floors directory."
+        },
+        "story": {
+          "type": "string",
+          "description": "Path to the story directory."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "ruleset_id": "tower_engine_floor_identity_preservation_v001",
+  "required_identity_anchors": [
+    {
+      "anchor_id": "layout_seed_lineage",
+      "description": "Mutated replay floors must retain lineage to the original known_layout_seed."
+    },
+    {
+      "anchor_id": "entry_exit_continuity",
+      "description": "Entry and exit/gate logic must remain valid after mutation."
+    },
+    {
+      "anchor_id": "primary_route_survivability",
+      "description": "At least one traversable route from entry to objective must remain possible."
+    },
+    {
+      "anchor_id": "landmark_continuity",
+      "description": "At least one major recognizable landmark or structural motif must remain."
+    },
+    {
+      "anchor_id": "floor_theme_continuity",
+      "description": "Mutation may alter tone but must not replace the floor's core biome/theme identity."
+    },
+    {
+      "anchor_id": "difficulty_bounds",
+      "description": "Mutation severity must not create impossible or non-playable floor states."
+    },
+    {
+      "anchor_id": "secret_discoverability",
+      "description": "Hidden marks and easter eggs must remain discoverable through observation, not random guessing."
+    }
+  ],
+  "forbidden_mutation_results": [
+    "full_floor_replacement",
+    "unreachable_exit",
+    "unreachable_spawn",
+    "mandatory_softlock",
+    "all_routes_blocked",
+    "theme_replacement_without_lineage",
+    "easter_egg_without_visual_or_audio_hint",
+    "mutation_severity_without_playability_check"
+  ],
+  "identity_status_values": [
+    "PRESERVED",
+    "WEAKENED_BUT_VALID",
+    "FAILED"
+  ]
+}
