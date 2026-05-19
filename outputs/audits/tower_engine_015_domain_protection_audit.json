@@ -1,0 +1,58 @@
+{
+  "patch_id": "TOWER-ENGINE-015",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Domain protection registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry declares at least 5 protection states",
+      "status": "PASS"
+    },
+    {
+      "check": "Protection states include RECOVERY_WINDOW, LOW_ACTIVITY_SHIELD, and FAILED_SAFE_LOCK",
+      "status": "PASS"
+    },
+    {
+      "check": "Anti-griefing rules include same_attacker_repeat_invasions_require_escalating_cost",
+      "status": "PASS"
+    },
+    {
+      "check": "Anti-griefing rules include protection_windows_do_not_grant_permanent_immunity",
+      "status": "PASS"
+    },
+    {
+      "check": "Recovery rules include domain_residue_persists_after_recovery",
+      "status": "PASS"
+    },
+    {
+      "check": "Protection state schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example protection state validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example domain_recoverable = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example permanent_immunity_granted = false",
+      "status": "PASS"
+    },
+    {
+      "check": "Example protection_expires = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example requires escalating cost for repeat attack",
+      "status": "PASS"
+    },
+    {
+      "check": "Example forbidden flags are all false",
+      "status": "PASS"
+    }
+  ]
+}

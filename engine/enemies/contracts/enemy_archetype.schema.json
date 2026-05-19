@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Enemy Archetype Contract",
+  "type": "object",
+  "properties": {
+    "enemy_archetype_id": { "type": "string" },
+    "display_name": { "type": "string" },
+    "role": { "type": "string" },
+    "base_pressure_rating": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "pressure_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "residue_triggers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "countered_by": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "bounded_rules": {
+      "type": "object",
+      "properties": {
+        "unavoidable_defeat": { "type": "boolean" },
+        "requires_god_mode": { "type": "boolean" },
+        "bypasses_pipeline": { "type": "boolean" }
+      },
+      "required": ["unavoidable_defeat", "requires_god_mode", "bypasses_pipeline"]
+    }
+  },
+  "required": ["enemy_archetype_id", "display_name", "role", "base_pressure_rating", "pressure_tags", "residue_triggers", "countered_by", "bounded_rules"]
+}

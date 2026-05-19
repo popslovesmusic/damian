@@ -1,0 +1,25 @@
+{
+  "enemy_archetype_id": "attrition_unit",
+  "display_name": "Ash Leech",
+  "role": "Drains resources and pressures repeated potion dependency.",
+  "base_pressure_rating": 0.38,
+  "pressure_tags": [
+    "resource_pressure",
+    "recovery_pressure"
+  ],
+  "residue_triggers": [
+    "high_potion_usage",
+    "slow_clear_time",
+    "repeated_retreats"
+  ],
+  "countered_by": [
+    "mobility",
+    "burst_damage",
+    "resource_conservation"
+  ],
+  "bounded_rules": {
+    "unavoidable_defeat": false,
+    "requires_god_mode": false,
+    "bypasses_pipeline": false
+  }
+}

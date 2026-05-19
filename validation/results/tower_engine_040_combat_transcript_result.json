@@ -1,0 +1,7 @@
+{
+  "patch_id": "TOWER-ENGINE-040",
+  "title": "Implement Combat-Aware Console Transcript Validation",
+  "timestamp": "2026-05-19T06:57:00Z",
+  "verdict": "PASS",
+  "summary": "The Console Transcript Reporter has been successfully extended to be combat-aware. It now captures detailed evidence of combat sessions, outcomes, and pressure observations, as well as combat-triggered side effects like mutations and survivor marks. All 10 transcript tests passed, and the required combat-aware transcript artifact was generated."
+}

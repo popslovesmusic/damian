@@ -110,10 +110,10 @@ def diff_floor_snapshots(before_snapshot, after_snapshot, debug=False):
             diff_data["new_discovered_survivor_marks"].append(mark)
     
     # Determine if anything significant changed
-    changed = any(v != 0 for k, v in diff_data.items() if "delta" in k) or 
+    changed = (any(v != 0 for k, v in diff_data.items() if "delta" in k) or 
               bool(diff_data["new_active_mutations"]) or 
               bool(diff_data["new_unclaimed_survivor_marks"]) or 
-              bool(diff_data["new_discovered_survivor_marks"])
+              bool(diff_data["new_discovered_survivor_marks"]))
               
     return create_structured_success({"changed": changed, "diff": diff_data}, debug=debug)
 

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Room Node Contract",
+  "type": "object",
+  "properties": {
+    "node_id": { "type": "string" },
+    "node_type": {
+      "enum": [
+        "entry_room",
+        "combat_room",
+        "pressure_room",
+        "recovery_room",
+        "event_room",
+        "survivor_mark_room",
+        "exit_room"
+      ]
+    },
+    "connections": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "mutation_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "difficulty_rating": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "stability": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "supports_survivor_mark": { "type": "boolean" }
+  },
+  "required": ["node_id", "node_type", "connections", "mutation_tags", "difficulty_rating", "stability", "supports_survivor_mark"]
+}

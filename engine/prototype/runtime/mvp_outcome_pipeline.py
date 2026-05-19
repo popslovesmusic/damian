@@ -1,3 +1,15 @@
+import os
+import json
+import datetime
+import sys
+
+# Attempt to import debug_logger safely
+try:
+    from engine.debug.runtime import debug_logger
+    _debug_logger_available = True
+except ImportError:
+    _debug_logger_available = False
+
     # Import mvp_floor_mutation_stub
 try:
     from engine.mutation.runtime import mvp_floor_mutation_stub
@@ -11,6 +23,20 @@ try:
     _mvp_survivor_mark_system_available = True
 except ImportError:
     _mvp_survivor_mark_system_available = False
+
+# Import mvp_floor_progression
+try:
+    from engine.progression.runtime import mvp_floor_progression
+    _mvp_floor_progression_available = True
+except ImportError:
+    _mvp_floor_progression_available = False
+
+# Import mvp_residue_writer
+try:
+    from engine.residue.runtime import mvp_residue_writer
+    _mvp_residue_writer_available = True
+except ImportError:
+    _mvp_residue_writer_available = False
 
 
 def _log_debug_event(patch_id, system, severity, event_type, message, context=None, debug_enabled=False):

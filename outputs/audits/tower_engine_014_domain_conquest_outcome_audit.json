@@ -1,0 +1,50 @@
+{
+  "patch_id": "TOWER-ENGINE-014",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Domain conquest outcome registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry declares at least 6 outcome modes",
+      "status": "PASS"
+    },
+    {
+      "check": "Outcome modes include ATTACKER_CONQUEST, DEFENDER_HOLD, SESSION_UNRESOLVED, and FAILED_SAFE",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include conquest_grants_influence_not_permanent_theft",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include owner_domain_must_remain_recoverable",
+      "status": "PASS"
+    },
+    {
+      "check": "Resolution schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example resolution validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example writes residue to attacker, defender, and domain",
+      "status": "PASS"
+    },
+    {
+      "check": "Example preserves playability and primary route",
+      "status": "PASS"
+    },
+    {
+      "check": "Example domain_remains_owner_recoverable = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example forbidden flags are all false",
+      "status": "PASS"
+    }
+  ]
+}

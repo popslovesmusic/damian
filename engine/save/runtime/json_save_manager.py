@@ -56,6 +56,7 @@ def save_json(path, payload, debug=False):
     Returns structured success or structured error.
     """
     try:
+        path = os.path.normpath(path)
         dirname = os.path.dirname(path)
         if dirname and not os.path.exists(dirname):
             os.makedirs(dirname, exist_ok=True)

@@ -1,0 +1,50 @@
+{
+  "patch_id": "TOWER-ENGINE-010",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Economy resource registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "At least 5 resource classes are declared",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include aggregate_use_creates_pressure",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include wealth_does_not_cancel_residue",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include no_single_resource_solves_all_systems",
+      "status": "PASS"
+    },
+    {
+      "check": "Operational cost profile schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example operational cost profile validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example includes gold_collected = 10000",
+      "status": "PASS"
+    },
+    {
+      "check": "Example includes potion or potion-like cost that appears small relative to loot",
+      "status": "PASS"
+    },
+    {
+      "check": "Example indicates farming_needed = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example indicates risk_removed_by_wealth = false",
+      "status": "PASS"
+    }
+  ]
+}

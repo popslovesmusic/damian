@@ -6,7 +6,7 @@ import sys
 from unittest.mock import patch
 
 # Add project root to sys.path for module discovery
-PROJECT_ROOT_FOR_IMPORT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+PROJECT_ROOT_FOR_IMPORT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if PROJECT_ROOT_FOR_IMPORT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT_FOR_IMPORT)
 
@@ -14,18 +14,18 @@ from engine.core.runtime import state_machine_driver
 from engine.save.runtime import json_save_manager # This will handle its own debug_logger import
 
 # Paths to existing schemas and example data from previous patches (relative to project root)
-BASE_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+BASE_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 STATES_PATH = os.path.join(BASE_PROJECT_ROOT, "engine/core/state_machine/game_loop_states.json")
 TRANSITIONS_PATH = os.path.join(BASE_PROJECT_ROOT, "engine/core/state_machine/game_loop_transitions.json")
 
 def run_state_machine_driver_audit():
     audit_results = {
-        "patch_id": "TOWER-ENGINE-018",
+        "patch_id": "TOWER-ENGINE-011",
         "verdict": "FAIL",
         "checks": []
     }
 
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     
     driver_path = os.path.join(project_root, "engine/core/runtime/state_machine_driver.py")
 

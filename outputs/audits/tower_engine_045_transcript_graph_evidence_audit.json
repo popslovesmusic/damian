@@ -1,0 +1,38 @@
+{
+  "patch_id": "TOWER-ENGINE-045",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "console_transcript_reporter.py updated",
+      "status": "PASS"
+    },
+    {
+      "check": "Graph evidence transcript test file exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Transcript captures combat sessions and outcomes",
+      "status": "PASS"
+    },
+    {
+      "check": "Transcript captures mutation after combat",
+      "status": "PASS"
+    },
+    {
+      "check": "Transcript captures room_graph_evidence_observed = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Transcript captures room_graph_changes_observed >= 1",
+      "status": "PASS"
+    },
+    {
+      "check": "Transcript captures survivor_mark_rooms_observed >= 1",
+      "status": "PASS"
+    },
+    {
+      "check": "Transcript captures non-empty graph_diff_summaries",
+      "status": "PASS"
+    }
+  ]
+}

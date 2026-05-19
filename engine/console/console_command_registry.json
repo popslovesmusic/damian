@@ -1,0 +1,53 @@
+{
+  "commands": [
+    {
+      "command": "status",
+      "description": "Show current tower status."
+    },
+    {
+      "command": "ascend",
+      "description": "Victory! Ascend to the next floor."
+    },
+    {
+      "command": "defeat",
+      "description": "Defeat! Drop back and trigger mutation/marks."
+    },
+    {
+      "command": "retreat",
+      "description": "Retreat to the Hub."
+    },
+    {
+      "command": "diff",
+      "description": "Show changes from the latest defeat."
+    },
+    {
+      "command": "marks",
+      "description": "List unclaimed survivor marks on current floor."
+    },
+    {
+      "command": "claim",
+      "description": "Claim a survivor mark by its ID."
+    },
+    {
+      "command": "save",
+      "description": "Persist current progress."
+    },
+    {
+      "command": "quit",
+      "description": "Exit the session."
+    },
+    {
+      "command": "help",
+      "description": "Show help message."
+    },
+    {
+      "command": "combat",
+      "description": "Resolve a deterministic bounded combat stub for the current floor.",
+      "variants": [
+        "combat safe",
+        "combat dangerous",
+        "combat exhausted"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "patch_id": "TOWER-ENGINE-020",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "player_progression_bootstrapper.py exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Required bootstrapper functions exist",
+      "status": "PASS"
+    },
+    {
+      "check": "Default player progression validates against player_progression_state.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "Default player level = 1",
+      "status": "PASS"
+    },
+    {
+      "check": "Default highest_floor_reached = 1",
+      "status": "PASS"
+    },
+    {
+      "check": "Default stats are positive or non-negative as required by schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Default residue pressure values are all 0.0",
+      "status": "PASS"
+    },
+    {
+      "check": "Default forbidden flags are all false",
+      "status": "PASS"
+    },
+    {
+      "check": "Missing save creates valid default when create_if_missing = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Missing save fails safely when create_if_missing = false",
+      "status": "PASS"
+    },
+    {
+      "check": "Invalid save fails safely",
+      "status": "PASS"
+    },
+    {
+      "check": "Valid existing save loads successfully",
+      "status": "PASS"
+    },
+    {
+      "check": "Debug=true does not break bootstrap",
+      "status": "PASS"
+    },
+    {
+      "check": "No database/cloud/network/combat/itemization/skill-tree/rendering/GPU code is introduced",
+      "status": "PASS"
+    }
+  ]
+}

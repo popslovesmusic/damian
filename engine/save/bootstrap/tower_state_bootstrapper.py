@@ -61,7 +61,7 @@ def make_default_tower_state(content_pack_id='damian', engine_version='0.0.1'):
         "highest_floor_reached": 1,
         "total_runs": 0,
         "total_deaths": 0,
-        "last_outcome": "BOOTSTRAP",
+        "last_outcome": "NONE",
         "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "global_residue": {},
         "floor_memory": []

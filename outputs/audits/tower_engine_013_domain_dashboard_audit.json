@@ -1,0 +1,54 @@
+{
+  "patch_id": "TOWER-ENGINE-013",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Dashboard parameter registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry declares at least 6 parameters",
+      "status": "PASS"
+    },
+    {
+      "check": "Every parameter declares benefit and non-empty required_risks",
+      "status": "PASS"
+    },
+    {
+      "check": "Forbidden dashboard results include free_advantage",
+      "status": "PASS"
+    },
+    {
+      "check": "Forbidden dashboard results include positive_only_upgrade",
+      "status": "PASS"
+    },
+    {
+      "check": "Domain parameter change schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example parameter change validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example owner_affected = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example playability_preserved = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example primary_route_preserved = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example risk_advantage_equilibrium_preserved = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example forbidden flags are all false",
+      "status": "PASS"
+    }
+  ]
+}

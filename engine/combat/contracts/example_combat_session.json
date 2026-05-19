@@ -1,0 +1,32 @@
+{
+  "combat_session_id": "combat_session_example_001",
+  "floor_id": 2,
+  "player_id": "player_default_001",
+  "enemy_group_id": "attrition_group_alpha",
+  "combat_tick": 14,
+  "player_stats": {
+    "health": 78.0,
+    "damage": 14.0,
+    "defense": 4.0,
+    "speed": 1.2,
+    "recovery": 0.3
+  },
+  "enemy_pressure_rating": 0.42,
+  "resource_usage": {
+    "potions_used": 6,
+    "repair_items_used": 2,
+    "recovery_events": 3
+  },
+  "residue_pressure": {
+    "dominant_build_visibility": 0.34,
+    "strategy_repetition_pressure": 0.27,
+    "counter_pressure": 0.18
+  },
+  "predicted_outcome": "VICTORY_ASCEND",
+  "forbidden_flags": {
+    "permanent_invulnerability": false,
+    "infinite_damage_scaling": false,
+    "resource_bypass": false,
+    "pipeline_bypass": false
+  }
+}

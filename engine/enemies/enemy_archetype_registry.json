@@ -1,0 +1,46 @@
+{
+  "registry_id": "tower_engine_enemy_archetypes_v001",
+  "core_principle": "Enemies are bounded pressure sources that influence combat outcomes and residue adaptation without becoming unbounded power checks.",
+  "archetypes": [
+    {
+      "enemy_archetype_id": "pressure_unit",
+      "role": "Direct threat that tests baseline survivability.",
+      "pressure_tags": [
+        "damage_pressure",
+        "position_pressure"
+      ]
+    },
+    {
+      "enemy_archetype_id": "ambush_unit",
+      "role": "Punishes careless routing and repeated movement habits.",
+      "pressure_tags": [
+        "surprise_pressure",
+        "route_pressure"
+      ]
+    },
+    {
+      "enemy_archetype_id": "attrition_unit",
+      "role": "Drains resources over time and pressures farming loops.",
+      "pressure_tags": [
+        "resource_pressure",
+        "recovery_pressure"
+      ]
+    },
+    {
+      "enemy_archetype_id": "counter_unit",
+      "role": "Appears through residue adaptation against overused strategies.",
+      "pressure_tags": [
+        "build_counter_pressure",
+        "dominant_strategy_response"
+      ]
+    }
+  ],
+  "global_rules": [
+    "enemy_power_must_be_bounded",
+    "enemy_pressure_must_feed_combat_resolution",
+    "enemy_pressure_must_not_bypass_pipeline",
+    "residue_adaptation_may_bias_enemy_archetypes",
+    "no_enemy_grants_unavoidable_defeat",
+    "no_enemy_requires_god_mode_to_defeat"
+  ]
+}

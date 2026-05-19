@@ -1,0 +1,54 @@
+{
+  "patch_id": "TOWER-ENGINE-042",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "room_graph_builder.py exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Required room graph builder functions exist",
+      "status": "PASS"
+    },
+    {
+      "check": "build_room_graph creates schema-compatible graph",
+      "status": "PASS"
+    },
+    {
+      "check": "build_room_graph is deterministic for same floor_record",
+      "status": "PASS"
+    },
+    {
+      "check": "Default graph includes all required rooms",
+      "status": "PASS"
+    },
+    {
+      "check": "Graph preserves entry_node_id and exit_node_id",
+      "status": "PASS"
+    },
+    {
+      "check": "Identity and Playability preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "include_survivor_mark_room support",
+      "status": "PASS"
+    },
+    {
+      "check": "Invalid floor_record fails safely",
+      "status": "PASS"
+    },
+    {
+      "check": "Unsupported domain_archetype fails safely",
+      "status": "PASS"
+    },
+    {
+      "check": "Debug=true does not break room graph builder",
+      "status": "PASS"
+    },
+    {
+      "check": "No forbidden systems introduced",
+      "status": "PASS"
+    }
+  ]
+}

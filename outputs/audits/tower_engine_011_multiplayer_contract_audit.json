@@ -1,0 +1,58 @@
+{
+  "patch_id": "TOWER-ENGINE-011",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Multiplayer mode registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Supported modes include private_coop, domain_invasion, and domain_defense",
+      "status": "PASS"
+    },
+    {
+      "check": "Authority model declares server_authoritative as preferred",
+      "status": "PASS"
+    },
+    {
+      "check": "Session schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Domain invasion event schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example multiplayer session validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example domain invasion event validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Session player_ids are limited to 1-4 players",
+      "status": "PASS"
+    },
+    {
+      "check": "Example uses safe_resolution_required = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example invasion writes residue to attacker and defender",
+      "status": "PASS"
+    },
+    {
+      "check": "Example attacker advantage has attacker risk",
+      "status": "PASS"
+    },
+    {
+      "check": "Example defender advantage has defender risk",
+      "status": "PASS"
+    },
+    {
+      "check": "Example forbidden flags are all false",
+      "status": "PASS"
+    }
+  ]
+}

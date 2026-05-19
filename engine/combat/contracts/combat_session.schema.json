@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CombatSession",
+  "type": "object",
+  "required": [
+    "combat_session_id",
+    "floor_id",
+    "player_id",
+    "enemy_group_id",
+    "combat_tick",
+    "player_stats",
+    "enemy_pressure_rating",
+    "resource_usage",
+    "residue_pressure",
+    "predicted_outcome",
+    "forbidden_flags"
+  ],
+  "properties": {
+    "combat_session_id": { "type": "string" },
+    "floor_id": { "type": "integer" },
+    "player_id": { "type": "string" },
+    "enemy_group_id": { "type": "string" },
+    "combat_tick": { "type": "integer", "minimum": 0 },
+    "player_stats": {
+      "type": "object",
+      "properties": {
+        "health": { "type": "number" },
+        "damage": { "type": "number" },
+        "defense": { "type": "number" },
+        "speed": { "type": "number" },
+        "recovery": { "type": "number" }
+      }
+    },
+    "enemy_pressure_rating": { "type": "number", "minimum": 0 },
+    "resource_usage": {
+      "type": "object",
+      "properties": {
+        "potions_used": { "type": "integer", "minimum": 0 },
+        "repair_items_used": { "type": "integer", "minimum": 0 },
+        "recovery_events": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "residue_pressure": {
+      "type": "object",
+      "properties": {
+        "dominant_build_visibility": { "type": "number", "minimum": 0, "maximum": 1 },
+        "strategy_repetition_pressure": { "type": "number", "minimum": 0, "maximum": 1 },
+        "counter_pressure": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "predicted_outcome": {
+      "enum": [
+        "VICTORY_ASCEND",
+        "DEFEAT_DROP",
+        "RETREAT_TO_HUB"
+      ]
+    },
+    "forbidden_flags": {
+      "type": "object",
+      "properties": {
+        "permanent_invulnerability": { "type": "boolean" },
+        "infinite_damage_scaling": { "type": "boolean" },
+        "resource_bypass": { "type": "boolean" },
+        "pipeline_bypass": { "type": "boolean" }
+      }
+    }
+  }
+}

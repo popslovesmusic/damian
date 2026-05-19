@@ -1,0 +1,46 @@
+{
+  "patch_id": "TOWER-ENGINE-043",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "room_graph_mutation_evidence.py exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Required evidence functions exist",
+      "status": "PASS"
+    },
+    {
+      "check": "Graphs build successfully",
+      "status": "PASS"
+    },
+    {
+      "check": "ID and Seed lineage preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "Graph changed and survivor mark room detected",
+      "status": "PASS"
+    },
+    {
+      "check": "mutation_level_delta detected",
+      "status": "PASS"
+    },
+    {
+      "check": "Identity and Playability reported preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "Readable summary is non-empty",
+      "status": "PASS"
+    },
+    {
+      "check": "Debug=true is safe",
+      "status": "PASS"
+    },
+    {
+      "check": "No forbidden systems introduced",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "patch_id": "TOWER-ENGINE-009",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Home domain registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "At least 3 domain archetypes are declared",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include all_advantages_require_equal_or_greater_risk",
+      "status": "PASS"
+    },
+    {
+      "check": "Global rules include domain_owner_not_immune_to_domain_effects",
+      "status": "PASS"
+    },
+    {
+      "check": "Domain state schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Dashboard action schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Example domain state validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Operational costs are present and non-negative",
+      "status": "PASS"
+    },
+    {
+      "check": "Forbidden flags in example are all false",
+      "status": "PASS"
+    },
+    {
+      "check": "Dashboard actions require both advantage_gained and risk_incurred",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "patch_id": "TOWER-ENGINE-012",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "Content domain binding schema exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Content domain binding registry exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry includes damian and jacobs_bane bindings",
+      "status": "PASS"
+    },
+    {
+      "check": "Damian binding file exists and validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Jacob's Bane binding file exists and validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Damian binds to tower_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "Jacob's Bane binds to swamp_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "Both bindings require home conquest before dashboard unlock",
+      "status": "PASS"
+    },
+    {
+      "check": "Both bindings inherit bounded progression",
+      "status": "PASS"
+    },
+    {
+      "check": "Both bindings inherit risk_advantage_equilibrium",
+      "status": "PASS"
+    },
+    {
+      "check": "Both bindings inherit playability constraints",
+      "status": "PASS"
+    },
+    {
+      "check": "Neither binding redefines engine core rules",
+      "status": "PASS"
+    }
+  ]
+}

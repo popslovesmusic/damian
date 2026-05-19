@@ -1,0 +1,34 @@
+{
+  "patch_id": "TOWER-ENGINE-047",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "enemy_pressure_selector.py exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Required selector functions exist",
+      "status": "PASS"
+    },
+    {
+      "check": "Selection is deterministic",
+      "status": "PASS"
+    },
+    {
+      "check": "Biases reflect residue state",
+      "status": "PASS"
+    },
+    {
+      "check": "Pressure profile is valid and bounded",
+      "status": "PASS"
+    },
+    {
+      "check": "Summarization returns readable string",
+      "status": "PASS"
+    },
+    {
+      "check": "No forbidden systems introduced",
+      "status": "PASS"
+    }
+  ]
+}

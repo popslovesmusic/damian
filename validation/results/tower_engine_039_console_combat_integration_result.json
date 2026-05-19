@@ -1,0 +1,7 @@
+{
+  "patch_id": "TOWER-ENGINE-039",
+  "title": "Integrate Combat Stub into Text Console Validation",
+  "timestamp": "2026-05-19T06:01:00Z",
+  "verdict": "PASS",
+  "summary": "The 'combat' command has been successfully integrated into the MVP text console. It correctly utilizes the deterministic combat resolution stub and routes outcomes through the existing MVP outcome pipeline, ensuring that side effects like mutations and survivor marks are triggered during defeats. All 17 console tests passed, confirming robust integration and adherence to project boundaries."
+}

@@ -1,0 +1,85 @@
+{
+  "graph_id": "tower_floor_002_graph",
+  "floor_id": 2,
+  "domain_archetype": "tower_domain",
+  "layout_seed": "tower_seed_alpha",
+  "nodes": [
+    {
+      "node_id": "entry_a",
+      "node_type": "entry_room",
+      "connections": [
+        "combat_a"
+      ],
+      "mutation_tags": [],
+      "difficulty_rating": 0.1,
+      "stability": 1.0,
+      "supports_survivor_mark": false
+    },
+    {
+      "node_id": "combat_a",
+      "node_type": "combat_room",
+      "connections": [
+        "pressure_a",
+        "recovery_a"
+      ],
+      "mutation_tags": [
+        "minor_corridor_shift_stub"
+      ],
+      "difficulty_rating": 0.4,
+      "stability": 0.82,
+      "supports_survivor_mark": false
+    },
+    {
+      "node_id": "pressure_a",
+      "node_type": "pressure_room",
+      "connections": [
+        "survivor_mark_a"
+      ],
+      "mutation_tags": [],
+      "difficulty_rating": 0.6,
+      "stability": 0.7,
+      "supports_survivor_mark": false
+    },
+    {
+      "node_id": "recovery_a",
+      "node_type": "recovery_room",
+      "connections": [
+        "survivor_mark_a"
+      ],
+      "mutation_tags": [],
+      "difficulty_rating": 0.2,
+      "stability": 0.9,
+      "supports_survivor_mark": false
+    },
+    {
+      "node_id": "survivor_mark_a",
+      "node_type": "survivor_mark_room",
+      "connections": [
+        "exit_a"
+      ],
+      "mutation_tags": [
+        "survivor_mark_opportunity_stub"
+      ],
+      "difficulty_rating": 0.2,
+      "stability": 0.74,
+      "supports_survivor_mark": true
+    },
+    {
+      "node_id": "exit_a",
+      "node_type": "exit_room",
+      "connections": [],
+      "mutation_tags": [],
+      "difficulty_rating": 0.0,
+      "stability": 1.0,
+      "supports_survivor_mark": false
+    }
+  ],
+  "entry_node_id": "entry_a",
+  "exit_node_id": "exit_a",
+  "mutation_level": 1,
+  "identity_preserved": true,
+  "playability_preserved": true,
+  "survivor_mark_nodes": [
+    "survivor_mark_a"
+  ]
+}

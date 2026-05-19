@@ -1,0 +1,27 @@
+{
+  "patch_id": "TOWER-ENGINE-039",
+  "title": "Integrate Combat Stub into Text Console Audit",
+  "timestamp": "2026-05-19T06:00:00Z",
+  "verdict": "PASS",
+  "requirements_check": {
+    "command_registry_includes_combat": true,
+    "parse_handles_combat_variants": true,
+    "combat_uses_resolution_stub": true,
+    "combat_routes_through_pipeline": true,
+    "combat_safe_victory": true,
+    "combat_dangerous_defeat": true,
+    "combat_defeat_applies_mutation": true,
+    "combat_defeat_attaches_mark": true,
+    "combat_exhausted_retreat": true,
+    "combat_no_bypass_residue": true,
+    "existing_console_tests_pass": true,
+    "debug_mode_safe": true,
+    "no_forbidden_code_introduced": true
+  },
+  "tests_status": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0
+  },
+  "notes": "Successfully integrated the bounded combat command into the text console. Manual play can now trigger deterministic combat results that correctly propagate through the project's reactive systems (mutation, marks, residue)."
+}

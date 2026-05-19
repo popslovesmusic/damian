@@ -1,0 +1,46 @@
+{
+  "registry_id": "tower_engine_room_graph_v001",
+  "graph_model": {
+    "representation": "connected_room_graph",
+    "navigation_runtime": false,
+    "playable_map_runtime": false,
+    "rendering_runtime": false
+  },
+  "core_principles": [
+    "floors_preserve_identity_across_mutation",
+    "mutation_changes_layout_without_destroying_continuity",
+    "replay_floors_remain_recognizable",
+    "critical_paths_must_remain_survivable",
+    "survivor_marks_must_remain_discoverable",
+    "room_graphs_support_recursive_replay"
+  ],
+  "required_room_node_types": [
+    "entry_room",
+    "combat_room",
+    "pressure_room",
+    "recovery_room",
+    "event_room",
+    "survivor_mark_room",
+    "exit_room"
+  ],
+  "required_graph_properties": [
+    "connected_graph",
+    "reachable_exit",
+    "bounded_branching",
+    "minimum_one_recovery_path",
+    "minimum_one_pressure_path"
+  ],
+  "mutation_support_rules": [
+    "corridors_may_shift",
+    "room_roles_may_rotate",
+    "side_paths_may_expand",
+    "survivor_mark_rooms_may_appear",
+    "critical_path_must_remain_valid",
+    "entry_exit_connectivity_must_persist"
+  ],
+  "supported_domain_archetypes": [
+    "tower_domain",
+    "swamp_domain",
+    "castle_domain"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "patch_id": "TOWER-ENGINE-040",
+  "title": "Implement Combat-Aware Console Transcript Audit",
+  "timestamp": "2026-05-19T06:56:00Z",
+  "verdict": "PASS",
+  "requirements_check": {
+    "reporter_updated_without_regression": true,
+    "combat_test_file_exists": true,
+    "captures_combat_sessions": true,
+    "captures_combat_outcomes": true,
+    "captures_combat_victories": true,
+    "captures_combat_defeats": true,
+    "captures_combat_retreats": true,
+    "observes_mutation_after_combat": true,
+    "observes_survivor_mark_after_combat": true,
+    "observes_resource_pressure": true,
+    "observes_residue_pressure": true,
+    "existing_transcript_tests_pass": true,
+    "debug_mode_safe": true,
+    "no_forbidden_code_introduced": true
+  },
+  "tests_status": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "notes": "Console transcript reporting successfully extended to include comprehensive combat evidence. Reporter now captures pressure observations and combat-triggered reactive feedback (mutations/marks). All console and transcript tests pass."
+}

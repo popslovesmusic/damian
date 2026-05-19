@@ -1,0 +1,59 @@
+{
+  "patch_id": "TOWER-ENGINE-041",
+  "verdict": "FAIL",
+  "checks": [
+    {
+      "check": "room_graph_registry.json exists",
+      "status": "PASS"
+    },
+    {
+      "check": "room_node.schema.json exists",
+      "status": "PASS"
+    },
+    {
+      "check": "room_graph.schema.json exists",
+      "status": "PASS"
+    },
+    {
+      "check": "example_room_graph.json exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Room graph registry includes mutation support rules",
+      "status": "PASS"
+    },
+    {
+      "check": "Room graph registry includes survivor mark support",
+      "status": "PASS"
+    },
+    {
+      "check": "Example room graph validates against schemas",
+      "status": "PASS"
+    },
+    {
+      "check": "Example graph includes reachable exit",
+      "status": "PASS"
+    },
+    {
+      "check": "Example graph includes survivor_mark_room",
+      "status": "PASS"
+    },
+    {
+      "check": "Example graph mutation_level >= 1",
+      "status": "PASS"
+    },
+    {
+      "check": "Example graph identity_preserved = true",
+      "status": "PASS"
+    },
+    {
+      "check": "Example graph playability_preserved = true",
+      "status": "PASS"
+    },
+    {
+      "check": "No room graph runtime implementation is introduced",
+      "status": "FAIL",
+      "reason": "Runtime directory exists and is not empty"
+    }
+  ]
+}

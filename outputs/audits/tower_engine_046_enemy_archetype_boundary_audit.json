@@ -1,0 +1,47 @@
+{
+  "patch_id": "TOWER-ENGINE-046",
+  "verdict": "FAIL",
+  "checks": [
+    {
+      "check": "enemy_archetype_registry.json exists",
+      "status": "PASS"
+    },
+    {
+      "check": "enemy_archetype.schema.json exists",
+      "status": "PASS"
+    },
+    {
+      "check": "example_enemy_archetype.json exists",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry declares at least 4 archetypes",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry includes required archetypes",
+      "status": "PASS"
+    },
+    {
+      "check": "Registry includes core global rules",
+      "status": "PASS"
+    },
+    {
+      "check": "Example enemy archetype validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example rating and triggers are valid",
+      "status": "PASS"
+    },
+    {
+      "check": "Example bounded_rules are all false",
+      "status": "PASS"
+    },
+    {
+      "check": "No forbidden systems introduced",
+      "status": "FAIL",
+      "reason": "Forbidden directory exists: engine/enemies/runtime"
+    }
+  ]
+}

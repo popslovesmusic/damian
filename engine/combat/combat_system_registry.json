@@ -1,0 +1,52 @@
+{
+  "registry_id": "tower_engine_mvp_combat_v001",
+  "combat_model": {
+    "type": "bounded_action_resolution",
+    "real_time": false,
+    "turn_based": false,
+    "tick_resolution": true
+  },
+  "core_principles": [
+    "power_requires_cost",
+    "dominant_builds_accumulate_residue_pressure",
+    "defeat_changes_future_floors",
+    "repeated_success_increases_system_response",
+    "resource_drain_forces_farming_cycles",
+    "floor_mutation_preserves_identity_not_exact_repetition"
+  ],
+  "player_stats": [
+    "health",
+    "damage",
+    "defense",
+    "speed",
+    "recovery"
+  ],
+  "enemy_classes": [
+    "pressure_unit",
+    "ambush_unit",
+    "attrition_unit"
+  ],
+  "combat_outcomes": [
+    "VICTORY_ASCEND",
+    "DEFEAT_DROP",
+    "RETREAT_TO_HUB"
+  ],
+  "bounded_growth_rules": [
+    "no_permanent_invulnerability",
+    "no_infinite_damage_scaling",
+    "no_unbounded_healing",
+    "resource_upkeep_scales_with_power",
+    "dominant_build_visibility_increases_enemy_counter_pressure",
+    "residue_pressure_increases_with_repeated_same_strategy"
+  ],
+  "resource_rules": {
+    "potions_initial_cost": 1,
+    "upkeep_pressure_model": "low_individual_cost_high_accumulated_cost",
+    "resource_sink_required": true
+  },
+  "combat_pipeline_rules": [
+    "combat_results_must_flow_into_existing_mvp_outcome_pipeline",
+    "defeat_must_trigger_residue_and_mutation",
+    "victory_may_trigger_residue_without_mutation"
+  ]
+}
