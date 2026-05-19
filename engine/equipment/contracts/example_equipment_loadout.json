@@ -1,0 +1,60 @@
+{
+  "loadout_id": "equipment_loadout_example_001",
+  "player_id": "player_default_001",
+  "equipped_items": [
+    {
+      "equipment_item_id": "ash_blade_alpha",
+      "item_name": "Ash Blade",
+      "category_id": "weapons",
+      "rarity": "uncommon",
+      "durability": {
+        "current": 72,
+        "maximum": 100
+      },
+      "operational_profile": {
+        "repair_pressure": 0.42,
+        "residue_visibility": 0.51,
+        "mutation_affinity": 0.18,
+        "capacity_pressure": 0.22,
+        "risk_profile": 0.47
+      },
+      "bounded_flags": {
+        "grants_invulnerability": false,
+        "grants_infinite_scaling": false,
+        "bypasses_residue": false,
+        "bypasses_defeat": false
+      }
+    },
+    {
+      "equipment_item_id": "stability_lantern_beta",
+      "item_name": "Stability Lantern",
+      "category_id": "stability_focus_items",
+      "rarity": "rare",
+      "durability": {
+        "current": 41,
+        "maximum": 60
+      },
+      "operational_profile": {
+        "repair_pressure": 0.63,
+        "residue_visibility": 0.29,
+        "mutation_affinity": 0.74,
+        "capacity_pressure": 0.31,
+        "risk_profile": 0.58
+      },
+      "bounded_flags": {
+        "grants_invulnerability": false,
+        "grants_infinite_scaling": false,
+        "bypasses_residue": false,
+        "bypasses_defeat": false
+      }
+    }
+  ],
+  "aggregate_pressure": {
+    "repair_pressure": 0.53,
+    "residue_visibility": 0.40,
+    "mutation_affinity": 0.46,
+    "capacity_pressure": 0.26,
+    "risk_profile": 0.52
+  },
+  "bounded_rules_clean": true
+}

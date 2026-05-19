@@ -13,6 +13,8 @@ try:
     from engine.save.runtime import json_save_manager
     from engine.residue.runtime import mvp_residue_writer
     from engine.combat.runtime import mvp_combat_resolution_stub
+    from engine.enemies.runtime import enemy_pressure_selector
+    from engine.loot.runtime import mvp_loot_event_stub
     _dependencies_available = True
 except ImportError as e:
     print(f"ERROR: Console runtime dependencies missing: {e}")
@@ -285,11 +287,15 @@ def _handle_combat(session_state, args, debug):
         if fr_result["ok"]:
             floor_record = fr_result["payload"]
 
+    # Select enemy pressure profile based on current floor memory
+    arch_id = enemy_pressure_selector.select_enemy_archetype(before_fm, debug=debug)
+    pressure_profile = enemy_pressure_selector.build_enemy_pressure_profile(arch_id, before_fm, debug=debug)
+
     # 1. Build session
     player_state = {"player_id": "console_player", "health": player_health}
     combat_session = mvp_combat_resolution_stub.make_combat_session(
         current_floor, player_state, enemy_pressure_rating=enemy_pressure, 
-        resource_usage=resource_usage, debug=debug
+        resource_usage=resource_usage, enemy_pressure_profile=pressure_profile, debug=debug
     )
     
     # 2. Resolve into pipeline
@@ -301,10 +307,15 @@ def _handle_combat(session_state, args, debug):
     pipeline_result = resolution_result["pipeline_result"]
     resolved_outcome = resolution_result["resolved_outcome"]
     
+    # 3. Generate Bounded Loot Event (TOWER-ENGINE-053)
+    loot_res = mvp_loot_event_stub.make_combat_loot_event(current_floor, outcome=resolved_outcome, debug=debug)
+    loot_event = loot_res["payload"] if loot_res["ok"] else None
+    loot_summary = mvp_loot_event_stub.summarize_loot_event(loot_event) if loot_event else "Loot generation failed."
+
     # Update state
     session_state["runtime_context"]["tower_state"] = pipeline_result["tower_state"]
     
-    # 3. Handle Diff for defeat
+    # 4. Handle Diff for defeat
     if resolved_outcome == "DEFEAT_DROP" and before_fm:
         target_floor_id = pipeline_result["current_floor"]
         prev_floor_id = pipeline_result["previous_floor"]
@@ -330,7 +341,7 @@ def _handle_combat(session_state, args, debug):
         else:
             session_state["latest_diff"] = None
 
-    msg = f"Combat ({variant}) resolved to {resolved_outcome}. New floor: {pipeline_result['current_floor']}."
+    msg = f"Combat ({variant}) resolved to {resolved_outcome}. New floor: {pipeline_result['current_floor']}.\n{loot_summary}"
     
     payload = {
         "resolved_outcome": resolved_outcome,
@@ -339,7 +350,15 @@ def _handle_combat(session_state, args, debug):
         "mutation_applied": pipeline_result.get("mutation_applied", False),
         "survivor_mark_attached": pipeline_result.get("survivor_mark_attached", False),
         "resource_pressure_observed": resolution_result.get("resource_pressure_observed", False),
-        "residue_pressure_observed": resolution_result.get("residue_pressure_observed", False)
+        "residue_pressure_observed": resolution_result.get("residue_pressure_observed", False),
+        "enemy_pressure_profile": pressure_profile,
+        "enemy_archetype_id": resolution_result.get("enemy_archetype_id"),
+        "enemy_adaptation_reasoning": resolution_result.get("enemy_adaptation_reasoning", []),
+        "enemy_pressure_profile_used": resolution_result.get("enemy_pressure_profile_used", False),
+        "loot_event": loot_event,
+        "loot_summary": loot_summary,
+        "resource_sink_pressure": loot_event.get("resource_sink_pressure") if loot_event else None,
+        "bounded_reward_flags": loot_event.get("bounded_reward_flags") if loot_event else None
     }
     
     return {"ok": True, "command": "combat", "message": msg, "payload": payload, "error": None}

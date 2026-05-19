@@ -1,0 +1,51 @@
+{
+  "patch_id": "TOWER-ENGINE-052",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/loot/runtime/mvp_loot_event_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/loot/runtime/tests/test_mvp_loot_event_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/loot/contracts/loot_event.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/loot/mvp_loot_event_stub.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: make_loot_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: make_combat_loot_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: make_survivor_mark_loot_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_loot_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_loot_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Loot stub unit tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "VICTORY_ASCEND rewards and flags are correct",
+      "status": "PASS"
+    }
+  ]
+}

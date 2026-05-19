@@ -1,0 +1,28 @@
+{
+  "stage_id": "STAGE-006",
+  "stage_name": "Economy and Resource Pressure Foundations",
+  "identity_status": "STRONG ALIGNMENT - Reward does not erase consequence.",
+  "major_strengths": [
+    "Deterministic Bounded Loot (testable and consistent)",
+    "Explicit Resource Sink Reporting (measurability before shops)",
+    "Strict Safety Bounds (no power creep in stubs)",
+    "The economy already reinforces the core identity: reward does not erase consequence."
+  ],
+  "major_risks": [
+    "Static Rewards may feel artificial and fail to test variance",
+    "Phantom Economy (reported but not deducted wealth)",
+    "If resource sinks become too abstract, players may not feel the pressure emotionally.",
+    "Rare Material Scarcity (Survivor Marks are currently the only source)"
+  ],
+  "balance_questions": [
+    "Is 10,000 gold per victory sufficient to outpace compounding sink pressure?",
+    "Should DEFEAT_DROP represent a total economic loss?",
+    "How does sink pressure scale with floor depth and mutation intensity?"
+  ],
+  "required_followups": [
+    "Define MVP Inventory Boundary",
+    "Define MVP Equipment Boundary",
+    "Inventory and equipment should make resource drain visible through repair, depletion, capacity, and tradeoff pressure."
+  ],
+  "next_stage_recommendation": "STAGE-007: MVP Equipment Boundary"
+}

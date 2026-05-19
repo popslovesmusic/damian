@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LootEvent",
+  "type": "object",
+  "required": [
+    "loot_event_id",
+    "floor_id",
+    "source",
+    "rewards",
+    "resource_sink_pressure",
+    "bounded_reward_flags"
+  ],
+  "properties": {
+    "loot_event_id": { "type": "string" },
+    "floor_id": { "type": "integer" },
+    "source": { "type": "string" },
+    "rewards": {
+      "type": "object",
+      "required": ["gold", "stability_shards", "residue_fragments", "rare_materials"],
+      "properties": {
+        "gold": { "type": "integer" },
+        "stability_shards": { "type": "integer" },
+        "residue_fragments": { "type": "integer" },
+        "rare_materials": { "type": "integer" }
+      }
+    },
+    "resource_sink_pressure": {
+      "type": "object",
+      "required": [
+        "estimated_potion_cost",
+        "estimated_repair_cost",
+        "estimated_mutation_control_cost",
+        "estimated_domain_upkeep_cost"
+      ],
+      "properties": {
+        "estimated_potion_cost": { "type": "integer" },
+        "estimated_repair_cost": { "type": "integer" },
+        "estimated_mutation_control_cost": { "type": "integer" },
+        "estimated_domain_upkeep_cost": { "type": "integer" }
+      }
+    },
+    "bounded_reward_flags": {
+      "type": "object",
+      "required": [
+        "grants_invulnerability",
+        "grants_infinite_damage",
+        "bypasses_residue",
+        "bypasses_death_consequence"
+      ],
+      "properties": {
+        "grants_invulnerability": { "type": "boolean" },
+        "grants_infinite_damage": { "type": "boolean" },
+        "bypasses_residue": { "type": "boolean" },
+        "bypasses_death_consequence": { "type": "boolean" }
+      }
+    }
+  }
+}

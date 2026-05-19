@@ -37,6 +37,24 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     mutation_after_combat_observed = False
     survivor_mark_after_combat_observed = False
     
+    # Enemy pressure observation
+    enemy_pressure_profiles_observed = 0
+    enemy_archetypes_observed = []
+    enemy_adaptation_reasoning_observed = []
+    attrition_pressure_observed = False
+    counter_pressure_observed = False
+    ambush_pressure_observed = False
+    baseline_pressure_observed = False
+    
+    # Loot and Resource observation
+    loot_events_observed = 0
+    total_gold_observed = 0
+    large_visible_loot_observed = False
+    resource_sink_pressure_observed = False
+    bounded_reward_flags_clean = True
+    loot_sources_observed = []
+    resource_sink_summaries = []
+    
     # Room graph evidence observation
     room_graph_evidence_observed = False
     room_graph_changes_observed = 0
@@ -115,13 +133,63 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
             if payload.get("residue_pressure_observed"):
                 residue_pressure_observed = True
 
+            # Extract enemy pressure evidence (TOWER-ENGINE-049)
+            if payload.get("enemy_pressure_profile_used"):
+                enemy_pressure_profiles_observed += 1
+                arch_id = payload.get("enemy_archetype_id")
+                if arch_id:
+                    if arch_id not in enemy_archetypes_observed:
+                        enemy_archetypes_observed.append(arch_id)
+                    
+                    # Infer pressure categories
+                    if arch_id == "attrition_unit":
+                        attrition_pressure_observed = True
+                    elif arch_id == "counter_unit":
+                        counter_pressure_observed = True
+                    elif arch_id == "ambush_unit":
+                        ambush_pressure_observed = True
+                    elif arch_id == "pressure_unit":
+                        baseline_pressure_observed = True
+                
+                reasoning = payload.get("enemy_adaptation_reasoning", [])
+                for r in reasoning:
+                    if r not in enemy_adaptation_reasoning_observed:
+                        enemy_adaptation_reasoning_observed.append(r)
+
+            # Extract loot and resource evidence (TOWER-ENGINE-054)
+            loot_event = payload.get("loot_event")
+            if loot_event:
+                loot_events_observed += 1
+                source = loot_event.get("source")
+                if source and source not in loot_sources_observed:
+                    loot_sources_observed.append(source)
+                
+                rewards = loot_event.get("rewards", {})
+                gold = rewards.get("gold", 0)
+                total_gold_observed += gold
+                if gold >= 10000:
+                    large_visible_loot_observed = True
+                
+                sink_pressure = loot_event.get("resource_sink_pressure")
+                if sink_pressure:
+                    resource_sink_pressure_observed = True
+                    # Summarize sink pressure for review
+                    summary = f"Floor {loot_event.get('floor_id')} Sinks: Potion {sink_pressure.get('estimated_potion_cost')}, Repair {sink_pressure.get('estimated_repair_cost')}"
+                    if summary not in resource_sink_summaries:
+                        resource_sink_summaries.append(summary)
+                
+                bounded_flags = loot_event.get("bounded_reward_flags", {})
+                # Check for bypass flags (safety violation)
+                if any(bounded_flags.values()):
+                    bounded_reward_flags_clean = False
+
     # 3. Final State Capture
     tower_state = session_state["runtime_context"]["tower_state"]
     player_prog = session_state["runtime_context"]["player_progression"]
     
     transcript = {
         "transcript_id": transcript_id,
-        "patch_id": "TOWER-ENGINE-045",
+        "patch_id": "TOWER-ENGINE-054",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "ok": len(errors) == 0,
         "commands_requested": commands,
@@ -142,6 +210,20 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
         "residue_pressure_observed": residue_pressure_observed,
         "mutation_after_combat_observed": mutation_after_combat_observed,
         "survivor_mark_after_combat_observed": survivor_mark_after_combat_observed,
+        "enemy_pressure_profiles_observed": enemy_pressure_profiles_observed,
+        "enemy_archetypes_observed": enemy_archetypes_observed,
+        "enemy_adaptation_reasoning_observed": enemy_adaptation_reasoning_observed,
+        "attrition_pressure_observed": attrition_pressure_observed,
+        "counter_pressure_observed": counter_pressure_observed,
+        "ambush_pressure_observed": ambush_pressure_observed,
+        "baseline_pressure_observed": baseline_pressure_observed,
+        "loot_events_observed": loot_events_observed,
+        "total_gold_observed": total_gold_observed,
+        "large_visible_loot_observed": large_visible_loot_observed,
+        "resource_sink_pressure_observed": resource_sink_pressure_observed,
+        "bounded_reward_flags_clean": bounded_reward_flags_clean,
+        "loot_sources_observed": loot_sources_observed,
+        "resource_sink_summaries": resource_sink_summaries,
         "room_graph_evidence_observed": room_graph_evidence_observed,
         "room_graph_changes_observed": room_graph_changes_observed,
         "survivor_mark_rooms_observed": survivor_mark_rooms_observed,
@@ -156,11 +238,16 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     }
     
     # 4. Write artifact
-    # Specific ID for TOWER-ENGINE-045 validation artifact
-    if transcript_id == "graph_combat_validation":
+    # Specific ID for TOWER-ENGINE-054 validation artifact
+    if transcript_id == "loot_evidence_validation":
+        filename = "tower_engine_054_loot_evidence_console_transcript.json"
+    elif transcript_id == "enemy_pressure_validation":
+        filename = "tower_engine_050_enemy_pressure_console_transcript.json"
+    elif transcript_id == "graph_combat_validation":
         filename = "tower_engine_045_graph_combat_console_transcript.json"
     else:
-        filename = f"tower_engine_045_console_transcript_{transcript_id[:8]}.json"
+        filename = f"tower_engine_054_console_transcript_{transcript_id[:8]}.json"
+
         
     output_path = os.path.join(output_dir, filename)
     write_console_transcript(transcript, output_path)
@@ -214,7 +301,7 @@ def summarize_console_transcript(transcript):
 def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
     return {
         "transcript_id": transcript_id,
-        "patch_id": "TOWER-ENGINE-045",
+        "patch_id": "TOWER-ENGINE-054",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "ok": False,
         "commands_requested": commands,
@@ -235,6 +322,20 @@ def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
         "residue_pressure_observed": False,
         "mutation_after_combat_observed": False,
         "survivor_mark_after_combat_observed": False,
+        "enemy_pressure_profiles_observed": 0,
+        "enemy_archetypes_observed": [],
+        "enemy_adaptation_reasoning_observed": [],
+        "attrition_pressure_observed": False,
+        "counter_pressure_observed": False,
+        "ambush_pressure_observed": False,
+        "baseline_pressure_observed": False,
+        "loot_events_observed": 0,
+        "total_gold_observed": 0,
+        "large_visible_loot_observed": False,
+        "resource_sink_pressure_observed": False,
+        "bounded_reward_flags_clean": True,
+        "loot_sources_observed": [],
+        "resource_sink_summaries": [],
         "room_graph_evidence_observed": False,
         "room_graph_changes_observed": 0,
         "survivor_mark_rooms_observed": 0,

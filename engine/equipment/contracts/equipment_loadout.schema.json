@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EquipmentLoadout",
+  "type": "object",
+  "required": [
+    "loadout_id",
+    "player_id",
+    "equipped_items",
+    "aggregate_pressure",
+    "bounded_rules_clean"
+  ],
+  "properties": {
+    "loadout_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "equipped_items": {
+      "type": "array",
+      "items": { "$ref": "equipment_item.schema.json" }
+    },
+    "aggregate_pressure": {
+      "type": "object",
+      "required": [
+        "repair_pressure",
+        "residue_visibility",
+        "mutation_affinity",
+        "capacity_pressure",
+        "risk_profile"
+      ],
+      "properties": {
+        "repair_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "residue_visibility": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "mutation_affinity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "capacity_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "risk_profile": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "bounded_rules_clean": { "const": true }
+  }
+}

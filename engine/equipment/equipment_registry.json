@@ -1,0 +1,56 @@
+{
+  "registry_id": "tower_engine_equipment_v001",
+  "core_principle": "Equipment changes operational behavior and pressure exposure rather than removing consequence or enabling runaway power escalation.",
+  "equipment_categories": [
+    {
+      "category_id": "weapons",
+      "role": "combat_strategy_projection"
+    },
+    {
+      "category_id": "armor",
+      "role": "pressure_absorption_and_upkeep"
+    },
+    {
+      "category_id": "mobility_gear",
+      "role": "route_and_escape_modification"
+    },
+    {
+      "category_id": "mutation_tools",
+      "role": "replay_mutation_interaction"
+    },
+    {
+      "category_id": "stability_focus_items",
+      "role": "floor_and_domain_stability_management"
+    },
+    {
+      "category_id": "residue_sensitive_items",
+      "role": "high_power_high_visibility_tradeoff"
+    }
+  ],
+  "equipment_axes": [
+    "durability",
+    "repair_pressure",
+    "mutation_affinity",
+    "residue_visibility",
+    "operational_cost",
+    "capacity_pressure",
+    "risk_profile"
+  ],
+  "bounded_equipment_rules": [
+    "equipment_must_degrade_over_time",
+    "equipment_requires_maintenance",
+    "high_power_equipment_increases_visibility",
+    "mutation_sensitive_equipment_may_destabilize_floors",
+    "equipment_must_not_bypass_defeat",
+    "equipment_must_not_bypass_residue",
+    "equipment_must_not_grant_invulnerability",
+    "equipment_must_not_grant_infinite_scaling"
+  ],
+  "risk_tradeoff_rules": [
+    "higher_output_increases_operational_cost",
+    "higher_visibility_increases_counter_pressure",
+    "mutation_affinity_increases_unpredictability",
+    "heavy_equipment_increases_capacity_pressure",
+    "stability_tools_reduce_flexibility"
+  ]
+}
