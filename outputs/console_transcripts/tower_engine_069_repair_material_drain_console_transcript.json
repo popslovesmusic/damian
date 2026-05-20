@@ -1,7 +1,7 @@
 {
   "transcript_id": "repair_material_drain_validation",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:12.111958+00:00",
+  "timestamp": "2026-05-20T17:52:55.063188+00:00",
   "ok": false,
   "commands_requested": [
     "repair 1"
@@ -16,9 +16,9 @@
       "message": "Repair failed: Item repair_material_basic not found in inventory.",
       "payload": {
         "repair_event": {
-          "repair_event_id": "repair_ed185273-df20-49fc-a4bf-f999f64861cc",
+          "repair_event_id": "repair_91168a6a-e5ff-4815-90d8-7a0e804652b0",
           "equipment_item_id": "ash_blade_alpha",
-          "inventory_id": "inv_7b4e1b64-edd4-4af3-9adf-e6426610d752",
+          "inventory_id": "inv_767d0973-88e1-40a4-afa8-df184178f636",
           "player_id": "player_default_001",
           "materials_required": [
             {
@@ -36,8 +36,8 @@
           "bounded_flags_clean": true
         },
         "inventory_transaction": {
-          "transaction_id": "tx_d7f0ded8-926b-41f8-b77c-8b0a14340442",
-          "inventory_id": "inv_7b4e1b64-edd4-4af3-9adf-e6426610d752",
+          "transaction_id": "tx_facd9bd9-d621-455f-b222-d77008bc8ef3",
+          "inventory_id": "inv_767d0973-88e1-40a4-afa8-df184178f636",
           "player_id": "player_default_001",
           "transaction_type": "CONSUME_ITEM",
           "items_added": [],
@@ -117,7 +117,7 @@
           "bounded_rules_clean": true
         },
         "updated_inventory_state": {
-          "inventory_id": "inv_7b4e1b64-edd4-4af3-9adf-e6426610d752",
+          "inventory_id": "inv_767d0973-88e1-40a4-afa8-df184178f636",
           "player_id": "player_default_001",
           "items": [],
           "currency": {
@@ -129,7 +129,7 @@
           },
           "inventory_capacity": 40,
           "used_capacity": 0,
-          "updated_at": "2026-05-20T16:52:12.111317+00:00"
+          "updated_at": "2026-05-20T17:52:55.062976+00:00"
         },
         "repair_applied": false,
         "item_id": "repair_material_basic",
@@ -138,7 +138,7 @@
         "durability_restored_flag": false,
         "capacity_pressure_summary": {
           "ok": true,
-          "inventory_id": "inv_7b4e1b64-edd4-4af3-9adf-e6426610d752",
+          "inventory_id": "inv_767d0973-88e1-40a4-afa8-df184178f636",
           "used_capacity": 0,
           "inventory_capacity": 40,
           "capacity_pressure": 0.0,
@@ -296,6 +296,30 @@
   "highest_targeting_pressure_observed": 0.0,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [],
+  "territorial_instability_observed": false,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [],
+  "foothold_collapse_observed": false,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [],
+  "foothold_collapse_summaries": [],
+  "foothold_recovery_observed": false,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 0,
   "strategic_biases_observed": [],
   "route_hazard_visibility_summaries": [],

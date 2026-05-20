@@ -1,7 +1,4 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Domain State Schema",
-  "description": "Schema for validating persistent player domain states.",
   "type": "object",
   "required": [
     "domain_state_id",
@@ -19,117 +16,40 @@
     "forbidden_flags"
   ],
   "properties": {
-    "domain_state_id": {
-      "type": "string",
-      "description": "Unique identifier for this domain state instance."
-    },
-    "owner_player_id": {
-      "type": "string",
-      "description": "The player ID who owns this domain."
-    },
-    "content_pack_id": {
-      "type": "string",
-      "description": "The ID of the content pack this domain belongs to."
-    },
-    "domain_archetype": {
-      "type": "string",
-      "description": "The archetype of this domain (e.g., tower_domain, swamp_domain)."
-    },
-    "conquered": {
-      "type": "boolean",
-      "description": "True if the domain has been conquered by the owner."
-    },
-    "dashboard_unlocked": {
-      "type": "boolean",
-      "description": "True if the domain dashboard is unlocked for owner interaction."
-    },
-    "domain_level": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "The current level of the domain."
-    },
-    "stability": {
-      "type": "number",
-      "minimum": 0.0,
-      "maximum": 1.0,
-      "description": "Current stability of the domain (0.0 - 1.0)."
-    },
-    "deviation": {
-      "type": "number",
-      "minimum": 0.0,
-      "maximum": 1.0,
-      "description": "Current deviation of the domain (0.0 - 1.0)."
-    },
+    "domain_state_id": { "type": "string" },
+    "owner_player_id": { "type": "string" },
+    "content_pack_id": { "type": "string" },
+    "domain_archetype": { "type": "string" },
+    "conquered": { "type": "boolean" },
+    "dashboard_unlocked": { "type": "boolean" },
+    "domain_level": { "type": "integer", "minimum": 1 },
+    "stability": { "type": "number", "minimum": 0, "maximum": 1 },
+    "deviation": { "type": "number" },
     "active_modifiers": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "List of active modifiers affecting the domain."
+      "items": { "type": "string" }
     },
     "operational_costs": {
       "type": "object",
-      "description": "Ongoing costs to maintain the domain.",
-      "required": [
-        "maintenance",
-        "mutation_control",
-        "hazard_upkeep",
-        "resource_transport"
-      ],
+      "required": ["maintenance", "mutation_control", "hazard_upkeep", "resource_transport"],
       "properties": {
-        "maintenance": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Cost for general maintenance."
-        },
-        "mutation_control": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Cost to control domain mutations."
-        },
-        "hazard_upkeep": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Cost for hazard mitigation."
-        },
-        "resource_transport": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Cost for resource transportation."
-        }
+        "maintenance": { "type": "integer", "minimum": 0 },
+        "mutation_control": { "type": "integer", "minimum": 0 },
+        "hazard_upkeep": { "type": "integer", "minimum": 0 },
+        "resource_transport": { "type": "integer", "minimum": 0 }
       }
     },
     "invasion_history": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "History of invasion attempts and outcomes."
+      "items": { "type": "object" }
     },
     "forbidden_flags": {
       "type": "object",
-      "description": "Flags to ensure domain integrity and fair play.",
-      "required": [
-        "playability_failure",
-        "owner_immunity",
-        "impossible_layout"
-      ],
+      "required": ["playability_failure", "owner_immunity", "impossible_layout"],
       "properties": {
-        "playability_failure": {
-          "type": "boolean",
-          "const": false,
-          "description": "Must be false. Domain should not be unplayable."
-        },
-        "owner_immunity": {
-          "type": "boolean",
-          "const": false,
-          "description": "Must be false. Owner is not immune to domain effects."
-        },
-        "impossible_layout": {
-          "type": "boolean",
-          "const": false,
-          "description": "Must be false. Domain layout should not be impossible."
-        }
+        "playability_failure": { "type": "boolean" },
+        "owner_immunity": { "type": "boolean" },
+        "impossible_layout": { "type": "boolean" }
       }
     }
   }

@@ -2,6 +2,7 @@ import json
 import os
 import datetime
 import re
+from engine.io.runtime import artifact_policy
 
 def create_structured_error(error_type, message, path=""):
     """Creates a structured error dictionary for internal use."""
@@ -58,8 +59,9 @@ def debug_enabled(config=None):
     In a real system, this would read from a global config.
     For now, a simple placeholder.
     """
-    # Placeholder: Always enabled for prototyping unless specific config says otherwise
-    # In a real engine, this would check a config object passed in or global setting.
+    # Debug log persistence is off by default; enable explicitly.
+    if not artifact_policy.allow_debug_log_writes(default=False):
+        return False
     if config and config.get("debug_logging_enabled") is False:
         return False
     return True

@@ -1,7 +1,4 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Player Progression State Schema",
-  "description": "Schema for validating player progression state payloads, ensuring bounded growth and anti-god-mode principles.",
   "type": "object",
   "required": [
     "player_id",
@@ -9,7 +6,6 @@
     "content_pack_id",
     "level",
     "highest_floor_reached",
-    "active_orientation",
     "stats",
     "unlocked_skills",
     "equipped_items",
@@ -17,143 +13,47 @@
     "forbidden_flags"
   ],
   "properties": {
-    "player_id": {
-      "type": "string",
-      "description": "Unique identifier for the player."
-    },
-    "profile_id": {
-      "type": "string",
-      "description": "Unique identifier for the player's profile."
-    },
-    "content_pack_id": {
-      "type": "string",
-      "description": "Identifier of the content pack the player is currently in or associated with."
-    },
-    "level": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "Player's current experience level."
-    },
-    "highest_floor_reached": {
-      "type": "integer",
-      "minimum": 1,
-      "description": "Highest floor reached by this player in any run."
-    },
-    "active_orientation": {
-      "type": "string",
-      "description": "The player's active build orientation or class."
-    },
+    "player_id": { "type": "string" },
+    "profile_id": { "type": "string" },
+    "content_pack_id": { "type": "string" },
+    "level": { "type": "integer", "minimum": 1 },
+    "highest_floor_reached": { "type": "integer", "minimum": 1 },
     "stats": {
       "type": "object",
-      "description": "Core player statistics.",
-      "required": [
-        "health",
-        "damage",
-        "defense",
-        "speed",
-        "recovery"
-      ],
+      "required": ["health", "damage", "defense", "speed", "recovery"],
       "properties": {
-        "health": {
-          "type": "number",
-          "exclusiveMinimum": 0,
-          "description": "Player's health value."
-        },
-        "damage": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Player's damage output."
-        },
-        "defense": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Player's defense value."
-        },
-        "speed": {
-          "type": "number",
-          "exclusiveMinimum": 0,
-          "description": "Player's movement speed."
-        },
-        "recovery": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Player's recovery rate."
-        }
+        "health": { "type": "number", "minimum": 0 },
+        "damage": { "type": "number", "minimum": 0 },
+        "defense": { "type": "number", "minimum": 0 },
+        "speed": { "type": "number", "minimum": 0 },
+        "recovery": { "type": "number", "minimum": 0 }
       }
     },
     "unlocked_skills": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "List of unlocked skills."
+      "items": { "type": "string" }
     },
     "equipped_items": {
       "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "List of equipped item IDs."
+      "items": { "type": "string" }
     },
     "residue_pressure": {
       "type": "object",
-      "description": "Metrics representing how much player's current progression contributes to residue pressure.",
-      "required": [
-        "dominant_build_visibility",
-        "power_use_strain",
-        "overoptimization_pressure"
-      ],
+      "required": ["dominant_build_visibility", "power_use_strain", "overoptimization_pressure"],
       "properties": {
-        "dominant_build_visibility": {
-          "type": "number",
-          "minimum": 0.0,
-          "maximum": 1.0,
-          "description": "Visibility of dominant strategies to tower adaptation (0.0-1.0)."
-        },
-        "power_use_strain": {
-          "type": "number",
-          "minimum": 0.0,
-          "maximum": 1.0,
-          "description": "Strain from high-output abilities (0.0-1.0)."
-        },
-        "overoptimization_pressure": {
-          "type": "number",
-          "minimum": 0.0,
-          "maximum": 1.0,
-          "description": "Pressure from over-reliance on single tactics (0.0-1.0)."
-        }
+        "dominant_build_visibility": { "type": "number" },
+        "power_use_strain": { "type": "number" },
+        "overoptimization_pressure": { "type": "number" }
       }
     },
     "forbidden_flags": {
       "type": "object",
-      "description": "Flags to ensure anti-god-mode principles are maintained.",
-      "required": [
-        "permanent_invulnerability",
-        "infinite_damage_scaling",
-        "residue_immunity",
-        "death_consequence_immunity"
-      ],
+      "required": ["permanent_invulnerability", "infinite_damage_scaling", "residue_immunity", "death_consequence_immunity"],
       "properties": {
-        "permanent_invulnerability": {
-          "type": "boolean",
-          "const": false,
-          "description": "Must always be false. Player should not be permanently invulnerable."
-        },
-        "infinite_damage_scaling": {
-          "type": "boolean",
-          "const": false,
-          "description": "Must always be false. Player damage should not scale infinitely."
-        },
-        "residue_immunity": {
-          "type": "boolean",
-          "const": false,
-          "description": "Must always be false. Player should not be immune to residue effects."
-        },
-        "death_consequence_immunity": {
-          "type": "boolean",
-          "const": false,
-          "description": "Must always be false. Player should not be immune to death consequences."
-        }
+        "permanent_invulnerability": { "type": "boolean" },
+        "infinite_damage_scaling": { "type": "boolean" },
+        "residue_immunity": { "type": "boolean" },
+        "death_consequence_immunity": { "type": "boolean" }
       }
     }
   }

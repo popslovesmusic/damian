@@ -4,7 +4,7 @@ import json
 import shutil
 import datetime
 import sys
-from unittest.mock import patch, mock_open
+from unittest.mock import patch, mock_open, MagicMock
 
 # Ensure project root is in sys.path for module imports
 PROJECT_ROOT_FOR_TESTS = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
@@ -47,8 +47,9 @@ except ImportError:
 # Patch debug_logger for tests
 @pytest.fixture
 def mock_debug_logger():
+    mock_dl = MagicMock()
     with patch('engine.domain.bootstrap.domain_state_bootstrapper._debug_logger_available', True):
-        with patch('engine.domain.bootstrap.domain_state_bootstrapper.debug_logger', real_debug_logger) as mock_dl:
+        with patch('engine.domain.bootstrap.domain_state_bootstrapper.debug_logger', mock_dl):
             yield mock_dl
 
 # --- Test make_default_domain_state ---
@@ -74,9 +75,12 @@ def test_make_default_domain_state_validity():
 # --- Test load_domain_state ---
 def test_load_domain_state_success(setup_teardown_test_dir):
     test_save_path = os.path.join(TEST_DIR, "valid_domain_state.json")
-    example_domain_result = json_save_manager.load_json(EXAMPLE_DOMAIN_STATE_PATH)
-    assert example_domain_result["ok"]
-    example_domain = example_domain_result["payload"]
+    if os.path.exists(EXAMPLE_DOMAIN_STATE_PATH):
+        example_domain_result = json_save_manager.load_json(EXAMPLE_DOMAIN_STATE_PATH)
+        assert example_domain_result["ok"]
+        example_domain = example_domain_result["payload"]
+    else:
+        example_domain = domain_state_bootstrapper.make_default_domain_state()
     
     json_save_manager.save_json(test_save_path, example_domain)
 

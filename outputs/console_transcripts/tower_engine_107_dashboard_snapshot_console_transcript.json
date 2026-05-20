@@ -1,7 +1,7 @@
 {
   "transcript_id": "dashboard_snapshot_validation",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:11.220944+00:00",
+  "timestamp": "2026-05-20T17:52:54.739438+00:00",
   "ok": true,
   "commands_requested": [
     "status"
@@ -13,7 +13,7 @@
     {
       "ok": true,
       "command": "status",
-      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: VAGUE (0.50)",
+      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: VAGUE (0.50) | Collapse: 0.00 (0 footholds)",
       "payload": {
         "current_floor": 1,
         "highest_floor": 1,
@@ -22,7 +22,7 @@
         "unclaimed_marks_count": 0,
         "capacity_pressure_summary": {
           "ok": true,
-          "inventory_id": "inv_402e17e5-066d-4681-bdf7-5395ec3ac905",
+          "inventory_id": "inv_8eafae5b-b04d-40d2-baef-a9ee977d6113",
           "used_capacity": 0,
           "inventory_capacity": 40,
           "capacity_pressure": 0.0,
@@ -44,8 +44,8 @@
           "repair_burden": 0.53
         },
         "dashboard_snapshot": {
-          "snapshot_id": "snap_b5050b57-92ed-4bcf-9bea-07ce7b65b5a7",
-          "player_id": "player_default_001_649bfa0b",
+          "snapshot_id": "snap_3b29d01b-b149-43b7-9332-0c7c0605826b",
+          "player_id": "player_default_001_68b5ebba",
           "floor_id": 1,
           "run_status": "ACTIVE",
           "pressure_summary": {
@@ -102,6 +102,34 @@
             "aggregate_hazard_bias": 0.0,
             "bounded_flags_clean": true
           },
+          "foothold_collapse_summary": {
+            "claims_evaluated": 0,
+            "collapsed_footholds": 0,
+            "highest_collapse_level": 0.0,
+            "collapse_bands_observed": [],
+            "bounded_flags_clean": true
+          },
+          "foothold_recovery_summary": {
+            "recovery_actions_taken": 0,
+            "total_shards_spent": 0.0,
+            "restored_to_active": 0,
+            "restored_from_overrun": 0,
+            "latest_recovery": null,
+            "bounded_flags_clean": true
+          },
+          "survivor_trace_summary": {
+            "floor_id": 1,
+            "traces_observed": 0,
+            "strongest_reliability": 0.0,
+            "reliability_bands_observed": [],
+            "bounded_flags_clean": true
+          },
+          "abandoned_foothold_summary": {
+            "floor_id": 1,
+            "discoveries_observed": 0,
+            "highest_hazard_risk": 0.0,
+            "bounded_flags_clean": true
+          },
           "route_visibility_summary": {
             "average_information_accuracy": 0.5,
             "best_visibility_band": "VAGUE",
@@ -114,7 +142,7 @@
           },
           "bounded_flags_clean": true
         },
-        "dashboard_summary": "Dashboard Snapshot [snap_b50]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active).",
+        "dashboard_summary": "Dashboard Snapshot [snap_3b2]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active).",
         "dashboard_snapshot_available": true,
         "reclamation_pressure": {
           "floor_id": 1,
@@ -146,6 +174,32 @@
           "average_information_accuracy": 0.5,
           "best_visibility_band": "VAGUE",
           "reconnaissance_level": 0.5,
+          "bounded_flags_clean": true
+        },
+        "territorial_instability": {
+          "claims_evaluated": 0,
+          "unstable_footholds": 0,
+          "highest_instability": 0.0,
+          "bounded_flags_clean": true
+        },
+        "foothold_collapse": {
+          "claims_evaluated": 0,
+          "collapsed_footholds": 0,
+          "highest_collapse_level": 0.0,
+          "collapse_bands_observed": [],
+          "bounded_flags_clean": true
+        },
+        "survivor_traces": {
+          "floor_id": 1,
+          "traces_observed": 0,
+          "strongest_reliability": 0.0,
+          "reliability_bands_observed": [],
+          "bounded_flags_clean": true
+        },
+        "abandoned_footholds": {
+          "floor_id": 1,
+          "discoveries_observed": 0,
+          "highest_hazard_risk": 0.0,
           "bounded_flags_clean": true
         }
       },
@@ -309,7 +363,7 @@
     }
   ],
   "dashboard_survival_summaries": [
-    "Dashboard Snapshot [snap_b50]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active)."
+    "Dashboard Snapshot [snap_3b2]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active)."
   ],
   "domain_claims_observed": 0,
   "domain_claim_types_observed": [],
@@ -344,6 +398,34 @@
   "highest_targeting_pressure_observed": 0.0,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [],
+  "territorial_instability_observed": true,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [
+    "Floor 1 Instability: 0.00 (0 unstable)"
+  ],
+  "foothold_collapse_observed": true,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [],
+  "foothold_collapse_summaries": [
+    "Floor 1 Collapse: 0.00 (0 footholds)"
+  ],
+  "foothold_recovery_observed": true,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 0,
   "strategic_biases_observed": [],
   "route_hazard_visibility_summaries": [],

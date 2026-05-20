@@ -25,6 +25,8 @@ try:
     from engine.residue.mutation import mutation_scarring_stub
     from engine.traversal.routes import route_hazard_visibility_stub
     from engine.domain.collapse import foothold_collapse_stub
+    from engine.domain.social_exchange import survivor_trace_stub
+    from engine.domain.social_exchange import abandoned_foothold_discovery_stub
     _pressure_available = True
 except ImportError:
     _pressure_available = False
@@ -354,6 +356,82 @@ def derive_foothold_recovery_summary(session_state, debug=False):
         "bounded_flags_clean": True
     }
 
+
+def derive_survivor_trace_summary(session_state, debug=False):
+    """
+    Aggregates survivor traces derived from floor memory (Stage-020 / TOWER-ENGINE-166).
+    """
+    tower_state = session_state.get("runtime_context", {}).get("tower_state", {})
+    current_floor = int(tower_state.get("current_floor", 1) or 1)
+
+    fm = None
+    for rec in tower_state.get("floor_memory", []) or []:
+        if rec.get("floor_id") == current_floor:
+            fm = rec
+            break
+
+    if not fm or not _pressure_available:
+        return {
+            "floor_id": current_floor,
+            "traces_observed": 0,
+            "strongest_reliability": 0.0,
+            "reliability_bands_observed": [],
+            "bounded_flags_clean": True
+        }
+
+    traces_res = survivor_trace_stub.generate_survivor_traces(fm, max_traces=3, debug=debug)
+    traces = traces_res.get("payload", {}).get("traces", []) if traces_res.get("ok") else []
+    strongest = 0.0
+    bands = set()
+    for t in traces or []:
+        strongest = max(strongest, float(t.get("reliability", 0.0) or 0.0))
+        b = t.get("reliability_band")
+        if b:
+            bands.add(b)
+
+    return {
+        "floor_id": current_floor,
+        "traces_observed": int(len(traces or [])),
+        "strongest_reliability": float(round(strongest, 4)),
+        "reliability_bands_observed": sorted(list(bands)),
+        "bounded_flags_clean": True
+    }
+
+
+def derive_abandoned_foothold_summary(session_state, debug=False):
+    """
+    Aggregates abandoned foothold discovery evidence (Stage-020 / TOWER-ENGINE-166).
+    """
+    tower_state = session_state.get("runtime_context", {}).get("tower_state", {})
+    current_floor = int(tower_state.get("current_floor", 1) or 1)
+
+    fm = None
+    for rec in tower_state.get("floor_memory", []) or []:
+        if rec.get("floor_id") == current_floor:
+            fm = rec
+            break
+
+    if not fm or not _pressure_available:
+        return {
+            "floor_id": current_floor,
+            "discoveries_observed": 0,
+            "highest_hazard_risk": 0.0,
+            "bounded_flags_clean": True
+        }
+
+    disc_res = abandoned_foothold_discovery_stub.discover_abandoned_footholds(fm, scan_intensity=1, debug=debug)
+    discoveries = disc_res.get("payload", {}).get("discoveries", []) if disc_res.get("ok") else []
+    highest_hazard = 0.0
+    for d in discoveries or []:
+        highest_hazard = max(highest_hazard, float(d.get("hazard_risk", 0.0) or 0.0))
+
+    return {
+        "floor_id": current_floor,
+        "discoveries_observed": int(len(discoveries or [])),
+        "highest_hazard_risk": float(round(highest_hazard, 4)),
+        "bounded_flags_clean": True
+    }
+
 def derive_route_visibility_summary(session_state, debug=False):
     """
     Aggregates reconnaissance evidence (TOWER-ENGINE-138).
@@ -443,6 +521,8 @@ def build_domain_dashboard_snapshot(session_state, debug=False):
         "mutation_scarring_summary": derive_mutation_scarring_summary(session_state, debug=debug),
         "foothold_collapse_summary": derive_foothold_collapse_summary(session_state, debug=debug),
         "foothold_recovery_summary": derive_foothold_recovery_summary(session_state, debug=debug),
+        "survivor_trace_summary": derive_survivor_trace_summary(session_state, debug=debug),
+        "abandoned_foothold_summary": derive_abandoned_foothold_summary(session_state, debug=debug),
         "route_visibility_summary": derive_route_visibility_summary(session_state, debug=debug),
         "recoverability_status": derive_recoverability_status(session_state, debug=debug),
         "bounded_flags_clean": True
@@ -478,6 +558,8 @@ def summarize_dashboard_snapshot(snapshot):
     scar = snapshot.get("mutation_scarring_summary", {})
     col = snapshot.get("foothold_collapse_summary", {})
     recov = snapshot.get("foothold_recovery_summary", {})
+    traces = snapshot.get("survivor_trace_summary", {})
+    abandoned = snapshot.get("abandoned_foothold_summary", {})
     vis = snapshot.get("route_visibility_summary", {})
     
     summary = f"Dashboard Snapshot [{snapshot.get('snapshot_id')[:8]}]: Floor {snapshot.get('floor_id')}. "
@@ -486,6 +568,8 @@ def summarize_dashboard_snapshot(snapshot):
     summary += f"Scarring: {scar.get('highest_scar_intensity'):.2f} ({scar.get('scarred_nodes_count')} nodes). "
     summary += f"Collapse: {col.get('highest_collapse_level', 0.0):.2f} ({col.get('collapsed_footholds', 0)} footholds). "
     summary += f"Recovery: {recov.get('recovery_actions_taken', 0)} actions ({recov.get('total_shards_spent', 0.0)} shards). "
+    summary += f"Traces: {traces.get('traces_observed', 0)} ({traces.get('strongest_reliability', 0.0):.2f}). "
+    summary += f"Abandoned: {abandoned.get('discoveries_observed', 0)} ({abandoned.get('highest_hazard_risk', 0.0):.2f}). "
     summary += f"Recon: {vis.get('best_visibility_band')} ({vis.get('average_information_accuracy'):.2f}). "
     summary += f"Resources (Gold:{r.get('gold')}, Potions:{r.get('potions')}). "
     summary += f"Gear ({e.get('damaged_items')} damaged). "

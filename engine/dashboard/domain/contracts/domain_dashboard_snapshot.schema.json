@@ -17,6 +17,8 @@
     "mutation_scarring_summary",
     "foothold_collapse_summary",
     "foothold_recovery_summary",
+    "survivor_trace_summary",
+    "abandoned_foothold_summary",
     "route_visibility_summary",
     "recoverability_status",
     "bounded_flags_clean"
@@ -177,6 +179,38 @@
         "restored_to_active": { "type": "integer", "minimum": 0 },
         "restored_from_overrun": { "type": "integer", "minimum": 0 },
         "latest_recovery": { "type": ["object", "null"] },
+        "bounded_flags_clean": { "type": "boolean", "const": true }
+      }
+    },
+    "survivor_trace_summary": {
+      "type": "object",
+      "required": [
+        "floor_id",
+        "traces_observed",
+        "strongest_reliability",
+        "reliability_bands_observed",
+        "bounded_flags_clean"
+      ],
+      "properties": {
+        "floor_id": { "type": "integer" },
+        "traces_observed": { "type": "integer", "minimum": 0 },
+        "strongest_reliability": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "reliability_bands_observed": { "type": "array", "items": { "type": "string" } },
+        "bounded_flags_clean": { "type": "boolean", "const": true }
+      }
+    },
+    "abandoned_foothold_summary": {
+      "type": "object",
+      "required": [
+        "floor_id",
+        "discoveries_observed",
+        "highest_hazard_risk",
+        "bounded_flags_clean"
+      ],
+      "properties": {
+        "floor_id": { "type": "integer" },
+        "discoveries_observed": { "type": "integer", "minimum": 0 },
+        "highest_hazard_risk": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
         "bounded_flags_clean": { "type": "boolean", "const": true }
       }
     },

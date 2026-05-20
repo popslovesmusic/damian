@@ -3,8 +3,9 @@ import json
 import uuid
 import datetime
 from engine.console.runtime import mvp_text_console
+from engine.io.runtime import artifact_policy
 
-def run_console_transcript(commands, paths=None, output_dir='outputs/console_transcripts', debug=False, transcript_id=None):
+def run_console_transcript(commands, paths=None, output_dir='outputs/console_transcripts', debug=False, transcript_id=None, write_to_disk=False):
     """
     Runs a console script and generates a structured transcript.
     """
@@ -205,6 +206,13 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     total_mitigation_shards_spent_observed = 0.0
     highest_scar_mitigation_credit_observed = 0.0
     scar_mitigation_summaries = []
+
+    # Social exchange observation (Stage-020 / TOWER-ENGINE-168)
+    survivor_traces_observed = 0
+    trace_reliability_bands_observed = []
+    abandoned_footholds_observed = 0
+    residue_exchange_actions_observed = 0
+    residue_exchange_summaries = []
 
     # Manual route selection observation (TOWER-ENGINE-140)
     route_selections_observed = 0
@@ -709,6 +717,30 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
                          
                 upkeep_summaries.append(result.get("message"))
 
+            # Survivor traces command (Stage-020)
+            if res_cmd == "traces" and result["ok"]:
+                tp = payload.get("traces") if isinstance(payload, dict) else None
+                traces = (tp or {}).get("traces", []) if isinstance(tp, dict) else []
+                survivor_traces_observed = max(survivor_traces_observed, len(traces))
+                for t in traces or []:
+                    b = t.get("reliability_band")
+                    if b and b not in trace_reliability_bands_observed:
+                        trace_reliability_bands_observed.append(b)
+
+            # Abandoned footholds command (Stage-020)
+            if res_cmd == "abandoned" and result["ok"]:
+                ap = payload.get("abandoned") if isinstance(payload, dict) else None
+                discoveries = (ap or {}).get("discoveries", []) if isinstance(ap, dict) else []
+                abandoned_footholds_observed = max(abandoned_footholds_observed, len(discoveries))
+
+            # Residue exchange command (Stage-020)
+            if res_cmd == "exchange" and result["ok"]:
+                if isinstance(payload, dict) and payload.get("exchange_record"):
+                    residue_exchange_actions_observed += 1
+                msg = result.get("message")
+                if msg:
+                    residue_exchange_summaries.append(msg)
+
             # Foothold recovery action specific (Stage-019)
             if res_cmd == "recover" and result["ok"]:
                 foothold_recovery_observed = True
@@ -897,6 +929,11 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
         "total_mitigation_shards_spent_observed": float(round(total_mitigation_shards_spent_observed, 4)),
         "highest_scar_mitigation_credit_observed": float(round(highest_scar_mitigation_credit_observed, 4)),
         "scar_mitigation_summaries": scar_mitigation_summaries,
+        "survivor_traces_observed": survivor_traces_observed,
+        "trace_reliability_bands_observed": trace_reliability_bands_observed,
+        "abandoned_footholds_observed": abandoned_footholds_observed,
+        "residue_exchange_actions_observed": residue_exchange_actions_observed,
+        "residue_exchange_summaries": residue_exchange_summaries,
         "route_selections_observed": route_selections_observed,
         "strategic_biases_observed": strategic_biases_observed,
         "route_hazard_visibility_summaries": route_hazard_visibility_summaries,
@@ -967,8 +1004,9 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     else:
         filename = f"tower_engine_140_console_transcript_{transcript_id[:8]}.json"
 
-    output_path = os.path.join(output_dir, filename)
-    write_console_transcript(transcript, output_path)
+    if write_to_disk and artifact_policy.allow_artifact_writes(default=True):
+        output_path = os.path.join(output_dir, filename)
+        write_console_transcript(transcript, output_path)
     
     return transcript
 
@@ -1174,6 +1212,11 @@ def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
         "total_mitigation_shards_spent_observed": 0.0,
         "highest_scar_mitigation_credit_observed": 0.0,
         "scar_mitigation_summaries": [],
+        "survivor_traces_observed": 0,
+        "trace_reliability_bands_observed": [],
+        "abandoned_footholds_observed": 0,
+        "residue_exchange_actions_observed": 0,
+        "residue_exchange_summaries": [],
         "durability_decay_observed": False,
         "durability_events_observed": 0,
         "total_durability_loss_observed": 0.0,

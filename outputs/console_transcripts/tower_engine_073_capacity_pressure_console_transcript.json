@@ -1,7 +1,7 @@
 {
   "transcript_id": "capacity_pressure_validation",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:10.977448+00:00",
+  "timestamp": "2026-05-20T17:52:54.593098+00:00",
   "ok": true,
   "commands_requested": [
     "status",
@@ -15,7 +15,7 @@
     {
       "ok": true,
       "command": "status",
-      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: VAGUE (0.50)",
+      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: VAGUE (0.50) | Collapse: 0.00 (0 footholds)",
       "payload": {
         "current_floor": 1,
         "highest_floor": 1,
@@ -24,7 +24,7 @@
         "unclaimed_marks_count": 0,
         "capacity_pressure_summary": {
           "ok": true,
-          "inventory_id": "inv_05fdfeb5-6e31-4b0a-8168-38c7717778ec",
+          "inventory_id": "inv_ced13971-02bc-44ec-8398-2fe956cf1d67",
           "used_capacity": 0,
           "inventory_capacity": 40,
           "capacity_pressure": 0.0,
@@ -46,8 +46,8 @@
           "repair_burden": 0.53
         },
         "dashboard_snapshot": {
-          "snapshot_id": "snap_169bb5ef-4ab1-409e-9bdf-68d28b834f84",
-          "player_id": "player_default_001_e9e8b7c4",
+          "snapshot_id": "snap_c38ebe6f-609b-40c6-9dcc-38a8a2f76833",
+          "player_id": "player_default_001_8638313f",
           "floor_id": 1,
           "run_status": "ACTIVE",
           "pressure_summary": {
@@ -104,6 +104,34 @@
             "aggregate_hazard_bias": 0.0,
             "bounded_flags_clean": true
           },
+          "foothold_collapse_summary": {
+            "claims_evaluated": 0,
+            "collapsed_footholds": 0,
+            "highest_collapse_level": 0.0,
+            "collapse_bands_observed": [],
+            "bounded_flags_clean": true
+          },
+          "foothold_recovery_summary": {
+            "recovery_actions_taken": 0,
+            "total_shards_spent": 0.0,
+            "restored_to_active": 0,
+            "restored_from_overrun": 0,
+            "latest_recovery": null,
+            "bounded_flags_clean": true
+          },
+          "survivor_trace_summary": {
+            "floor_id": 1,
+            "traces_observed": 0,
+            "strongest_reliability": 0.0,
+            "reliability_bands_observed": [],
+            "bounded_flags_clean": true
+          },
+          "abandoned_foothold_summary": {
+            "floor_id": 1,
+            "discoveries_observed": 0,
+            "highest_hazard_risk": 0.0,
+            "bounded_flags_clean": true
+          },
           "route_visibility_summary": {
             "average_information_accuracy": 0.5,
             "best_visibility_band": "VAGUE",
@@ -116,7 +144,7 @@
           },
           "bounded_flags_clean": true
         },
-        "dashboard_summary": "Dashboard Snapshot [snap_169]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active).",
+        "dashboard_summary": "Dashboard Snapshot [snap_c38]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active).",
         "dashboard_snapshot_available": true,
         "reclamation_pressure": {
           "floor_id": 1,
@@ -149,6 +177,32 @@
           "best_visibility_band": "VAGUE",
           "reconnaissance_level": 0.5,
           "bounded_flags_clean": true
+        },
+        "territorial_instability": {
+          "claims_evaluated": 0,
+          "unstable_footholds": 0,
+          "highest_instability": 0.0,
+          "bounded_flags_clean": true
+        },
+        "foothold_collapse": {
+          "claims_evaluated": 0,
+          "collapsed_footholds": 0,
+          "highest_collapse_level": 0.0,
+          "collapse_bands_observed": [],
+          "bounded_flags_clean": true
+        },
+        "survivor_traces": {
+          "floor_id": 1,
+          "traces_observed": 0,
+          "strongest_reliability": 0.0,
+          "reliability_bands_observed": [],
+          "bounded_flags_clean": true
+        },
+        "abandoned_footholds": {
+          "floor_id": 1,
+          "discoveries_observed": 0,
+          "highest_hazard_risk": 0.0,
+          "bounded_flags_clean": true
         }
       },
       "error": null
@@ -160,7 +214,7 @@
       "payload": {
         "resolved_outcome": "VICTORY_ASCEND",
         "combat_session": {
-          "combat_session_id": "combat_ab1f1343-dac6-4211-bf99-b4eaec48a4db",
+          "combat_session_id": "combat_5bb32cad-f190-4cba-8c38-edd993eb00f1",
           "floor_id": 1,
           "player_id": "console_player",
           "enemy_group_id": "enemy_group_1",
@@ -313,7 +367,7 @@
           "previous_floor": 1,
           "current_floor": 2,
           "tower_state": {
-            "tower_state_id": "tower_state_default_ac30fccd-0203-47c2-a45b-133497f42f2a",
+            "tower_state_id": "tower_state_default_81864491-3745-4cfa-9e7b-a03301b543e2",
             "engine_version": "0.0.1",
             "content_pack_id": "damian",
             "current_floor": 2,
@@ -321,7 +375,7 @@
             "total_runs": 0,
             "total_deaths": 0,
             "last_outcome": "VICTORY_ASCEND",
-            "updated_at": "2026-05-20T16:52:10.972184+00:00",
+            "updated_at": "2026-05-20T17:52:54.592076+00:00",
             "global_residue": {},
             "floor_memory": [
               {
@@ -338,7 +392,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "00f480af-7714-44fe-bd57-49988f59e387",
+                    "residue_id": "9e126e48-abe5-4b1a-8cf3-4e092e15a7a5",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -359,7 +413,7 @@
           "progression_result": {
             "ok": true,
             "tower_state": {
-              "tower_state_id": "tower_state_default_ac30fccd-0203-47c2-a45b-133497f42f2a",
+              "tower_state_id": "tower_state_default_81864491-3745-4cfa-9e7b-a03301b543e2",
               "engine_version": "0.0.1",
               "content_pack_id": "damian",
               "current_floor": 2,
@@ -367,7 +421,7 @@
               "total_runs": 0,
               "total_deaths": 0,
               "last_outcome": "VICTORY_ASCEND",
-              "updated_at": "2026-05-20T16:52:10.972184+00:00",
+              "updated_at": "2026-05-20T17:52:54.592076+00:00",
               "global_residue": {},
               "floor_memory": [
                 {
@@ -384,7 +438,7 @@
                   "unclaimed_easter_eggs": [],
                   "residue_history": [
                     {
-                      "residue_id": "00f480af-7714-44fe-bd57-49988f59e387",
+                      "residue_id": "9e126e48-abe5-4b1a-8cf3-4e092e15a7a5",
                       "floor_id": 1,
                       "outcome": "VICTORY_ASCEND",
                       "dominant_damage_type": "unknown",
@@ -408,7 +462,7 @@
             "ok": true,
             "payload": {
               "tower_state": {
-                "tower_state_id": "tower_state_default_ac30fccd-0203-47c2-a45b-133497f42f2a",
+                "tower_state_id": "tower_state_default_81864491-3745-4cfa-9e7b-a03301b543e2",
                 "engine_version": "0.0.1",
                 "content_pack_id": "damian",
                 "current_floor": 2,
@@ -416,7 +470,7 @@
                 "total_runs": 0,
                 "total_deaths": 0,
                 "last_outcome": "VICTORY_ASCEND",
-                "updated_at": "2026-05-20T16:52:10.972184+00:00",
+                "updated_at": "2026-05-20T17:52:54.592076+00:00",
                 "global_residue": {},
                 "floor_memory": [
                   {
@@ -433,7 +487,7 @@
                     "unclaimed_easter_eggs": [],
                     "residue_history": [
                       {
-                        "residue_id": "00f480af-7714-44fe-bd57-49988f59e387",
+                        "residue_id": "9e126e48-abe5-4b1a-8cf3-4e092e15a7a5",
                         "floor_id": 1,
                         "outcome": "VICTORY_ASCEND",
                         "dominant_damage_type": "unknown",
@@ -452,7 +506,7 @@
                 ]
               },
               "residue_record": {
-                "residue_id": "00f480af-7714-44fe-bd57-49988f59e387",
+                "residue_id": "9e126e48-abe5-4b1a-8cf3-4e092e15a7a5",
                 "floor_id": 1,
                 "outcome": "VICTORY_ASCEND",
                 "dominant_damage_type": "unknown",
@@ -480,7 +534,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "00f480af-7714-44fe-bd57-49988f59e387",
+                    "residue_id": "9e126e48-abe5-4b1a-8cf3-4e092e15a7a5",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -530,9 +584,9 @@
         ],
         "enemy_pressure_profile_used": true,
         "loot_event": {
-          "loot_event_id": "loot_67cd7036-a3ad-486f-8e9e-e6bf562ec429",
+          "loot_event_id": "loot_0ee9963a-ab40-4b92-8774-dccc2fd77860",
           "floor_id": 1,
-          "timestamp": "2026-05-20T16:52:10.977121+00:00",
+          "timestamp": "2026-05-20T17:52:54.593020+00:00",
           "source": "combat_reward",
           "outcome": "VICTORY_ASCEND",
           "rewards": {
@@ -646,8 +700,8 @@
         "equipment_residue_visibility_observed": false,
         "equipment_mutation_affinity_observed": false,
         "inventory_transaction": {
-          "transaction_id": "tx_fda54315-5094-49be-969b-9a291a18ff02",
-          "inventory_id": "inv_05fdfeb5-6e31-4b0a-8168-38c7717778ec",
+          "transaction_id": "tx_7cd1261e-88a3-4384-a5a8-57a51f9a073d",
+          "inventory_id": "inv_ced13971-02bc-44ec-8398-2fe956cf1d67",
           "player_id": "player_default_001",
           "transaction_type": "ADD_LOOT",
           "items_added": [
@@ -683,7 +737,7 @@
         },
         "capacity_pressure_summary": {
           "ok": true,
-          "inventory_id": "inv_05fdfeb5-6e31-4b0a-8168-38c7717778ec",
+          "inventory_id": "inv_ced13971-02bc-44ec-8398-2fe956cf1d67",
           "used_capacity": 5,
           "inventory_capacity": 40,
           "capacity_pressure": 0.125,
@@ -697,7 +751,7 @@
         "durability_decay_applied": true,
         "durability_events": [
           {
-            "event_id": "decay_be2c1bbd-1552-4ba8-9cc2-87467256e8ee",
+            "event_id": "decay_298abccc-a6b5-42e3-8b16-2731bf6184f7",
             "equipment_item_id": "ash_blade_alpha",
             "source": "combat_pressure",
             "durability_before": 72,
@@ -713,7 +767,7 @@
             "bounded_flags_clean": true
           },
           {
-            "event_id": "decay_7550eacd-8cf1-4484-b3f7-24f6890e01c1",
+            "event_id": "decay_d7c3bef3-ab07-48c7-81f3-88bc32cf7e28",
             "equipment_item_id": "stability_lantern_beta",
             "source": "combat_pressure",
             "durability_before": 41,
@@ -980,7 +1034,7 @@
     }
   ],
   "dashboard_survival_summaries": [
-    "Dashboard Snapshot [snap_169]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active)."
+    "Dashboard Snapshot [snap_c38]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active)."
   ],
   "domain_claims_observed": 0,
   "domain_claim_types_observed": [],
@@ -1015,6 +1069,34 @@
   "highest_targeting_pressure_observed": 0.0,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [],
+  "territorial_instability_observed": true,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [
+    "Floor 1 Instability: 0.00 (0 unstable)"
+  ],
+  "foothold_collapse_observed": true,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [],
+  "foothold_collapse_summaries": [
+    "Floor 1 Collapse: 0.00 (0 footholds)"
+  ],
+  "foothold_recovery_observed": true,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 0,
   "strategic_biases_observed": [],
   "route_hazard_visibility_summaries": [],

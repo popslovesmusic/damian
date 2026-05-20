@@ -2,6 +2,7 @@ import os
 import json
 import sys
 import uuid
+from engine.io.runtime import artifact_policy
 
 # Import existing MVP systems
 try:
@@ -90,6 +91,10 @@ def make_console_session_state(runtime_context, debug=False):
         "scar_mitigation_credits": {},  # key: "floor_id:node_id" -> credit float
         "scar_mitigation_history": [],
         "foothold_recovery_history": [],
+        # Stage-020: Social exchange evidence
+        "survivor_traces_last": None,
+        "abandoned_footholds_last": None,
+        "residue_exchange_history": [],
         "session_active": True,
         "latest_diff": None,
         "debug_enabled": debug
@@ -122,6 +127,12 @@ def execute_console_command(session_state, command_struct, debug=False):
         return _handle_recover(session_state, args, debug)
     elif command == "mitigate":
         return _handle_mitigate(session_state, args, debug)
+    elif command == "traces":
+        return _handle_traces(session_state, debug)
+    elif command == "abandoned":
+        return _handle_abandoned(session_state, debug)
+    elif command == "exchange":
+        return _handle_exchange(session_state, args, debug)
     elif command == "ascend":
         return _handle_outcome(session_state, "VICTORY_ASCEND", debug)
     elif command == "defeat":
@@ -250,6 +261,8 @@ def _handle_status(session_state, debug):
     # Extract route visibility (TOWER-ENGINE-139)
     visibility_summary = dashboard_snapshot.get("route_visibility_summary") if dashboard_snapshot else None
     collapse_summary = dashboard_snapshot.get("foothold_collapse_summary") if dashboard_snapshot else None
+    trace_summary = dashboard_snapshot.get("survivor_trace_summary") if dashboard_snapshot else None
+    abandoned_summary = dashboard_snapshot.get("abandoned_foothold_summary") if dashboard_snapshot else None
 
     # Territorial instability (Stage-018 / TOWER-ENGINE-148)
     claims = session_state.get("domain_claims", [])
@@ -275,6 +288,12 @@ def _handle_status(session_state, debug):
 
     if collapse_summary:
         status_msg += f" | Collapse: {collapse_summary.get('highest_collapse_level', 0.0):.2f} ({collapse_summary.get('collapsed_footholds', 0)} footholds)"
+
+    if trace_summary and trace_summary.get("traces_observed", 0) > 0:
+        status_msg += f" | Traces: {trace_summary.get('traces_observed')} ({trace_summary.get('strongest_reliability', 0.0):.2f})"
+
+    if abandoned_summary and abandoned_summary.get("discoveries_observed", 0) > 0:
+        status_msg += f" | Abandoned: {abandoned_summary.get('discoveries_observed')} (Haz:{abandoned_summary.get('highest_hazard_risk', 0.0):.2f})"
 
     payload = {
         "current_floor": current_floor,
@@ -304,7 +323,9 @@ def _handle_status(session_state, debug):
         "claim_targeting": targeting_summary,
         "route_visibility": visibility_summary,
         "territorial_instability": territorial_instability_summary,
-        "foothold_collapse": collapse_summary
+        "foothold_collapse": collapse_summary,
+        "survivor_traces": trace_summary,
+        "abandoned_footholds": abandoned_summary
     }
     
     # Fix traversal_pressure field name to match schema-derived total
@@ -683,6 +704,89 @@ def _handle_mitigate(session_state, args, debug):
     return {"ok": True, "command": "mitigate", "message": msg, "payload": payload, "error": None}
 
 
+def _get_current_floor_memory(session_state, debug=False):
+    tower_state = session_state.get("runtime_context", {}).get("tower_state", {})
+    current_floor = int(tower_state.get("current_floor", 1) or 1)
+    for rec in tower_state.get("floor_memory", []) or []:
+        if rec.get("floor_id") == current_floor:
+            return rec
+    return None
+
+
+def _handle_traces(session_state, debug):
+    """List asynchronous survivor traces derived from floor memory (Stage-020)."""
+    fm = _get_current_floor_memory(session_state, debug=debug)
+    if not fm:
+        return {"ok": True, "command": "traces", "message": "No floor memory available for traces.", "payload": None, "error": None}
+
+    from engine.domain.social_exchange import survivor_trace_stub
+    res = survivor_trace_stub.generate_survivor_traces(fm, max_traces=3, debug=debug)
+    if not res.get("ok"):
+        return {"ok": False, "command": "traces", "message": res.get("message", "Trace generation failed."), "payload": None, "error": res.get("error")}
+
+    session_state["survivor_traces_last"] = res.get("payload")
+    payload = {"traces": res.get("payload"), "summary": res.get("summary")}
+    return {"ok": True, "command": "traces", "message": res.get("summary"), "payload": payload, "error": None}
+
+
+def _handle_abandoned(session_state, debug):
+    """Discover abandoned foothold artifacts on the current floor (Stage-020)."""
+    fm = _get_current_floor_memory(session_state, debug=debug)
+    if not fm:
+        return {"ok": True, "command": "abandoned", "message": "No floor memory available for abandoned footholds.", "payload": None, "error": None}
+
+    from engine.domain.social_exchange import abandoned_foothold_discovery_stub
+    res = abandoned_foothold_discovery_stub.discover_abandoned_footholds(fm, scan_intensity=1, debug=debug)
+    if not res.get("ok"):
+        return {"ok": False, "command": "abandoned", "message": res.get("message", "Discovery failed."), "payload": None, "error": res.get("error")}
+
+    session_state["abandoned_footholds_last"] = res.get("payload")
+    payload = {"abandoned": res.get("payload"), "summary": res.get("summary")}
+    return {"ok": True, "command": "abandoned", "message": res.get("summary"), "payload": payload, "error": None}
+
+
+def _handle_exchange(session_state, args, debug):
+    """Execute a bounded residue exchange offer derived from traces (Stage-020)."""
+    fm = _get_current_floor_memory(session_state, debug=debug)
+    if not fm:
+        return {"ok": False, "command": "exchange", "message": "No floor memory available for exchange.", "payload": None, "error": "NoFloorMemory"}
+
+    # Build offers from current traces
+    from engine.domain.social_exchange import survivor_trace_stub
+    from engine.domain.social_exchange import domain_residue_exchange_stub
+
+    traces_res = survivor_trace_stub.generate_survivor_traces(fm, max_traces=3, debug=debug)
+    offers_res = domain_residue_exchange_stub.build_exchange_offers_from_traces(traces_res.get("payload") if traces_res.get("ok") else {}, debug=debug)
+    offers = offers_res.get("payload", {}).get("offers", []) if offers_res.get("ok") else []
+
+    if not args:
+        msg = offers_res.get("summary") if offers_res.get("ok") else "No exchange offers."
+        payload = {"offers": offers, "summary": msg}
+        return {"ok": True, "command": "exchange", "message": msg, "payload": payload, "error": None}
+
+    offer_id = args[0]
+    offer = next((o for o in offers if o.get("offer_id") == offer_id), None)
+    if not offer:
+        return {"ok": False, "command": "exchange", "message": f"Unknown offer_id: {offer_id}", "payload": {"offers": offers}, "error": "OfferNotFound"}
+
+    inv = session_state.get("inventory_state", {})
+    exec_res = domain_residue_exchange_stub.execute_exchange_offer(inv, offer, debug=debug)
+    if not exec_res.get("ok"):
+        return {"ok": False, "command": "exchange", "message": exec_res.get("message", "Exchange failed."), "payload": exec_res.get("payload"), "error": exec_res.get("error")}
+
+    session_state["inventory_state"] = exec_res["inventory_state"]
+    session_state["last_inventory_transaction"] = exec_res.get("transactions", [])[-1] if exec_res.get("transactions") else None
+    session_state["residue_exchange_history"].append(exec_res.get("exchange_record"))
+
+    payload = {
+        "exchange_record": exec_res.get("exchange_record"),
+        "exchange_summary": exec_res.get("summary"),
+        "transactions": exec_res.get("transactions"),
+        "offers": offers
+    }
+    return {"ok": True, "command": "exchange", "message": exec_res.get("summary"), "payload": payload, "error": None}
+
+
 def _handle_combat(session_state, args, debug):
     if not _dependencies_available:
         return {"ok": False, "command": "combat", "message": "Combat dependencies missing.", "payload": None, "error": "DependencyError"}
@@ -997,6 +1101,9 @@ def _handle_save(session_state, debug):
     paths = mvp_startup_orchestrator.make_default_runtime_paths()
     save_path = paths["tower_state"]
     
+    if not artifact_policy.allow_artifact_writes(default=True):
+        return {"ok": True, "command": "save", "message": "Save skipped (TOWER_WRITE_ARTIFACTS disabled).", "payload": {"path": save_path, "skipped": True}, "error": None}
+
     save_result = json_save_manager.save_json(save_path, tower_state, debug=debug)
     if not save_result["ok"]:
         return {"ok": False, "command": "save", "message": f"Save failed: {save_result.get('message')}", "payload": None, "error": "SaveError"}
@@ -1230,6 +1337,9 @@ def _handle_help():
         "status   - Show current tower status.",
         "recover CID [E] - Spend shards to stabilize a foothold (default effort 1).",
         "mitigate NID [E] - Spend shards to reduce mutation scar pressure on a node (default effort 1).",
+        "traces   - List survivor traces on current floor.",
+        "abandoned - Scan for abandoned foothold artifacts on current floor.",
+        "exchange [OID] - List exchange offers, or execute offer by id.",
         "ascend   - Victory! Ascend to the next floor.",
         "advance [RID] - Traversal to next floor (optional Route ID).",
         "defeat   - Defeat! Drop back and trigger mutation/marks.",

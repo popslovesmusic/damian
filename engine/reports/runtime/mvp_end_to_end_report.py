@@ -3,6 +3,7 @@ import json
 import sys
 import datetime
 import uuid
+from engine.io.runtime import artifact_policy
 
 # Attempt to import debug_logger safely
 try:
@@ -57,15 +58,16 @@ def create_structured_success(payload, path="", debug=False):
     return {"ok": True, "payload": payload, "path": path}
 
 
-def run_mvp_end_to_end_report(output_dir='outputs/reports', debug=False):
+def run_mvp_end_to_end_report(output_dir='outputs/reports', debug=False, write_to_disk=False):
     """
     Runs an end-to-end MVP test and generates a structured report,
     including replay-floor diff evidence.
     """
     report_id = f"report_{uuid.uuid4().hex[:8]}"
     report_output_dir = os.path.join(output_dir, report_id)
-    os.makedirs(report_output_dir, exist_ok=True)
     report_file_path = os.path.join(report_output_dir, f"{report_id}_report.json")
+    if write_to_disk and artifact_policy.allow_artifact_writes(default=True):
+        os.makedirs(report_output_dir, exist_ok=True)
     
     _log_debug_event("TOWER-ENGINE-033", "mvp_end_to_end_report", "INFO", "ReportStart", "Starting MVP end-to-end report generation.", {"report_id": report_id}, debug)
 
@@ -169,19 +171,20 @@ def run_mvp_end_to_end_report(output_dir='outputs/reports', debug=False):
                         )
                         if diff_report_result["ok"]:
                             diff_report_path = os.path.join(report_output_dir, "floor_diff_report.json")
-                            write_diff_result = replay_floor_diff_reporter.write_replay_floor_diff_report(diff_report_result["payload"], diff_report_path, debug=debug)
-                            
-                            if write_diff_result["ok"]:
-                                replay_floor_diff_data["replay_floor_diff_included"] = True
-                                replay_floor_diff_data["replay_floor_diff_report_path"] = write_diff_result["path"]
-                                replay_floor_diff_data["replay_floor_diff_summary"] = diff_report_result["payload"]["readable_summary"]
-                                replay_floor_diff_data["replay_floor_changed"] = diff_report_result["payload"]["changed"]
-                                replay_floor_diff_data["replay_floor_mutation_level_delta"] = diff_report_result["payload"]["changes"]["mutation_level_delta"]
-                                replay_floor_diff_data["replay_floor_new_survivor_marks"] = len(diff_report_result["payload"]["changes"]["new_unclaimed_survivor_marks"])
+                            if write_to_disk and artifact_policy.allow_artifact_writes(default=True):
+                                write_diff_result = replay_floor_diff_reporter.write_replay_floor_diff_report(diff_report_result["payload"], diff_report_path, debug=debug)
 
-                                _log_debug_event("TOWER-ENGINE-033", "mvp_end_to_end_report", "INFO", "DiffReportGenerated", "Replay floor diff report generated successfully.", {"path": diff_report_path}, debug)
-                            else:
-                                errors.append(create_structured_error("DiffReportWriteFailure", write_diff_result["message"], debug=debug))
+                                if write_diff_result["ok"]:
+                                    replay_floor_diff_data["replay_floor_diff_included"] = True
+                                    replay_floor_diff_data["replay_floor_diff_report_path"] = write_diff_result["path"]
+                                    _log_debug_event("TOWER-ENGINE-033", "mvp_end_to_end_report", "INFO", "DiffReportGenerated", "Replay floor diff report generated successfully.", {"path": diff_report_path}, debug)
+                                else:
+                                    errors.append(create_structured_error("DiffReportWriteFailure", write_diff_result["message"], debug=debug))
+
+                            replay_floor_diff_data["replay_floor_diff_summary"] = diff_report_result["payload"]["readable_summary"]
+                            replay_floor_diff_data["replay_floor_changed"] = diff_report_result["payload"]["changed"]
+                            replay_floor_diff_data["replay_floor_mutation_level_delta"] = diff_report_result["payload"]["changes"]["mutation_level_delta"]
+                            replay_floor_diff_data["replay_floor_new_survivor_marks"] = len(diff_report_result["payload"]["changes"]["new_unclaimed_survivor_marks"])
                         else:
                             errors.append(create_structured_error("DiffReportGenerationFailure", diff_report_result["message"], debug=debug))
                     else:
@@ -191,7 +194,8 @@ def run_mvp_end_to_end_report(output_dir='outputs/reports', debug=False):
             else:
                 errors.append(create_structured_error("TowerStateFileNotFound", f"Final tower state not found at {final_tower_state_path}.", debug=debug))
         elif not _replay_floor_diff_reporter_available:
-            errors.append(create_structured_error("DependencyError", "replay_floor_diff_reporter is not available.", debug=debug))
+            # Diff evidence is optional; missing reporter should not fail the report.
+            pass
     else:
         _log_debug_event("TOWER-ENGINE-033", "mvp_end_to_end_report", "ERROR", "DiffReportSkipped", "Diff report skipped due to simulation failure.", debug_enabled=debug)
 
@@ -255,7 +259,8 @@ def _build_error_report(report_id, initial_error, report_file_path, debug=False)
         "no_scope_creep_flags": _check_for_scope_creep_flags(),
         "errors": [initial_error]
     }
-    write_mvp_report(report, report_file_path, debug=debug)
+    if write_to_disk and artifact_policy.allow_artifact_writes(default=True):
+        write_mvp_report(report, report_file_path, debug=debug)
     return create_structured_success(report, path=report_file_path, debug=debug)
 
 

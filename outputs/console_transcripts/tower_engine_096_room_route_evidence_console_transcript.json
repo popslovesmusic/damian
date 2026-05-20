@@ -1,7 +1,7 @@
 {
   "transcript_id": "room_route_validation",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:12.348973+00:00",
+  "timestamp": "2026-05-20T17:52:55.160755+00:00",
   "ok": true,
   "commands_requested": [
     "advance",
@@ -18,7 +18,7 @@
       "message": "Traversal via route_1_entry_a_to_combat_a_primary_route successful. Traversal (advance): Route route_1_entry_a_to_combat_a_primary_route (primary_route). 1 -> 2. Risk: 0.26, Pressure: 0.26 (Cap:0.00, Mut:0.30) | Env: Darkness 0.12, Enemy 0.25 New floor: 2.",
       "payload": {
         "traversal_event": {
-          "event_id": "traversal_863e353f-577b-4918-8413-8d92bb22f318",
+          "event_id": "traversal_cc212e6a-feff-4e8f-bf8f-2c0cdd036cd7",
           "player_id": "console_player",
           "source_floor_id": "1",
           "destination_floor_id": "2",
@@ -55,7 +55,7 @@
           "previous_floor": 1,
           "current_floor": 2,
           "tower_state": {
-            "tower_state_id": "tower_state_default_3bf6e912-eea0-4321-8fb2-40af612307d8",
+            "tower_state_id": "tower_state_default_20d85c6b-9056-4a2e-a0a0-81a47e67f1a8",
             "engine_version": "0.0.1",
             "content_pack_id": "damian",
             "current_floor": 0,
@@ -63,7 +63,7 @@
             "total_runs": 0,
             "total_deaths": 0,
             "last_outcome": "RETREAT_TO_HUB",
-            "updated_at": "2026-05-20T16:52:12.345802+00:00",
+            "updated_at": "2026-05-20T17:52:55.159913+00:00",
             "global_residue": {},
             "floor_memory": [
               {
@@ -80,7 +80,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                    "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -110,7 +110,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                    "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                     "floor_id": 2,
                     "outcome": "RETREAT_TO_HUB",
                     "dominant_damage_type": "unknown",
@@ -131,7 +131,7 @@
           "progression_result": {
             "ok": true,
             "tower_state": {
-              "tower_state_id": "tower_state_default_3bf6e912-eea0-4321-8fb2-40af612307d8",
+              "tower_state_id": "tower_state_default_20d85c6b-9056-4a2e-a0a0-81a47e67f1a8",
               "engine_version": "0.0.1",
               "content_pack_id": "damian",
               "current_floor": 0,
@@ -139,7 +139,7 @@
               "total_runs": 0,
               "total_deaths": 0,
               "last_outcome": "RETREAT_TO_HUB",
-              "updated_at": "2026-05-20T16:52:12.345802+00:00",
+              "updated_at": "2026-05-20T17:52:55.159913+00:00",
               "global_residue": {},
               "floor_memory": [
                 {
@@ -156,7 +156,7 @@
                   "unclaimed_easter_eggs": [],
                   "residue_history": [
                     {
-                      "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                      "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                       "floor_id": 1,
                       "outcome": "VICTORY_ASCEND",
                       "dominant_damage_type": "unknown",
@@ -186,7 +186,7 @@
                   "unclaimed_easter_eggs": [],
                   "residue_history": [
                     {
-                      "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                      "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                       "floor_id": 2,
                       "outcome": "RETREAT_TO_HUB",
                       "dominant_damage_type": "unknown",
@@ -210,7 +210,7 @@
             "ok": true,
             "payload": {
               "tower_state": {
-                "tower_state_id": "tower_state_default_3bf6e912-eea0-4321-8fb2-40af612307d8",
+                "tower_state_id": "tower_state_default_20d85c6b-9056-4a2e-a0a0-81a47e67f1a8",
                 "engine_version": "0.0.1",
                 "content_pack_id": "damian",
                 "current_floor": 0,
@@ -218,7 +218,7 @@
                 "total_runs": 0,
                 "total_deaths": 0,
                 "last_outcome": "RETREAT_TO_HUB",
-                "updated_at": "2026-05-20T16:52:12.345802+00:00",
+                "updated_at": "2026-05-20T17:52:55.159913+00:00",
                 "global_residue": {},
                 "floor_memory": [
                   {
@@ -235,7 +235,7 @@
                     "unclaimed_easter_eggs": [],
                     "residue_history": [
                       {
-                        "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                        "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                         "floor_id": 1,
                         "outcome": "VICTORY_ASCEND",
                         "dominant_damage_type": "unknown",
@@ -265,7 +265,7 @@
                     "unclaimed_easter_eggs": [],
                     "residue_history": [
                       {
-                        "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                        "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                         "floor_id": 2,
                         "outcome": "RETREAT_TO_HUB",
                         "dominant_damage_type": "unknown",
@@ -284,7 +284,7 @@
                 ]
               },
               "residue_record": {
-                "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                 "floor_id": 1,
                 "outcome": "VICTORY_ASCEND",
                 "dominant_damage_type": "unknown",
@@ -312,7 +312,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                    "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -578,7 +578,7 @@
       "message": "Escape via route_2_combat_a_to_recovery_a_recovery_route: ESCAPE_SUCCESS. Escape Outcome: ESCAPE_SUCCESS. Safe retreat achieved. Returned to Hub.",
       "payload": {
         "traversal_event": {
-          "event_id": "traversal_30f82402-ed60-4803-9d79-92fa1b29f575",
+          "event_id": "traversal_c06de4f5-1e59-40cb-bf6f-8d4aad080818",
           "player_id": "console_player",
           "source_floor_id": "2",
           "destination_floor_id": "0",
@@ -615,7 +615,7 @@
           "previous_floor": 2,
           "current_floor": 0,
           "tower_state": {
-            "tower_state_id": "tower_state_default_3bf6e912-eea0-4321-8fb2-40af612307d8",
+            "tower_state_id": "tower_state_default_20d85c6b-9056-4a2e-a0a0-81a47e67f1a8",
             "engine_version": "0.0.1",
             "content_pack_id": "damian",
             "current_floor": 0,
@@ -623,7 +623,7 @@
             "total_runs": 0,
             "total_deaths": 0,
             "last_outcome": "RETREAT_TO_HUB",
-            "updated_at": "2026-05-20T16:52:12.345802+00:00",
+            "updated_at": "2026-05-20T17:52:55.159913+00:00",
             "global_residue": {},
             "floor_memory": [
               {
@@ -640,7 +640,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                    "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -670,7 +670,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                    "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                     "floor_id": 2,
                     "outcome": "RETREAT_TO_HUB",
                     "dominant_damage_type": "unknown",
@@ -692,7 +692,7 @@
             "ok": true,
             "outcome": "RETREAT_TO_HUB",
             "tower_state": {
-              "tower_state_id": "tower_state_default_3bf6e912-eea0-4321-8fb2-40af612307d8",
+              "tower_state_id": "tower_state_default_20d85c6b-9056-4a2e-a0a0-81a47e67f1a8",
               "engine_version": "0.0.1",
               "content_pack_id": "damian",
               "current_floor": 0,
@@ -700,7 +700,7 @@
               "total_runs": 0,
               "total_deaths": 0,
               "last_outcome": "RETREAT_TO_HUB",
-              "updated_at": "2026-05-20T16:52:12.345802+00:00",
+              "updated_at": "2026-05-20T17:52:55.159913+00:00",
               "global_residue": {},
               "floor_memory": [
                 {
@@ -717,7 +717,7 @@
                   "unclaimed_easter_eggs": [],
                   "residue_history": [
                     {
-                      "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                      "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                       "floor_id": 1,
                       "outcome": "VICTORY_ASCEND",
                       "dominant_damage_type": "unknown",
@@ -747,7 +747,7 @@
                   "unclaimed_easter_eggs": [],
                   "residue_history": [
                     {
-                      "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                      "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                       "floor_id": 2,
                       "outcome": "RETREAT_TO_HUB",
                       "dominant_damage_type": "unknown",
@@ -771,7 +771,7 @@
             "ok": true,
             "payload": {
               "tower_state": {
-                "tower_state_id": "tower_state_default_3bf6e912-eea0-4321-8fb2-40af612307d8",
+                "tower_state_id": "tower_state_default_20d85c6b-9056-4a2e-a0a0-81a47e67f1a8",
                 "engine_version": "0.0.1",
                 "content_pack_id": "damian",
                 "current_floor": 0,
@@ -779,7 +779,7 @@
                 "total_runs": 0,
                 "total_deaths": 0,
                 "last_outcome": "RETREAT_TO_HUB",
-                "updated_at": "2026-05-20T16:52:12.345802+00:00",
+                "updated_at": "2026-05-20T17:52:55.159913+00:00",
                 "global_residue": {},
                 "floor_memory": [
                   {
@@ -796,7 +796,7 @@
                     "unclaimed_easter_eggs": [],
                     "residue_history": [
                       {
-                        "residue_id": "84e1b90f-1153-4143-af02-e77bb17e766d",
+                        "residue_id": "01ac519f-71ad-40f7-8696-c1a56f0245fb",
                         "floor_id": 1,
                         "outcome": "VICTORY_ASCEND",
                         "dominant_damage_type": "unknown",
@@ -826,7 +826,7 @@
                     "unclaimed_easter_eggs": [],
                     "residue_history": [
                       {
-                        "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                        "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                         "floor_id": 2,
                         "outcome": "RETREAT_TO_HUB",
                         "dominant_damage_type": "unknown",
@@ -845,7 +845,7 @@
                 ]
               },
               "residue_record": {
-                "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                 "floor_id": 2,
                 "outcome": "RETREAT_TO_HUB",
                 "dominant_damage_type": "unknown",
@@ -873,7 +873,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "ccc93b25-2c14-4bc0-9eaf-39c33491b499",
+                    "residue_id": "9fec951e-2ffc-481d-8556-fe76601a7dff",
                     "floor_id": 2,
                     "outcome": "RETREAT_TO_HUB",
                     "dominant_damage_type": "unknown",
@@ -1123,7 +1123,7 @@
         "escape_modifier": 0.105,
         "route_pressure_used": true,
         "escape_resolution": {
-          "escape_resolution_id": "escape_res_701be593-6c4a-4ff7-a0cc-59cc9481fc9f",
+          "escape_resolution_id": "escape_res_197a903f-a641-4661-9d79-825622a6678e",
           "player_id": "console_player",
           "floor_id": 2,
           "source_route_id": "route_2_combat_a_to_recovery_a_recovery_route",
@@ -1337,6 +1337,30 @@
   "highest_targeting_pressure_observed": 0.0,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [],
+  "territorial_instability_observed": false,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [],
+  "foothold_collapse_observed": false,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [],
+  "foothold_collapse_summaries": [],
+  "foothold_recovery_observed": false,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 2,
   "strategic_biases_observed": [
     "DEFAULT"

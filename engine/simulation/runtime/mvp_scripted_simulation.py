@@ -4,6 +4,8 @@ import sys
 import datetime
 import uuid
 import shutil
+import tempfile
+from engine.io.runtime import artifact_policy
 
 # Attempt to import debug_logger safely
 try:
@@ -113,7 +115,7 @@ def summarize_simulation_result(result, debug=False):
     return create_structured_success(summary, debug=debug)
 
 
-def run_scripted_simulation(sequence, save_dir='saves/simulations', debug=False):
+def run_scripted_simulation(sequence, save_dir='saves/simulations', debug=False, write_to_disk=False):
     """
     Runs a deterministic scripted simulation through the MVP pipeline.
     """
@@ -123,8 +125,14 @@ def run_scripted_simulation(sequence, save_dir='saves/simulations', debug=False)
         return create_structured_error("DependencyError", "One or more core MVP modules are unavailable.", debug=debug)
 
     simulation_id = f"sim_{uuid.uuid4().hex[:8]}"
-    simulation_output_dir = os.path.join(save_dir, simulation_id)
-    os.makedirs(simulation_output_dir, exist_ok=True)
+    allow_writes = bool(write_to_disk) and artifact_policy.allow_artifact_writes(default=True)
+    if allow_writes:
+        simulation_output_dir = os.path.join(save_dir, simulation_id)
+        os.makedirs(simulation_output_dir, exist_ok=True)
+    else:
+        # Containment mode: avoid writing artifacts into the repo by default.
+        # Simulation still requires filesystem paths for bootstrapping, so we use a temp dir.
+        simulation_output_dir = tempfile.mkdtemp(prefix="tower_sim_")
     
     # Paths for this simulation run
     sim_paths = {
@@ -197,9 +205,10 @@ def run_scripted_simulation(sequence, save_dir='saves/simulations', debug=False)
     
     # Save final tower state
     final_tower_state_path = os.path.join(simulation_output_dir, "final_tower_state.json")
-    save_result = tower_state_bootstrapper.save_tower_state(final_tower_state_path, current_tower_state, sim_paths["tower_state_schema"], debug=debug)
-    if not save_result["ok"]:
-        errors.append(create_structured_error("FinalSaveFailure", f"Failed to save final tower state: {save_result['message']}", path=final_tower_state_path, debug=debug))
+    if allow_writes:
+        save_result = tower_state_bootstrapper.save_tower_state(final_tower_state_path, current_tower_state, sim_paths["tower_state_schema"], debug=debug)
+        if not save_result["ok"]:
+            errors.append(create_structured_error("FinalSaveFailure", f"Failed to save final tower state: {save_result['message']}", path=final_tower_state_path, debug=debug))
 
     # Compile simulation result
     sim_result = {
@@ -216,10 +225,19 @@ def run_scripted_simulation(sequence, save_dir='saves/simulations', debug=False)
     
     # Save overall simulation result artifact
     sim_artifact_path = os.path.join(simulation_output_dir, f"{simulation_id}_result.json")
-    json_save_manager.save_json(sim_artifact_path, sim_result, debug=debug) # Save without validation for flexibility
+    if allow_writes:
+        json_save_manager.save_json(sim_artifact_path, sim_result, debug=debug) # Save without validation for flexibility
     
-    _log_debug_event("TOWER-ENGINE-028", "mvp_scripted_simulation", "INFO", "SimulationComplete", "Scripted simulation finished.", {"result": sim_result}, debug_enabled=debug)
-    return create_structured_success(sim_result, path=sim_artifact_path, debug=debug)
+    _log_debug_event("TOWER-ENGINE-028", "mvp_scripted_simulation", "INFO", "SimulationComplete", "Scripted simulation finished.", {"result": sim_result, "writes_enabled": allow_writes}, debug_enabled=debug)
+
+    # If using containment temp dir, clean up to prevent lingering artifacts.
+    if not allow_writes:
+        try:
+            shutil.rmtree(simulation_output_dir, ignore_errors=True)
+        except Exception:
+            pass
+
+    return create_structured_success(sim_result, path=(sim_artifact_path if allow_writes else ""), debug=debug)
 
 def sequence_name_from_sequence(sequence):
     """Generates a simple name from a sequence."""

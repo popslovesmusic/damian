@@ -1,7 +1,7 @@
 {
   "transcript_id": "loot_evidence_test",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:12.021334+00:00",
+  "timestamp": "2026-05-20T17:52:55.031494+00:00",
   "ok": true,
   "commands_requested": [
     "combat safe"
@@ -17,7 +17,7 @@
       "payload": {
         "resolved_outcome": "VICTORY_ASCEND",
         "combat_session": {
-          "combat_session_id": "combat_009c818c-b9da-4f58-a2bc-83f4c7d4e4bb",
+          "combat_session_id": "combat_bdcc180a-04f2-438d-a629-1a5bcd1f8076",
           "floor_id": 1,
           "player_id": "console_player",
           "enemy_group_id": "enemy_group_1",
@@ -178,7 +178,7 @@
             "total_runs": 0,
             "total_deaths": 0,
             "last_outcome": "VICTORY_ASCEND",
-            "updated_at": "2026-05-20T16:52:12.017627+00:00",
+            "updated_at": "2026-05-20T17:52:55.030494+00:00",
             "global_residue": {},
             "floor_memory": [
               {
@@ -195,7 +195,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "cd7618ca-4bd5-4c0d-8433-e6a7af3b25b0",
+                    "residue_id": "b205afb0-f036-4d0b-9156-e934ef527753",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -224,7 +224,7 @@
               "total_runs": 0,
               "total_deaths": 0,
               "last_outcome": "VICTORY_ASCEND",
-              "updated_at": "2026-05-20T16:52:12.017627+00:00",
+              "updated_at": "2026-05-20T17:52:55.030494+00:00",
               "global_residue": {},
               "floor_memory": [
                 {
@@ -241,7 +241,7 @@
                   "unclaimed_easter_eggs": [],
                   "residue_history": [
                     {
-                      "residue_id": "cd7618ca-4bd5-4c0d-8433-e6a7af3b25b0",
+                      "residue_id": "b205afb0-f036-4d0b-9156-e934ef527753",
                       "floor_id": 1,
                       "outcome": "VICTORY_ASCEND",
                       "dominant_damage_type": "unknown",
@@ -273,7 +273,7 @@
                 "total_runs": 0,
                 "total_deaths": 0,
                 "last_outcome": "VICTORY_ASCEND",
-                "updated_at": "2026-05-20T16:52:12.017627+00:00",
+                "updated_at": "2026-05-20T17:52:55.030494+00:00",
                 "global_residue": {},
                 "floor_memory": [
                   {
@@ -290,7 +290,7 @@
                     "unclaimed_easter_eggs": [],
                     "residue_history": [
                       {
-                        "residue_id": "cd7618ca-4bd5-4c0d-8433-e6a7af3b25b0",
+                        "residue_id": "b205afb0-f036-4d0b-9156-e934ef527753",
                         "floor_id": 1,
                         "outcome": "VICTORY_ASCEND",
                         "dominant_damage_type": "unknown",
@@ -309,7 +309,7 @@
                 ]
               },
               "residue_record": {
-                "residue_id": "cd7618ca-4bd5-4c0d-8433-e6a7af3b25b0",
+                "residue_id": "b205afb0-f036-4d0b-9156-e934ef527753",
                 "floor_id": 1,
                 "outcome": "VICTORY_ASCEND",
                 "dominant_damage_type": "unknown",
@@ -337,7 +337,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "cd7618ca-4bd5-4c0d-8433-e6a7af3b25b0",
+                    "residue_id": "b205afb0-f036-4d0b-9156-e934ef527753",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -387,9 +387,9 @@
         ],
         "enemy_pressure_profile_used": true,
         "loot_event": {
-          "loot_event_id": "loot_4dacdc38-bc2f-4b6b-81dc-f1d69b99b647",
+          "loot_event_id": "loot_fa1b2c32-a4f4-4266-918e-266294a2f9fa",
           "floor_id": 1,
-          "timestamp": "2026-05-20T16:52:12.021091+00:00",
+          "timestamp": "2026-05-20T17:52:55.031429+00:00",
           "source": "combat_reward",
           "outcome": "VICTORY_ASCEND",
           "rewards": {
@@ -503,8 +503,8 @@
         "equipment_residue_visibility_observed": false,
         "equipment_mutation_affinity_observed": false,
         "inventory_transaction": {
-          "transaction_id": "tx_34de639a-d76c-4cd6-af07-03c85b71ca48",
-          "inventory_id": "inv_8ad13f1b-cac5-49a8-94d1-ff9b4c92e221",
+          "transaction_id": "tx_9fdff505-f698-4e1b-a2d6-f3db8840bad3",
+          "inventory_id": "inv_672403dd-7603-4b63-8a29-708825bb29b7",
           "player_id": "player_default_001",
           "transaction_type": "ADD_LOOT",
           "items_added": [
@@ -540,7 +540,7 @@
         },
         "capacity_pressure_summary": {
           "ok": true,
-          "inventory_id": "inv_8ad13f1b-cac5-49a8-94d1-ff9b4c92e221",
+          "inventory_id": "inv_672403dd-7603-4b63-8a29-708825bb29b7",
           "used_capacity": 5,
           "inventory_capacity": 40,
           "capacity_pressure": 0.125,
@@ -554,7 +554,7 @@
         "durability_decay_applied": true,
         "durability_events": [
           {
-            "event_id": "decay_c1e39d9e-1cd4-4e71-9bd7-baf64119dea3",
+            "event_id": "decay_a43b2cb5-d6c5-4b72-95bc-5864c8afe40a",
             "equipment_item_id": "ash_blade_alpha",
             "source": "combat_pressure",
             "durability_before": 72,
@@ -570,7 +570,7 @@
             "bounded_flags_clean": true
           },
           {
-            "event_id": "decay_9abfaee1-b2b8-48b8-9a60-7623329cf0b0",
+            "event_id": "decay_fbf0f9c6-a375-4827-94c4-9b291bc57d74",
             "equipment_item_id": "stability_lantern_beta",
             "source": "combat_pressure",
             "durability_before": 41,
@@ -813,6 +813,30 @@
   "highest_targeting_pressure_observed": 0.0,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [],
+  "territorial_instability_observed": false,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [],
+  "foothold_collapse_observed": false,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [],
+  "foothold_collapse_summaries": [],
+  "foothold_recovery_observed": false,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 0,
   "strategic_biases_observed": [],
   "route_hazard_visibility_summaries": [],

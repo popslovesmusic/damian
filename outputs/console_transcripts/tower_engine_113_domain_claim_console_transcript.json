@@ -1,7 +1,7 @@
 {
   "transcript_id": "domain_claim_validation",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:11.314490+00:00",
+  "timestamp": "2026-05-20T17:52:54.770771+00:00",
   "ok": true,
   "commands_requested": [
     "claim",
@@ -18,7 +18,7 @@
       "message": "Foothold established! Domain Claim (recovery_anchor): Floor 1, Node floor_1_anchor. Pressure (Maint:0.10, Vis:0.10). Recovery: 0.20. Targeting: 0.10.",
       "payload": {
         "domain_claim": {
-          "claim_id": "claim_6617b00b-20c9-46c7-bbdc-406f65d9d943",
+          "claim_id": "claim_0c162f1e-c9f9-480b-9547-e9282f1940d1",
           "player_id": "console_player",
           "floor_id": 1,
           "claim_node_id": "floor_1_anchor",
@@ -54,7 +54,7 @@
       "message": "Foothold established! Domain Claim (repair_station): Floor 1, Node floor_1_anchor. Pressure (Maint:0.22, Vis:0.20). Recovery: 0.15. Targeting: 0.19.",
       "payload": {
         "domain_claim": {
-          "claim_id": "claim_1e73c20c-05d5-4660-883e-0e1579c0e729",
+          "claim_id": "claim_14b70ae5-4b8e-4199-b91f-64aca265e707",
           "player_id": "console_player",
           "floor_id": 1,
           "claim_node_id": "floor_1_anchor",
@@ -221,9 +221,33 @@
   "highest_targeting_pressure_observed": 0.1896,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [
-    "Claim claim_66 Targeted: 0.10. Penalty: +0.",
-    "Claim claim_1e Targeted: 0.19. Penalty: +0."
+    "Claim claim_0c Targeted: 0.10. Penalty: +0.",
+    "Claim claim_14 Targeted: 0.19. Penalty: +0."
   ],
+  "territorial_instability_observed": false,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [],
+  "foothold_collapse_observed": false,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [],
+  "foothold_collapse_summaries": [],
+  "foothold_recovery_observed": false,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 0,
   "strategic_biases_observed": [],
   "route_hazard_visibility_summaries": [],

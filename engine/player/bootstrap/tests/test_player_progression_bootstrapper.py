@@ -4,7 +4,7 @@ import json
 import shutil
 import datetime
 import sys
-from unittest.mock import patch, mock_open
+from unittest.mock import patch, mock_open, MagicMock
 
 # Ensure project root is in sys.path for module imports
 PROJECT_ROOT_FOR_TESTS = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
@@ -15,9 +15,12 @@ from engine.player.bootstrap import player_progression_bootstrapper
 from engine.save.runtime import json_save_manager
 
 # Paths to existing schemas and example data from previous patches (relative to project root)
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
 PLAYER_PROGRESSION_SCHEMA_PATH = os.path.join(PROJECT_ROOT, "engine/player/contracts/player_progression_state.schema.json")
 EXAMPLE_PLAYER_PROGRESSION_PATH = os.path.join(PROJECT_ROOT, "engine/player/contracts/example_player_progression_state.json")
+
+
+
 
 # Define a temporary directory for tests
 TEST_DIR = "test_temp_player_progression_bootstrapper_dir"
@@ -47,8 +50,9 @@ except ImportError:
 # Patch debug_logger for tests
 @pytest.fixture
 def mock_debug_logger():
+    mock_dl = MagicMock()
     with patch('engine.player.bootstrap.player_progression_bootstrapper._debug_logger_available', True):
-        with patch('engine.player.bootstrap.player_progression_bootstrapper.debug_logger', real_debug_logger) as mock_dl:
+        with patch('engine.player.bootstrap.player_progression_bootstrapper.debug_logger', mock_dl):
             yield mock_dl
 
 # --- Test make_default_player_progression ---
@@ -72,6 +76,9 @@ def test_make_default_player_progression_validity():
 def test_load_player_progression_success(setup_teardown_test_dir):
     test_save_path = os.path.join(TEST_DIR, "valid_progression.json")
     example_progression_result = json_save_manager.load_json(EXAMPLE_PLAYER_PROGRESSION_PATH)
+    if not example_progression_result["ok"]:
+        print(f"DEBUG: EXAMPLE_PLAYER_PROGRESSION_PATH={EXAMPLE_PLAYER_PROGRESSION_PATH}")
+        print(f"DEBUG: result={example_progression_result}")
     assert example_progression_result["ok"]
     example_progression = example_progression_result["payload"]
     

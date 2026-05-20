@@ -1,7 +1,7 @@
 {
   "transcript_id": "upkeep_reclamation_validation",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:11.380952+00:00",
+  "timestamp": "2026-05-20T17:52:54.796230+00:00",
   "ok": true,
   "commands_requested": [
     "claim",
@@ -20,7 +20,7 @@
       "message": "Foothold established! Domain Claim (recovery_anchor): Floor 1, Node floor_1_anchor. Pressure (Maint:0.10, Vis:0.10). Recovery: 0.20. Targeting: 0.10.",
       "payload": {
         "domain_claim": {
-          "claim_id": "claim_ed584287-7d16-4d19-9999-970aaab250e5",
+          "claim_id": "claim_136818e6-1dda-4c10-ae92-ae265307a860",
           "player_id": "console_player",
           "floor_id": 1,
           "claim_node_id": "floor_1_anchor",
@@ -33,7 +33,9 @@
           "residue_strength": 0.1,
           "recoverability_supported": true,
           "tower_hostility_preserved": true,
-          "bounded_flags_clean": true
+          "bounded_flags_clean": true,
+          "territorial_instability": 0.0,
+          "instability_band": "STABLE"
         },
         "claim_summary": "Domain Claim (recovery_anchor): Floor 1, Node floor_1_anchor. Pressure (Maint:0.10, Vis:0.10). Recovery: 0.20.",
         "maintenance_pressure": 0.1,
@@ -57,8 +59,8 @@
       "payload": {
         "upkeep_events": [
           {
-            "event_id": "upk_3fa4b6e0-1c05-4025-9dae-61d8f13f6a9c",
-            "claim_id": "claim_ed584287-7d16-4d19-9999-970aaab250e5",
+            "event_id": "upk_21f12123-dca3-4bd1-b3f1-e8488a2e3b98",
+            "claim_id": "claim_136818e6-1dda-4c10-ae92-ae265307a860",
             "floor_id": 1,
             "shards_requested": 1,
             "shards_deducted": 1,
@@ -71,7 +73,7 @@
         "shards_consumed": 1,
         "updated_claims": [
           {
-            "claim_id": "claim_ed584287-7d16-4d19-9999-970aaab250e5",
+            "claim_id": "claim_136818e6-1dda-4c10-ae92-ae265307a860",
             "player_id": "console_player",
             "floor_id": 1,
             "claim_node_id": "floor_1_anchor",
@@ -84,12 +86,14 @@
             "residue_strength": 0.1,
             "recoverability_supported": true,
             "tower_hostility_preserved": true,
-            "bounded_flags_clean": true
+            "bounded_flags_clean": true,
+            "territorial_instability": 0.0,
+            "instability_band": "STABLE"
           }
         ],
         "inventory_transaction": {
-          "transaction_id": "tx_5ed00199-d69c-4905-a315-7eb7e3989ccf",
-          "inventory_id": "inv_370f8ad3-6679-4354-8570-3aff246d1163",
+          "transaction_id": "tx_9fcfc911-e5c2-4d57-aba7-ca6866d26cf6",
+          "inventory_id": "inv_91c11fa1-0679-498f-8288-9f9f58f25814",
           "player_id": "player_default_001",
           "transaction_type": "DEDUCT_CURRENCY",
           "items_added": [],
@@ -107,14 +111,15 @@
           "transaction_applied": true,
           "failure_reason": null,
           "bounded_flags_clean": true
-        }
+        },
+        "scar_mitigation_credits": {}
       },
       "error": null
     },
     {
       "ok": true,
       "command": "status",
-      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: CLEAR (0.80)",
+      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: CLEAR (0.80) | Collapse: 0.00 (0 footholds)",
       "payload": {
         "current_floor": 1,
         "highest_floor": 1,
@@ -123,7 +128,7 @@
         "unclaimed_marks_count": 0,
         "capacity_pressure_summary": {
           "ok": true,
-          "inventory_id": "inv_370f8ad3-6679-4354-8570-3aff246d1163",
+          "inventory_id": "inv_91c11fa1-0679-498f-8288-9f9f58f25814",
           "used_capacity": 0,
           "inventory_capacity": 40,
           "capacity_pressure": 0.0,
@@ -145,8 +150,8 @@
           "repair_burden": 0.53
         },
         "dashboard_snapshot": {
-          "snapshot_id": "snap_dfbe45e2-b64a-4f08-be28-d61248d3e4a9",
-          "player_id": "player_default_001_a6063eb7",
+          "snapshot_id": "snap_b4cadde6-eb93-4ae5-ae31-93a5cd0b0840",
+          "player_id": "player_default_001_a985aa18",
           "floor_id": 1,
           "run_status": "ACTIVE",
           "pressure_summary": {
@@ -203,6 +208,36 @@
             "aggregate_hazard_bias": 0.09,
             "bounded_flags_clean": true
           },
+          "foothold_collapse_summary": {
+            "claims_evaluated": 1,
+            "collapsed_footholds": 0,
+            "highest_collapse_level": 0.0,
+            "collapse_bands_observed": [
+              "NONE"
+            ],
+            "bounded_flags_clean": true
+          },
+          "foothold_recovery_summary": {
+            "recovery_actions_taken": 0,
+            "total_shards_spent": 0.0,
+            "restored_to_active": 0,
+            "restored_from_overrun": 0,
+            "latest_recovery": null,
+            "bounded_flags_clean": true
+          },
+          "survivor_trace_summary": {
+            "floor_id": 1,
+            "traces_observed": 0,
+            "strongest_reliability": 0.0,
+            "reliability_bands_observed": [],
+            "bounded_flags_clean": true
+          },
+          "abandoned_foothold_summary": {
+            "floor_id": 1,
+            "discoveries_observed": 0,
+            "highest_hazard_risk": 0.0,
+            "bounded_flags_clean": true
+          },
           "route_visibility_summary": {
             "average_information_accuracy": 0.8000000000000002,
             "best_visibility_band": "CLEAR",
@@ -215,7 +250,7 @@
           },
           "bounded_flags_clean": true
         },
-        "dashboard_summary": "Dashboard Snapshot [snap_dfb]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.05). Scarring: 0.15 (1 nodes). Recon: CLEAR (0.80). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (1 active).",
+        "dashboard_summary": "Dashboard Snapshot [snap_b4c]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.05). Scarring: 0.15 (1 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: CLEAR (0.80). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (1 active).",
         "dashboard_snapshot_available": true,
         "reclamation_pressure": {
           "floor_id": 1,
@@ -247,6 +282,34 @@
           "average_information_accuracy": 0.8000000000000002,
           "best_visibility_band": "CLEAR",
           "reconnaissance_level": 0.8000000000000002,
+          "bounded_flags_clean": true
+        },
+        "territorial_instability": {
+          "claims_evaluated": 1,
+          "unstable_footholds": 0,
+          "highest_instability": 0.0,
+          "bounded_flags_clean": true
+        },
+        "foothold_collapse": {
+          "claims_evaluated": 1,
+          "collapsed_footholds": 0,
+          "highest_collapse_level": 0.0,
+          "collapse_bands_observed": [
+            "NONE"
+          ],
+          "bounded_flags_clean": true
+        },
+        "survivor_traces": {
+          "floor_id": 1,
+          "traces_observed": 0,
+          "strongest_reliability": 0.0,
+          "reliability_bands_observed": [],
+          "bounded_flags_clean": true
+        },
+        "abandoned_footholds": {
+          "floor_id": 1,
+          "discoveries_observed": 0,
+          "highest_hazard_risk": 0.0,
           "bounded_flags_clean": true
         }
       },
@@ -410,7 +473,7 @@
     }
   ],
   "dashboard_survival_summaries": [
-    "Dashboard Snapshot [snap_dfb]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.05). Scarring: 0.15 (1 nodes). Recon: CLEAR (0.80). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (1 active)."
+    "Dashboard Snapshot [snap_b4c]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.05). Scarring: 0.15 (1 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: CLEAR (0.80). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (1 active)."
   ],
   "domain_claims_observed": 1,
   "domain_claim_types_observed": [
@@ -451,8 +514,38 @@
   "highest_targeting_pressure_observed": 0.1,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [
-    "Claim claim_ed Targeted: 0.10. Penalty: +0."
+    "Claim claim_13 Targeted: 0.10. Penalty: +0."
   ],
+  "territorial_instability_observed": true,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [
+    "Floor 1 Instability: 0.00 (0 unstable)"
+  ],
+  "foothold_collapse_observed": true,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [
+    "NONE"
+  ],
+  "foothold_collapse_summaries": [
+    "Floor 1 Collapse: 0.00 (0 footholds)"
+  ],
+  "foothold_recovery_observed": true,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 0,
   "strategic_biases_observed": [],
   "route_hazard_visibility_summaries": [],

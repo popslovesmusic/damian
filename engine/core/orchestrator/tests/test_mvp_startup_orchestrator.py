@@ -46,8 +46,9 @@ except ImportError:
 # Patch debug_logger for tests
 @pytest.fixture
 def mock_debug_logger():
+    mock_dl = MagicMock()
     with patch('engine.core.orchestrator.mvp_startup_orchestrator._debug_logger_available', True):
-        with patch('engine.core.orchestrator.mvp_startup_orchestrator.debug_logger', real_debug_logger) as mock_dl:
+        with patch('engine.core.orchestrator.mvp_startup_orchestrator.debug_logger', mock_dl):
             yield mock_dl
 
 # --- Helper functions to create mock save files ---
@@ -147,7 +148,8 @@ def test_startup_mvp_runtime_missing_save_no_create_fails(setup_teardown_test_di
 
     context = mvp_startup_orchestrator.startup_mvp_runtime(paths=paths, create_if_missing=False)
     assert context["ok"] is False
-    assert any("FileNotFound" in err["error_type"] for err in context["errors"])
+    assert any("TowerStateBootstrapFailure" in err["error_type"] for err in context["errors"])
+    assert any("File not found" in err["message"] for err in context["errors"])
 
 def test_startup_mvp_runtime_invalid_tower_state_fails_safely(setup_teardown_test_dir):
     paths = mvp_startup_orchestrator.make_default_runtime_paths(base_save_dir=LOCAL_MVP_SAVE_DIR)

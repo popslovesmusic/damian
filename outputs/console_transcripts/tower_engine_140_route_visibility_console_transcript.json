@@ -1,7 +1,7 @@
 {
   "transcript_id": "route_visibility_validation",
   "patch_id": "TOWER-ENGINE-140",
-  "timestamp": "2026-05-20T16:52:12.558209+00:00",
+  "timestamp": "2026-05-20T17:52:55.189310+00:00",
   "ok": true,
   "commands_requested": [
     "traverse",
@@ -18,7 +18,7 @@
       "message": "Traversal via route_1_entry_a_to_combat_a_primary_route successful. Traversal (advance): Route route_1_entry_a_to_combat_a_primary_route (primary_route). 1 -> 2. Risk: 0.26, Pressure: 0.26 (Cap:0.00, Mut:0.30) | Env: Darkness 0.12, Enemy 0.25 New floor: 2.",
       "payload": {
         "traversal_event": {
-          "event_id": "traversal_2ab472bf-6afc-42ce-b13f-77c7edd0cd27",
+          "event_id": "traversal_09dab537-a8aa-4b42-a800-8176e8f25562",
           "player_id": "console_player",
           "source_floor_id": "1",
           "destination_floor_id": "2",
@@ -63,7 +63,7 @@
             "total_runs": 0,
             "total_deaths": 0,
             "last_outcome": "VICTORY_ASCEND",
-            "updated_at": "2026-05-20T16:52:12.557334+00:00",
+            "updated_at": "2026-05-20T17:52:55.188416+00:00",
             "global_residue": {},
             "floor_memory": [
               {
@@ -80,7 +80,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "18a6e58c-88db-425f-ac9d-537912c804b1",
+                    "residue_id": "ae433c86-f531-43b2-b975-0f96048b1b02",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -123,7 +123,7 @@
               "total_runs": 0,
               "total_deaths": 0,
               "last_outcome": "VICTORY_ASCEND",
-              "updated_at": "2026-05-20T16:52:12.557334+00:00",
+              "updated_at": "2026-05-20T17:52:55.188416+00:00",
               "global_residue": {},
               "floor_memory": [
                 {
@@ -140,7 +140,7 @@
                   "unclaimed_easter_eggs": [],
                   "residue_history": [
                     {
-                      "residue_id": "18a6e58c-88db-425f-ac9d-537912c804b1",
+                      "residue_id": "ae433c86-f531-43b2-b975-0f96048b1b02",
                       "floor_id": 1,
                       "outcome": "VICTORY_ASCEND",
                       "dominant_damage_type": "unknown",
@@ -186,7 +186,7 @@
                 "total_runs": 0,
                 "total_deaths": 0,
                 "last_outcome": "VICTORY_ASCEND",
-                "updated_at": "2026-05-20T16:52:12.557334+00:00",
+                "updated_at": "2026-05-20T17:52:55.188416+00:00",
                 "global_residue": {},
                 "floor_memory": [
                   {
@@ -203,7 +203,7 @@
                     "unclaimed_easter_eggs": [],
                     "residue_history": [
                       {
-                        "residue_id": "18a6e58c-88db-425f-ac9d-537912c804b1",
+                        "residue_id": "ae433c86-f531-43b2-b975-0f96048b1b02",
                         "floor_id": 1,
                         "outcome": "VICTORY_ASCEND",
                         "dominant_damage_type": "unknown",
@@ -236,7 +236,7 @@
                 ]
               },
               "residue_record": {
-                "residue_id": "18a6e58c-88db-425f-ac9d-537912c804b1",
+                "residue_id": "ae433c86-f531-43b2-b975-0f96048b1b02",
                 "floor_id": 1,
                 "outcome": "VICTORY_ASCEND",
                 "dominant_damage_type": "unknown",
@@ -264,7 +264,7 @@
                 "unclaimed_easter_eggs": [],
                 "residue_history": [
                   {
-                    "residue_id": "18a6e58c-88db-425f-ac9d-537912c804b1",
+                    "residue_id": "ae433c86-f531-43b2-b975-0f96048b1b02",
                     "floor_id": 1,
                     "outcome": "VICTORY_ASCEND",
                     "dominant_damage_type": "unknown",
@@ -527,7 +527,7 @@
     {
       "ok": true,
       "command": "status",
-      "message": "Floor: 2 | Highest: 1 | Residues: 1 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: VAGUE (0.50)",
+      "message": "Floor: 2 | Highest: 1 | Residues: 1 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13 | Route Recon: VAGUE (0.50) | Collapse: 0.00 (0 footholds)",
       "payload": {
         "current_floor": 2,
         "highest_floor": 1,
@@ -536,7 +536,7 @@
         "unclaimed_marks_count": 0,
         "capacity_pressure_summary": {
           "ok": true,
-          "inventory_id": "inv_1556f8ed-28ed-4896-9adc-d89fefbd16d5",
+          "inventory_id": "inv_384d1fa8-b6e7-4a0b-b725-62c34f87f031",
           "used_capacity": 0,
           "inventory_capacity": 40,
           "capacity_pressure": 0.0,
@@ -558,7 +558,7 @@
           "repair_burden": 0.53
         },
         "dashboard_snapshot": {
-          "snapshot_id": "snap_b0695da9-4619-49a7-b081-4597ae219d7d",
+          "snapshot_id": "snap_f2e2c76f-342a-4616-ac61-a885d59a1c56",
           "player_id": "player_default_001_9a971a4a",
           "floor_id": 2,
           "run_status": "ACTIVE",
@@ -616,6 +616,34 @@
             "aggregate_hazard_bias": 0.0,
             "bounded_flags_clean": true
           },
+          "foothold_collapse_summary": {
+            "claims_evaluated": 0,
+            "collapsed_footholds": 0,
+            "highest_collapse_level": 0.0,
+            "collapse_bands_observed": [],
+            "bounded_flags_clean": true
+          },
+          "foothold_recovery_summary": {
+            "recovery_actions_taken": 0,
+            "total_shards_spent": 0.0,
+            "restored_to_active": 0,
+            "restored_from_overrun": 0,
+            "latest_recovery": null,
+            "bounded_flags_clean": true
+          },
+          "survivor_trace_summary": {
+            "floor_id": 2,
+            "traces_observed": 0,
+            "strongest_reliability": 0.0,
+            "reliability_bands_observed": [],
+            "bounded_flags_clean": true
+          },
+          "abandoned_foothold_summary": {
+            "floor_id": 2,
+            "discoveries_observed": 0,
+            "highest_hazard_risk": 0.0,
+            "bounded_flags_clean": true
+          },
           "route_visibility_summary": {
             "average_information_accuracy": 0.5,
             "best_visibility_band": "VAGUE",
@@ -628,7 +656,7 @@
           },
           "bounded_flags_clean": true
         },
-        "dashboard_summary": "Dashboard Snapshot [snap_b06]: Floor 2. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active).",
+        "dashboard_summary": "Dashboard Snapshot [snap_f2e]: Floor 2. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active).",
         "dashboard_snapshot_available": true,
         "reclamation_pressure": {
           "floor_id": 2,
@@ -660,6 +688,32 @@
           "average_information_accuracy": 0.5,
           "best_visibility_band": "VAGUE",
           "reconnaissance_level": 0.5,
+          "bounded_flags_clean": true
+        },
+        "territorial_instability": {
+          "claims_evaluated": 0,
+          "unstable_footholds": 0,
+          "highest_instability": 0.0,
+          "bounded_flags_clean": true
+        },
+        "foothold_collapse": {
+          "claims_evaluated": 0,
+          "collapsed_footholds": 0,
+          "highest_collapse_level": 0.0,
+          "collapse_bands_observed": [],
+          "bounded_flags_clean": true
+        },
+        "survivor_traces": {
+          "floor_id": 2,
+          "traces_observed": 0,
+          "strongest_reliability": 0.0,
+          "reliability_bands_observed": [],
+          "bounded_flags_clean": true
+        },
+        "abandoned_footholds": {
+          "floor_id": 2,
+          "discoveries_observed": 0,
+          "highest_hazard_risk": 0.0,
           "bounded_flags_clean": true
         }
       },
@@ -843,7 +897,7 @@
     }
   ],
   "dashboard_survival_summaries": [
-    "Dashboard Snapshot [snap_b06]: Floor 2. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active)."
+    "Dashboard Snapshot [snap_f2e]: Floor 2. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.00). Scarring: 0.00 (0 nodes). Collapse: 0.00 (0 footholds). Recovery: 0 actions (0.0 shards). Traces: 0 (0.00). Abandoned: 0 (0.00). Recon: VAGUE (0.50). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active)."
   ],
   "domain_claims_observed": 0,
   "domain_claim_types_observed": [],
@@ -878,6 +932,34 @@
   "highest_targeting_pressure_observed": 0.0,
   "foothold_destabilization_events_observed": 0,
   "targeting_summaries": [],
+  "territorial_instability_observed": true,
+  "highest_territorial_instability_observed": 0.0,
+  "unstable_footholds_observed": 0,
+  "territorial_instability_summaries": [
+    "Floor 2 Instability: 0.00 (0 unstable)"
+  ],
+  "foothold_collapse_observed": true,
+  "highest_foothold_collapse_level_observed": 0.0,
+  "collapsed_footholds_observed": 0,
+  "foothold_collapse_bands_observed": [],
+  "foothold_collapse_summaries": [
+    "Floor 2 Collapse: 0.00 (0 footholds)"
+  ],
+  "foothold_recovery_observed": true,
+  "recovery_actions_observed": 0,
+  "total_recovery_shards_spent_observed": 0.0,
+  "recovery_restored_to_active_observed": 0,
+  "recovery_restored_from_overrun_observed": 0,
+  "recovery_summaries": [],
+  "scar_mitigation_actions_observed": 0,
+  "total_mitigation_shards_spent_observed": 0.0,
+  "highest_scar_mitigation_credit_observed": 0.0,
+  "scar_mitigation_summaries": [],
+  "survivor_traces_observed": 0,
+  "trace_reliability_bands_observed": [],
+  "abandoned_footholds_observed": 0,
+  "residue_exchange_actions_observed": 0,
+  "residue_exchange_summaries": [],
   "route_selections_observed": 1,
   "strategic_biases_observed": [
     "DEFAULT"

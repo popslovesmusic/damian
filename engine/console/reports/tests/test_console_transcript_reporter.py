@@ -29,7 +29,7 @@ def test_run_console_transcript_success(temp_paths):
     commands = ["status", "defeat", "diff", "marks", "quit"]
     
     transcript = console_transcript_reporter.run_console_transcript(
-        commands, paths=paths, output_dir=output_dir
+        commands, paths=paths, output_dir=output_dir, write_to_disk=True
     )
     
     assert transcript["ok"] is True
@@ -91,7 +91,7 @@ def test_debug_mode_safe(temp_paths):
     commands = ["status", "quit"]
     
     transcript = console_transcript_reporter.run_console_transcript(
-        commands, paths=paths, output_dir=output_dir, debug=True
+        commands, paths=paths, output_dir=output_dir, debug=True, write_to_disk=True
     )
     assert transcript["ok"] is True
 
