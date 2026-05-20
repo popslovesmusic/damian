@@ -52,6 +52,21 @@
       "description": "Report recovery and repair lineage evidence."
     },
     {
+      "command": "update scan <path>",
+      "family": "status",
+      "description": "Scan and verify an offline update cartridge."
+    },
+    {
+      "command": "update plan",
+      "family": "status",
+      "description": "Generate a dry-run migration plan for a verified update."
+    },
+    {
+      "command": "update audit",
+      "family": "logs",
+      "description": "Report update and patch migration evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

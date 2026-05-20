@@ -1,0 +1,23 @@
+{
+  "contract_id": "update-cartridge-manifest-v1",
+  "required_fields": [
+    "update_id",
+    "version_target",
+    "version_source_min",
+    "release_date",
+    "patch_payloads",
+    "sha256_root_hash",
+    "rollback_support",
+    "admin_approval_phrase"
+  ],
+  "payload_types": [
+    "os_image_patch",
+    "content_pack_v2",
+    "migration_script",
+    "engine_binary_update"
+  ],
+  "validation_rules": {
+    "strict_version_ordering": true,
+    "mandatory_checksum_verification": true
+  }
+}

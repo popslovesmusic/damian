@@ -1,0 +1,19 @@
+{
+  "boundary_name": "Offline Update Cartridge",
+  "version": "1.0",
+  "safety_rules": {
+    "no_network_update_required": true,
+    "no_silent_update": true,
+    "no_in_place_overwrite_without_backup": true,
+    "update_cartridges_must_be_hash_verified": true,
+    "migration_must_dry_run_first": true,
+    "admin_confirmation_required": true,
+    "rollback_metadata_required": true
+  },
+  "update_policy": {
+    "allowed_source": "external_removable_media",
+    "target_partitions": ["TOWER_OS", "TOWER_DATA"],
+    "backup_mandatory": true,
+    "dry_run_mandatory": true
+  }
+}

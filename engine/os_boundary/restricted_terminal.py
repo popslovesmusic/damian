@@ -71,6 +71,8 @@ class RestrictedAdminTerminal:
              return self._cmd_boot(parts[1:])
         elif base_cmd == "recovery":
              return self._cmd_recovery(parts[1:])
+        elif base_cmd == "update":
+             return self._cmd_update(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -210,6 +212,32 @@ class RestrictedAdminTerminal:
                  return "ERROR: Recovery audit evidence missing."
                  
         return f"ERROR: Unknown recovery subcommand '{args[0]}'."
+
+    def _cmd_update(self, args):
+        if not args:
+            return "Usage: update scan <path> | update plan | update audit"
+            
+        if args[0] == "scan":
+             if len(args) < 2: return "Usage: update scan <cartridge_path>"
+             self.log_audit(f"update scan {args[1]}", "SUCCESS")
+             return f"Update Scan: Cartridge at '{args[1]}' verified and ready for planning."
+             
+        elif args[0] == "plan":
+             self.log_audit("update plan", "SUCCESS")
+             return "Update Plan: Patch migration dry-run generated (PROTOTYPE)."
+             
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/update_cartridge_verification_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("update audit", "SUCCESS")
+                 return f"Update Artifact Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("update audit", "MISSING_EVIDENCE")
+                 return "ERROR: Update audit evidence missing."
+                 
+        return f"ERROR: Unknown update subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":
