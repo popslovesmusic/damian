@@ -1,0 +1,23 @@
+{
+  "boundary_name": "Real QEMU Smoke Test",
+  "version": "1.0",
+  "safety_rules": {
+    "no_usb_device_access": true,
+    "no_host_disk_passthrough": true,
+    "no_host_network_bridging": true,
+    "no_gpu_passthrough": true,
+    "no_bootloader_install_execution_on_host": true,
+    "qemu_must_remain_sandboxed": true
+  },
+  "isolation_parameters": {
+    "network": "none",
+    "display": "none",
+    "serial": "file:outputs/audits/qemu_serial_capture.log",
+    "monitor": "none"
+  },
+  "execution_constraints": {
+    "timeout_seconds": 300,
+    "max_retries": 3,
+    "cleanup_on_failure": true
+  }
+}

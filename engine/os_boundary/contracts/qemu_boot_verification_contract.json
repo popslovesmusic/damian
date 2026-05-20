@@ -1,0 +1,42 @@
+{
+  "contract_id": "qemu-boot-verification-v1",
+  "required_signals": [
+    {
+      "id": "SIGNAL_KERNEL_BOOT",
+      "pattern": "Linux version.*",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "SIGNAL_INIT_START",
+      "pattern": "Run /sbin/init as init process",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "SIGNAL_MOUNT_TOWER_DATA",
+      "pattern": "Mounting Persistent Tower Data Partition",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "SIGNAL_KIOSK_START",
+      "pattern": "Starting Damian Tower Kiosk Launcher",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "SIGNAL_ENGINE_HANDOFF",
+      "pattern": "Handing off control to Tower Engine Orchestrator",
+      "severity": "HIGH"
+    }
+  ],
+  "failure_signals": [
+    {
+      "id": "FAILURE_KERNEL_PANIC",
+      "pattern": "Kernel panic - not syncing",
+      "action": "ABORT"
+    },
+    {
+      "id": "FAILURE_MOUNT_ERROR",
+      "pattern": "Failed to mount /mnt/tower_data",
+      "action": "RETRY_ONCE"
+    }
+  ]
+}

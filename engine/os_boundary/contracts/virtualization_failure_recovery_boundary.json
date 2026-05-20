@@ -1,0 +1,16 @@
+{
+  "boundary_name": "Virtualization Failure Recovery",
+  "version": "1.0",
+  "recovery_strategies": {
+    "KERNEL_PANIC": "REFLASH_IMAGE",
+    "MOUNT_FAILURE": "REGENERATE_DATA_PARTITION",
+    "KIOSK_LAUNCH_FAILURE": "VERIFY_ROOTFS_PERMISSIONS",
+    "TIMEOUT": "INCREASE_VM_RESOURCES"
+  },
+  "cleanup_actions": [
+    "pkill qemu-system-x86_64",
+    "rm -rf build/live_os/rootfs_staging/",
+    "re-materialize rootfs"
+  ],
+  "safety_lock": "Manual intervention required if recovery fails twice."
+}
