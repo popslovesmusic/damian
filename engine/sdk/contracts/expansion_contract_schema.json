@@ -1,0 +1,41 @@
+{
+  "contract_id": "expansion-cartridge-schema-v1",
+  "required_fields": [
+    "expansion_id",
+    "author_id",
+    "world_context",
+    "supported_engine_version",
+    "narrative_modules",
+    "contract_modules",
+    "market_modules",
+    "faction_modules",
+    "relay_interaction_profile",
+    "sandbox_permissions",
+    "bounded_flags",
+    "expansion_hash"
+  ],
+  "allowed_extension_domains": [
+    "story_modules",
+    "contracts",
+    "market_variants",
+    "procedural_events",
+    "relay_scenarios",
+    "faction_behaviors",
+    "audio_assets",
+    "ui_themes",
+    "domain_echo_variants"
+  ],
+  "forbidden_extension_domains": [
+    "os_execution",
+    "host_disk_access",
+    "kernel_access",
+    "admin_authority",
+    "network_override",
+    "unsafe_binary_payloads"
+  ],
+  "validation_rules": {
+    "require_strict_sandbox": true,
+    "enforce_read_only_core": true,
+    "mandatory_integrity_hash": true
+  }
+}

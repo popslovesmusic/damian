@@ -101,6 +101,8 @@ class RestrictedAdminTerminal:
              return self._cmd_alpha(parts[1:])
         elif base_cmd == "narrative":
              return self._cmd_narrative(parts[1:])
+        elif base_cmd == "sdk":
+             return self._cmd_sdk(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -656,6 +658,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Narrative drift evidence missing."
                  
         return f"ERROR: Unknown narrative subcommand '{args[0]}'."
+
+    def _cmd_sdk(self, args):
+        if not args:
+            return "Usage: sdk validate | sdk audit"
+            
+        if args[0] == "validate":
+             # Report recent expansion validation status
+             evidence_path = "outputs/audits/cartridge_validation_pipeline_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("sdk validate", "SUCCESS")
+                 return f"Expansion Validation Pipeline Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("sdk validate", "MISSING_EVIDENCE")
+                 return "ERROR: SDK validation evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/expansion_publishing_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("sdk audit", "SUCCESS")
+                 return f"Expansion Publishing Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("sdk audit", "MISSING_EVIDENCE")
+                 return "ERROR: SDK publishing evidence missing."
+                 
+        return f"ERROR: Unknown sdk subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

@@ -1,0 +1,35 @@
+{
+  "boundary_name": "Author Cartridge SDK",
+  "version": "1.0",
+  "safety_rules": {
+    "no_unverified_cartridge_execution": true,
+    "no_os_core_mutation_from_expansions": true,
+    "no_unbounded_modding_access": true,
+    "no_author_admin_privileges": true,
+    "no_remote_code_execution": true,
+    "no_hidden_network_services": true,
+    "all_expansions_must_be_hash_verified": true,
+    "all_expansions_must_run_in_bounded_sandbox": true,
+    "author_extensions_must_preserve_recoverability": true,
+    "procedural_pressure_identity_must_be_preserved": true,
+    "all_sdk_operations_must_be_auditable": true,
+    "expansions_must_remain_world_contextual": true
+  },
+  "sandbox_policy": {
+    "required_properties": [
+      "read_only_engine_core",
+      "bounded_memory_access",
+      "bounded_storage_access",
+      "sandboxed_runtime",
+      "audit_logging",
+      "hash_verification"
+    ],
+    "forbidden_properties": [
+      "direct_host_execution",
+      "raw_network_control",
+      "system_shell_access",
+      "cross_cartridge_memory_injection",
+      "privilege_escalation"
+    ]
+  }
+}

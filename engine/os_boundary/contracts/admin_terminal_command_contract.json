@@ -207,6 +207,16 @@
       "description": "Report history of procedural narrative drift and mythology formation."
     },
     {
+      "command": "sdk validate",
+      "family": "status",
+      "description": "Report recent expansion validation status."
+    },
+    {
+      "command": "sdk audit",
+      "family": "logs",
+      "description": "Report history of expansion publishing and SDK evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."
