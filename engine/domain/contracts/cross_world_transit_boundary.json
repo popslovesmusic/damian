@@ -1,0 +1,31 @@
+{
+  "boundary_name": "Cross-World Cartridge Transit",
+  "version": "1.0",
+  "safety_rules": {
+    "no_unverified_world_import": true,
+    "no_direct_world_state_merging": true,
+    "no_cross_world_os_access": true,
+    "no_unbounded_inventory_transfer": true,
+    "no_perfect_stat_preservation_between_worlds": true,
+    "no_cross_world_save_overwrite": true,
+    "world_constraint_translation_required": true,
+    "transit_failure_must_fail_safely": true
+  },
+  "translation_policy": {
+    "allowed_modes": [
+      "DIRECT_TRANSLATION",
+      "LOSSY_TRANSLATION",
+      "WORLD_REINTERPRETATION",
+      "RESIDUE_ONLY_TRANSFER"
+    ]
+  },
+  "inventory_policy": {
+    "allowed_transfer_types": [
+      "symbolic_inventory_echo",
+      "bounded_resource_fragment",
+      "world_token",
+      "treaty_marker",
+      "residue_artifact"
+    ]
+  }
+}

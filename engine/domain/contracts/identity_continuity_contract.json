@@ -1,0 +1,31 @@
+{
+  "contract_id": "survivor-identity-continuity-v1",
+  "required_fields": [
+    "survivor_id",
+    "origin_world_id",
+    "target_world_id",
+    "transit_timestamp",
+    "residue_profile",
+    "reputation_profile",
+    "treaty_trace_summary",
+    "inventory_echo_summary",
+    "world_constraint_translation",
+    "bounded_flags",
+    "transit_hash"
+  ],
+  "persistent_components": [
+    "survivor_name",
+    "residue_signature",
+    "trust_markers",
+    "treaty_history",
+    "echo_attack_history",
+    "world_scarring_summary"
+  ],
+  "mutable_components": [
+    "combat_stats",
+    "resource_capacity",
+    "movement_constraints",
+    "inventory_form",
+    "ability_expression"
+  ]
+}

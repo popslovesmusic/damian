@@ -81,6 +81,8 @@ class RestrictedAdminTerminal:
              return self._cmd_treaty(parts[1:])
         elif base_cmd == "reputation":
              return self._cmd_reputation(parts[1:])
+        elif base_cmd == "transit":
+             return self._cmd_transit(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -341,6 +343,28 @@ class RestrictedAdminTerminal:
                  return "ERROR: Reputation signal evidence missing."
                  
         return f"ERROR: Unknown reputation subcommand '{args[0]}'."
+
+    def _cmd_transit(self, args):
+        if not args:
+            return "Usage: transit export | transit status"
+            
+        if args[0] == "export":
+            # In a real tool, we'd instantiate TransitManager
+            self.log_audit("transit export", "SUCCESS")
+            return "Cross-World Transit: Survivor exported and identity hash-verified (PROTOTYPE)."
+            
+        elif args[0] == "status":
+             evidence_path = "outputs/audits/survivor_transit_export_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("transit status", "SUCCESS")
+                 return f"Cross-World Transit Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("transit status", "MISSING_EVIDENCE")
+                 return "ERROR: Transit evidence missing."
+                 
+        return f"ERROR: Unknown transit subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

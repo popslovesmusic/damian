@@ -102,6 +102,16 @@
       "description": "Report history of generated reputation signals."
     },
     {
+      "command": "transit export",
+      "family": "content_packs",
+      "description": "Export survivor identity for cross-world cartridge transit."
+    },
+    {
+      "command": "transit status",
+      "family": "status",
+      "description": "Report cross-world transit and identity continuity evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."
