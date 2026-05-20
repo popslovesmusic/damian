@@ -1,0 +1,19 @@
+{
+  "vm_name": "tower-damian-proto-vm",
+  "ram_mb": 2048,
+  "cpus": 2,
+  "drive": {
+    "file": "build/live_os/images/tower-damian-proto.img",
+    "format": "raw",
+    "interface": "virtio"
+  },
+  "display": "sdl",
+  "serial": {
+    "type": "file",
+    "path": "logs/qemu_serial.log"
+  },
+  "network": {
+    "type": "user",
+    "restrict": true
+  }
+}

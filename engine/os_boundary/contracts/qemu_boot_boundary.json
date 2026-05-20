@@ -1,0 +1,21 @@
+{
+  "boundary_name": "QEMU Boot Validation",
+  "version": "1.0",
+  "safety_rules": {
+    "no_physical_hardware_access": true,
+    "isolated_network_only": true,
+    "user_mode_emulation_preferred": true,
+    "no_host_file_system_passthrough": true
+  },
+  "boot_success_criteria": {
+    "kernel_load_confirmed": "serial_output_contains_kernel_init",
+    "kiosk_launcher_started": "serial_output_contains_kiosk_start",
+    "tower_data_mounted": "serial_output_contains_mount_success"
+  },
+  "virtualization_constraints": {
+    "min_ram_mb": 1024,
+    "max_ram_mb": 4096,
+    "cpu_type": "host_or_kvm_compatible",
+    "graphics": "virtio_gpu"
+  }
+}
