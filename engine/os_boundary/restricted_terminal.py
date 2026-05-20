@@ -63,6 +63,8 @@ class RestrictedAdminTerminal:
             return self._cmd_diag(parts[1:])
         elif base_cmd == "content":
              return self._cmd_content(parts[1:])
+        elif base_cmd == "lineage":
+             return self._cmd_lineage(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -115,6 +117,21 @@ class RestrictedAdminTerminal:
         else:
             self.log_audit("content status", "MISSING_EVIDENCE")
             return "ERROR: Cartridge verification evidence missing."
+
+    def _cmd_lineage(self, args):
+        if not args or args[0] != "status":
+            return "Usage: lineage status"
+        
+        # Report lineage evidence from audit file
+        evidence_path = "outputs/audits/kiosk_launcher_lineage_result.json"
+        if os.path.exists(evidence_path):
+            with open(evidence_path, 'r') as f:
+                evidence = json.load(f)
+            self.log_audit("lineage status", "SUCCESS")
+            return f"Artifact Lineage Status:\n{json.dumps(evidence, indent=2)}"
+        else:
+            self.log_audit("lineage status", "MISSING_EVIDENCE")
+            return "ERROR: Lineage evidence missing."
 
 if __name__ == "__main__":
     # Test stub

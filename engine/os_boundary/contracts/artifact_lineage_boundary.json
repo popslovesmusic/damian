@@ -1,0 +1,23 @@
+{
+  "boundary_name": "Tower OS Artifact Lineage",
+  "version": "1.0",
+  "safety_rules": {
+    "no_destructive_migration_by_default": true,
+    "no_in_place_save_overwrite_without_backup": true,
+    "persistent_data_migrations_must_be_dry_run_first": true,
+    "artifact_hashes_must_be_recorded": true,
+    "rollback_information_must_be_preserved": true
+  },
+  "artifact_types": [
+    "tower_os_image",
+    "rootfs_staging",
+    "content_pack_cartridge",
+    "persistent_data_partition",
+    "save_snapshot",
+    "migration_plan"
+  ],
+  "migration_modes": {
+    "allowed": ["SCAN_ONLY", "DRY_RUN", "BACKUP_THEN_MIGRATE", "ROLLBACK_VALIDATE"],
+    "default": "SCAN_ONLY"
+  }
+}

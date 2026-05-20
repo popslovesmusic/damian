@@ -1,0 +1,21 @@
+{
+  "contract_id": "persistent-data-version-contract-v1",
+  "version_mapping": [
+    {
+      "data_version": "1.0.0",
+      "compatible_engine_min": "0.0.1",
+      "migration_path": null,
+      "description": "Initial persistent data layout."
+    },
+    {
+      "data_version": "1.1.0",
+      "compatible_engine_min": "0.0.5",
+      "migration_path": "1.0.0_to_1.1.0",
+      "requires_backup": true
+    }
+  ],
+  "detection_mechanisms": {
+    "version_file": ".tower_data_version",
+    "fallback": "metadata_sniffing"
+  }
+}

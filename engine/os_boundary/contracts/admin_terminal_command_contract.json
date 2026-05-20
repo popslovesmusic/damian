@@ -22,6 +22,11 @@
       "description": "Report content pack cartridge verification status."
     },
     {
+      "command": "lineage status",
+      "family": "status",
+      "description": "Report artifact lineage and version migration status."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

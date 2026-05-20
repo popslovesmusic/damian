@@ -1,0 +1,23 @@
+{
+  "contract_id": "lineage-manifest-contract-v1",
+  "required_fields": [
+    "artifact_id",
+    "artifact_type",
+    "artifact_version",
+    "engine_version",
+    "build_timestamp",
+    "source_commit",
+    "rootfs_hash",
+    "image_hash",
+    "content_pack_hashes",
+    "persistent_data_version",
+    "migration_status",
+    "rollback_supported",
+    "bounded_flags"
+  ],
+  "validation_rules": {
+    "enforce_semantic_versioning": true,
+    "require_valid_hashes": true,
+    "require_source_provenance": true
+  }
+}
