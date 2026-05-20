@@ -1,0 +1,37 @@
+{
+  "contract_id": "persistent-partition-runtime-v1",
+  "validation_requirements": [
+    {
+      "id": "PROBE_PARTITION_LABEL",
+      "method": "blkid_or_simulated",
+      "expected": "TOWER_DATA"
+    },
+    {
+      "id": "VERIFY_MOUNT_POINT",
+      "method": "stat_mount",
+      "expected_path": "/tower/data"
+    },
+    {
+      "id": "INITIALIZE_DIRECTORIES",
+      "directories": [
+        "saves/",
+        "logs/",
+        "transcripts/",
+        "mods/",
+        "content_packs/",
+        "crash_reports/",
+        "state_snapshots/"
+      ]
+    },
+    {
+      "id": "RUNTIME_WRITE_TEST",
+      "file": "runtime_write_probe.json",
+      "content_sample": {"status": "success", "probe": "STAGE-029"}
+    }
+  ],
+  "failure_modes": {
+    "PARTITION_MISSING": "HALT_WITH_RECOVERY_PROMPT",
+    "MOUNT_READ_ONLY": "ABORT_ENGINE_START",
+    "WRITE_FAILURE": "LOG_CRITICAL_AND_SHUTDOWN"
+  }
+}

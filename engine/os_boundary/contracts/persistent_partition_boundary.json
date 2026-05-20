@@ -1,0 +1,26 @@
+{
+  "boundary_name": "Persistent Partition Runtime",
+  "version": "1.0",
+  "safety_rules": {
+    "no_host_disk_partitioning": true,
+    "no_usb_device_writes": true,
+    "no_auto_formatting": true,
+    "no_mounting_real_host_devices_by_default": true,
+    "persistent_writes_must_target_TOWER_DATA_only": true,
+    "read_only_os_core_must_not_be_modified": true,
+    "missing_persistent_partition_must_fail_safely": true
+  },
+  "layout_constraints": {
+    "partition_label": "TOWER_DATA",
+    "required_directories": [
+      "saves/",
+      "logs/",
+      "transcripts/",
+      "mods/",
+      "content_packs/",
+      "crash_reports/",
+      "state_snapshots/"
+    ],
+    "probe_marker": ".tower_data_marker"
+  }
+}
