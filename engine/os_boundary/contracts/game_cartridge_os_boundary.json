@@ -1,0 +1,67 @@
+{
+  "boundary_name": "Game Cartridge OS",
+  "version": "1.0",
+  "partitions": {
+    "TOWER_OS": {
+      "mode": "read_only_live_system",
+      "immutable": true,
+      "contents": [
+        "linux_base",
+        "game_runtime",
+        "engine_binaries",
+        "engine_scripts",
+        "verified_default_content_packs",
+        "kiosk_launcher"
+      ],
+      "rules": {
+        "no_runtime_modifications": true,
+        "enforce_read_only_mount": true
+      }
+    },
+    "TOWER_DATA": {
+      "mode": "read_write_persistent",
+      "immutable": false,
+      "contents": [
+        "tower_state",
+        "player_saves",
+        "logs",
+        "transcripts",
+        "mods",
+        "content_pack_overrides",
+        "crash_reports"
+      ],
+      "rules": {
+        "explicit_persistence": true,
+        "recoverable": true
+      }
+    }
+  },
+  "kiosk_boot": {
+    "auto_launch_launcher": true,
+    "hide_os_boot_messages": true,
+    "launcher_boundary": "strict_separation_from_desktop_environment",
+    "bootloader_modification_allowed": false,
+    "kernel_customization_allowed": false
+  },
+  "admin_terminal": {
+    "restricted": true,
+    "remote_admin_runtime_allowed": false,
+    "destructive_disk_partitioning_allowed": false
+  },
+  "content_packs": {
+    "verifiable": true,
+    "default_location": "TOWER_OS",
+    "override_location": "TOWER_DATA"
+  },
+  "build_artifact": {
+    "type": "live_usb",
+    "recommended_base": ["Debian stable minimal", "Ubuntu Server minimal"],
+    "iso_build_automation_implemented": false,
+    "driver_bundle_creation_implemented": false
+  },
+  "security_recovery": {
+    "network_update_runtime_allowed": false,
+    "real_multiplayer_server_allowed": false,
+    "recovery_mechanism": "flash_new_live_usb"
+  }
+}
