@@ -1,0 +1,40 @@
+{
+  "contract_id": "combat-feedback-contract-v1",
+  "required_fields": [
+    "feedback_id",
+    "combat_event_type",
+    "pressure_context",
+    "damage_band",
+    "hitstop_profile",
+    "screen_feedback_profile",
+    "audio_feedback_profile",
+    "telegraph_profile",
+    "readability_score",
+    "performance_cost_profile",
+    "bounded_flags",
+    "feedback_hash"
+  ],
+  "combat_event_types": [
+    "PLAYER_HIT_ENEMY",
+    "ENEMY_HIT_PLAYER",
+    "PLAYER_BLOCK",
+    "PLAYER_DODGE",
+    "CRITICAL_HIT",
+    "DURABILITY_BREAKPOINT",
+    "ESCAPE_PRESSURE_SPIKE",
+    "DEFEAT_DROP",
+    "VICTORY_ASCEND"
+  ],
+  "damage_bands": [
+    "LIGHT",
+    "MEDIUM",
+    "HEAVY",
+    "CRITICAL",
+    "PRESSURE_ONLY"
+  ],
+  "validation_rules": {
+    "require_performance_profile": true,
+    "enforce_readability_min": 0.8,
+    "mandatory_integrity_hash": true
+  }
+}

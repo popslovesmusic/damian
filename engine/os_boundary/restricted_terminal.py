@@ -103,6 +103,8 @@ class RestrictedAdminTerminal:
              return self._cmd_narrative(parts[1:])
         elif base_cmd == "sdk":
              return self._cmd_sdk(parts[1:])
+        elif base_cmd == "combat":
+             return self._cmd_combat(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -687,6 +689,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: SDK publishing evidence missing."
                  
         return f"ERROR: Unknown sdk subcommand '{args[0]}'."
+
+    def _cmd_combat(self, args):
+        if not args:
+            return "Usage: combat status | combat audit"
+            
+        if args[0] == "status":
+             # Report current combat feel evidence
+             evidence_path = "outputs/audits/hit_feedback_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("combat status", "SUCCESS")
+                 return f"Combat Feedback Profile Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("combat status", "MISSING_EVIDENCE")
+                 return "ERROR: Combat feedback evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/combat_feel_boundary_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("combat audit", "SUCCESS")
+                 return f"Combat Feel Boundary Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("combat audit", "MISSING_EVIDENCE")
+                 return "ERROR: Combat boundary evidence missing."
+                 
+        return f"ERROR: Unknown combat subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

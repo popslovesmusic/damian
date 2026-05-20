@@ -217,6 +217,16 @@
       "description": "Report history of expansion publishing and SDK evidence."
     },
     {
+      "command": "combat status",
+      "family": "status",
+      "description": "Report current combat feel and feedback configuration."
+    },
+    {
+      "command": "combat audit",
+      "family": "logs",
+      "description": "Report history of combat feedback profiles and timing verification."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

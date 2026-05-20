@@ -1,0 +1,22 @@
+{
+  "boundary_name": "Combat Feel Runtime",
+  "version": "1.0",
+  "safety_rules": {
+    "combat_feedback_must_prioritize_readability": true,
+    "animation_must_not_obscure_state": true,
+    "hit_feedback_must_reflect_pressure": true,
+    "enemy_telegraphs_must_be_recognizable": true,
+    "damage_feedback_must_distinguish_light_medium_heavy_critical": true,
+    "combat_audio_must_support_threat_clarity": true,
+    "no_unbounded_particle_spam": true,
+    "no_aaa_animation_scope": true,
+    "legacy_hardware_support_required": true,
+    "effects_must_scale_down_cleanly": true
+  },
+  "readability_policy": {
+    "min_ui_text_size_px": 16,
+    "max_concurrent_visual_effects": 8,
+    "mandatory_hitstop_duration_ms_min": 30,
+    "mandatory_hitstop_duration_ms_max": 200
+  }
+}
