@@ -67,6 +67,8 @@ class RestrictedAdminTerminal:
              return self._cmd_lineage(parts[1:])
         elif base_cmd == "flash":
              return self._cmd_flash(parts[1:])
+        elif base_cmd == "boot":
+             return self._cmd_boot(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -164,6 +166,21 @@ class RestrictedAdminTerminal:
                 return "ERROR: Flash execution evidence missing."
 
         return f"ERROR: Unknown flash subcommand '{args[0]}'."
+
+    def _cmd_boot(self, args):
+        if not args or args[0] != "status":
+            return "Usage: boot status"
+        
+        # Report physical boot validation evidence
+        evidence_path = "outputs/audits/physical_boot_validation_result.json"
+        if os.path.exists(evidence_path):
+            with open(evidence_path, 'r') as f:
+                evidence = json.load(f)
+            self.log_audit("boot status", "SUCCESS")
+            return f"Physical Boot Validation Status:\n{json.dumps(evidence, indent=2)}"
+        else:
+            self.log_audit("boot status", "MISSING_EVIDENCE")
+            return "ERROR: Boot validation evidence missing."
 
 
 if __name__ == "__main__":

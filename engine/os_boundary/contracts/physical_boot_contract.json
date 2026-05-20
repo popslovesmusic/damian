@@ -1,0 +1,30 @@
+{
+  "contract_id": "physical-boot-verification-v1",
+  "runtime_signals": [
+    {
+      "id": "BOOT_MEDIA_REMOVABLE",
+      "type": "BOOLEAN",
+      "required": true
+    },
+    {
+      "id": "KIOSK_LAUNCHER_READY",
+      "type": "HEARTBEAT",
+      "required": true
+    },
+    {
+      "id": "PERSISTENCE_DETECTED",
+      "label": "TOWER_DATA",
+      "required": true
+    },
+    {
+      "id": "SAVE_PROBE_SURVIVAL",
+      "test": "write_on_boot_1_read_on_boot_2",
+      "required": true
+    }
+  ],
+  "failure_recovery": {
+    "PARTITION_LOST": "HALT_AND_AUDIT",
+    "PROBE_MISMATCH": "LOG_STATE_CORRUPTION",
+    "LAUNCHER_HANG": "REBOOT_RETRY"
+  }
+}
