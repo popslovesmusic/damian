@@ -1,0 +1,43 @@
+{
+  "contract_id": "launcher-runtime-contract-v1",
+  "pre_flight_checks": [
+    {
+      "id": "ENV_TOWER_OS_ROOT",
+      "required": true,
+      "description": "Detection of immutable OS root"
+    },
+    {
+      "id": "ENV_TOWER_DATA_ROOT",
+      "required": true,
+      "description": "Detection of persistent data root"
+    },
+    {
+      "id": "PATH_GUARD_SAVES",
+      "expected_root": "TOWER_DATA",
+      "sub_path": "saves/"
+    },
+    {
+      "id": "PATH_GUARD_LOGS",
+      "expected_root": "TOWER_DATA",
+      "sub_path": "logs/"
+    },
+    {
+      "id": "PATH_GUARD_ARTIFACTS",
+      "expected_root": "TOWER_DATA",
+      "sub_path": "artifacts/"
+    }
+  ],
+  "runtime_config_schema": {
+    "required_keys": [
+      "engine_mode",
+      "content_pack_root",
+      "save_root",
+      "log_root",
+      "artifact_root"
+    ]
+  },
+  "failure_escalation": {
+    "VERIFICATION_FAILED": "EMIT_AUDIT_AND_HALT",
+    "PERSISTENCE_GUARD_VIOLATION": "EMIT_AUDIT_AND_CRITICAL_HALT"
+  }
+}

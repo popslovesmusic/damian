@@ -1,0 +1,23 @@
+{
+  "boundary_name": "Kiosk Launcher Runtime Hardening",
+  "version": "1.0",
+  "safety_rules": {
+    "launcher_must_fail_safely": true,
+    "launcher_must_not_write_outside_TOWER_DATA": true,
+    "launcher_must_emit_audit_on_failure": true,
+    "runtime_config_must_be_explicit": true,
+    "no_host_disk_modification": true,
+    "no_usb_device_writes": true
+  },
+  "verification_layers": {
+    "OS_CORE": {
+      "mode": "read_only",
+      "required_paths": ["/usr/bin/damian-launcher", "/etc/systemd/system/tower-kiosk.service"]
+    },
+    "DATA_PARTITION": {
+      "mode": "read_write",
+      "label": "TOWER_DATA",
+      "mount_point": "/tower/data"
+    }
+  }
+}
