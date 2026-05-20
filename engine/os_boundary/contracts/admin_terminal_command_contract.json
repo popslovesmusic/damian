@@ -189,12 +189,12 @@
     {
       "command": "alpha status",
       "family": "status",
-      "description": "Report closed alpha cohort and deployment status."
+      "description": "Report closed alpha enrollment, cohort status, and stress-test metrics."
     },
     {
       "command": "alpha audit",
       "family": "logs",
-      "description": "Report offline telemetry export and structured feedback evidence."
+      "description": "Report full alpha stress test evidence, telemetry, and structured feedback."
     },
     {
       "command": "logs list",

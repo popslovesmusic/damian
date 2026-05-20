@@ -594,27 +594,35 @@ class RestrictedAdminTerminal:
             return "Usage: alpha status | alpha audit"
             
         if args[0] == "status":
-             # Report current closed alpha cohort evidence
+             # Report current closed alpha cohort and stress metrics
              evidence_path = "outputs/audits/alpha_cohort_result.json"
+             metrics_path = "outputs/audits/retention_metrics_result.json"
+             
+             status_report = {}
              if os.path.exists(evidence_path):
                  with open(evidence_path, 'r') as f:
-                     evidence = json.load(f)
+                     status_report["cohort"] = json.load(f)
+             if os.path.exists(metrics_path):
+                 with open(metrics_path, 'r') as f:
+                     status_report["metrics"] = json.load(f)
+                     
+             if status_report:
                  self.log_audit("alpha status", "SUCCESS")
-                 return f"Closed Alpha Cohort Status:\n{json.dumps(evidence, indent=2)}"
+                 return f"Closed Alpha Status (Enrollment & Metrics):\n{json.dumps(status_report, indent=2)}"
              else:
                  self.log_audit("alpha status", "MISSING_EVIDENCE")
-                 return "ERROR: Alpha cohort evidence missing."
+                 return "ERROR: Alpha status evidence missing."
                  
         elif args[0] == "audit":
-             evidence_path = "outputs/audits/offline_telemetry_export_result.json"
+             evidence_path = "outputs/audits/stress_test_contract_result.json"
              if os.path.exists(evidence_path):
                  with open(evidence_path, 'r') as f:
                      evidence = json.load(f)
                  self.log_audit("alpha audit", "SUCCESS")
-                 return f"Closed Alpha Telemetry Audit:\n{json.dumps(evidence, indent=2)}"
+                 return f"Closed Alpha Stress Test Audit:\n{json.dumps(evidence, indent=2)}"
              else:
                  self.log_audit("alpha audit", "MISSING_EVIDENCE")
-                 return "ERROR: Alpha telemetry evidence missing."
+                 return "ERROR: Alpha stress test evidence missing."
                  
         return f"ERROR: Unknown alpha subcommand '{args[0]}'."
 

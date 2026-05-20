@@ -1,14 +1,19 @@
 {
   "boundary_name": "Closed Alpha Deployment",
-  "version": "1.0",
+  "version": "1.1",
   "safety_rules": {
-    "no_public_internet_exposure": true,
-    "no_uncontrolled_cohort_expansion": true,
-    "no_live_monetization": true,
-    "no_unbounded_telemetry_collection": true,
-    "alpha_feedback_must_be_bounded_and_structured": true,
-    "stress_testing_must_preserve_host_safety": true,
-    "cohort_identity_must_be_hash_verified": true
+    "no_open_public_deployment": true,
+    "no_unbounded_player_scaling": true,
+    "no_live_global_world_authority": true,
+    "no_pay_to_win_testing": true,
+    "no_irreversible_persistence_damage": true,
+    "no_os_core_mutation_from_player_activity": true,
+    "all_alpha_activity_must_be_auditable": true,
+    "all_social_pressure_loops_must_remain_recoverable": true,
+    "async_multiplayer_boundaries_must_hold_under_load": true,
+    "relay_fragmentation_must_not_destroy_persistence": true,
+    "stress_testing_must_preserve_lineage": true,
+    "feedback_collection_must_be_structured_and_contextual": true
   },
   "deployment_policy": {
     "allowed_distribution": "manual_usb_flash",

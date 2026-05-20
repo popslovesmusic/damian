@@ -1,0 +1,39 @@
+{
+  "contract_id": "survivor-stress-test-v1",
+  "required_fields": [
+    "stress_test_id",
+    "alpha_survivor_count",
+    "relay_load_profile",
+    "domain_echo_pressure_profile",
+    "treaty_density_profile",
+    "market_instability_profile",
+    "event_wave_frequency",
+    "session_resume_integrity",
+    "recovery_success_rate",
+    "survivor_retention_profile",
+    "feedback_summary",
+    "bounded_flags",
+    "stress_hash"
+  ],
+  "allowed_stress_domains": [
+    "persistence_resume",
+    "relay_fragmentation",
+    "domain_echo_conflict",
+    "market_instability",
+    "contract_pressure",
+    "treaty_saturation",
+    "event_wave_overlap",
+    "voice_presence_load"
+  ],
+  "forbidden_stress_domains": [
+    "os_level_mutation",
+    "unsafe_host_access",
+    "global_live_sync",
+    "unbounded_player_scaling"
+  ],
+  "validation_rules": {
+    "max_survivors": 50,
+    "require_recoverability_audit": true,
+    "enforce_asynchronous_metrics": true
+  }
+}
