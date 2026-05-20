@@ -15,6 +15,8 @@
     "domain_claim_summary",
     "reclamation_pressure",
     "mutation_scarring_summary",
+    "foothold_collapse_summary",
+    "foothold_recovery_summary",
     "route_visibility_summary",
     "recoverability_status",
     "bounded_flags_clean"
@@ -139,6 +141,42 @@
         "scarred_nodes_count": { "type": "integer", "minimum": 0 },
         "highest_scar_intensity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
         "aggregate_hazard_bias": { "type": "number", "minimum": 0.0 },
+        "bounded_flags_clean": { "type": "boolean", "const": true }
+      }
+    },
+    "foothold_collapse_summary": {
+      "type": "object",
+      "required": [
+        "claims_evaluated",
+        "collapsed_footholds",
+        "highest_collapse_level",
+        "collapse_bands_observed",
+        "bounded_flags_clean"
+      ],
+      "properties": {
+        "claims_evaluated": { "type": "integer", "minimum": 0 },
+        "collapsed_footholds": { "type": "integer", "minimum": 0 },
+        "highest_collapse_level": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "collapse_bands_observed": { "type": "array", "items": { "type": "string" } },
+        "bounded_flags_clean": { "type": "boolean", "const": true }
+      }
+    },
+    "foothold_recovery_summary": {
+      "type": "object",
+      "required": [
+        "recovery_actions_taken",
+        "total_shards_spent",
+        "restored_to_active",
+        "restored_from_overrun",
+        "latest_recovery",
+        "bounded_flags_clean"
+      ],
+      "properties": {
+        "recovery_actions_taken": { "type": "integer", "minimum": 0 },
+        "total_shards_spent": { "type": "number", "minimum": 0.0 },
+        "restored_to_active": { "type": "integer", "minimum": 0 },
+        "restored_from_overrun": { "type": "integer", "minimum": 0 },
+        "latest_recovery": { "type": ["object", "null"] },
         "bounded_flags_clean": { "type": "boolean", "const": true }
       }
     },

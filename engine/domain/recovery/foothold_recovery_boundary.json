@@ -1,0 +1,28 @@
+{
+  "boundary_id": "tower_engine_foothold_recovery_boundary_v001",
+  "core_principle": "Players may stabilize what the Tower damages, but recovery must cost resources and preserve consequence history.",
+  "runtime_responsibilities": [
+    "spend_material_resources_to_recover_footholds",
+    "reduce_territorial_instability_in_bounded_steps",
+    "allow_partial_state_restoration_without_perfect_safety",
+    "report_recovery_actions_for_audit"
+  ],
+  "runtime_non_goals": [
+    "permanent_safe_zones",
+    "free_or_automatic_recovery",
+    "base_building_runtime",
+    "rendered_repair_simulation",
+    "multiplayer_claim_sync"
+  ],
+  "recovery_rules": {
+    "recovery_must_cost_resources": true,
+    "recovery_must_be_bounded": true,
+    "recovery_must_not_erase_history": true,
+    "tower_hostility_must_be_preserved": true
+  },
+  "identity_rules": [
+    "recovery_creates_new_burden_not_perfect_control",
+    "claim_identity_survives_damage"
+  ]
+}
+

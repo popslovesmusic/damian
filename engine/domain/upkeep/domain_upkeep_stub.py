@@ -10,6 +10,13 @@ try:
 except ImportError:
     _debug_logger_available = False
 
+# Territorial instability (Stage-018)
+try:
+    from engine.domain.instability import territorial_instability_stub
+    _instability_available = True
+except ImportError:
+    _instability_available = False
+
 # Import json_save_manager for validation
 try:
     from engine.save.runtime import json_save_manager
@@ -61,7 +68,7 @@ def calculate_upkeep_cost(claim, maintenance_penalty=0, debug=False):
     # Minimum cost is 1
     return max(1, final_cost)
 
-def process_claim_upkeep(claim, available_shards, maintenance_penalty=0, debug=False):
+def process_claim_upkeep(claim, available_shards, maintenance_penalty=0, targeting_record=None, debug=False):
     """
     Processes upkeep for a single claim.
     Returns a result dict with success status and updated claim state.
@@ -70,7 +77,13 @@ def process_claim_upkeep(claim, available_shards, maintenance_penalty=0, debug=F
     floor_id = claim.get("floor_id", 1)
     claim_id = claim.get("claim_id", "unknown")
     
-    cost = calculate_upkeep_cost(claim, maintenance_penalty=maintenance_penalty, debug=debug)
+    # Merge any targeting-based penalty (if present) with caller-provided penalty.
+    targeting_penalty = 0
+    if isinstance(targeting_record, dict):
+        targeting_penalty = int(targeting_record.get("maintenance_penalty", 0) or 0)
+
+    total_penalty = int(maintenance_penalty) + targeting_penalty
+    cost = calculate_upkeep_cost(claim, maintenance_penalty=total_penalty, debug=debug)
     
     upkeep_successful = False
     shards_deducted = 0
@@ -102,6 +115,18 @@ def process_claim_upkeep(claim, available_shards, maintenance_penalty=0, debug=F
         "upkeep_successful": upkeep_successful,
         "bounded_flags_clean": True
     }
+
+    instability_record = None
+    if _instability_available:
+        try:
+            instability_record = territorial_instability_stub.calculate_territorial_instability(
+                claim, targeting_record=targeting_record, upkeep_successful=upkeep_successful, debug=debug
+            )
+            # Persist minimal evidence on the claim for downstream reporting.
+            claim["territorial_instability"] = instability_record.get("instability", 0.0)
+            claim["instability_band"] = instability_record.get("instability_band", "STABLE")
+        except Exception:
+            instability_record = None
     
     _log_debug_event("INFO", "UpkeepProcessed", f"Upkeep for {claim_id}: {previous_state} -> {current_state}", event, debug)
     
@@ -110,6 +135,7 @@ def process_claim_upkeep(claim, available_shards, maintenance_penalty=0, debug=F
         "upkeep_event": event,
         "updated_status": current_state,
         "shards_consumed": shards_deducted,
+        "territorial_instability": instability_record,
         "summary": summarize_upkeep_event(event)
     }
 

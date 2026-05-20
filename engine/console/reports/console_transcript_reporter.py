@@ -181,6 +181,31 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     foothold_destabilization_events_observed = 0
     targeting_summaries = []
 
+    # Territorial instability & foothold collapse observation (Stage-018 / TOWER-ENGINE-149)
+    territorial_instability_observed = False
+    highest_territorial_instability_observed = 0.0
+    unstable_footholds_observed = 0
+    territorial_instability_summaries = []
+
+    foothold_collapse_observed = False
+    highest_foothold_collapse_level_observed = 0.0
+    collapsed_footholds_observed = 0
+    foothold_collapse_bands_observed = []
+    foothold_collapse_summaries = []
+
+    # Foothold recovery & scar mitigation observation (Stage-019 / TOWER-ENGINE-158)
+    foothold_recovery_observed = False
+    recovery_actions_observed = 0
+    total_recovery_shards_spent_observed = 0.0
+    recovery_restored_to_active_observed = 0
+    recovery_restored_from_overrun_observed = 0
+    recovery_summaries = []
+
+    scar_mitigation_actions_observed = 0
+    total_mitigation_shards_spent_observed = 0.0
+    highest_scar_mitigation_credit_observed = 0.0
+    scar_mitigation_summaries = []
+
     # Manual route selection observation (TOWER-ENGINE-140)
     route_selections_observed = 0
     strategic_biases_observed = []
@@ -594,6 +619,38 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
                                 if band and band not in visibility_bands_observed:
                                     visibility_bands_observed.append(band)
 
+                            # Territorial Instability (Stage-018)
+                            inst = payload.get("territorial_instability")
+                            if inst:
+                                territorial_instability_observed = True
+                                highest_territorial_instability_observed = max(highest_territorial_instability_observed, inst.get("highest_instability", 0.0))
+                                unstable_footholds_observed = max(unstable_footholds_observed, inst.get("unstable_footholds", 0))
+                                inst_sum = f"Floor {snapshot.get('floor_id')} Instability: {inst.get('highest_instability', 0.0):.2f} ({inst.get('unstable_footholds', 0)} unstable)"
+                                if inst_sum not in territorial_instability_summaries:
+                                    territorial_instability_summaries.append(inst_sum)
+
+                            # Foothold Collapse (Stage-018)
+                            collapse = payload.get("foothold_collapse")
+                            if collapse:
+                                foothold_collapse_observed = True
+                                highest_foothold_collapse_level_observed = max(highest_foothold_collapse_level_observed, collapse.get("highest_collapse_level", 0.0))
+                                collapsed_footholds_observed = max(collapsed_footholds_observed, collapse.get("collapsed_footholds", 0))
+                                for b in collapse.get("collapse_bands_observed", []) or []:
+                                    if b not in foothold_collapse_bands_observed:
+                                        foothold_collapse_bands_observed.append(b)
+                                col_sum = f"Floor {snapshot.get('floor_id')} Collapse: {collapse.get('highest_collapse_level', 0.0):.2f} ({collapse.get('collapsed_footholds', 0)} footholds)"
+                                if col_sum not in foothold_collapse_summaries:
+                                    foothold_collapse_summaries.append(col_sum)
+
+                            # Foothold Recovery (Stage-019)
+                            recov = snapshot.get("foothold_recovery_summary") if snapshot else None
+                            if recov:
+                                foothold_recovery_observed = True
+                                recovery_actions_observed = max(recovery_actions_observed, recov.get("recovery_actions_taken", 0))
+                                total_recovery_shards_spent_observed = max(total_recovery_shards_spent_observed, recov.get("total_shards_spent", 0.0))
+                                recovery_restored_to_active_observed = max(recovery_restored_to_active_observed, recov.get("restored_to_active", 0))
+                                recovery_restored_from_overrun_observed = max(recovery_restored_from_overrun_observed, recov.get("restored_from_overrun", 0))
+
             # Domain claim specific (TOWER-ENGINE-113)
             if res_cmd == "claim" and result["ok"]:
                 claim = payload.get("domain_claim")
@@ -651,6 +708,32 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
                          foothold_restoration_events_observed += 1
                          
                 upkeep_summaries.append(result.get("message"))
+
+            # Foothold recovery action specific (Stage-019)
+            if res_cmd == "recover" and result["ok"]:
+                foothold_recovery_observed = True
+                recovery_actions_observed += 1
+                rr = payload.get("recovery_record") if isinstance(payload, dict) else None
+                if rr:
+                    total_recovery_shards_spent_observed += float(rr.get("shards_spent", 0.0) or 0.0)
+                    if rr.get("new_status") == "ACTIVE" and rr.get("previous_status") != "ACTIVE":
+                        recovery_restored_to_active_observed += 1
+                    if rr.get("previous_status") == "OVERRUN" and rr.get("new_status") != "OVERRUN":
+                        recovery_restored_from_overrun_observed += 1
+                rs = payload.get("recovery_summary") if isinstance(payload, dict) else None
+                if rs:
+                    recovery_summaries.append(rs)
+
+            # Scar mitigation action specific (Stage-019)
+            if res_cmd == "mitigate" and result["ok"]:
+                scar_mitigation_actions_observed += 1
+                ma = payload.get("mitigation_action") if isinstance(payload, dict) else None
+                if ma:
+                    total_mitigation_shards_spent_observed += float(ma.get("shards_spent", 0.0) or 0.0)
+                credits = payload.get("scar_mitigation_credits") if isinstance(payload, dict) else None
+                if isinstance(credits, dict) and len(credits) > 0:
+                    highest_scar_mitigation_credit_observed = max(highest_scar_mitigation_credit_observed, max(float(v or 0.0) for v in credits.values()))
+                scar_mitigation_summaries.append(result.get("message"))
 
             inv_summary = payload.get("inventory_state_summary")
             if inv_summary and inv_summary not in inventory_summaries:
@@ -795,6 +878,25 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
         "highest_targeting_pressure_observed": highest_targeting_pressure_observed,
         "foothold_destabilization_events_observed": foothold_destabilization_events_observed,
         "targeting_summaries": targeting_summaries,
+        "territorial_instability_observed": territorial_instability_observed,
+        "highest_territorial_instability_observed": highest_territorial_instability_observed,
+        "unstable_footholds_observed": unstable_footholds_observed,
+        "territorial_instability_summaries": territorial_instability_summaries,
+        "foothold_collapse_observed": foothold_collapse_observed,
+        "highest_foothold_collapse_level_observed": highest_foothold_collapse_level_observed,
+        "collapsed_footholds_observed": collapsed_footholds_observed,
+        "foothold_collapse_bands_observed": foothold_collapse_bands_observed,
+        "foothold_collapse_summaries": foothold_collapse_summaries,
+        "foothold_recovery_observed": foothold_recovery_observed,
+        "recovery_actions_observed": recovery_actions_observed,
+        "total_recovery_shards_spent_observed": float(round(total_recovery_shards_spent_observed, 4)),
+        "recovery_restored_to_active_observed": recovery_restored_to_active_observed,
+        "recovery_restored_from_overrun_observed": recovery_restored_from_overrun_observed,
+        "recovery_summaries": recovery_summaries,
+        "scar_mitigation_actions_observed": scar_mitigation_actions_observed,
+        "total_mitigation_shards_spent_observed": float(round(total_mitigation_shards_spent_observed, 4)),
+        "highest_scar_mitigation_credit_observed": float(round(highest_scar_mitigation_credit_observed, 4)),
+        "scar_mitigation_summaries": scar_mitigation_summaries,
         "route_selections_observed": route_selections_observed,
         "strategic_biases_observed": strategic_biases_observed,
         "route_hazard_visibility_summaries": route_hazard_visibility_summaries,
@@ -1053,6 +1155,25 @@ def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
         "highest_targeting_pressure_observed": 0.0,
         "foothold_destabilization_events_observed": 0,
         "targeting_summaries": [],
+        "territorial_instability_observed": False,
+        "highest_territorial_instability_observed": 0.0,
+        "unstable_footholds_observed": 0,
+        "territorial_instability_summaries": [],
+        "foothold_collapse_observed": False,
+        "highest_foothold_collapse_level_observed": 0.0,
+        "collapsed_footholds_observed": 0,
+        "foothold_collapse_bands_observed": [],
+        "foothold_collapse_summaries": [],
+        "foothold_recovery_observed": False,
+        "recovery_actions_observed": 0,
+        "total_recovery_shards_spent_observed": 0.0,
+        "recovery_restored_to_active_observed": 0,
+        "recovery_restored_from_overrun_observed": 0,
+        "recovery_summaries": [],
+        "scar_mitigation_actions_observed": 0,
+        "total_mitigation_shards_spent_observed": 0.0,
+        "highest_scar_mitigation_credit_observed": 0.0,
+        "scar_mitigation_summaries": [],
         "durability_decay_observed": False,
         "durability_events_observed": 0,
         "total_durability_loss_observed": 0.0,

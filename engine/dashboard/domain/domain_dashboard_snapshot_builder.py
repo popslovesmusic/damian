@@ -24,6 +24,7 @@ try:
     from engine.domain.reclamation import tower_reclamation_pressure_stub
     from engine.residue.mutation import mutation_scarring_stub
     from engine.traversal.routes import route_hazard_visibility_stub
+    from engine.domain.collapse import foothold_collapse_stub
     _pressure_available = True
 except ImportError:
     _pressure_available = False
@@ -281,6 +282,78 @@ def derive_mutation_scarring_summary(session_state, debug=False):
         "bounded_flags_clean": True
     }
 
+
+def derive_foothold_collapse_summary(session_state, debug=False):
+    """
+    Aggregates partial foothold collapse evidence (Stage-018 / TOWER-ENGINE-147).
+
+    Collapse is derived from claim instability and status; it is not deletion.
+    """
+    claims = session_state.get("domain_claims", [])
+    if not claims or not _pressure_available:
+        return {
+            "claims_evaluated": len(claims),
+            "collapsed_footholds": 0,
+            "highest_collapse_level": 0.0,
+            "collapse_bands_observed": [],
+            "bounded_flags_clean": True
+        }
+
+    collapsed = 0
+    highest = 0.0
+    bands = set()
+
+    for claim in claims:
+        try:
+            record = foothold_collapse_stub.evaluate_foothold_collapse(claim, instability_record=None, debug=debug)
+            level = float(record.get("collapse_level", 0.0) or 0.0)
+            highest = max(highest, level)
+            band = record.get("collapse_band")
+            if band:
+                bands.add(band)
+            if level > 0.0:
+                collapsed += 1
+        except Exception:
+            continue
+
+    return {
+        "claims_evaluated": len(claims),
+        "collapsed_footholds": int(collapsed),
+        "highest_collapse_level": float(highest),
+        "collapse_bands_observed": sorted(list(bands)),
+        "bounded_flags_clean": True
+    }
+
+
+def derive_foothold_recovery_summary(session_state, debug=False):
+    """
+    Aggregates foothold recovery actions (Stage-019 / TOWER-ENGINE-156).
+    """
+    history = session_state.get("foothold_recovery_history", []) or []
+    actions = [h for h in history if isinstance(h, dict)]
+
+    total_spent = 0.0
+    restored_to_active = 0
+    restored_from_overrun = 0
+    latest = None
+
+    for rec in actions:
+        total_spent += float(rec.get("shards_spent", 0.0) or 0.0)
+        if rec.get("new_status") == "ACTIVE" and rec.get("previous_status") != "ACTIVE":
+            restored_to_active += 1
+        if rec.get("previous_status") == "OVERRUN" and rec.get("new_status") != "OVERRUN":
+            restored_from_overrun += 1
+        latest = rec
+
+    return {
+        "recovery_actions_taken": int(len(actions)),
+        "total_shards_spent": float(round(total_spent, 4)),
+        "restored_to_active": int(restored_to_active),
+        "restored_from_overrun": int(restored_from_overrun),
+        "latest_recovery": latest,
+        "bounded_flags_clean": True
+    }
+
 def derive_route_visibility_summary(session_state, debug=False):
     """
     Aggregates reconnaissance evidence (TOWER-ENGINE-138).
@@ -368,6 +441,8 @@ def build_domain_dashboard_snapshot(session_state, debug=False):
         "domain_claim_summary": derive_domain_claim_summary(session_state, debug=debug),
         "reclamation_pressure": derive_reclamation_pressure(session_state, debug=debug),
         "mutation_scarring_summary": derive_mutation_scarring_summary(session_state, debug=debug),
+        "foothold_collapse_summary": derive_foothold_collapse_summary(session_state, debug=debug),
+        "foothold_recovery_summary": derive_foothold_recovery_summary(session_state, debug=debug),
         "route_visibility_summary": derive_route_visibility_summary(session_state, debug=debug),
         "recoverability_status": derive_recoverability_status(session_state, debug=debug),
         "bounded_flags_clean": True
@@ -401,12 +476,16 @@ def summarize_dashboard_snapshot(snapshot):
     dc = snapshot.get("domain_claim_summary", {})
     rec = snapshot.get("reclamation_pressure", {})
     scar = snapshot.get("mutation_scarring_summary", {})
+    col = snapshot.get("foothold_collapse_summary", {})
+    recov = snapshot.get("foothold_recovery_summary", {})
     vis = snapshot.get("route_visibility_summary", {})
     
     summary = f"Dashboard Snapshot [{snapshot.get('snapshot_id')[:8]}]: Floor {snapshot.get('floor_id')}. "
     summary += f"Pressure (Combat:{p.get('combat_pressure'):.2f}, Cap:{p.get('capacity_pressure'):.2f}). "
     summary += f"Reclamation: {rec.get('reclamation_band')} ({rec.get('total_reclamation_pressure'):.2f}). "
     summary += f"Scarring: {scar.get('highest_scar_intensity'):.2f} ({scar.get('scarred_nodes_count')} nodes). "
+    summary += f"Collapse: {col.get('highest_collapse_level', 0.0):.2f} ({col.get('collapsed_footholds', 0)} footholds). "
+    summary += f"Recovery: {recov.get('recovery_actions_taken', 0)} actions ({recov.get('total_shards_spent', 0.0)} shards). "
     summary += f"Recon: {vis.get('best_visibility_band')} ({vis.get('average_information_accuracy'):.2f}). "
     summary += f"Resources (Gold:{r.get('gold')}, Potions:{r.get('potions')}). "
     summary += f"Gear ({e.get('damaged_items')} damaged). "

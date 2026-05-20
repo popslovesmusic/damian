@@ -1,0 +1,27 @@
+{
+  "boundary_id": "tower_engine_territorial_instability_boundary_v001",
+  "core_principle": "The Tower can destabilize localized Order (footholds) under sustained pressure without erasing claim identity.",
+  "runtime_responsibilities": [
+    "track_instability_per_claim",
+    "increase_instability_under_targeting_and_neglect",
+    "decrease_instability_under_successful_maintenance",
+    "expose_instability_band_for_reporting"
+  ],
+  "runtime_non_goals": [
+    "real_time_territory_war",
+    "multiplayer_claim_sync",
+    "rendered_damage_states",
+    "permanent_unrecoverable_dead_states"
+  ],
+  "instability_rules": {
+    "instability_must_be_bounded": true,
+    "instability_must_be_recoverable": true,
+    "instability_must_preserve_claim_identity": true,
+    "instability_must_increase_tower_hostility_signal": true
+  },
+  "identity_rules": [
+    "the_tower_scars_order_not_deletes_it",
+    "claim_identity_survives_damage",
+    "recoverability_must_be_preserved"
+  ]
+}

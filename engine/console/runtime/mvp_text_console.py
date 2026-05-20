@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+import uuid
 
 # Import existing MVP systems
 try:
@@ -85,6 +86,10 @@ def make_console_session_state(runtime_context, debug=False):
         "last_inventory_transaction": None,
         "last_durability_events": [],
         "durability_pressure_observed": False,
+        # Stage-019: Recovery & scar mitigation tracking (no safety bypass)
+        "scar_mitigation_credits": {},  # key: "floor_id:node_id" -> credit float
+        "scar_mitigation_history": [],
+        "foothold_recovery_history": [],
         "session_active": True,
         "latest_diff": None,
         "debug_enabled": debug
@@ -113,6 +118,10 @@ def execute_console_command(session_state, command_struct, debug=False):
     
     if command == "status":
         return _handle_status(session_state, debug)
+    elif command == "recover":
+        return _handle_recover(session_state, args, debug)
+    elif command == "mitigate":
+        return _handle_mitigate(session_state, args, debug)
     elif command == "ascend":
         return _handle_outcome(session_state, "VICTORY_ASCEND", debug)
     elif command == "defeat":
@@ -240,9 +249,32 @@ def _handle_status(session_state, debug):
     
     # Extract route visibility (TOWER-ENGINE-139)
     visibility_summary = dashboard_snapshot.get("route_visibility_summary") if dashboard_snapshot else None
+    collapse_summary = dashboard_snapshot.get("foothold_collapse_summary") if dashboard_snapshot else None
+
+    # Territorial instability (Stage-018 / TOWER-ENGINE-148)
+    claims = session_state.get("domain_claims", [])
+    highest_instability = 0.0
+    unstable_footholds = 0
+    for c in claims:
+        val = float(c.get("territorial_instability", 0.0) or 0.0)
+        highest_instability = max(highest_instability, val)
+        if val >= 0.35:
+            unstable_footholds += 1
+    territorial_instability_summary = {
+        "claims_evaluated": len(claims),
+        "unstable_footholds": unstable_footholds,
+        "highest_instability": float(round(max(0.0, min(1.0, highest_instability)), 4)),
+        "bounded_flags_clean": True
+    }
 
     if visibility_summary:
         status_msg += f" | Route Recon: {visibility_summary.get('best_visibility_band')} ({visibility_summary.get('average_information_accuracy'):.2f})"
+
+    if territorial_instability_summary["highest_instability"] > 0.0:
+        status_msg += f" | Instability: {territorial_instability_summary['highest_instability']:.2f} ({territorial_instability_summary['unstable_footholds']} unstable)"
+
+    if collapse_summary:
+        status_msg += f" | Collapse: {collapse_summary.get('highest_collapse_level', 0.0):.2f} ({collapse_summary.get('collapsed_footholds', 0)} footholds)"
 
     payload = {
         "current_floor": current_floor,
@@ -270,7 +302,9 @@ def _handle_status(session_state, debug):
         "reclamation_pressure": reclamation_record,
         "mutation_scarring": scarring_summary,
         "claim_targeting": targeting_summary,
-        "route_visibility": visibility_summary
+        "route_visibility": visibility_summary,
+        "territorial_instability": territorial_instability_summary,
+        "foothold_collapse": collapse_summary
     }
     
     # Fix traversal_pressure field name to match schema-derived total
@@ -494,12 +528,47 @@ def _handle_maintain(session_state, debug):
     
     from engine.domain.upkeep import domain_upkeep_stub
     from engine.inventory.runtime import inventory_transaction_stub
+    from engine.domain.reclamation import tower_reclamation_pressure_stub
+    from engine.domain.reclamation import claim_targeting_stub
+    from engine.residue.mutation import mutation_scarring_stub
+    from engine.residue.mutation import scar_mitigation_stub
+
+    # Pre-calc floor-wide pressure once for consistent upkeep ordering effects.
+    tower_state = session_state.get("runtime_context", {}).get("tower_state", {})
+    current_floor = tower_state.get("current_floor", 1)
+    rec_press = tower_reclamation_pressure_stub.calculate_reclamation_pressure(current_floor, claims, debug=debug)
+    floor_reclamation_pressure = float(rec_press.get("total_reclamation_pressure", 0.0) or 0.0)
     
     for claim in claims:
-        res = domain_upkeep_stub.process_claim_upkeep(claim, available_shards, debug=debug)
+        # Localized scarring increases focused targeting risk (TOWER-ENGINE-131)
+        claim_node_id = claim.get("claim_node_id")
+        scar_res = mutation_scarring_stub.calculate_localized_scarring(
+            claim_node_id, claims, current_floor, debug=debug
+        ) if claim_node_id else {"scar_intensity": 0.0}
+
+        # Stage-019: apply bounded scar mitigation (pressure reduction, not history deletion)
+        mitigation_credit = 0.0
+        if claim_node_id:
+            key = f"{current_floor}:{claim_node_id}"
+            mitigation_credit = float(session_state.get("scar_mitigation_credits", {}).get(key, 0.0) or 0.0)
+        mitigated = scar_mitigation_stub.apply_scar_mitigation(
+            claim_node_id, current_floor, scar_res, mitigation_credit=mitigation_credit, debug=debug
+        ) if claim_node_id else None
+        effective_scarring = mitigated.get("mitigated_scar_intensity", scar_res.get("scar_intensity", 0.0)) if mitigated else scar_res.get("scar_intensity", 0.0)
+        targeting_record = claim_targeting_stub.calculate_claim_targeting(
+            claim, floor_reclamation_pressure=floor_reclamation_pressure, local_scarring=effective_scarring, debug=debug
+        )
+
+        res = domain_upkeep_stub.process_claim_upkeep(
+            claim, available_shards, targeting_record=targeting_record, debug=debug
+        )
         if res["ok"]:
             # Update claim state
             claim["status"] = res["updated_status"]
+            # Persist minimal evidence for downstream reporting (Stage-018)
+            if res.get("territorial_instability"):
+                claim["territorial_instability"] = res["territorial_instability"].get("instability", claim.get("territorial_instability", 0.0))
+                claim["instability_band"] = res["territorial_instability"].get("instability_band", claim.get("instability_band", "STABLE"))
             shards_consumed = res["shards_consumed"]
             
             # Deduct shards from available pool for next claim in loop
@@ -524,10 +593,94 @@ def _handle_maintain(session_state, debug):
         "upkeep_events": results,
         "shards_consumed": total_shards_consumed,
         "updated_claims": updated_claims,
-        "inventory_transaction": session_state.get("last_inventory_transaction")
+        "inventory_transaction": session_state.get("last_inventory_transaction"),
+        "scar_mitigation_credits": session_state.get("scar_mitigation_credits", {})
     }
     
     return {"ok": True, "command": "maintain", "message": msg, "payload": payload, "error": None}
+
+
+def _handle_recover(session_state, args, debug):
+    """Spend shards to reduce instability and partially restore a foothold (Stage-019)."""
+    if not args:
+        return {"ok": False, "command": "recover", "message": "Usage: recover CLAIM_ID [EFFORT]", "payload": None, "error": "UsageError"}
+
+    claim_id = args[0]
+    effort = int(args[1]) if len(args) > 1 else 1
+    effort = max(1, min(5, effort))
+
+    claim = next((c for c in session_state.get("domain_claims", []) if c.get("claim_id") == claim_id), None)
+    if not claim:
+        return {"ok": False, "command": "recover", "message": f"Unknown claim_id: {claim_id}", "payload": None, "error": "ClaimNotFound"}
+
+    from engine.domain.recovery import foothold_recovery_stub
+    inv = session_state.get("inventory_state", {})
+    res = foothold_recovery_stub.recover_foothold(claim, inv, effort=effort, debug=debug)
+    if not res.get("ok"):
+        return {"ok": False, "command": "recover", "message": res.get("message", "Recovery failed."), "payload": res.get("payload"), "error": res.get("error")}
+
+    session_state["inventory_state"] = res["inventory_state"]
+    session_state["last_inventory_transaction"] = res.get("inventory_transaction")
+    session_state["foothold_recovery_history"].append(res.get("recovery_record"))
+
+    payload = {
+        "recovery_record": res.get("recovery_record"),
+        "recovery_summary": res.get("summary"),
+        "inventory_transaction": res.get("inventory_transaction"),
+        "updated_claim": res.get("updated_claim")
+    }
+    return {"ok": True, "command": "recover", "message": res.get("summary"), "payload": payload, "error": None}
+
+
+def _handle_mitigate(session_state, args, debug):
+    """Spend shards to add bounded mitigation credit to a node's scar pressure (Stage-019)."""
+    if not args:
+        return {"ok": False, "command": "mitigate", "message": "Usage: mitigate NODE_ID [EFFORT]", "payload": None, "error": "UsageError"}
+
+    node_id = args[0]
+    effort = int(args[1]) if len(args) > 1 else 1
+    effort = max(1, min(5, effort))
+
+    tower_state = session_state.get("runtime_context", {}).get("tower_state", {})
+    current_floor = tower_state.get("current_floor", 1)
+
+    from engine.residue.mutation import scar_mitigation_stub
+    from engine.inventory.runtime import inventory_transaction_stub
+
+    cost = scar_mitigation_stub.estimate_mitigation_cost(mitigation_effort=effort)
+    inv = session_state.get("inventory_state", {})
+    inv_res = inventory_transaction_stub.deduct_inventory_currency(inv, {"stability_shards": float(cost)}, debug=debug)
+    if not inv_res.get("ok"):
+        msg = inv_res.get("error", {}).get("message") or "Insufficient stability_shards."
+        return {"ok": False, "command": "mitigate", "message": msg, "payload": {"cost": cost}, "error": "InsufficientResources"}
+
+    # Credit adds a small, bounded mitigation effect used during targeting/upkeep.
+    credit_added = min(0.25, 0.08 * effort)
+    key = f"{current_floor}:{node_id}"
+    credits = session_state.get("scar_mitigation_credits", {})
+    prev_credit = float(credits.get(key, 0.0) or 0.0)
+    new_credit = float(round(min(0.5, prev_credit + credit_added), 4))
+    credits[key] = new_credit
+    session_state["scar_mitigation_credits"] = credits
+
+    record = {
+        "mitigation_action_id": f"mact_{uuid.uuid4()}",
+        "floor_id": int(current_floor),
+        "node_id": node_id,
+        "effort": effort,
+        "shards_spent": float(cost),
+        "previous_credit": float(round(prev_credit, 4)),
+        "new_credit": new_credit,
+        "credit_added": float(round(new_credit - prev_credit, 4)),
+        "bounded_flags_clean": True
+    }
+    session_state["scar_mitigation_history"].append(record)
+    session_state["inventory_state"] = inv_res["inventory_state"]
+    session_state["last_inventory_transaction"] = inv_res.get("transaction")
+
+    msg = f"Scar Mitigation (Floor {current_floor}, Node {node_id}): +{record['credit_added']:.2f} credit for {cost} shards."
+    payload = {"mitigation_action": record, "inventory_transaction": inv_res.get("transaction"), "scar_mitigation_credits": credits}
+    return {"ok": True, "command": "mitigate", "message": msg, "payload": payload, "error": None}
 
 
 def _handle_combat(session_state, args, debug):
@@ -1075,6 +1228,8 @@ def _handle_traversal_command(session_state, traversal_type, args, debug):
 def _handle_help():
     commands = [
         "status   - Show current tower status.",
+        "recover CID [E] - Spend shards to stabilize a foothold (default effort 1).",
+        "mitigate NID [E] - Spend shards to reduce mutation scar pressure on a node (default effort 1).",
         "ascend   - Victory! Ascend to the next floor.",
         "advance [RID] - Traversal to next floor (optional Route ID).",
         "defeat   - Defeat! Drop back and trigger mutation/marks.",

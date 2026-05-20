@@ -1,0 +1,28 @@
+{
+  "boundary_id": "tower_engine_foothold_collapse_boundary_v001",
+  "core_principle": "Footholds can partially collapse under Tower pressure, degrading benefits while preserving identity and recoverability.",
+  "runtime_responsibilities": [
+    "derive_partial_collapse_evidence_from_instability",
+    "degrade_effective_benefits_without_deleting_claim",
+    "preserve_claim_identity_and_reclaimability",
+    "report_collapse_band_for_dashboard_and_console"
+  ],
+  "runtime_non_goals": [
+    "total_deletion_of_claim_records",
+    "rendered_housing_or_base_building",
+    "real_time_structure_simulation",
+    "irreversible_dead_states"
+  ],
+  "collapse_rules": {
+    "collapse_must_be_partial": true,
+    "collapse_must_be_bounded": true,
+    "claim_identity_must_survive_damage": true,
+    "recoverability_must_be_preserved": true
+  },
+  "identity_rules": [
+    "the_tower_scars_and_pressures_order",
+    "collapse_is_a_degradation_signal_not_erasure",
+    "tower_hostility_increases_without_unrecoverable_states"
+  ]
+}
+

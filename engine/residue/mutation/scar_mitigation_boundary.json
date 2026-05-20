@@ -1,0 +1,23 @@
+{
+  "boundary_id": "tower_engine_scar_mitigation_boundary_v001",
+  "core_principle": "Players can reduce the Tower's scar pressure, but cannot erase scars or create permanent safety.",
+  "runtime_responsibilities": [
+    "spend_resources_to_reduce_scar_pressure",
+    "apply_bounded_mitigation_to_scarring_intensity",
+    "preserve_history_by_enforcing_a_minimum_scar_floor",
+    "surface_mitigation_evidence_for_dashboard_and_console"
+  ],
+  "runtime_non_goals": [
+    "total_scar_erasure",
+    "permanent_safe_zones",
+    "rendered_cleaning_or_building_simulation",
+    "multiplayer_synchronization"
+  ],
+  "mitigation_rules": {
+    "mitigation_must_cost_resources": true,
+    "mitigation_must_reduce_pressure_not_delete_history": true,
+    "mitigation_must_be_bounded": true,
+    "tower_hostility_must_be_preserved": true
+  }
+}
+
