@@ -167,6 +167,16 @@
       "description": "Report faction stability, growth, and fracture evidence."
     },
     {
+      "command": "politics status",
+      "family": "status",
+      "description": "Report current faction schisms and ideological residue."
+    },
+    {
+      "command": "politics audit",
+      "family": "logs",
+      "description": "Report political recovery, reconciliation, and betrayal evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

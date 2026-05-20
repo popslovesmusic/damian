@@ -1,0 +1,39 @@
+{
+  "contract_id": "schism-event-contract-v1",
+  "required_fields": [
+    "schism_id",
+    "source_bloc_id",
+    "trigger_source",
+    "pressure_context",
+    "ideological_residue_signature",
+    "splinter_bloc_candidates",
+    "treaty_strain_delta",
+    "market_instability_delta",
+    "relay_fragmentation_delta",
+    "tower_attention_delta",
+    "recoverability_profile",
+    "bounded_flags",
+    "schism_hash"
+  ],
+  "allowed_trigger_sources": [
+    "treaty_betrayal",
+    "market_scarcity",
+    "relay_fragmentation",
+    "failed_contract_chain",
+    "reputation_collapse",
+    "event_wave_pressure",
+    "domain_echo_dispute",
+    "resource_hoarding"
+  ],
+  "forbidden_trigger_sources": [
+    "admin_forced_split",
+    "account_punishment",
+    "os_authority_action",
+    "irreversible_exile"
+  ],
+  "validation_rules": {
+    "require_trigger_source": true,
+    "enforce_auditable_lineage": true,
+    "mandatory_recovery_path": true
+  }
+}

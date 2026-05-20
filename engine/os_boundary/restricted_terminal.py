@@ -93,6 +93,8 @@ class RestrictedAdminTerminal:
              return self._cmd_quest(parts[1:])
         elif base_cmd == "faction":
              return self._cmd_faction(parts[1:])
+        elif base_cmd == "politics":
+             return self._cmd_politics(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -531,6 +533,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Faction stability evidence missing."
                  
         return f"ERROR: Unknown faction subcommand '{args[0]}'."
+
+    def _cmd_politics(self, args):
+        if not args:
+            return "Usage: politics status | politics audit"
+            
+        if args[0] == "status":
+             # Report current schism evidence
+             evidence_path = "outputs/audits/faction_schism_generation_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("politics status", "SUCCESS")
+                 return f"Faction Schism Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("politics status", "MISSING_EVIDENCE")
+                 return "ERROR: Politics evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/political_recovery_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("politics audit", "SUCCESS")
+                 return f"Political Recovery Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("politics audit", "MISSING_EVIDENCE")
+                 return "ERROR: Political recovery evidence missing."
+                 
+        return f"ERROR: Unknown politics subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":
