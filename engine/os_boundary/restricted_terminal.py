@@ -79,6 +79,8 @@ class RestrictedAdminTerminal:
              return self._cmd_audio(parts[1:])
         elif base_cmd == "treaty":
              return self._cmd_treaty(parts[1:])
+        elif base_cmd == "reputation":
+             return self._cmd_reputation(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -310,6 +312,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Treaty burden evidence missing."
                  
         return f"ERROR: Unknown treaty subcommand '{args[0]}'."
+
+    def _cmd_reputation(self, args):
+        if not args:
+            return "Usage: reputation status | reputation audit"
+            
+        if args[0] == "status":
+             # Report current reputation snapshot
+             evidence_path = "outputs/audits/reputation_snapshot_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("reputation status", "SUCCESS")
+                 return f"Survivor Reputation Snapshot:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("reputation status", "MISSING_EVIDENCE")
+                 return "ERROR: Reputation snapshot missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/reputation_signal_generation_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("reputation audit", "SUCCESS")
+                 return f"Reputation Signal Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("reputation audit", "MISSING_EVIDENCE")
+                 return "ERROR: Reputation signal evidence missing."
+                 
+        return f"ERROR: Unknown reputation subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

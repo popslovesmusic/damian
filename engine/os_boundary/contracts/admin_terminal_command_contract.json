@@ -92,6 +92,16 @@
       "description": "Report shared burden and reward evidence from active treaties."
     },
     {
+      "command": "reputation status",
+      "family": "status",
+      "description": "Report current survivor residue reputation snapshot."
+    },
+    {
+      "command": "reputation audit",
+      "family": "logs",
+      "description": "Report history of generated reputation signals."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

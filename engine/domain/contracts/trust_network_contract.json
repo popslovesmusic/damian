@@ -1,0 +1,29 @@
+{
+  "contract_id": "residue-trust-network-v1",
+  "required_fields": [
+    "survivor_id",
+    "residue_reputation_score",
+    "treaty_trust_score",
+    "echo_attack_history",
+    "cooperation_history",
+    "betrayal_markers",
+    "retaliation_trace_count",
+    "trust_drift_state",
+    "recovery_potential",
+    "bounded_flags",
+    "trust_hash"
+  ],
+  "allowed_states": [
+    "UNKNOWN",
+    "RELIABLE",
+    "SCARRED",
+    "UNSTABLE",
+    "RECOVERING",
+    "WATCHED"
+  ],
+  "forbidden_states": [
+    "PERMANENTLY_BANNED_SOCIAL_STATE",
+    "IRREVERSIBLE_EXILE",
+    "GLOBAL_ADMIN_TRUST"
+  ]
+}

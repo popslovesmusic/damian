@@ -1,0 +1,21 @@
+{
+  "boundary_name": "Retaliation Trace",
+  "version": "1.0",
+  "allowed_effects": [
+    "targeted_echo_attention",
+    "visibility_pressure_increase",
+    "retaliation_marker_generation",
+    "trust_instability",
+    "treaty_warning_signal"
+  ],
+  "forbidden_effects": [
+    "permanent_pvp_lock",
+    "account_level_punishment",
+    "save_corruption",
+    "live_state_takeover"
+  ],
+  "enforcement": {
+    "trace_decay_period_days": 7,
+    "max_active_traces": 5
+  }
+}

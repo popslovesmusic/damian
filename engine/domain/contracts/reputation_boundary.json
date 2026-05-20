@@ -1,0 +1,31 @@
+{
+  "boundary_name": "Survivor Reputation",
+  "version": "1.0",
+  "safety_rules": {
+    "no_global_social_credit_system": true,
+    "no_permanent_irreversible_reputation_lock": true,
+    "no_hidden_reputation_mutation": true,
+    "no_real_identity_requirement": true,
+    "no_reputation_based_os_access_control": true,
+    "no_unbounded_retaliation_loops": true,
+    "reputation_must_be_contextual": true,
+    "trust_recovery_must_be_possible": true
+  },
+  "signal_policy": {
+    "allowed_positive": [
+      "successful_joint_defense",
+      "treaty_support",
+      "resource_aid",
+      "echo_defense_success",
+      "recovery_assistance",
+      "stabilization_contribution"
+    ],
+    "allowed_negative": [
+      "treaty_abandonment",
+      "resource_theft_attempt",
+      "echo_overaggression",
+      "retaliation_chain_trigger",
+      "shared_pressure_failure"
+    ]
+  }
+}
