@@ -1,0 +1,41 @@
+{
+  "contract_id": "quest-broadcast-contract-v1",
+  "required_fields": [
+    "contract_id",
+    "contract_origin",
+    "contract_type",
+    "pressure_source",
+    "relay_visibility_profile",
+    "reward_profile",
+    "risk_profile",
+    "failure_scar_profile",
+    "reputation_modifier",
+    "expiration_profile",
+    "bounded_flags",
+    "contract_hash"
+  ],
+  "allowed_types": [
+    "resource_recovery",
+    "relay_stabilization",
+    "echo_defense",
+    "survivor_extraction",
+    "market_delivery",
+    "treaty_support",
+    "pressure_suppression",
+    "event_wave_response",
+    "reputation_repair",
+    "relay_fragment_recovery"
+  ],
+  "forbidden_types": [
+    "global_safe_pass",
+    "admin_override",
+    "permanent_resource_spawn",
+    "unbounded_currency_reward",
+    "os_level_task"
+  ],
+  "validation_rules": {
+    "require_async_propagation": true,
+    "enforce_reward_balance": true,
+    "mandatory_failure_scar": true
+  }
+}

@@ -147,6 +147,16 @@
       "description": "Report market instability and resource exchange evidence."
     },
     {
+      "command": "quest status",
+      "family": "status",
+      "description": "Report current active survivor contracts and objectives."
+    },
+    {
+      "command": "quest audit",
+      "family": "logs",
+      "description": "Report history of contract failures and procedural scars."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

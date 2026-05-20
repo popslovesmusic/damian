@@ -1,0 +1,18 @@
+{
+  "boundary_name": "Survivor Contract Network",
+  "version": "1.0",
+  "safety_rules": {
+    "no_static_global_quest_board": true,
+    "no_real_time_mmo_quest_sync": true,
+    "no_perfect_quest_information": true,
+    "no_unbounded_reward_generation": true,
+    "no_admin_spawned_reputation_rewards": true,
+    "contracts_must_be_async_and_auditable": true,
+    "all_contracts_must_preserve_recoverability": true
+  },
+  "propagation_policy": {
+    "quest_visibility_must_increase_tower_attention": true,
+    "multi_survivor_contracts_must_increase_visibility_pressure": true,
+    "contracts_must_decay_or_expire": true
+  }
+}

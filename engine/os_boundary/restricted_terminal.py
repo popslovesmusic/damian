@@ -89,6 +89,8 @@ class RestrictedAdminTerminal:
              return self._cmd_event(parts[1:])
         elif base_cmd == "market":
              return self._cmd_market(parts[1:])
+        elif base_cmd == "quest":
+             return self._cmd_quest(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -469,6 +471,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Market instability evidence missing."
                  
         return f"ERROR: Unknown market subcommand '{args[0]}'."
+
+    def _cmd_quest(self, args):
+        if not args:
+            return "Usage: quest status | quest audit"
+            
+        if args[0] == "status":
+             # Report current quest/contract status
+             evidence_path = "outputs/audits/procedural_contract_generation_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("quest status", "SUCCESS")
+                 return f"Survivor Contract Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("quest status", "MISSING_EVIDENCE")
+                 return "ERROR: Contract evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/contract_failure_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("quest audit", "SUCCESS")
+                 return f"Contract Failure Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("quest audit", "MISSING_EVIDENCE")
+                 return "ERROR: Contract audit evidence missing."
+                 
+        return f"ERROR: Unknown quest subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":
