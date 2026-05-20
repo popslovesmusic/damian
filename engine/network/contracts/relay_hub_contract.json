@@ -1,0 +1,34 @@
+{
+  "contract_id": "relay-hub-contract-v1",
+  "required_fields": [
+    "relay_hub_id",
+    "hub_operator_id",
+    "connected_survivor_count",
+    "domain_echo_queue",
+    "treaty_signal_queue",
+    "reputation_visibility_profile",
+    "relay_stability",
+    "tower_attention_pressure",
+    "fragmentation_state",
+    "bounded_flags",
+    "relay_hash"
+  ],
+  "allowed_roles": [
+    "private_relay",
+    "treaty_relay",
+    "domain_echo_exchange",
+    "content_cartridge_exchange",
+    "survivor_presence_node"
+  ],
+  "forbidden_roles": [
+    "global_admin_server",
+    "real_time_world_authority",
+    "live_combat_authority",
+    "os_control_node"
+  ],
+  "validation_rules": {
+    "max_survivors_per_hub": 32,
+    "require_async_queue": true,
+    "enforce_fragmentation_logic": true
+  }
+}

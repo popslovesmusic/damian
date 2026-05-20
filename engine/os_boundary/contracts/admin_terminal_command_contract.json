@@ -112,6 +112,16 @@
       "description": "Report cross-world transit and identity continuity evidence."
     },
     {
+      "command": "relay status",
+      "family": "status",
+      "description": "Report current relay hub and social presence status."
+    },
+    {
+      "command": "relay audit",
+      "family": "logs",
+      "description": "Report history of relay visibility and fragmentation evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

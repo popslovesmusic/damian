@@ -83,6 +83,8 @@ class RestrictedAdminTerminal:
              return self._cmd_reputation(parts[1:])
         elif base_cmd == "transit":
              return self._cmd_transit(parts[1:])
+        elif base_cmd == "relay":
+             return self._cmd_relay(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -365,6 +367,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Transit evidence missing."
                  
         return f"ERROR: Unknown transit subcommand '{args[0]}'."
+
+    def _cmd_relay(self, args):
+        if not args:
+            return "Usage: relay status | relay audit"
+        
+        if args[0] == "status":
+             # Report active relay hub status
+             evidence_path = "outputs/audits/distributed_survivor_hub_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("relay status", "SUCCESS")
+                 return f"Relay Hub Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("relay status", "MISSING_EVIDENCE")
+                 return "ERROR: Relay hub evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/relay_visibility_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("relay audit", "SUCCESS")
+                 return f"Relay Visibility Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("relay audit", "MISSING_EVIDENCE")
+                 return "ERROR: Relay visibility evidence missing."
+                 
+        return f"ERROR: Unknown relay subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

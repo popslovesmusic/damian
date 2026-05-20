@@ -1,0 +1,18 @@
+{
+  "boundary_name": "Tower Relay Node",
+  "version": "1.0",
+  "safety_rules": {
+    "no_centralized_mmo_authority": true,
+    "no_live_global_world_sync": true,
+    "no_unrestricted_peer_networking": true,
+    "no_direct_os_or_host_access": true,
+    "no_relay_admin_global_control": true,
+    "relay_nodes_must_be_bounded_and_auditable": true,
+    "message_exchange_must_be_async_by_default": true,
+    "relay_failures_must_be_recoverable": true
+  },
+  "visibility_policy": {
+    "increased_survivor_presence_increases_attention": true,
+    "relay_stability_inversely_coupled_to_pressure": true
+  }
+}
