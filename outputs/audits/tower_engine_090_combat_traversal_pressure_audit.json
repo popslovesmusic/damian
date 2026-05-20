@@ -1,0 +1,41 @@
+{
+  "patch_id": "TOWER-ENGINE-090",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/combat/runtime/tests/test_combat_traversal_pressure_integration.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/combat/combat_traversal_pressure_integration.md",
+      "status": "PASS"
+    },
+    {
+      "check": "make_combat_session accepts traversal summary",
+      "status": "PASS"
+    },
+    {
+      "check": "resolve_combat_session implements traversal bias",
+      "status": "PASS"
+    },
+    {
+      "check": "resolve_combat_session reports bias reasoning",
+      "status": "PASS"
+    },
+    {
+      "check": "Combat traversal pressure integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/combat/runtime/tests/test_mvp_combat_resolution_stub.py passes",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test tests/validate_mvp_combat_boundary.py passes",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TraversalEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "player_id",
+    "source_floor_id",
+    "destination_floor_id",
+    "traversal_type",
+    "traversal_pressure",
+    "escape_risk",
+    "route_exposure",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "source_floor_id": { "type": "string" },
+    "destination_floor_id": { "type": "string" },
+    "traversal_type": {
+      "enum": [
+        "advance",
+        "retreat",
+        "escape_attempt",
+        "supply_run",
+        "mutation_route"
+      ]
+    },
+    "traversal_pressure": {
+      "type": "object",
+      "required": [
+        "capacity_pressure",
+        "mutation_pressure",
+        "combat_exposure",
+        "repair_burden"
+      ],
+      "properties": {
+        "capacity_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "mutation_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "combat_exposure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "repair_burden": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "escape_risk": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "route_exposure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "bounded_flags_clean": { "const": true }
+  }
+}

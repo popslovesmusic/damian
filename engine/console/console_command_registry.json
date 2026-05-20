@@ -41,6 +41,22 @@
       "description": "Show help message."
     },
     {
+      "command": "potion",
+      "description": "Consume one or more Ash Potions from inventory.",
+      "variants": [
+        "potion",
+        "potion <quantity>"
+      ]
+    },
+    {
+      "command": "repair",
+      "description": "Deduct one or more repair materials from inventory.",
+      "variants": [
+        "repair",
+        "repair <quantity>"
+      ]
+    },
+    {
       "command": "combat",
       "description": "Resolve a deterministic bounded combat stub for the current floor.",
       "variants": [
@@ -48,6 +64,14 @@
         "combat dangerous",
         "combat exhausted"
       ]
+    },
+    {
+      "command": "advance",
+      "description": "Attempt bounded traversal advance using traversal pressure and existing MVP outcome pipeline."
+    },
+    {
+      "command": "escape",
+      "description": "Attempt bounded retreat/escape using traversal pressure and existing MVP outcome pipeline."
     }
   ]
 }

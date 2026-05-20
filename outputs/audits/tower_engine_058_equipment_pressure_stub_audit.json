@@ -1,0 +1,43 @@
+{
+  "patch_id": "TOWER-ENGINE-058",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/equipment/runtime/equipment_pressure_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/equipment/runtime/tests/test_equipment_pressure_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/equipment/minimal_equipment_pressure_stub.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: calculate_aggregate_equipment_pressure",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: build_equipment_loadout",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_equipment_item",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_equipment_loadout",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_equipment_pressure",
+      "status": "PASS"
+    },
+    {
+      "check": "Equipment pressure unit tests pass",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

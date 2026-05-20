@@ -1,0 +1,16 @@
+{
+  "event_id": "traversal_event_example_001",
+  "player_id": "player_default_001",
+  "source_floor_id": "floor_03",
+  "destination_floor_id": "floor_04",
+  "traversal_type": "advance",
+  "traversal_pressure": {
+    "capacity_pressure": 0.42,
+    "mutation_pressure": 0.31,
+    "combat_exposure": 0.57,
+    "repair_burden": 0.28
+  },
+  "escape_risk": 0.36,
+  "route_exposure": 0.52,
+  "bounded_flags_clean": true
+}

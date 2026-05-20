@@ -74,8 +74,14 @@ def make_loot_event(floor_id, source='combat_reward', outcome='VICTORY_ASCEND', 
     # Select rewards based on source and outcome
     if source == 'survivor_mark_reward':
         rewards_data = stub_data["survivor_mark_reward"]
+        items_data = []
     else:
         rewards_data = stub_data.get(outcome, stub_data["RETREAT_TO_HUB"])
+        # Give some basic repair materials on victory to test maintenance loop
+        if outcome == "VICTORY_ASCEND":
+            items_data = [{"item_id": "repair_material_basic", "quantity": 5, "capacity_cost": 1}]
+        else:
+            items_data = []
 
     # Resource Sink Pressure Defaults
     resource_sink_pressure = {
@@ -100,6 +106,7 @@ def make_loot_event(floor_id, source='combat_reward', outcome='VICTORY_ASCEND', 
         "source": source,
         "outcome": outcome if source == 'combat_reward' else "N/A",
         "rewards": rewards_data,
+        "items": items_data,
         "resource_sink_pressure": resource_sink_pressure,
         "bounded_reward_flags": bounded_reward_flags
     }

@@ -28,7 +28,16 @@ def mock_tower_state():
         "last_outcome": "NONE",
         "updated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "global_residue": {},
-        "floor_memory": []
+        "floor_memory": [
+            {
+                "floor_id": 1,
+                "visit_count": 0, "death_count": 0, "victory_count": 0,
+                "stability": 1.0, "deviation": 0.0, "mutation_level": 0,
+                "known_layout_seed": "test_seed",
+                "active_mutations": [], "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [], "residue_history": []
+            }
+        ]
     }
 
 def test_make_combat_session(mock_player_state):

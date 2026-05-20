@@ -1,0 +1,21 @@
+{
+  "escape_resolution_id": "escape_resolution_example_001",
+  "player_id": "player_default_001",
+  "floor_id": 2,
+  "source_route_id": "tower_floor_002_escape_route_a",
+  "escape_risk": 0.72,
+  "route_exposure": 0.64,
+  "escape_modifier": -0.18,
+  "outcome": "ESCAPE_FAILED_PRESSURE_SPIKE",
+  "pipeline_outcome": "RETREAT_TO_HUB",
+  "residue_written": true,
+  "mutation_pressure_delta": 0.08,
+  "resource_loss": {
+    "gold": 250,
+    "potions": 1,
+    "repair_materials": 0
+  },
+  "recoverability_preserved": true,
+  "floor_identity_preserved": true,
+  "bounded_flags_clean": true
+}

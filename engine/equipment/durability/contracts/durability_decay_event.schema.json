@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DurabilityDecayEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "equipment_item_id",
+    "source",
+    "durability_before",
+    "durability_after",
+    "maximum_durability",
+    "durability_loss",
+    "decay_pressure",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "equipment_item_id": { "type": "string" },
+    "source": {
+      "enum": [
+        "combat_pressure",
+        "high_capacity_pressure",
+        "mutation_instability",
+        "scripted_test"
+      ]
+    },
+    "durability_before": { "type": "number", "minimum": 0 },
+    "durability_after": { "type": "number", "minimum": 0 },
+    "maximum_durability": { "type": "number", "minimum": 1 },
+    "durability_loss": { "type": "number", "minimum": 0 },
+    "decay_pressure": {
+      "type": "object",
+      "required": [
+        "combat_pressure",
+        "repair_pressure",
+        "mutation_affinity",
+        "capacity_pressure"
+      ],
+      "properties": {
+        "combat_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "repair_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "mutation_affinity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "capacity_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "bounded_flags_clean": { "const": true }
+  }
+}

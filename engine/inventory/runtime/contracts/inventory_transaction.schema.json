@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InventoryTransaction",
+  "type": "object",
+  "required": [
+    "transaction_id",
+    "inventory_id",
+    "player_id",
+    "transaction_type",
+    "items_added",
+    "items_deducted",
+    "currency_delta",
+    "capacity_before",
+    "capacity_after",
+    "inventory_capacity",
+    "transaction_applied",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "transaction_id": { "type": "string" },
+    "inventory_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "transaction_type": {
+      "enum": [
+        "ADD_LOOT",
+        "CONSUME_ITEM",
+        "DEDUCT_REPAIR_MATERIAL",
+        "DEDUCT_CURRENCY",
+        "CAPACITY_CHECK",
+        "FAILED_SAFE"
+      ]
+    },
+    "items_added": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "quantity"],
+        "properties": {
+          "item_id": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "items_deducted": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "quantity"],
+        "properties": {
+          "item_id": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "currency_delta": {
+      "type": "object",
+      "required": ["gold", "domain_essence", "stability_shards", "residue_fragments", "rare_materials"],
+      "properties": {
+        "gold": { "type": "number" },
+        "domain_essence": { "type": "number" },
+        "stability_shards": { "type": "number" },
+        "residue_fragments": { "type": "number" },
+        "rare_materials": { "type": "number" }
+      }
+    },
+    "capacity_before": { "type": "integer", "minimum": 0 },
+    "capacity_after": { "type": "integer", "minimum": 0 },
+    "inventory_capacity": { "type": "integer", "minimum": 1 },
+    "transaction_applied": { "type": "boolean" },
+    "failure_reason": { "type": ["string", "null"] },
+    "bounded_flags_clean": { "type": "boolean" }
+  }
+}

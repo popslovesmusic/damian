@@ -1,0 +1,36 @@
+{
+  "boundary_id": "tower_engine_room_traversal_boundary_v001",
+  "core_principle": "Room traversal exists to turn abstract traversal pressure into route-specific spatial consequence without requiring rendered maps or pathfinding.",
+  "runtime_responsibilities": [
+    "represent_room_to_room_routes",
+    "track_route_exposure",
+    "track_environmental_pressure_profiles",
+    "track_mutation_scars",
+    "track_survivor_mark_route_opportunities",
+    "report_route_pressure",
+    "preserve_floor_identity",
+    "preserve_playability"
+  ],
+  "runtime_non_goals": [
+    "rendered_map_runtime",
+    "pathfinding_runtime",
+    "real_time_movement",
+    "animation_runtime",
+    "multiplayer_sync",
+    "inventory_ui"
+  ],
+  "route_pressure_policy": {
+    "routes_should_have_distinct_exposure_profiles": true,
+    "route_exposure_should_feed_traversal_pressure": true,
+    "mutation_scars_should_influence_route_pressure": true,
+    "survivor_mark_routes_should_remain_optional": true,
+    "critical_route_must_remain_valid": true
+  },
+  "identity_rules": [
+    "room_routes_must_not_bypass_defeat",
+    "room_routes_must_not_bypass_residue",
+    "room_routes_must_not_create_free_escape",
+    "room_routes_must_not_destroy_floor_identity",
+    "room_routes_must_make_spatial_pressure_visible"
+  ]
+}

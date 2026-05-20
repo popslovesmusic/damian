@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "InventoryState",
+  "type": "object",
+  "required": ["inventory_id", "player_id", "items", "currency", "inventory_capacity"],
+  "properties": {
+    "inventory_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "inventory_item.schema.json" }
+    },
+    "currency": {
+      "type": "object",
+      "required": ["gold", "domain_essence", "stability_shards", "residue_fragments", "rare_materials"],
+      "properties": {
+        "gold": { "type": "number", "minimum": 0 },
+        "domain_essence": { "type": "number", "minimum": 0 },
+        "stability_shards": { "type": "number", "minimum": 0 },
+        "residue_fragments": { "type": "number", "minimum": 0 },
+        "rare_materials": { "type": "number", "minimum": 0 }
+      }
+    },
+    "inventory_capacity": { "type": "integer", "minimum": 1 },
+    "used_capacity": { "type": "integer", "minimum": 0 },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

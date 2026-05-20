@@ -1,0 +1,54 @@
+{
+  "patch_id": "TOWER-ENGINE-080",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/equipment/repair/repair_runtime_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/equipment/repair/contracts/repair_event.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/equipment/repair/contracts/example_repair_event.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/repair/mvp_repair_runtime_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required repair policy",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes residue identity rule",
+      "status": "PASS"
+    },
+    {
+      "check": "Example event validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example durability remains within max bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "Example durability delta is consistent",
+      "status": "PASS"
+    },
+    {
+      "check": "Example repair_applied is True",
+      "status": "PASS"
+    },
+    {
+      "check": "Example bounded_flags_clean is True",
+      "status": "PASS"
+    }
+  ]
+}

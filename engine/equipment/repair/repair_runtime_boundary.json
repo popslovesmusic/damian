@@ -1,0 +1,36 @@
+{
+  "boundary_id": "tower_engine_repair_runtime_boundary_v001",
+  "core_principle": "Repair exists to convert material inventory burden into bounded durability restoration without erasing the larger consequences of combat, residue, mutation, or defeat.",
+  "runtime_responsibilities": [
+    "consume_repair_materials",
+    "restore_bounded_durability",
+    "prevent_over_repair",
+    "report_repair_pressure",
+    "preserve_equipment_identity",
+    "preserve_bounded_flags",
+    "fail_safely_on_insufficient_materials"
+  ],
+  "runtime_non_goals": [
+    "full_equipment_runtime",
+    "stat_scaling_runtime",
+    "crafting_runtime",
+    "shop_runtime",
+    "inventory_ui",
+    "real_time_equipment_simulation"
+  ],
+  "repair_policy": {
+    "repair_requires_materials": true,
+    "repair_cannot_exceed_maximum_durability": true,
+    "repair_amount_is_bounded": true,
+    "insufficient_materials_fail_safely": true,
+    "failed_repair_does_not_modify_equipment": true,
+    "failed_repair_does_not_modify_inventory": true
+  },
+  "identity_rules": [
+    "repair_must_not_cancel_residue",
+    "repair_must_not_prevent_defeat",
+    "repair_must_not_grant_invulnerability",
+    "repair_must_not_remove_operational_burden",
+    "repair_must_not_create_free_upkeep"
+  ]
+}

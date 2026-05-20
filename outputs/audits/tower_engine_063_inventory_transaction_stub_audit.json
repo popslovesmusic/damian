@@ -1,0 +1,59 @@
+{
+  "patch_id": "TOWER-ENGINE-063",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/inventory/runtime/inventory_transaction_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/inventory/runtime/tests/test_inventory_transaction_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/inventory_runtime/minimal_inventory_transaction_stub.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: make_default_inventory_state",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: apply_inventory_transaction",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: add_loot_to_inventory",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: consume_inventory_item",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: deduct_inventory_currency",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: check_inventory_capacity",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_inventory_state",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_inventory_transaction",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_inventory_state",
+      "status": "PASS"
+    },
+    {
+      "check": "Inventory transaction unit tests pass",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

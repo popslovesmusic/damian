@@ -1,0 +1,43 @@
+{
+  "patch_id": "TOWER-ENGINE-077",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/combat/runtime/mvp_combat_resolution_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/combat/runtime/tests/test_combat_durability_decay_integration.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/combat/combat_durability_decay_integration.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Stub imports durability_decay_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "resolve_combat_session applies loadout decay",
+      "status": "PASS"
+    },
+    {
+      "check": "result includes durability_decay_applied",
+      "status": "PASS"
+    },
+    {
+      "check": "Combat durability integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/combat/runtime/tests/test_mvp_combat_resolution_stub.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/combat/runtime/tests/test_combat_equipment_pressure_integration.py passes",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RoomTraversalRoute",
+  "type": "object",
+  "required": [
+    "route_id",
+    "floor_id",
+    "from_node_id",
+    "to_node_id",
+    "route_type",
+    "environmental_profile",
+    "route_exposure",
+    "escape_modifier",
+    "supports_survivor_mark",
+    "critical_route",
+    "playability_preserved",
+    "identity_preserved",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "route_id": { "type": "string" },
+    "floor_id": { "type": "integer" },
+    "from_node_id": { "type": "string" },
+    "to_node_id": { "type": "string" },
+    "route_type": {
+      "enum": [
+        "primary_route",
+        "side_route",
+        "recovery_route",
+        "pressure_route",
+        "survivor_mark_route",
+        "escape_route"
+      ]
+    },
+    "environmental_profile": {
+      "type": "object",
+      "required": [
+        "darkness",
+        "instability",
+        "enemy_exposure",
+        "resource_drain",
+        "mutation_scarring"
+      ],
+      "properties": {
+        "darkness": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "instability": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "enemy_exposure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "resource_drain": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "mutation_scarring": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "route_exposure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "escape_modifier": { "type": "number", "minimum": -1.0, "maximum": 1.0 },
+    "supports_survivor_mark": { "type": "boolean" },
+    "critical_route": { "type": "boolean" },
+    "playability_preserved": { "type": "boolean", "const": true },
+    "identity_preserved": { "type": "boolean", "const": true },
+    "bounded_flags_clean": { "type": "boolean", "const": true }
+  }
+}

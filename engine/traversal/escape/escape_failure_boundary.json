@@ -1,0 +1,45 @@
+{
+  "boundary_id": "tower_engine_escape_failure_boundary_v001",
+  "core_principle": "Escape failure turns retreat pressure into consequence without making retreat impossible or creating unrecoverable dead states.",
+  "runtime_responsibilities": [
+    "resolve_escape_attempts",
+    "report_escape_success_or_failure",
+    "write_escape_residue",
+    "apply_bounded_failure_consequences",
+    "support_mutation_pressure",
+    "preserve_recoverability",
+    "preserve_floor_identity",
+    "preserve_bounded_flags"
+  ],
+  "runtime_non_goals": [
+    "real_time_chase_system",
+    "rendered_map_runtime",
+    "pathfinding_runtime",
+    "enemy_ai_runtime",
+    "animation_runtime",
+    "multiplayer_sync",
+    "inventory_ui"
+  ],
+  "allowed_escape_outcomes": [
+    "ESCAPE_SUCCESS",
+    "ESCAPE_PARTIAL",
+    "ESCAPE_FAILED_RETREAT_DROP",
+    "ESCAPE_FAILED_PRESSURE_SPIKE",
+    "ESCAPE_FAILED_RESOURCE_LOSS"
+  ],
+  "bounded_failure_consequences": [
+    "write_escape_residue",
+    "increase_route_exposure",
+    "increase_mutation_pressure",
+    "deduct_small_resource_cost",
+    "apply_defeat_drop_when_failure_severe",
+    "preserve_recoverability"
+  ],
+  "identity_rules": [
+    "escape_failure_must_not_create_permanent_loss",
+    "escape_failure_must_not_delete_floor_identity",
+    "escape_failure_must_not_block_future_play",
+    "escape_failure_must_not_bypass_residue",
+    "escape_failure_must_strengthen_recursive_survival_pressure"
+  ]
+}

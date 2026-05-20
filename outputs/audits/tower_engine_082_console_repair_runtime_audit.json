@@ -1,0 +1,71 @@
+{
+  "patch_id": "TOWER-ENGINE-082",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/runtime/tests/test_mvp_text_console_repair_runtime.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_repair_runtime_integration.md",
+      "status": "PASS"
+    },
+    {
+      "check": "repair_runtime_stub imported in console",
+      "status": "PASS"
+    },
+    {
+      "check": "repair command selects item",
+      "status": "PASS"
+    },
+    {
+      "check": "repair command calls apply_repair",
+      "status": "PASS"
+    },
+    {
+      "check": "repair command persists updated state",
+      "status": "PASS"
+    },
+    {
+      "check": "Console repair runtime integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_command.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_enemy_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_loot.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_equipment_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_consumables.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_repair_materials.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_capacity_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_durability_decay.py passes",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "patch_id": "TOWER-ENGINE-068",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/runtime/tests/test_mvp_text_console_repair_materials.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_repair_material_drain_command.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Console command registry includes repair",
+      "status": "PASS"
+    },
+    {
+      "check": "_handle_repair implemented",
+      "status": "PASS"
+    },
+    {
+      "check": "repair command dispatched",
+      "status": "PASS"
+    },
+    {
+      "check": "repair uses inventory stub",
+      "status": "PASS"
+    },
+    {
+      "check": "Repair command unit tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_command.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_enemy_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_loot.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_equipment_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_consumables.py passes",
+      "status": "PASS"
+    }
+  ]
+}

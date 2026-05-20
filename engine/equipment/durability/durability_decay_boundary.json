@@ -1,0 +1,35 @@
+{
+  "boundary_id": "tower_engine_durability_decay_boundary_v001",
+  "core_principle": "Durability decay exists to materialize operational wear, repair burden, and combat strain without erasing equipment identity or bypassing recursive consequence.",
+  "runtime_responsibilities": [
+    "track_current_durability",
+    "track_maximum_durability",
+    "apply_bounded_decay",
+    "report_decay_pressure",
+    "prevent_negative_durability",
+    "preserve_equipment_identity",
+    "preserve_bounded_flags"
+  ],
+  "runtime_non_goals": [
+    "full_repair_runtime",
+    "full_equipment_runtime",
+    "stat_scaling_runtime",
+    "equipment_break_animation",
+    "inventory_ui",
+    "real_time_equipment_simulation"
+  ],
+  "decay_policy": {
+    "durability_must_not_go_negative": true,
+    "zero_durability_allowed_for_future_behavior": true,
+    "durability_decay_should_scale_with_pressure": true,
+    "durability_decay_should_be_deterministic_for_mvp": true,
+    "repair_materials_required_for_future_restoration": true
+  },
+  "identity_rules": [
+    "durability_must_not_bypass_defeat",
+    "durability_must_not_bypass_residue",
+    "durability_must_not_delete_equipment_for_mvp",
+    "durability_must_not_create_invulnerability",
+    "durability_decay_should_create_operational_tension"
+  ]
+}

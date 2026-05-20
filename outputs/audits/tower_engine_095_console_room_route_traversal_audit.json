@@ -1,0 +1,87 @@
+{
+  "patch_id": "TOWER-ENGINE-095",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/runtime/tests/test_mvp_text_console_room_route_traversal.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_room_route_traversal.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Room builders imported in console",
+      "status": "PASS"
+    },
+    {
+      "check": "advance/escape builds room graph",
+      "status": "PASS"
+    },
+    {
+      "check": "advance/escape builds room routes",
+      "status": "PASS"
+    },
+    {
+      "check": "advance/escape selects route",
+      "status": "PASS"
+    },
+    {
+      "check": "command payload includes room evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "Console room route traversal integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_command.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_enemy_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_loot.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_equipment_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_consumables.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_repair_materials.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_capacity_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_durability_decay.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_repair_runtime.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_traversal_status.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_traversal_commands.py passes",
+      "status": "PASS"
+    }
+  ]
+}

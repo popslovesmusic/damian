@@ -1,0 +1,40 @@
+{
+  "patch_id": "TOWER-ENGINE-094",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/traversal/runtime/tests/test_traversal_pressure_room_routes.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/traversal/traversal_pressure_room_route_integration.md",
+      "status": "PASS"
+    },
+    {
+      "check": "calculate_traversal_pressure signature updated",
+      "status": "PASS"
+    },
+    {
+      "check": "calculate_escape_risk signature updated",
+      "status": "PASS"
+    },
+    {
+      "check": "make_traversal_event signature updated",
+      "status": "PASS"
+    },
+    {
+      "check": "Event includes total_pressure",
+      "status": "PASS"
+    },
+    {
+      "check": "Room route traversal pressure integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/traversal/runtime/tests/test_traversal_pressure_stub.py passes",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

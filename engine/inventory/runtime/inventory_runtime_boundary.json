@@ -1,0 +1,41 @@
+{
+  "boundary_id": "tower_engine_inventory_runtime_boundary_v001",
+  "core_principle": "Inventory runtime exists to make resource pressure material: supplies can be gained, consumed, depleted, repaired, overloaded, or lost without removing defeat or residue consequences.",
+  "runtime_responsibilities": [
+    "track_item_quantities",
+    "track_currency_quantities",
+    "deduct_consumables",
+    "deduct_repair_materials",
+    "track_capacity_usage",
+    "report_capacity_pressure",
+    "reject_invalid_transactions",
+    "preserve_bounded_item_flags"
+  ],
+  "runtime_non_goals": [
+    "full_equipment_runtime",
+    "crafting_runtime",
+    "shop_runtime",
+    "inventory_ui",
+    "multiplayer_trading",
+    "real_money_economy",
+    "gear_stat_scaling"
+  ],
+  "capacity_policy": {
+    "capacity_pressure_should_accumulate": true,
+    "capacity_pressure_should_not_average": true,
+    "over_capacity_allowed_for_future_rules": false,
+    "used_capacity_must_not_exceed_inventory_capacity_for_mvp": true
+  },
+  "deduction_policy": {
+    "insufficient_resources_fail_safely": true,
+    "deductions_must_not_create_negative_quantities": true,
+    "failed_deduction_must_not_modify_inventory": true
+  },
+  "identity_rules": [
+    "inventory_must_not_prevent_defeat",
+    "inventory_must_not_bypass_residue",
+    "inventory_must_not_grant_invulnerability",
+    "inventory_must_not_create_infinite_storage",
+    "inventory_must_make_resource_pressure_visible"
+  ]
+}

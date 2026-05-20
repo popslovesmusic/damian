@@ -1,0 +1,25 @@
+{
+  "repair_event_id": "repair_event_example_001",
+  "equipment_item_id": "ash_blade_alpha",
+  "inventory_id": "inventory_example_001",
+  "player_id": "player_default_001",
+  "materials_required": [
+    {
+      "item_id": "repair_material_basic",
+      "quantity": 2
+    }
+  ],
+  "materials_consumed": [
+    {
+      "item_id": "repair_material_basic",
+      "quantity": 2
+    }
+  ],
+  "durability_before": 68,
+  "durability_after": 78,
+  "maximum_durability": 100,
+  "durability_restored": 10,
+  "repair_applied": true,
+  "failure_reason": null,
+  "bounded_flags_clean": true
+}

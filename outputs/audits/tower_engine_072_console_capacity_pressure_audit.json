@@ -1,0 +1,59 @@
+{
+  "patch_id": "TOWER-ENGINE-072",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/runtime/tests/test_mvp_text_console_capacity_pressure.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_capacity_pressure_evidence.md",
+      "status": "PASS"
+    },
+    {
+      "check": "inventory_capacity_pressure imported in console",
+      "status": "PASS"
+    },
+    {
+      "check": "status command uses capacity summary",
+      "status": "PASS"
+    },
+    {
+      "check": "payload includes capacity_pressure_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Console capacity pressure integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_command.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_enemy_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_loot.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_equipment_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_consumables.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_repair_materials.py passes",
+      "status": "PASS"
+    }
+  ]
+}

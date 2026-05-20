@@ -1,0 +1,21 @@
+{
+  "route_id": "tower_floor_002_route_entry_to_pressure",
+  "floor_id": 2,
+  "from_node_id": "entry_a",
+  "to_node_id": "pressure_a",
+  "route_type": "pressure_route",
+  "environmental_profile": {
+    "darkness": 0.42,
+    "instability": 0.36,
+    "enemy_exposure": 0.58,
+    "resource_drain": 0.31,
+    "mutation_scarring": 0.27
+  },
+  "route_exposure": 0.49,
+  "escape_modifier": -0.12,
+  "supports_survivor_mark": false,
+  "critical_route": true,
+  "playability_preserved": true,
+  "identity_preserved": true,
+  "bounded_flags_clean": true
+}

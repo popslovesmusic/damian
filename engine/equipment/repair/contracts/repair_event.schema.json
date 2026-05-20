@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RepairEvent",
+  "type": "object",
+  "required": [
+    "repair_event_id",
+    "equipment_item_id",
+    "inventory_id",
+    "player_id",
+    "materials_required",
+    "materials_consumed",
+    "durability_before",
+    "durability_after",
+    "maximum_durability",
+    "durability_restored",
+    "repair_applied",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "repair_event_id": { "type": "string" },
+    "equipment_item_id": { "type": "string" },
+    "inventory_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "materials_required": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "quantity"],
+        "properties": {
+          "item_id": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "materials_consumed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "quantity"],
+        "properties": {
+          "item_id": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "durability_before": { "type": "number", "minimum": 0 },
+    "durability_after": { "type": "number", "minimum": 0 },
+    "maximum_durability": { "type": "number", "minimum": 1 },
+    "durability_restored": { "type": "number", "minimum": 0 },
+    "repair_applied": { "type": "boolean" },
+    "failure_reason": { "type": ["string", "null"] },
+    "bounded_flags_clean": { "const": true }
+  }
+}

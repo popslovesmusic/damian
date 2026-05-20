@@ -1,0 +1,35 @@
+{
+  "patch_id": "TOWER-ENGINE-071",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/inventory/runtime/inventory_transaction_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/inventory/runtime/tests/test_inventory_transaction_capacity_pressure.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/inventory_runtime/inventory_transaction_capacity_pressure.md",
+      "status": "PASS"
+    },
+    {
+      "check": "summarize_inventory_state accepts debug arg",
+      "status": "PASS"
+    },
+    {
+      "check": "Transaction returns capacity_pressure_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Transaction capacity pressure unit tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Original inventory transaction unit tests still pass",
+      "status": "PASS"
+    }
+  ]
+}

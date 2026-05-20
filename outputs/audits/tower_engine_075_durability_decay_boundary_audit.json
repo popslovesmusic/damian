@@ -1,0 +1,46 @@
+{
+  "patch_id": "TOWER-ENGINE-075",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/equipment/durability/durability_decay_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/equipment/durability/contracts/durability_decay_event.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/equipment/durability/contracts/example_durability_decay_event.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/durability/mvp_durability_decay_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required decay policy",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes residue identity rule",
+      "status": "PASS"
+    },
+    {
+      "check": "Example event validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example durability logic is consistent",
+      "status": "PASS"
+    },
+    {
+      "check": "Example bounded_flags_clean is True",
+      "status": "PASS"
+    }
+  ]
+}

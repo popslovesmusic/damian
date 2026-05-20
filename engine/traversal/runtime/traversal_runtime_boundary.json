@@ -1,0 +1,35 @@
+{
+  "boundary_id": "tower_engine_traversal_runtime_boundary_v001",
+  "core_principle": "Traversal exists to materialize movement burden, escape tension, exposure pressure, and route consequence without requiring real-time movement or rendered maps.",
+  "runtime_responsibilities": [
+    "track_traversal_pressure",
+    "track_escape_pressure",
+    "track_route_exposure",
+    "track_capacity_interaction",
+    "track_mutation_interaction",
+    "report_traversal_risk",
+    "preserve_bounded_flags"
+  ],
+  "runtime_non_goals": [
+    "real_time_movement",
+    "rendered_map_runtime",
+    "pathfinding_runtime",
+    "animation_runtime",
+    "multiplayer_sync",
+    "inventory_ui"
+  ],
+  "traversal_policy": {
+    "traversal_pressure_should_scale_with_capacity_pressure": true,
+    "traversal_pressure_should_scale_with_mutation_affinity": true,
+    "escape_pressure_should_be_bounded": true,
+    "retreat_failure_allowed_for_future_behavior": true,
+    "traversal_runtime_should_be_deterministic_for_mvp": true
+  },
+  "identity_rules": [
+    "traversal_must_not_bypass_defeat",
+    "traversal_must_not_bypass_residue",
+    "traversal_must_not_create_free_escape",
+    "traversal_must_not_remove_operational_burden",
+    "traversal_should_strengthen_recursive_survival_pressure"
+  ]
+}

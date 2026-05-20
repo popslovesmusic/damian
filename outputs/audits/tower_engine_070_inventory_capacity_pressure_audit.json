@@ -1,0 +1,39 @@
+{
+  "patch_id": "TOWER-ENGINE-070",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/inventory/runtime/inventory_capacity_pressure.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/inventory/runtime/tests/test_inventory_capacity_pressure.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/inventory_runtime/inventory_capacity_pressure.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: calculate_capacity_pressure",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_capacity_bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: apply_capacity_pressure_to_inventory_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_capacity_pressure",
+      "status": "PASS"
+    },
+    {
+      "check": "Inventory capacity pressure unit tests pass",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

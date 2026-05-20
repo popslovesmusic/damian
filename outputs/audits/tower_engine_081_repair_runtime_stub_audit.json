@@ -1,0 +1,43 @@
+{
+  "patch_id": "TOWER-ENGINE-081",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/equipment/repair/repair_runtime_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/equipment/repair/tests/test_repair_runtime_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/repair/minimal_repair_runtime_stub.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: calculate_repair_amount",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: make_repair_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: apply_repair",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_repair_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_repair_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Repair stub unit tests pass",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

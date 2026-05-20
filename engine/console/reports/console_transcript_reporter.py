@@ -41,6 +41,7 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     enemy_pressure_profiles_observed = 0
     enemy_archetypes_observed = []
     enemy_adaptation_reasoning_observed = []
+    attrition_pressure_observed = True if False else False # Placeholder to avoid unused warnings if needed
     attrition_pressure_observed = False
     counter_pressure_observed = False
     ambush_pressure_observed = False
@@ -55,12 +56,90 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     loot_sources_observed = []
     resource_sink_summaries = []
     
+    # Inventory observation
+    inventory_transactions_observed = 0
+    inventory_applications_observed = 0
+    inventory_failures_observed = 0
+    total_gold_added_to_inventory = 0
+    items_added_to_inventory = []
+    items_deducted_from_inventory = []
+    capacity_pressure_observed = False
+    capacity_pressure_values_observed = []
+    capacity_bands_observed = []
+    highest_capacity_pressure_observed = 0.0
+    over_capacity_failures_observed = 0
+    inventory_summaries = []
+    material_burden_summaries = []
+    
+    # Consumable drain observation (TOWER-ENGINE-067)
+    consumable_uses_observed = 0
+    consumables_deducted_observed = 0
+    failed_consumable_attempts_observed = 0
+    potion_drain_observed = False
+    total_potions_consumed = 0
+    consumable_drain_summaries = []
+
+    # Repair material observation (TOWER-ENGINE-069)
+    repair_material_uses_observed = 0
+    repair_materials_deducted_observed = 0
+    failed_repair_attempts_observed = 0
+    repair_material_drain_observed = False
+    durability_restoration_observed = False
+    repair_drain_summaries = []
+
+    # Repair runtime observation (TOWER-ENGINE-083)
+    repair_events_observed = 0
+    repair_applications_observed = 0
+    repair_failures_observed = 0
+    total_durability_restored_observed = 0.0
+    repair_materials_consumed_observed = 0
+    equipment_items_repaired_observed = []
+    bounded_repair_clean = True
+    repair_runtime_summaries = []
+
+    # Traversal observation (TOWER-ENGINE-089)
+    traversal_events_observed = 0
+    advance_attempts_observed = 0
+    escape_attempts_observed = 0
+    traversal_pressure_observed = False
+    traversal_pressure_values_observed = []
+    highest_traversal_pressure_observed = 0.0
+    escape_risk_observed = False
+    escape_risk_values_observed = []
+    highest_escape_risk_observed = 0.0
+    route_exposure_values_observed = []
+    traversal_summaries = []
+
+    # Room route observation (TOWER-ENGINE-096)
+    room_route_evidence_observed = False
+    room_routes_observed = 0
+    selected_routes_observed = []
+    route_types_observed = []
+    environmental_profiles_observed = []
+    highest_route_exposure_observed = 0.0
+    escape_modifiers_observed = []
+    route_pressure_used_observed = False
+    room_route_summaries = []
+
+    # Durability decay observation (TOWER-ENGINE-079)
+    durability_decay_observed = False
+    durability_events_observed = 0
+    total_durability_loss_observed = 0.0
+    equipment_items_worn_observed = []
+    zero_durability_items_observed = []
+    durability_pressure_observed = False
+    durability_decay_summaries = []
+    
     # Room graph evidence observation
     room_graph_evidence_observed = False
     room_graph_changes_observed = 0
     survivor_mark_rooms_observed = 0
     graph_diff_summaries = []
     
+    # Pre-capture context for loop use
+    tower_state = session_state["runtime_context"]["tower_state"]
+    player_prog = session_state["runtime_context"]["player_progression"]
+
     # 2. Execute commands
     for cmd_str in commands:
         if not session_state["session_active"]:
@@ -99,7 +178,9 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
                     if payload.get("graph_changed"):
                         room_graph_changes_observed += 1
                     if payload.get("survivor_mark_room_added"):
-                        survivor_mark_rooms_observed += 1
+                        survivor_mark_rooms_added = payload.get("survivor_mark_room_added", False)
+                        if survivor_mark_rooms_added:
+                             survivor_mark_rooms_observed += 1
                     
                     # Capture topological summaries if available
                     rg_summary = rg_evidence.get("readable_summary", [])
@@ -126,8 +207,6 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
                     combat_retreats_observed += 1
             
             # Extract pressure evidence from stub result (it's in the resolution result which is part of payload)
-            # Based on TOWER-ENGINE-038 structured_result_shape
-            # resolve_combat_session returns resource_pressure_observed and residue_pressure_observed
             if payload.get("resource_pressure_observed"):
                 resource_pressure_observed = True
             if payload.get("residue_pressure_observed"):
@@ -183,13 +262,189 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
                 if any(bounded_flags.values()):
                     bounded_reward_flags_clean = False
 
+            # Extract durability decay evidence (TOWER-ENGINE-079)
+            if payload.get("durability_decay_applied"):
+                durability_decay_observed = True
+                if payload.get("durability_pressure_observed"):
+                    durability_pressure_observed = True
+                
+                events = payload.get("durability_events", [])
+                for event in events:
+                    durability_events_observed += 1
+                    total_durability_loss_observed += event.get("durability_loss", 0)
+                    
+                    item_id = event.get("equipment_item_id")
+                    if item_id:
+                        if item_id not in equipment_items_worn_observed:
+                            equipment_items_worn_observed.append(item_id)
+                        if event.get("durability_after") == 0:
+                            if item_id not in zero_durability_items_observed:
+                                zero_durability_items_observed.append(item_id)
+                    
+                    # Basic summary from event
+                    summary = f"Item {item_id} lost {event.get('durability_loss')} durability. Remaining: {event.get('durability_after')}/{event.get('maximum_durability')}"
+                    if summary not in durability_decay_summaries:
+                        durability_decay_summaries.append(summary)
+
+        # Extract inventory and consumable evidence (TOWER-ENGINE-065/067/069/073/083)
+        if isinstance(payload, dict):
+            inv_tx = payload.get("inventory_transaction")
+            if inv_tx:
+                inventory_transactions_observed += 1
+                applied = inv_tx.get("transaction_applied", False)
+                if applied:
+                    inventory_applications_observed += 1
+                    
+                    # Accumulate gold
+                    delta = inv_tx.get("currency_delta", {})
+                    total_gold_added_to_inventory += delta.get("gold", 0)
+                    
+                    # Capture items
+                    items_added_to_inventory.extend(inv_tx.get("items_added", []))
+                    items_deducted_from_inventory.extend(inv_tx.get("items_deducted", []))
+                else:
+                    inventory_failures_observed += 1
+                
+                # Check capacity pressure (TOWER-ENGINE-073)
+                cap_after = inv_tx.get("capacity_after", 0)
+                if cap_after > 0:
+                    capacity_pressure_observed = True
+                
+                # Consumable specific (TOWER-ENGINE-067)
+                if res_cmd == "potion":
+                    if applied:
+                        consumable_uses_observed += 1
+                        potion_drain_observed = True
+                        qty = payload.get("quantity_requested", 0)
+                        total_potions_consumed += qty
+                        consumables_deducted_observed += qty
+                        consumable_drain_summaries.append(f"Successfully consumed {qty} potions.")
+                    else:
+                        failed_consumable_attempts_observed += 1
+                        consumable_drain_summaries.append(f"Failed potion attempt: {result.get('message')}")
+
+                # Repair material specific (TOWER-ENGINE-069/083)
+                if res_cmd == "repair":
+                    repair_events_observed += 1
+                    if applied:
+                        repair_material_uses_observed += 1
+                        repair_material_drain_observed = True
+                        qty = payload.get("quantity_requested", 0)
+                        repair_materials_deducted_observed += qty
+                        repair_drain_summaries.append(f"Successfully deducted {qty} repair materials.")
+                        
+                        # Repair runtime specific (TOWER-ENGINE-083)
+                        repair_applications_observed += 1
+                        repair_materials_consumed_observed += qty
+                        
+                        repair_event = payload.get("repair_event")
+                        if repair_event:
+                            total_durability_restored_observed += repair_event.get("durability_restored", 0.0)
+                            item_id = repair_event.get("equipment_item_id")
+                            if item_id and item_id not in equipment_items_repaired_observed:
+                                equipment_items_repaired_observed.append(item_id)
+                            
+                            # Verify boundedness
+                            if repair_event.get("durability_after", 0) > repair_event.get("maximum_durability", 1):
+                                bounded_repair_clean = False
+                            if not repair_event.get("bounded_flags_clean"):
+                                bounded_repair_clean = False
+                                
+                            repair_runtime_summaries.append(f"Item {item_id} restored {repair_event.get('durability_restored')} durability.")
+                    else:
+                        failed_repair_attempts_observed += 1
+                        repair_failures_observed += 1
+                        repair_drain_summaries.append(f"Failed repair attempt: {result.get('message')}")
+                        repair_runtime_summaries.append(f"Repair attempt failed: {result.get('message')}")
+            
+            # Extract capacity pressure summary (TOWER-ENGINE-073)
+            cap_summary = payload.get("capacity_pressure_summary")
+            if cap_summary:
+                capacity_pressure_observed = True
+                pressure_val = cap_summary.get("capacity_pressure", 0.0)
+                capacity_pressure_values_observed.append(pressure_val)
+                highest_capacity_pressure_observed = max(highest_capacity_pressure_observed, pressure_val)
+                
+                band = cap_summary.get("capacity_band")
+                if band and band not in capacity_bands_observed:
+                    capacity_bands_observed.append(band)
+                
+                if cap_summary.get("over_capacity"):
+                    over_capacity_failures_observed += 1
+                
+                # Add to material burden summaries
+                burden_sum = f"Floor {tower_state.get('current_floor')} Burden: {cap_summary.get('used_capacity')}/{cap_summary.get('inventory_capacity')} ({band})"
+                if burden_sum not in material_burden_summaries:
+                    material_burden_summaries.append(burden_sum)
+            
+            # Traversal observation (TOWER-ENGINE-089/096)
+            if res_cmd in ["advance", "escape_attempt", "status"]:
+                if result["ok"]:
+                    if res_cmd == "advance":
+                        traversal_events_observed += 1
+                        advance_attempts_observed += 1
+                    elif res_cmd == "escape_attempt":
+                        traversal_events_observed += 1
+                        escape_attempts_observed += 1
+                    
+                    if payload.get("traversal_summary"):
+                        traversal_summaries.append(payload.get("traversal_summary"))
+                    elif payload.get("traversal_pressure_summary"):
+                        traversal_summaries.append(f"Status check: {payload.get('traversal_pressure_summary')}")
+                    
+                    tp = payload.get("traversal_pressure")
+                    if tp is not None:
+                        traversal_pressure_observed = True
+                        traversal_pressure_values_observed.append(tp)
+                        highest_traversal_pressure_observed = max(highest_traversal_pressure_observed, tp)
+                    
+                    risk = payload.get("escape_risk")
+                    if risk is not None:
+                        escape_risk_observed = True
+                        escape_risk_values_observed.append(risk)
+                        highest_escape_risk_observed = max(highest_escape_risk_observed, risk)
+                    
+                    re = payload.get("route_exposure")
+                    if re is not None:
+                        route_exposure_values_observed.append(re)
+                        highest_route_exposure_observed = max(highest_route_exposure_observed, re)
+
+                    # Room route specific (TOWER-ENGINE-096)
+                    if payload.get("room_graph"):
+                        room_graph_evidence_observed = True
+                    
+                    if payload.get("room_routes"):
+                        room_route_evidence_observed = True
+                        room_routes_observed += len(payload.get("room_routes", []))
+                    
+                    selected_route = payload.get("selected_route")
+                    if selected_route:
+                        selected_routes_observed.append(selected_route.get("route_id"))
+                        route_type = selected_route.get("route_type")
+                        if route_type:
+                            route_types_observed.append(route_type)
+                        
+                        env_profile = selected_route.get("environmental_profile")
+                        if env_profile:
+                            environmental_profiles_observed.append(env_profile)
+                        
+                        esc_mod = selected_route.get("escape_modifier")
+                        if esc_mod is not None:
+                            escape_modifiers_observed.append(esc_mod)
+                        
+                        if payload.get("route_pressure_used"):
+                            route_pressure_used_observed = True
+                            
+                        room_route_summaries.append(f"Chose {route_type} route {selected_route.get('route_id')} (Exposure: {selected_route.get('route_exposure')})")
+
+            inv_summary = payload.get("inventory_state_summary")
+            if inv_summary and inv_summary not in inventory_summaries:
+                inventory_summaries.append(inv_summary)
+
     # 3. Final State Capture
-    tower_state = session_state["runtime_context"]["tower_state"]
-    player_prog = session_state["runtime_context"]["player_progression"]
-    
     transcript = {
         "transcript_id": transcript_id,
-        "patch_id": "TOWER-ENGINE-054",
+        "patch_id": "TOWER-ENGINE-096",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "ok": len(errors) == 0,
         "commands_requested": commands,
@@ -224,7 +479,67 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
         "bounded_reward_flags_clean": bounded_reward_flags_clean,
         "loot_sources_observed": loot_sources_observed,
         "resource_sink_summaries": resource_sink_summaries,
+        "inventory_transactions_observed": inventory_transactions_observed,
+        "inventory_applications_observed": inventory_applications_observed,
+        "inventory_failures_observed": inventory_failures_observed,
+        "total_gold_added_to_inventory": total_gold_added_to_inventory,
+        "items_added_to_inventory": items_added_to_inventory,
+        "items_deducted_from_inventory": items_deducted_from_inventory,
+        "capacity_pressure_observed": capacity_pressure_observed,
+        "capacity_pressure_values_observed": capacity_pressure_values_observed,
+        "capacity_bands_observed": capacity_bands_observed,
+        "highest_capacity_pressure_observed": highest_capacity_pressure_observed,
+        "over_capacity_failures_observed": over_capacity_failures_observed,
+        "material_burden_summaries": material_burden_summaries,
+        "inventory_summaries": inventory_summaries,
+        "consumable_uses_observed": consumable_uses_observed,
+        "consumables_deducted_observed": consumables_deducted_observed,
+        "failed_consumable_attempts_observed": failed_consumable_attempts_observed,
+        "potion_drain_observed": potion_drain_observed,
+        "total_potions_consumed": total_potions_consumed,
+        "consumable_drain_summaries": consumable_drain_summaries,
+        "repair_material_uses_observed": repair_material_uses_observed,
+        "repair_materials_deducted_observed": repair_materials_deducted_observed,
+        "failed_repair_attempts_observed": failed_repair_attempts_observed,
+        "repair_material_drain_observed": repair_material_drain_observed,
+        "durability_restoration_observed": durability_restoration_observed,
+        "repair_drain_summaries": repair_drain_summaries,
+        "repair_events_observed": repair_events_observed,
+        "repair_applications_observed": repair_applications_observed,
+        "repair_failures_observed": repair_failures_observed,
+        "total_durability_restored_observed": total_durability_restored_observed,
+        "repair_materials_consumed_observed": repair_materials_consumed_observed,
+        "equipment_items_repaired_observed": equipment_items_repaired_observed,
+        "bounded_repair_clean": bounded_repair_clean,
+        "repair_runtime_summaries": repair_runtime_summaries,
+        "traversal_events_observed": traversal_events_observed,
+        "advance_attempts_observed": advance_attempts_observed,
+        "escape_attempts_observed": escape_attempts_observed,
+        "traversal_pressure_observed": traversal_pressure_observed,
+        "traversal_pressure_values_observed": traversal_pressure_values_observed,
+        "highest_traversal_pressure_observed": highest_traversal_pressure_observed,
+        "escape_risk_observed": escape_risk_observed,
+        "escape_risk_values_observed": escape_risk_values_observed,
+        "highest_escape_risk_observed": highest_escape_risk_observed,
+        "route_exposure_values_observed": route_exposure_values_observed,
+        "traversal_summaries": traversal_summaries,
         "room_graph_evidence_observed": room_graph_evidence_observed,
+        "room_route_evidence_observed": room_route_evidence_observed,
+        "room_routes_observed": room_routes_observed,
+        "selected_routes_observed": selected_routes_observed,
+        "route_types_observed": route_types_observed,
+        "environmental_profiles_observed": environmental_profiles_observed,
+        "highest_route_exposure_observed": highest_route_exposure_observed,
+        "escape_modifiers_observed": escape_modifiers_observed,
+        "route_pressure_used_observed": route_pressure_used_observed,
+        "room_route_summaries": room_route_summaries,
+        "durability_decay_observed": durability_decay_observed,
+        "durability_events_observed": durability_events_observed,
+        "total_durability_loss_observed": total_durability_loss_observed,
+        "equipment_items_worn_observed": equipment_items_worn_observed,
+        "zero_durability_items_observed": zero_durability_items_observed,
+        "durability_pressure_observed": durability_pressure_observed,
+        "durability_decay_summaries": durability_decay_summaries,
         "room_graph_changes_observed": room_graph_changes_observed,
         "survivor_mark_rooms_observed": survivor_mark_rooms_observed,
         "graph_diff_summaries": graph_diff_summaries,
@@ -238,17 +553,32 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     }
     
     # 4. Write artifact
-    # Specific ID for TOWER-ENGINE-054 validation artifact
-    if transcript_id == "loot_evidence_validation":
+    # Specific ID for TOWER-ENGINE-096 validation artifact
+    if transcript_id == "room_route_validation":
+        filename = "tower_engine_096_room_route_evidence_console_transcript.json"
+    elif transcript_id == "traversal_evidence_validation":
+        filename = "tower_engine_089_traversal_evidence_console_transcript.json"
+    elif transcript_id == "repair_runtime_validation":
+        filename = "tower_engine_083_repair_runtime_console_transcript.json"
+    elif transcript_id == "durability_decay_validation":
+        filename = "tower_engine_079_durability_decay_console_transcript.json"
+    elif transcript_id == "capacity_pressure_validation":
+        filename = "tower_engine_073_capacity_pressure_console_transcript.json"
+    elif transcript_id == "repair_material_drain_validation":
+        filename = "tower_engine_069_repair_material_drain_console_transcript.json"
+    elif transcript_id == "consumable_drain_validation":
+        filename = "tower_engine_067_consumable_drain_console_transcript.json"
+    elif transcript_id == "inventory_evidence_validation":
+        filename = "tower_engine_065_inventory_evidence_console_transcript.json"
+    elif transcript_id == "loot_evidence_validation":
         filename = "tower_engine_054_loot_evidence_console_transcript.json"
     elif transcript_id == "enemy_pressure_validation":
         filename = "tower_engine_050_enemy_pressure_console_transcript.json"
     elif transcript_id == "graph_combat_validation":
         filename = "tower_engine_045_graph_combat_console_transcript.json"
     else:
-        filename = f"tower_engine_054_console_transcript_{transcript_id[:8]}.json"
+        filename = f"tower_engine_096_console_transcript_{transcript_id[:8]}.json"
 
-        
     output_path = os.path.join(output_dir, filename)
     write_console_transcript(transcript, output_path)
     
@@ -301,7 +631,7 @@ def summarize_console_transcript(transcript):
 def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
     return {
         "transcript_id": transcript_id,
-        "patch_id": "TOWER-ENGINE-054",
+        "patch_id": "TOWER-ENGINE-096",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "ok": False,
         "commands_requested": commands,
@@ -336,7 +666,67 @@ def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
         "bounded_reward_flags_clean": True,
         "loot_sources_observed": [],
         "resource_sink_summaries": [],
+        "inventory_transactions_observed": 0,
+        "inventory_applications_observed": 0,
+        "inventory_failures_observed": 0,
+        "total_gold_added_to_inventory": 0,
+        "items_added_to_inventory": [],
+        "items_deducted_from_inventory": [],
+        "capacity_pressure_observed": False,
+        "capacity_pressure_values_observed": [],
+        "capacity_bands_observed": [],
+        "highest_capacity_pressure_observed": 0.0,
+        "over_capacity_failures_observed": 0,
+        "material_burden_summaries": [],
+        "inventory_summaries": [],
+        "consumable_uses_observed": 0,
+        "consumables_deducted_observed": 0,
+        "failed_consumable_attempts_observed": 0,
+        "potion_drain_observed": False,
+        "total_potions_consumed": 0,
+        "consumable_drain_summaries": [],
+        "repair_material_uses_observed": 0,
+        "repair_materials_deducted_observed": 0,
+        "failed_repair_attempts_observed": 0,
+        "repair_material_drain_observed": False,
+        "durability_restoration_observed": False,
+        "repair_drain_summaries": [],
+        "repair_events_observed": 0,
+        "repair_applications_observed": 0,
+        "repair_failures_observed": 0,
+        "total_durability_restored_observed": 0.0,
+        "repair_materials_consumed_observed": 0,
+        "equipment_items_repaired_observed": [],
+        "bounded_repair_clean": True,
+        "repair_runtime_summaries": [],
+        "traversal_events_observed": 0,
+        "advance_attempts_observed": 0,
+        "escape_attempts_observed": 0,
+        "traversal_pressure_observed": False,
+        "traversal_pressure_values_observed": [],
+        "highest_traversal_pressure_observed": 0.0,
+        "escape_risk_observed": False,
+        "escape_risk_values_observed": [],
+        "highest_escape_risk_observed": 0.0,
+        "route_exposure_values_observed": [],
+        "traversal_summaries": [],
         "room_graph_evidence_observed": False,
+        "room_route_evidence_observed": False,
+        "room_routes_observed": 0,
+        "selected_routes_observed": [],
+        "route_types_observed": [],
+        "environmental_profiles_observed": [],
+        "highest_route_exposure_observed": 0.0,
+        "escape_modifiers_observed": [],
+        "route_pressure_used_observed": False,
+        "room_route_summaries": [],
+        "durability_decay_observed": False,
+        "durability_events_observed": 0,
+        "total_durability_loss_observed": 0.0,
+        "equipment_items_worn_observed": [],
+        "zero_durability_items_observed": [],
+        "durability_pressure_observed": False,
+        "durability_decay_summaries": [],
         "room_graph_changes_observed": 0,
         "survivor_mark_rooms_observed": 0,
         "graph_diff_summaries": [],

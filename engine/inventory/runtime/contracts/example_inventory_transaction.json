@@ -1,0 +1,26 @@
+{
+  "transaction_id": "inventory_transaction_example_001",
+  "inventory_id": "inventory_example_001",
+  "player_id": "player_default_001",
+  "transaction_type": "CONSUME_ITEM",
+  "items_added": [],
+  "items_deducted": [
+    {
+      "item_id": "ash_potion_small",
+      "quantity": 1
+    }
+  ],
+  "currency_delta": {
+    "gold": 0,
+    "domain_essence": 0,
+    "stability_shards": 0,
+    "residue_fragments": 0,
+    "rare_materials": 0
+  },
+  "capacity_before": 27,
+  "capacity_after": 26,
+  "inventory_capacity": 40,
+  "transaction_applied": true,
+  "failure_reason": null,
+  "bounded_flags_clean": true
+}

@@ -1,0 +1,16 @@
+{
+  "event_id": "durability_decay_example_001",
+  "equipment_item_id": "ash_blade_alpha",
+  "source": "combat_pressure",
+  "durability_before": 72,
+  "durability_after": 68,
+  "maximum_durability": 100,
+  "durability_loss": 4,
+  "decay_pressure": {
+    "combat_pressure": 0.61,
+    "repair_pressure": 0.42,
+    "mutation_affinity": 0.18,
+    "capacity_pressure": 0.37
+  },
+  "bounded_flags_clean": true
+}

@@ -1,0 +1,55 @@
+{
+  "patch_id": "TOWER-ENGINE-066",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/runtime/tests/test_mvp_text_console_consumables.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_consumable_drain_command.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Console command registry includes potion",
+      "status": "PASS"
+    },
+    {
+      "check": "_handle_potion implemented",
+      "status": "PASS"
+    },
+    {
+      "check": "potion command dispatched",
+      "status": "PASS"
+    },
+    {
+      "check": "potion uses inventory stub",
+      "status": "PASS"
+    },
+    {
+      "check": "Potion command unit tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_command.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_enemy_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_loot.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_equipment_pressure.py passes",
+      "status": "PASS"
+    }
+  ]
+}

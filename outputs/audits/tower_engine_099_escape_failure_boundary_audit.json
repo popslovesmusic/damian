@@ -1,0 +1,50 @@
+{
+  "patch_id": "TOWER-ENGINE-099",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/traversal/escape/escape_failure_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/traversal/escape/contracts/escape_resolution.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/traversal/escape/contracts/example_escape_resolution.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/escape/mvp_active_escape_failure_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes residue identity rule",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes chase system non-goal",
+      "status": "PASS"
+    },
+    {
+      "check": "Example resolution validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example risk is in bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "Example residue_written is True",
+      "status": "PASS"
+    },
+    {
+      "check": "Example safety flags are True",
+      "status": "PASS"
+    }
+  ]
+}

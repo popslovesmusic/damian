@@ -1,0 +1,51 @@
+{
+  "patch_id": "TOWER-ENGINE-060",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/runtime/mvp_text_console.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/console/runtime/tests/test_mvp_text_console_equipment_pressure.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_combat_equipment_pressure.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Stub imported in console",
+      "status": "PASS"
+    },
+    {
+      "check": "Console loads example loadout",
+      "status": "PASS"
+    },
+    {
+      "check": "Console payload includes equipment used flag",
+      "status": "PASS"
+    },
+    {
+      "check": "Console equipment pressure integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_command.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_enemy_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_loot.py passes",
+      "status": "PASS"
+    }
+  ]
+}

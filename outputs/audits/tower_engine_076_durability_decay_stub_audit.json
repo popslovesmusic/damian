@@ -1,0 +1,43 @@
+{
+  "patch_id": "TOWER-ENGINE-076",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/equipment/durability/durability_decay_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/equipment/durability/tests/test_durability_decay_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/durability/minimal_durability_decay_stub.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: calculate_durability_loss",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: apply_durability_decay",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: apply_loadout_durability_decay",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_durability_decay_event",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_durability_decay",
+      "status": "PASS"
+    },
+    {
+      "check": "Durability decay unit tests pass",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

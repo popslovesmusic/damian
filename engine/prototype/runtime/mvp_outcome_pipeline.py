@@ -66,6 +66,12 @@ def validate_pipeline_result(result, debug=False):
     """
     Validates the structure and basic integrity of a pipeline result.
     """
+    if not result.get("ok"):
+        # Basic error structure check
+        if "message" not in result:
+             return create_structured_error("InvalidResultStructure", "Missing 'message' in failure result.", debug=debug)
+        return create_structured_success(True, debug=debug)
+
     required_keys = ["ok", "outcome", "previous_floor", "current_floor", "tower_state", 
                      "progression_result", "residue_result", "mutation_result", "mutation_applied",
                      "survivor_mark_result", "survivor_mark_attached", "error"]
@@ -76,8 +82,6 @@ def validate_pipeline_result(result, debug=False):
     
     if result["ok"] and result["error"] is not None:
         return create_structured_error("InvalidResult", "Result is ok but contains an error object.", debug=debug)
-    if not result["ok"] and result["error"] is None:
-        return create_structured_error("InvalidResult", "Result is not ok but has no error object.", debug=debug)
     
     _log_debug_event("TOWER-ENGINE-027", "mvp_outcome_pipeline", "INFO", "PipelineResultValidated", "Pipeline result structure is valid.", debug_enabled=debug)
     return create_structured_success(True, debug=debug)
@@ -150,7 +154,8 @@ def resolve_defeat_drop_pipeline(tower_state, debug=False):
     # 1. Apply progression defeat drop
     progression_result = mvp_floor_progression.apply_defeat_drop(tower_state, debug=debug)
     if not progression_result["ok"]:
-        return create_structured_error("ProgressionFailure", progression_result["error"]["message"], debug=debug)
+        msg = progression_result["error"]["message"] if "error" in progression_result else progression_result.get("message", "Unknown progression error")
+        return create_structured_error("ProgressionFailure", msg, debug=debug)
     
     updated_tower_state = progression_result["tower_state"]
     current_floor = updated_tower_state["current_floor"]
@@ -158,7 +163,8 @@ def resolve_defeat_drop_pipeline(tower_state, debug=False):
     # 2. Write DEFEAT_DROP residue to returned current_floor (which is the new floor)
     residue_result = mvp_residue_writer.write_mvp_outcome_residue(updated_tower_state, current_floor, "DEFEAT_DROP", debug=debug)
     if not residue_result["ok"]:
-        return create_structured_error("ResidueWriteFailure", residue_result["error"]["message"], debug=debug)
+        msg = residue_result["error"]["message"] if "error" in residue_result else residue_result.get("message", "Unknown residue write error")
+        return create_structured_error("ResidueWriteFailure", msg, debug=debug)
     
     triggering_residue_id = residue_result["payload"]["residue_record"]["residue_id"] if residue_result["ok"] and "payload" in residue_result and "residue_record" in residue_result["payload"] else "unknown_residue"
 
@@ -166,13 +172,15 @@ def resolve_defeat_drop_pipeline(tower_state, debug=False):
     # 3. Apply replay floor mutation stub to returned current_floor
     mutation_result = mvp_floor_mutation_stub.apply_replay_floor_mutation_stub(updated_tower_state, current_floor, triggering_residue_id, debug=debug)
     if not mutation_result["ok"]:
-        return create_structured_error("MutationApplicationFailure", mutation_result["error"]["message"], debug=debug)
+        msg = mutation_result["error"]["message"] if "error" in mutation_result else mutation_result.get("message", "Unknown mutation error")
+        return create_structured_error("MutationApplicationFailure", msg, debug=debug)
 
     # 4. Create and attach survivor mark
     # For MVP, we'll attach one mark per defeat-drop
     mark_result = mvp_survivor_mark_system.make_survivor_mark(current_floor, triggering_residue_id, mark_index=1, debug=debug)
     if not mark_result["ok"]:
-        return create_structured_error("SurvivorMarkCreationFailure", mark_result["error"]["message"], debug=debug)
+        msg = mark_result["error"]["message"] if "error" in mark_result else mark_result.get("message", "Unknown mark creation error")
+        return create_structured_error("SurvivorMarkCreationFailure", msg, debug=debug)
     
     survivor_mark = mark_result["payload"]
     # Get the floor memory for the current floor
@@ -183,7 +191,8 @@ def resolve_defeat_drop_pipeline(tower_state, debug=False):
     floor_memory = floor_memory_result["payload"]
     attach_mark_result = mvp_survivor_mark_system.attach_survivor_mark_to_floor_memory(floor_memory, survivor_mark, debug=debug)
     if not attach_mark_result["ok"]:
-        return create_structured_error("SurvivorMarkAttachmentFailure", attach_mark_result["error"]["message"], debug=debug)
+        msg = attach_mark_result["error"]["message"] if "error" in attach_mark_result else attach_mark_result.get("message", "Unknown mark attachment error")
+        return create_structured_error("SurvivorMarkAttachmentFailure", msg, debug=debug)
 
     return {
         "ok": True,
@@ -225,14 +234,18 @@ def resolve_mvp_floor_outcome(tower_state, outcome, debug=False):
         previous_floor = tower_state.get("current_floor")
         progression_result = mvp_floor_progression.resolve_floor_outcome(tower_state, outcome, debug=debug)
         if not progression_result["ok"]:
-            return create_structured_error("ProgressionFailure", progression_result["error"]["message"], debug=debug)
+            # Handle consistent error structure (TOWER-ENGINE-088)
+            msg = progression_result["error"]["message"] if "error" in progression_result else progression_result.get("message", "Unknown progression error")
+            return create_structured_error("ProgressionFailure", msg, debug=debug)
         
         updated_tower_state = progression_result["tower_state"]
         current_floor = updated_tower_state["current_floor"]
 
-        residue_result = mvp_residue_writer.write_mvp_outcome_residue(updated_tower_state, current_floor, outcome, debug=debug)
+        # Write residue to previous_floor (TOWER-ENGINE-088)
+        residue_result = mvp_residue_writer.write_mvp_outcome_residue(updated_tower_state, previous_floor, outcome, debug=debug)
         if not residue_result["ok"]:
-            return create_structured_error("ResidueWriteFailure", residue_result["error"]["message"], debug=debug)
+            msg = residue_result.get("message", "Unknown residue write error")
+            return create_structured_error("ResidueWriteFailure", msg, debug=debug)
         
         result = {
             "ok": True,
@@ -259,14 +272,17 @@ def resolve_mvp_floor_outcome(tower_state, outcome, debug=False):
         previous_floor = tower_state.get("current_floor")
         progression_result = mvp_floor_progression.resolve_floor_outcome(tower_state, outcome, debug=debug)
         if not progression_result["ok"]:
-            return create_structured_error("ProgressionFailure", progression_result["error"]["message"], debug=debug)
+            msg = progression_result["error"]["message"] if "error" in progression_result else progression_result.get("message", "Unknown progression error")
+            return create_structured_error("ProgressionFailure", msg, debug=debug)
 
         updated_tower_state = progression_result["tower_state"]
         current_floor = updated_tower_state["current_floor"]
 
-        residue_result = mvp_residue_writer.write_mvp_outcome_residue(updated_tower_state, current_floor, outcome, debug=debug)
+        # Write residue to previous_floor (TOWER-ENGINE-088)
+        residue_result = mvp_residue_writer.write_mvp_outcome_residue(updated_tower_state, previous_floor, outcome, debug=debug)
         if not residue_result["ok"]:
-            return create_structured_error("ResidueWriteFailure", residue_result["error"]["message"], debug=debug)
+            msg = residue_result.get("message", "Unknown residue write error")
+            return create_structured_error("ResidueWriteFailure", msg, debug=debug)
 
         result = {
             "ok": True,

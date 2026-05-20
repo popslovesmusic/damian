@@ -48,7 +48,7 @@ def validate_mvp_floor_bounds(tower_state, max_floor=100, debug=False):
     return {"ok": True}
 
 
-def apply_victory_ascend(tower_state, max_floor=100, debug=False):
+def apply_victory_ascend(tower_state, max_floor=3, debug=False):
     """
     Increments current floor upon victory, up to max_floor.
     """
@@ -66,6 +66,9 @@ def apply_victory_ascend(tower_state, max_floor=100, debug=False):
         floor_changed = True
         if tower_state["current_floor"] > tower_state.get("highest_floor_reached", 0):
             tower_state["highest_floor_reached"] = tower_state["current_floor"]
+    else:
+        # TOWER-ENGINE-088: Fail if trying to ascend beyond max_floor
+        return {"ok": False, "error": {"error_type": "FloorLimitReached", "message": f"Already at maximum floor ({max_floor})."}}
     
     tower_state["last_outcome"] = "VICTORY_ASCEND"
     tower_state["updated_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
@@ -81,7 +84,7 @@ def apply_defeat_drop(tower_state, min_floor=1, debug=False):
 
     current_floor = tower_state.get("current_floor")
     if current_floor is None:
-        return create_structured_error("InvalidTowerState", "current_floor missing in tower_state.", debug=debug)
+        return {"ok": False, "error": {"error_type": "InvalidTowerState", "message": "current_floor missing in tower_state."}}
 
     floor_changed = False
     if current_floor > min_floor:
@@ -115,9 +118,10 @@ def resolve_floor_outcome(tower_state, outcome, debug=False):
         return {"ok": False, "error": result}
 
     elif outcome == "RETREAT_TO_HUB":
+        tower_state["current_floor"] = 0
         tower_state["last_outcome"] = "RETREAT_TO_HUB"
         tower_state["updated_at"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
-        return {"ok": True, "outcome": "RETREAT_TO_HUB", "tower_state": tower_state, "floor_changed": False}
+        return {"ok": True, "outcome": "RETREAT_TO_HUB", "tower_state": tower_state, "floor_changed": True}
 
     elif outcome == "EXIT_GAME":
         tower_state["last_outcome"] = "EXIT_GAME"

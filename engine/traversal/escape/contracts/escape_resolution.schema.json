@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EscapeResolution",
+  "type": "object",
+  "required": [
+    "escape_resolution_id",
+    "player_id",
+    "floor_id",
+    "escape_risk",
+    "route_exposure",
+    "escape_modifier",
+    "outcome",
+    "pipeline_outcome",
+    "residue_written",
+    "mutation_pressure_delta",
+    "resource_loss",
+    "recoverability_preserved",
+    "floor_identity_preserved",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "escape_resolution_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "floor_id": { "type": "integer" },
+    "source_route_id": { "type": ["string", "null"] },
+    "escape_risk": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "route_exposure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "escape_modifier": { "type": "number", "minimum": -1.0, "maximum": 1.0 },
+    "outcome": {
+      "enum": [
+        "ESCAPE_SUCCESS",
+        "ESCAPE_PARTIAL",
+        "ESCAPE_FAILED_RETREAT_DROP",
+        "ESCAPE_FAILED_PRESSURE_SPIKE",
+        "ESCAPE_FAILED_RESOURCE_LOSS"
+      ]
+    },
+    "pipeline_outcome": {
+      "enum": [
+        "RETREAT_TO_HUB",
+        "DEFEAT_DROP",
+        "NONE"
+      ]
+    },
+    "residue_written": { "type": "boolean" },
+    "mutation_pressure_delta": { "type": "number", "minimum": 0.0 },
+    "resource_loss": {
+      "type": "object",
+      "required": ["gold", "potions", "repair_materials"],
+      "properties": {
+        "gold": { "type": "number", "minimum": 0.0 },
+        "potions": { "type": "integer", "minimum": 0 },
+        "repair_materials": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "recoverability_preserved": { "type": "boolean", "const": true },
+    "floor_identity_preserved": { "type": "boolean", "const": true },
+    "bounded_flags_clean": { "type": "boolean", "const": true }
+  }
+}
