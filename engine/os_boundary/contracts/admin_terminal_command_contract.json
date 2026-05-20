@@ -197,6 +197,16 @@
       "description": "Report full alpha stress test evidence, telemetry, and structured feedback."
     },
     {
+      "command": "narrative status",
+      "family": "status",
+      "description": "Report current aggregate world memory and historical residue."
+    },
+    {
+      "command": "narrative audit",
+      "family": "logs",
+      "description": "Report history of procedural narrative drift and mythology formation."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

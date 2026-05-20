@@ -1,0 +1,31 @@
+{
+  "boundary_name": "Adaptive Narrative Evolution",
+  "version": "1.0",
+  "safety_rules": {
+    "no_static_permanent_canon": true,
+    "no_admin_forced_storyline": true,
+    "no_irreversible_world_state_lock": true,
+    "no_permanent_faction_victory": true,
+    "no_omniscient_historical_record": true,
+    "no_real_identity_storage": true,
+    "world_memory_must_be_residue_based": true,
+    "historical_drift_must_be_probabilistic": true,
+    "all_memory_mutations_must_remain_bounded": true
+  },
+  "narrative_policy": {
+    "allowed_effects": [
+      "procedural_story_shift",
+      "historical_contract_generation",
+      "world_scar_persistence",
+      "faction_mythology_creation",
+      "relay_legend_growth",
+      "event_wave_memory_mutation"
+    ],
+    "required_properties": [
+      "partial_truth",
+      "historical_uncertainty",
+      "recoverability",
+      "bounded_mutation"
+    ]
+  }
+}

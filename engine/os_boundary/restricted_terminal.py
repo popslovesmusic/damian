@@ -99,6 +99,8 @@ class RestrictedAdminTerminal:
              return self._cmd_mvp(parts[1:])
         elif base_cmd == "alpha":
              return self._cmd_alpha(parts[1:])
+        elif base_cmd == "narrative":
+             return self._cmd_narrative(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -625,6 +627,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Alpha stress test evidence missing."
                  
         return f"ERROR: Unknown alpha subcommand '{args[0]}'."
+
+    def _cmd_narrative(self, args):
+        if not args:
+            return "Usage: narrative status | narrative audit"
+            
+        if args[0] == "status":
+             # Report current world memory snapshot
+             evidence_path = "outputs/audits/narrative_residue_aggregation_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("narrative status", "SUCCESS")
+                 return f"World Memory Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("narrative status", "MISSING_EVIDENCE")
+                 return "ERROR: World memory evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/narrative_drift_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("narrative audit", "SUCCESS")
+                 return f"Narrative Drift Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("narrative audit", "MISSING_EVIDENCE")
+                 return "ERROR: Narrative drift evidence missing."
+                 
+        return f"ERROR: Unknown narrative subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

@@ -1,0 +1,40 @@
+{
+  "contract_id": "world-memory-contract-v1",
+  "required_fields": [
+    "world_memory_id",
+    "world_id",
+    "historical_residue_profile",
+    "survivor_action_summary",
+    "faction_scar_summary",
+    "relay_fragmentation_history",
+    "market_instability_history",
+    "event_wave_history",
+    "legendary_survivor_markers",
+    "narrative_drift_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "memory_hash"
+  ],
+  "allowed_memory_domains": [
+    "survivor_failures",
+    "treaty_collapses",
+    "market_scars",
+    "relay_recoveries",
+    "echo_hunter_activity",
+    "event_wave_damage",
+    "faction_fragmentation",
+    "legendary_contracts",
+    "tower_reclamation"
+  ],
+  "forbidden_memory_domains": [
+    "real_world_identity",
+    "os_or_host_state",
+    "permanent_world_lock",
+    "admin_authored_absolute_truth"
+  ],
+  "validation_rules": {
+    "enforce_residue_logic": true,
+    "require_probabilistic_drift": true,
+    "mandatory_recoverability_audit": true
+  }
+}
