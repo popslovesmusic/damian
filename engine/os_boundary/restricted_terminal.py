@@ -95,6 +95,8 @@ class RestrictedAdminTerminal:
              return self._cmd_faction(parts[1:])
         elif base_cmd == "politics":
              return self._cmd_politics(parts[1:])
+        elif base_cmd == "mvp":
+             return self._cmd_mvp(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -562,6 +564,28 @@ class RestrictedAdminTerminal:
                  return "ERROR: Political recovery evidence missing."
                  
         return f"ERROR: Unknown politics subcommand '{args[0]}'."
+
+    def _cmd_mvp(self, args):
+        if not args:
+            return "Usage: mvp status | mvp audit"
+            
+        if args[0] == "status":
+             # In prototype, status is just a heartbeat that the command is active
+             self.log_audit("mvp status", "SUCCESS")
+             return "MVP Vertical Slice Runtime: READY for smoke testing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/mvp_runtime_smoke_test_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("mvp audit", "SUCCESS")
+                 return f"MVP Runtime Smoke Test Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("mvp audit", "MISSING_EVIDENCE")
+                 return "ERROR: MVP runtime smoke test evidence missing."
+                 
+        return f"ERROR: Unknown mvp subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

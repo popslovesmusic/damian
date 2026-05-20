@@ -177,6 +177,16 @@
       "description": "Report political recovery, reconciliation, and betrayal evidence."
     },
     {
+      "command": "mvp status",
+      "family": "status",
+      "description": "Report current MVP vertical slice runtime status."
+    },
+    {
+      "command": "mvp audit",
+      "family": "logs",
+      "description": "Report full MVP player-facing loop smoke test evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

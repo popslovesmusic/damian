@@ -1,0 +1,29 @@
+{
+  "contract_id": "gameplay-loop-contract-v1",
+  "required_runtime_flow": [
+    "boot_tower_os",
+    "enter_kiosk_launcher",
+    "initialize_survivor_identity",
+    "enter_tower",
+    "explore_and_accumulate_pressure",
+    "create_or_join_treaty",
+    "publish_domain_echo",
+    "receive_market_or_contract_signals",
+    "respond_to_event_wave_pressure",
+    "persist_dashboard_state",
+    "logout_or_shutdown",
+    "resume_from_persistent_state"
+  ],
+  "required_mvp_systems": [
+    "dashboard",
+    "domain_echoes",
+    "relay_presence",
+    "markets",
+    "contracts",
+    "treaties",
+    "event_waves",
+    "reputation",
+    "live_audio_presence",
+    "persistent_resume"
+  ]
+}

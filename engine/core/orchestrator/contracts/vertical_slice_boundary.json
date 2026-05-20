@@ -1,0 +1,26 @@
+{
+  "boundary_name": "MVP Vertical Slice Runtime",
+  "version": "1.0",
+  "safety_rules": {
+    "no_real_time_global_world_sync": true,
+    "no_unbounded_mmo_authority": true,
+    "no_permanent_safe_state": true,
+    "no_pay_to_win_runtime": true,
+    "no_irreversible_player_exile": true,
+    "no_os_core_mutation": true,
+    "all_persistence_must_target_TOWER_DATA": true,
+    "all_social_systems_must_remain_bounded": true,
+    "all_multiplayer_conflict_must_remain_async": true,
+    "voice_presence_must_not_control_gameplay_state": true,
+    "mvp_loop_must_preserve_recoverability": true,
+    "all_runtime_paths_must_be_auditable": true
+  },
+  "narrative_policy": {
+    "hostile_tower_identity": true,
+    "survivor_pressure": true,
+    "procedural_instability": true,
+    "residue_memory": true,
+    "recoverability": true,
+    "social_scarring": true
+  }
+}
