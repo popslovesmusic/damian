@@ -1,0 +1,32 @@
+{
+  "contract_id": "physical-flash-execution-v1",
+  "verification_layers": [
+    {
+      "id": "DEVICE_COMPATIBILITY",
+      "check": "Target device size must be >= artifact size.",
+      "enforcement": "STRICT"
+    },
+    {
+      "id": "ARTIFACT_INTEGRITY",
+      "check": "Artifact hash must match lineage manifest.",
+      "enforcement": "STRICT"
+    },
+    {
+      "id": "SIMULATION_MODE",
+      "check": "All write commands must be logged without execution.",
+      "enforcement": "MANDATORY"
+    },
+    {
+      "id": "OPERATOR_GATING",
+      "check": "Case-sensitive exact match of confirmation phrase.",
+      "enforcement": "STRICT"
+    }
+  ],
+  "post_flash_verification": {
+    "steps": [
+      "verify_partition_labels",
+      "verify_filesystem_integrity",
+      "verify_bootloader_presence"
+    ]
+  }
+}

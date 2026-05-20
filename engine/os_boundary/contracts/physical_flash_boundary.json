@@ -1,0 +1,26 @@
+{
+  "boundary_name": "Controlled Physical Flash",
+  "version": "1.0",
+  "safety_rules": {
+    "no_default_flash_execution": true,
+    "no_auto_device_selection": true,
+    "no_host_boot_disk_access": true,
+    "no_internal_nvme_or_sata_targets": true,
+    "no_background_flashing": true,
+    "simulation_mode_must_exist_before_real_execution": true,
+    "only_removable_usb_targets_allowed": true
+  },
+  "execution_policy": {
+    "required_steps": [
+      "enumerate_devices",
+      "validate_removable_target",
+      "verify_artifact_hash",
+      "run_flash_simulation",
+      "display_flash_plan",
+      "operator_confirmation_phrase",
+      "controlled_flash_execution",
+      "post_flash_verification"
+    ],
+    "confirmation_template": "EXECUTE_TOWER_FLASH_<DEVICE_ID>"
+  }
+}
