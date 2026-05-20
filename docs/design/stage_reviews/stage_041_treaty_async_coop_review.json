@@ -1,0 +1,15 @@
+{
+  "stage_id": "STAGE-041",
+  "verdict": "PASS",
+  "summary": "Treaty-based asynchronous co-op boundary successfully modeled, implemented, and validated. The system now supports bounded treaty creation, shared pressure tradeoffs, and joint defense echo reinforcement while strictly prohibiting real-time shared authority.",
+  "checks": {
+    "treaty_boundary_defined": true,
+    "treaty_contract_validates": true,
+    "treaty_creation_stub_passes": true,
+    "shared_pressure_tradeoffs_preserved": true,
+    "visibility_escalation_active": true,
+    "joint_defense_echo_preserves_recoverability": true,
+    "dashboard_treaty_evidence_passes": true,
+    "no_real_time_shared_game_authority": true
+  }
+}

@@ -77,6 +77,8 @@ class RestrictedAdminTerminal:
              return self._cmd_echo(parts[1:])
         elif base_cmd == "audio":
              return self._cmd_audio(parts[1:])
+        elif base_cmd == "treaty":
+             return self._cmd_treaty(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -279,6 +281,35 @@ class RestrictedAdminTerminal:
         else:
             self.log_audit("audio status", "MISSING_EVIDENCE")
             return "ERROR: Audio session evidence missing."
+
+    def _cmd_treaty(self, args):
+        if not args:
+            return "Usage: treaty status | treaty audit"
+        
+        if args[0] == "status":
+             # Report active treaty status
+             evidence_path = "outputs/audits/treaty_creation_stub_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("treaty status", "SUCCESS")
+                 return f"Active Treaty Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("treaty status", "MISSING_EVIDENCE")
+                 return "ERROR: Treaty evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/shared_reward_burden_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("treaty audit", "SUCCESS")
+                 return f"Treaty Shared Burden Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("treaty audit", "MISSING_EVIDENCE")
+                 return "ERROR: Treaty burden evidence missing."
+                 
+        return f"ERROR: Unknown treaty subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

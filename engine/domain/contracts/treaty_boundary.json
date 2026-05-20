@@ -1,0 +1,18 @@
+{
+  "boundary_name": "Treaty-Based Asynchronous Co-op",
+  "version": "1.0",
+  "safety_rules": {
+    "no_real_time_shared_combat_authority": true,
+    "no_direct_inventory_merge": true,
+    "no_unbounded_resource_pooling": true,
+    "no_permanent_safe_zone_creation": true,
+    "no_live_domain_control_transfer": true,
+    "no_remote_save_mutation": true,
+    "treaty_breakage_must_not_delete_player_state": true
+  },
+  "tradeoff_policy": {
+    "shared_rewards_must_increase_visibility_pressure": true,
+    "joint_defense_must_preserve_recoverability": true,
+    "higher_interdependence_increases_tower_attention": true
+  }
+}

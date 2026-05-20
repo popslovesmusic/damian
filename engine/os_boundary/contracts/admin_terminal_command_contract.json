@@ -82,6 +82,16 @@
       "description": "Report live audio chat session status."
     },
     {
+      "command": "treaty status",
+      "family": "status",
+      "description": "Report active treaty asynchronous cooperation status."
+    },
+    {
+      "command": "treaty audit",
+      "family": "logs",
+      "description": "Report shared burden and reward evidence from active treaties."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

@@ -1,0 +1,31 @@
+{
+  "contract_id": "treaty-contract-v1",
+  "required_fields": [
+    "treaty_id",
+    "treaty_name",
+    "founder_player_id",
+    "member_player_ids",
+    "created_timestamp",
+    "shared_pressure_profile",
+    "shared_reward_profile",
+    "visibility_modifier",
+    "joint_defense_profile",
+    "treaty_status",
+    "bounded_flags",
+    "treaty_hash"
+  ],
+  "allowed_statuses": [
+    "ACTIVE",
+    "STRAINED",
+    "UNDER_PRESSURE",
+    "SCARRED",
+    "DISSOLVED"
+  ],
+  "forbidden_capabilities": [
+    "live_remote_control",
+    "direct_os_access",
+    "shared_admin_authority",
+    "unrestricted_inventory_transfer",
+    "real_time_combat_sync"
+  ]
+}

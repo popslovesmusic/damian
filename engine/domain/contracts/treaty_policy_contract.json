@@ -1,0 +1,33 @@
+{
+  "contract_id": "treaty-pressure-defense-policy-v1",
+  "shared_pressure_policy": {
+    "allowed_shared_metrics": [
+      "shared_visibility_pressure",
+      "joint_reclamation_pressure",
+      "mutual_route_intelligence",
+      "joint_defense_rating",
+      "shared_recovery_bonus",
+      "cross_domain_scarring"
+    ],
+    "required_tradeoffs": [
+      "higher_visibility",
+      "greater_tower_attention",
+      "cross_domain_failure_risk",
+      "shared_mutation_exposure"
+    ]
+  },
+  "joint_defense_echo_policy": {
+    "allowed_effects": [
+      "echo_reinforcement_bonus",
+      "shared_warning_signals",
+      "distributed_pressure_absorption",
+      "retaliation_trace_generation"
+    ],
+    "forbidden_effects": [
+      "invulnerable_domain_state",
+      "permanent_defense_lock",
+      "instant_domain_repair",
+      "live_combat_takeover"
+    ]
+  }
+}
