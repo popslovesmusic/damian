@@ -1,0 +1,25 @@
+{
+  "contract_id": "usb-device-verification-v1",
+  "verification_steps": [
+    {
+      "id": "ENUMERATE_DEVICES",
+      "mode": "READ_ONLY",
+      "required_attributes": ["vendor", "model", "size", "is_removable", "interface"]
+    },
+    {
+      "id": "FILTER_HOST_DISKS",
+      "action": "REJECT",
+      "criteria": ["is_internal == true", "has_mounted_os_partition == true"]
+    },
+    {
+      "id": "VALIDATE_TARGET_DEVICE",
+      "required_attributes": ["is_removable == true", "interface == 'usb'"]
+    }
+  ],
+  "phrase_template": "FLASH_TOWER_ARTIFACT_TO_<DEVICE_ID>",
+  "failure_modes": {
+    "INTERNAL_DISK_DETECTED": "BLOCK_AND_LOG_CRITICAL",
+    "INVALID_CONFIRMATION": "ABORT_PLAN",
+    "HASH_MISMATCH": "PREVENT_FLASH"
+  }
+}

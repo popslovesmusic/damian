@@ -1,0 +1,20 @@
+{
+  "boundary_name": "Physical USB Flashing Handoff",
+  "version": "1.0",
+  "safety_rules": {
+    "no_default_usb_writes": true,
+    "no_auto_flash_execution": true,
+    "no_host_disk_write_access": true,
+    "device_detection_must_be_read_only": true,
+    "flash_plans_must_be_dry_run_first": true,
+    "operator_acknowledgment_required": true,
+    "artifact_hash_verification_required": true
+  },
+  "host_protection_policy": {
+    "reject_internal_nvme": true,
+    "reject_internal_sata": true,
+    "reject_boot_drive": true,
+    "reject_mounted_partitions": true,
+    "allow_only_removable_usb": true
+  }
+}

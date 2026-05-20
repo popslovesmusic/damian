@@ -27,6 +27,11 @@
       "description": "Report artifact lineage and version migration status."
     },
     {
+      "command": "flash status",
+      "family": "status",
+      "description": "Report physical USB flashing handoff status."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

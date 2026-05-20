@@ -65,6 +65,8 @@ class RestrictedAdminTerminal:
              return self._cmd_content(parts[1:])
         elif base_cmd == "lineage":
              return self._cmd_lineage(parts[1:])
+        elif base_cmd == "flash":
+             return self._cmd_flash(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -132,6 +134,21 @@ class RestrictedAdminTerminal:
         else:
             self.log_audit("lineage status", "MISSING_EVIDENCE")
             return "ERROR: Lineage evidence missing."
+
+    def _cmd_flash(self, args):
+        if not args or args[0] != "status":
+            return "Usage: flash status"
+        
+        # Report flash handoff evidence from audit file
+        evidence_path = "outputs/audits/admin_terminal_usb_handoff_result.json"
+        if os.path.exists(evidence_path):
+            with open(evidence_path, 'r') as f:
+                evidence = json.load(f)
+            self.log_audit("flash status", "SUCCESS")
+            return f"USB Flashing Handoff Status:\n{json.dumps(evidence, indent=2)}"
+        else:
+            self.log_audit("flash status", "MISSING_EVIDENCE")
+            return "ERROR: Flash handoff evidence missing."
 
 if __name__ == "__main__":
     # Test stub
