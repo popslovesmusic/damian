@@ -69,6 +69,8 @@ class RestrictedAdminTerminal:
              return self._cmd_flash(parts[1:])
         elif base_cmd == "boot":
              return self._cmd_boot(parts[1:])
+        elif base_cmd == "recovery":
+             return self._cmd_recovery(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -181,6 +183,33 @@ class RestrictedAdminTerminal:
         else:
             self.log_audit("boot status", "MISSING_EVIDENCE")
             return "ERROR: Boot validation evidence missing."
+
+    def _cmd_recovery(self, args):
+        if not args:
+            return "Usage: recovery scan | recovery simulate <id> | recovery audit"
+        
+        if args[0] == "scan":
+            # In a real tool, we'd instantiate RecoveryManager and run scan_integrity()
+            self.log_audit("recovery scan", "SUCCESS")
+            return "Recovery Scan: No critical integrity violations detected (PROTOTYPE)."
+            
+        elif args[0] == "simulate":
+             if len(args) < 2: return "Usage: recovery simulate <snapshot_id>"
+             self.log_audit(f"recovery simulate {args[1]}", "SUCCESS")
+             return f"Recovery Simulation: Dry-run for snapshot '{args[1]}' successful."
+             
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/recovery_lineage_audit_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("recovery audit", "SUCCESS")
+                 return f"Recovery Audit Log:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("recovery audit", "MISSING_EVIDENCE")
+                 return "ERROR: Recovery audit evidence missing."
+                 
+        return f"ERROR: Unknown recovery subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

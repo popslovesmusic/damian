@@ -37,6 +37,21 @@
       "description": "Report physical boot and persistence validation status."
     },
     {
+      "command": "recovery scan",
+      "family": "diagnostics",
+      "description": "Scan TOWER_DATA for integrity violations."
+    },
+    {
+      "command": "recovery simulate <snapshot_id>",
+      "family": "diagnostics",
+      "description": "Simulate restoration of a specific save snapshot."
+    },
+    {
+      "command": "recovery audit",
+      "family": "logs",
+      "description": "Report recovery and repair lineage evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

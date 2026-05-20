@@ -1,0 +1,24 @@
+{
+  "boundary_name": "Tower OS Recovery Runtime",
+  "version": "1.0",
+  "safety_rules": {
+    "no_os_core_mutation": true,
+    "no_host_disk_modification": true,
+    "no_unbounded_file_deletion": true,
+    "no_silent_save_overwrite": true,
+    "no_auto_repair_without_explicit_operator_confirmation": true,
+    "all_recovery_actions_must_be_auditable": true,
+    "writes_must_target_TOWER_DATA_only": true
+  },
+  "recovery_policy": {
+    "allowed_modes": [
+      "SCAN_ONLY",
+      "SIMULATE_RECOVERY",
+      "VALIDATE_SNAPSHOT",
+      "ISOLATE_CORRUPTED_STATE",
+      "RESTORE_FROM_VALIDATED_SNAPSHOT",
+      "SAFE_DIRECTORY_REPAIR"
+    ],
+    "isolation_strategy": "MOVE_TO_ISOLATED_NAMESPACE"
+  }
+}

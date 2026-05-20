@@ -1,0 +1,37 @@
+{
+  "contract_id": "recovery-repair-contract-v1",
+  "integrity_targets": {
+    "required_scan_domains": [
+      "saves/",
+      "logs/",
+      "transcripts/",
+      "mods/",
+      "content_packs/",
+      "state_snapshots/",
+      "launcher_runtime/"
+    ]
+  },
+  "repair_procedures": [
+    {
+      "id": "REPAIR_DIRECTORY_STRUCTURE",
+      "action": "RESTORE_MISSING_SUBDIRS",
+      "safety": "NON_DESTRUCTIVE"
+    },
+    {
+      "id": "ISOLATE_CORRUPTION",
+      "action": "RENAME_TO_ISOLATED",
+      "safety": "DATA_PRESERVING"
+    },
+    {
+      "id": "RESTORE_SNAPSHOT",
+      "action": "COPY_VALIDATED_DATA",
+      "requires_backup": true
+    }
+  ],
+  "audit_requirements": [
+    "record_original_hash",
+    "record_operation_type",
+    "record_operator_confirmation",
+    "preserve_lineage_metadata"
+  ]
+}
