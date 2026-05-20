@@ -1,0 +1,17 @@
+{
+  "image_id": "tower-os-v1-proto",
+  "format": "IMG",
+  "labels": {
+    "os_partition": "TOWER_OS",
+    "data_partition": "TOWER_DATA"
+  },
+  "boot_params": {
+    "quiet": true,
+    "splash": true,
+    "kiosk_mode": true
+  },
+  "output": {
+    "filename": "tower-damian-proto.img",
+    "directory": "build/live_os/images/"
+  }
+}

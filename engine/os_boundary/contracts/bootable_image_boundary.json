@@ -1,0 +1,22 @@
+{
+  "boundary_name": "Bootable Image Prototype",
+  "version": "1.0",
+  "safety_rules": {
+    "no_usb_device_writes": true,
+    "no_host_disk_partitioning": true,
+    "no_auto_formatting": true,
+    "no_bootloader_install_execution_on_host": true,
+    "all_outputs_must_stay_inside_build_dir": true,
+    "manual_usb_flash_only": true
+  },
+  "artifact_constraints": {
+    "type": ["ISO", "IMG"],
+    "max_size_gb": 4,
+    "must_be_hashable": true,
+    "manifest_required": true
+  },
+  "handoff_policy": {
+    "documentation_required": true,
+    "manual_verification_step": "user_confirms_image_hash_before_flash"
+  }
+}
