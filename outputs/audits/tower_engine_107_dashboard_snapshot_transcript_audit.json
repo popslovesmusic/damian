@@ -1,0 +1,87 @@
+{
+  "patch_id": "TOWER-ENGINE-107",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/reports/tests/test_console_transcript_dashboard_snapshot.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_transcript_dashboard_snapshot.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Required dashboard fields added to reporter",
+      "status": "PASS"
+    },
+    {
+      "check": "patch_id updated to TOWER-ENGINE-107",
+      "status": "PASS"
+    },
+    {
+      "check": "Console transcript dashboard snapshot tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_reporter.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_combat_reporting.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_graph_evidence.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_enemy_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_loot_evidence.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_inventory_evidence.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_consumable_drain.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_repair_material_drain.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_capacity_pressure.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_durability_decay.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_traversal_evidence.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_room_route_evidence.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_escape_resolution.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Validation transcript generated",
+      "status": "PASS"
+    },
+    {
+      "check": "Validation transcript contains dashboard snapshot evidence",
+      "status": "PASS"
+    }
+  ]
+}

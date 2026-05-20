@@ -1,0 +1,28 @@
+{
+  "boundary_id": "tower_engine_domain_upkeep_boundary_v001",
+  "core_principle": "Established footholds require material investment to counteract the Tower's natural entropy.",
+  "runtime_responsibilities": [
+    "calculate_shard_drain_per_run",
+    "track_upkeep_payment_status",
+    "trigger_decay_on_non_payment",
+    "manage_foothold_state_transitions",
+    "report_maintenance_pressure"
+  ],
+  "runtime_non_goals": [
+    "auto_mining_of_shards",
+    "instant_repair_without_cost",
+    "multiplayer_domain_taxes",
+    "rendering_of_dilapidated_structures"
+  ],
+  "upkeep_rules": {
+    "upkeep_required_per_run": true,
+    "payment_must_be_material": true,
+    "decay_states": ["ACTIVE", "DECAYING", "OVERRUN"],
+    "recovery_from_decay_requires_penalty_shards": true
+  },
+  "identity_rules": [
+    "upkeep_must_not_bypass_defeat",
+    "decay_must_increase_reclamation_risk",
+    "broken_footholds_must_lose_recovery_value"
+  ]
+}

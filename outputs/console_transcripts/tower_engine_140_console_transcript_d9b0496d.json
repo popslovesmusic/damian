@@ -1,0 +1,416 @@
+{
+  "transcript_id": "d9b0496d-f65a-4d8c-97da-c7a75530599a",
+  "patch_id": "TOWER-ENGINE-140",
+  "timestamp": "2026-05-20T16:50:17.272993+00:00",
+  "ok": true,
+  "commands_requested": [
+    "claim",
+    "status"
+  ],
+  "commands_executed": [
+    "claim",
+    "status"
+  ],
+  "command_results": [
+    {
+      "ok": true,
+      "command": "claim",
+      "message": "Foothold established! Domain Claim (recovery_anchor): Floor 1, Node floor_1_anchor. Pressure (Maint:0.10, Vis:0.10). Recovery: 0.20. Targeting: 0.10.",
+      "payload": {
+        "domain_claim": {
+          "claim_id": "claim_45a0dc79-82c2-46bf-b60c-3dafcb9a4cc0",
+          "player_id": "console_player",
+          "floor_id": 1,
+          "claim_node_id": "floor_1_anchor",
+          "claim_type": "recovery_anchor",
+          "status": "ACTIVE",
+          "maintenance_pressure": 0.1,
+          "visibility_pressure": 0.1,
+          "recovery_value": 0.2,
+          "mutation_threat": 0.05,
+          "residue_strength": 0.1,
+          "recoverability_supported": true,
+          "tower_hostility_preserved": true,
+          "bounded_flags_clean": true
+        },
+        "claim_summary": "Domain Claim (recovery_anchor): Floor 1, Node floor_1_anchor. Pressure (Maint:0.10, Vis:0.10). Recovery: 0.20.",
+        "maintenance_pressure": 0.1,
+        "visibility_pressure": 0.1,
+        "recovery_value": 0.2,
+        "mutation_threat": 0.05,
+        "tower_hostility_preserved": true,
+        "domain_claim_created": true,
+        "targeting_pressure": 0.1,
+        "maintenance_penalty": 0,
+        "is_destabilized": false,
+        "local_scarring": 0.1,
+        "hazard_bias": 0.06
+      },
+      "error": null
+    },
+    {
+      "ok": true,
+      "command": "status",
+      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13",
+      "payload": {
+        "current_floor": 1,
+        "highest_floor": 1,
+        "residue_count": 0,
+        "mutation_count": 0,
+        "unclaimed_marks_count": 0,
+        "capacity_pressure_summary": {
+          "ok": true,
+          "inventory_id": "inv_bae84638-428f-42a7-a016-6349f9fb8501",
+          "used_capacity": 0,
+          "inventory_capacity": 40,
+          "capacity_pressure": 0.0,
+          "capacity_band": "EMPTY",
+          "over_capacity": false,
+          "error": null
+        },
+        "capacity_pressure": 0.0,
+        "capacity_band": "EMPTY",
+        "over_capacity": false,
+        "traversal_pressure_summary": "Traversal (advance): 1 -> 2. Risk: 0.13, Pressure: 0.10 (Cap:0.00, Mut:0.00)",
+        "traversal_pressure": 0.0615,
+        "escape_risk": 0.131,
+        "route_exposure": 0.2,
+        "traversal_pressure_inputs": {
+          "capacity_pressure": 0.0,
+          "mutation_pressure": 0.0,
+          "combat_exposure": 0.1,
+          "repair_burden": 0.53
+        },
+        "dashboard_snapshot": {
+          "snapshot_id": "snap_f6b890fe-f507-47d6-9322-5cc489280f58",
+          "player_id": "player_default_001_5c4cdb1c",
+          "floor_id": 1,
+          "run_status": "ACTIVE",
+          "pressure_summary": {
+            "combat_pressure": 0.1,
+            "traversal_pressure": 0.1015,
+            "escape_risk": 0.131,
+            "mutation_pressure": 0.0,
+            "repair_burden": 0.53,
+            "capacity_pressure": 0.0
+          },
+          "equipment_summary": {
+            "damaged_items": 2,
+            "zero_durability_items": 0,
+            "repair_materials_remaining": 0
+          },
+          "resource_summary": {
+            "gold": 0.0,
+            "potions": 0,
+            "rare_materials": 0
+          },
+          "route_summary": {
+            "routes_traversed": 0,
+            "highest_route_exposure": 0.0,
+            "escape_failures": 0
+          },
+          "residue_summary": {
+            "mutations_triggered": 0,
+            "survivor_marks": 0,
+            "residue_events_logged": 0
+          },
+          "domain_claim_summary": {
+            "active_claims": 1,
+            "decaying_claims": 0,
+            "overrun_claims": 0,
+            "highest_maintenance_pressure": 0.1,
+            "highest_visibility_pressure": 0.1,
+            "highest_mutation_threat": 0.05,
+            "total_recovery_value": 0.2,
+            "tower_hostility_preserved": true
+          },
+          "reclamation_pressure": {
+            "floor_id": 1,
+            "total_reclamation_pressure": 0.05,
+            "visibility_contribution": 0.05,
+            "decay_contribution": 0.0,
+            "depth_contribution": 0.0,
+            "reclamation_band": "STABLE",
+            "mutation_risk_bias": 0.04,
+            "bounded_flags_clean": true
+          },
+          "mutation_scarring_summary": {
+            "scarred_nodes_count": 1,
+            "highest_scar_intensity": 0.15,
+            "aggregate_hazard_bias": 0.09,
+            "bounded_flags_clean": true
+          },
+          "route_visibility_summary": {
+            "average_information_accuracy": 0.8000000000000002,
+            "best_visibility_band": "CLEAR",
+            "reconnaissance_level": 0.8000000000000002,
+            "bounded_flags_clean": true
+          },
+          "recoverability_status": {
+            "recoverable": true,
+            "critical_pressure": false
+          },
+          "bounded_flags_clean": true
+        },
+        "dashboard_summary": "Dashboard Snapshot [snap_f6b]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.05). Scarring: 0.15 (1 nodes). Recon: CLEAR (0.80). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (1 active).",
+        "dashboard_snapshot_available": true,
+        "reclamation_pressure": {
+          "floor_id": 1,
+          "total_reclamation_pressure": 0.05,
+          "visibility_contribution": 0.05,
+          "decay_contribution": 0.0,
+          "depth_contribution": 0.0,
+          "reclamation_band": "STABLE",
+          "mutation_risk_bias": 0.04,
+          "bounded_flags_clean": true
+        },
+        "mutation_scarring": {
+          "scarred_nodes_count": 1,
+          "highest_scar_intensity": 0.15,
+          "aggregate_hazard_bias": 0.09,
+          "bounded_flags_clean": true
+        },
+        "claim_targeting": {
+          "active_claims": 1,
+          "decaying_claims": 0,
+          "overrun_claims": 0,
+          "highest_maintenance_pressure": 0.1,
+          "highest_visibility_pressure": 0.1,
+          "highest_mutation_threat": 0.05,
+          "total_recovery_value": 0.2,
+          "tower_hostility_preserved": true
+        },
+        "route_visibility": {
+          "average_information_accuracy": 0.8000000000000002,
+          "best_visibility_band": "CLEAR",
+          "reconnaissance_level": 0.8000000000000002,
+          "bounded_flags_clean": true
+        }
+      },
+      "error": null
+    }
+  ],
+  "final_session_active": true,
+  "final_floor": 1,
+  "highest_floor_reached": 1,
+  "mutation_observed": false,
+  "survivor_mark_observed": false,
+  "diff_observed": false,
+  "combat_sessions_observed": 0,
+  "combat_outcomes_observed": [],
+  "combat_defeats_observed": 0,
+  "combat_victories_observed": 0,
+  "combat_retreats_observed": 0,
+  "resource_pressure_observed": false,
+  "residue_pressure_observed": false,
+  "mutation_after_combat_observed": false,
+  "survivor_mark_after_combat_observed": false,
+  "enemy_pressure_profiles_observed": 0,
+  "enemy_archetypes_observed": [],
+  "enemy_adaptation_reasoning_observed": [],
+  "attrition_pressure_observed": false,
+  "counter_pressure_observed": false,
+  "ambush_pressure_observed": false,
+  "baseline_pressure_observed": false,
+  "loot_events_observed": 0,
+  "total_gold_observed": 0,
+  "large_visible_loot_observed": false,
+  "resource_sink_pressure_observed": false,
+  "bounded_reward_flags_clean": true,
+  "loot_sources_observed": [],
+  "resource_sink_summaries": [],
+  "inventory_transactions_observed": 0,
+  "inventory_applications_observed": 0,
+  "inventory_failures_observed": 0,
+  "total_gold_added_to_inventory": 0,
+  "items_added_to_inventory": [],
+  "items_deducted_from_inventory": [],
+  "capacity_pressure_observed": true,
+  "capacity_pressure_values_observed": [
+    0.0
+  ],
+  "capacity_bands_observed": [
+    "EMPTY"
+  ],
+  "highest_capacity_pressure_observed": 0.0,
+  "over_capacity_failures_observed": 0,
+  "material_burden_summaries": [
+    "Floor 1 Burden: 0/40 (EMPTY)"
+  ],
+  "inventory_summaries": [],
+  "consumable_uses_observed": 0,
+  "consumables_deducted_observed": 0,
+  "failed_consumable_attempts_observed": 0,
+  "potion_drain_observed": false,
+  "total_potions_consumed": 0,
+  "consumable_drain_summaries": [],
+  "repair_material_uses_observed": 0,
+  "repair_materials_deducted_observed": 0,
+  "failed_repair_attempts_observed": 0,
+  "repair_material_drain_observed": false,
+  "durability_restoration_observed": false,
+  "repair_drain_summaries": [],
+  "repair_events_observed": 0,
+  "repair_applications_observed": 0,
+  "repair_failures_observed": 0,
+  "total_durability_restored_observed": 0.0,
+  "repair_materials_consumed_observed": 0,
+  "equipment_items_repaired_observed": [],
+  "bounded_repair_clean": true,
+  "repair_runtime_summaries": [],
+  "traversal_events_observed": 0,
+  "advance_attempts_observed": 0,
+  "escape_attempts_observed": 0,
+  "traversal_pressure_observed": true,
+  "traversal_pressure_values_observed": [
+    0.0615
+  ],
+  "highest_traversal_pressure_observed": 0.0615,
+  "escape_risk_observed": true,
+  "escape_risk_values_observed": [
+    0.131
+  ],
+  "highest_escape_risk_observed": 0.131,
+  "route_exposure_values_observed": [
+    0.2
+  ],
+  "traversal_summaries": [
+    "Status check: Traversal (advance): 1 -> 2. Risk: 0.13, Pressure: 0.10 (Cap:0.00, Mut:0.00)"
+  ],
+  "room_graph_evidence_observed": false,
+  "room_route_evidence_observed": false,
+  "room_routes_observed": 0,
+  "selected_routes_observed": [],
+  "route_types_observed": [],
+  "environmental_profiles_observed": [],
+  "highest_route_exposure_observed": 0.2,
+  "escape_modifiers_observed": [],
+  "route_pressure_used_observed": false,
+  "room_route_summaries": [],
+  "escape_resolutions_observed": 0,
+  "escape_successes_observed": 0,
+  "escape_partials_observed": 0,
+  "escape_failures_observed": 0,
+  "severe_escape_failures_observed": 0,
+  "escape_residue_written_observed": false,
+  "escape_mutation_pressure_observed": false,
+  "total_escape_mutation_pressure_delta": 0.0,
+  "escape_resource_losses_observed": [],
+  "escape_pipeline_outcomes_observed": [],
+  "escape_recoverability_preserved": true,
+  "escape_floor_identity_preserved": true,
+  "escape_resolution_summaries": [],
+  "dashboard_snapshots_observed": 1,
+  "dashboard_status_observed": true,
+  "pressure_summaries_observed": [
+    {
+      "combat_pressure": 0.1,
+      "traversal_pressure": 0.1015,
+      "escape_risk": 0.131,
+      "mutation_pressure": 0.0,
+      "repair_burden": 0.53,
+      "capacity_pressure": 0.0
+    }
+  ],
+  "resource_summaries_observed": [
+    {
+      "gold": 0.0,
+      "potions": 0,
+      "rare_materials": 0
+    }
+  ],
+  "equipment_summaries_observed": [
+    {
+      "damaged_items": 2,
+      "zero_durability_items": 0,
+      "repair_materials_remaining": 0
+    }
+  ],
+  "route_summaries_observed": [
+    {
+      "routes_traversed": 0,
+      "highest_route_exposure": 0.0,
+      "escape_failures": 0
+    }
+  ],
+  "residue_summaries_observed": [
+    {
+      "mutations_triggered": 0,
+      "survivor_marks": 0,
+      "residue_events_logged": 0
+    }
+  ],
+  "recoverability_statuses_observed": [
+    {
+      "recoverable": true,
+      "critical_pressure": false
+    }
+  ],
+  "dashboard_survival_summaries": [
+    "Dashboard Snapshot [snap_f6b]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Reclamation: STABLE (0.05). Scarring: 0.15 (1 nodes). Recon: CLEAR (0.80). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (1 active)."
+  ],
+  "domain_claims_observed": 1,
+  "domain_claim_types_observed": [
+    "recovery_anchor"
+  ],
+  "highest_domain_maintenance_pressure_observed": 0.1,
+  "highest_domain_visibility_pressure_observed": 0.1,
+  "highest_domain_mutation_threat_observed": 0.05,
+  "total_domain_recovery_value_observed": 0.2,
+  "tower_hostility_preserved_observed": true,
+  "domain_claim_summaries": [
+    "Domain Claim (recovery_anchor): Floor 1, Node floor_1_anchor. Pressure (Maint:0.10, Vis:0.10). Recovery: 0.20."
+  ],
+  "upkeep_events_observed": 0,
+  "total_shards_consumed_observed": 0,
+  "foothold_decay_events_observed": 0,
+  "foothold_restoration_events_observed": 0,
+  "upkeep_summaries": [],
+  "reclamation_pressure_observed": true,
+  "reclamation_pressure_values_observed": [
+    0.05
+  ],
+  "highest_reclamation_pressure_observed": 0.05,
+  "reclamation_bands_observed": [
+    "STABLE"
+  ],
+  "reclamation_summaries": [
+    "Floor 1 Reclamation: STABLE (0.05)"
+  ],
+  "scarred_nodes_observed": 1,
+  "highest_scar_intensity_observed": 0.15,
+  "aggregate_hazard_bias_observed": 0.09,
+  "scarring_summaries": [
+    "Floor 1 Scarring: 0.15 (1 nodes)"
+  ],
+  "highest_targeting_pressure_observed": 0.1,
+  "foothold_destabilization_events_observed": 0,
+  "targeting_summaries": [
+    "Claim claim_45 Targeted: 0.10. Penalty: +0."
+  ],
+  "route_selections_observed": 0,
+  "strategic_biases_observed": [],
+  "route_hazard_visibility_summaries": [],
+  "average_information_accuracy_observed": 0.8000000000000002,
+  "highest_information_accuracy_observed": 0.8000000000000002,
+  "visibility_bands_observed": [
+    "CLEAR"
+  ],
+  "durability_decay_observed": false,
+  "durability_events_observed": 0,
+  "total_durability_loss_observed": 0.0,
+  "equipment_items_worn_observed": [],
+  "zero_durability_items_observed": [],
+  "durability_pressure_observed": false,
+  "durability_decay_summaries": [],
+  "room_graph_changes_observed": 0,
+  "survivor_mark_rooms_observed": 0,
+  "graph_diff_summaries": [],
+  "errors": [],
+  "no_scope_creep_flags": {
+    "combat_runtime_introduced": false,
+    "map_generation_introduced": false,
+    "multiplayer_runtime_introduced": false,
+    "gpu_code_introduced": false
+  }
+}

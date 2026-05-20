@@ -1,0 +1,27 @@
+{
+  "stage_id": "STAGE-012",
+  "stage_name": "Active Escape Failure and Consequence Routing",
+  "identity_status": "STRONG ALIGNMENT - Retreating is now a calculated risk with material consequences.",
+  "major_strengths": [
+    "Implemented bounded failure outcomes (resource loss, pressure spikes).",
+    "Recycled DEFEAT_DROP pipeline for severe escape failures, ensuring systemic consistency.",
+    "Integrated retreat hazards into the spatial strategic audit trail (transcripts).",
+    "Maintained strict scope containment without real-time movement or chase systems."
+  ],
+  "major_risks": [
+    "Static Consequence Scaling (penalties may not scale with player progression).",
+    "Psychological Friction (failed retreats can feel more punitive than tactical defeats).",
+    "Command Redundancy (legacy vs. new escape commands)."
+  ],
+  "balance_questions": [
+    "Should pressure spikes trigger immediate tactical encounters?",
+    "Should severe failure risk scale exponentially with over-capacity status?",
+    "Are success thresholds balanced for a survival-first experience?"
+  ],
+  "required_followups": [
+    "Define MVP Domain Dashboard Boundary.",
+    "Implement dynamic, percentage-based inventory losses for escapes.",
+    "Introduce manual route selection to enhance spatial agency."
+  ],
+  "next_stage_recommendation": "STAGE-013: Define MVP Domain Dashboard Boundary"
+}

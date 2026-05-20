@@ -26,7 +26,12 @@
     },
     {
       "command": "claim",
-      "description": "Claim a survivor mark by its ID."
+      "description": "Create a localized domain foothold (recovery_anchor by default).",
+      "variants": [
+        "claim",
+        "claim <claim_type>",
+        "claim <mark_id>"
+      ]
     },
     {
       "command": "save",

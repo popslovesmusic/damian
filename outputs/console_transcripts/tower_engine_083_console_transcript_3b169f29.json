@@ -1,0 +1,314 @@
+{
+  "transcript_id": "3b169f29-3985-414f-b121-b15e2ba9e688",
+  "patch_id": "TOWER-ENGINE-083",
+  "timestamp": "2026-05-19T23:31:43.810896+00:00",
+  "ok": false,
+  "commands_requested": [
+    "potion 1",
+    "repair 1"
+  ],
+  "commands_executed": [
+    "potion 1",
+    "repair 1"
+  ],
+  "command_results": [
+    {
+      "ok": false,
+      "command": "potion",
+      "message": "Failed to consume ash_potion_small: Item ash_potion_small not found in inventory.",
+      "payload": {
+        "inventory_transaction": {
+          "transaction_id": "tx_b8719796-2b69-42e0-a6dc-57571d8b5c1b",
+          "inventory_id": "inv_dec1e7b0-9022-4d8f-b6b1-6a229b1b4c80",
+          "player_id": "player_default_001",
+          "transaction_type": "CONSUME_ITEM",
+          "items_added": [],
+          "items_deducted": [],
+          "currency_delta": {
+            "gold": 0,
+            "domain_essence": 0,
+            "stability_shards": 0,
+            "residue_fragments": 0,
+            "rare_materials": 0
+          },
+          "capacity_before": 0,
+          "capacity_after": 0,
+          "inventory_capacity": 40,
+          "transaction_applied": false,
+          "failure_reason": "Item ash_potion_small not found in inventory.",
+          "bounded_flags_clean": true
+        },
+        "inventory_summary": {
+          "gold": 0.0,
+          "items_count": 0,
+          "capacity": "0/40",
+          "capacity_pressure": 0.0,
+          "capacity_band": "EMPTY",
+          "over_capacity": false,
+          "capacity_report": "0/40 (EMPTY)"
+        },
+        "consumable_used": false,
+        "item_id": "ash_potion_small",
+        "quantity_requested": 1,
+        "capacity_pressure_summary": {
+          "ok": true,
+          "inventory_id": "inv_dec1e7b0-9022-4d8f-b6b1-6a229b1b4c80",
+          "used_capacity": 0,
+          "inventory_capacity": 40,
+          "capacity_pressure": 0.0,
+          "capacity_band": "EMPTY",
+          "over_capacity": false,
+          "error": null
+        },
+        "capacity_pressure": 0.0,
+        "capacity_band": "EMPTY",
+        "over_capacity": false
+      },
+      "error": {
+        "message": "Item ash_potion_small not found in inventory.",
+        "type": "TransactionError"
+      }
+    },
+    {
+      "ok": false,
+      "command": "repair",
+      "message": "Repair failed: Item repair_material_basic not found in inventory.",
+      "payload": {
+        "repair_event": {
+          "repair_event_id": "repair_4b0f20bd-2626-499d-ad57-c5b17b0c54ca",
+          "equipment_item_id": "ash_blade_alpha",
+          "inventory_id": "inv_dec1e7b0-9022-4d8f-b6b1-6a229b1b4c80",
+          "player_id": "player_default_001",
+          "materials_required": [
+            {
+              "item_id": "repair_material_basic",
+              "quantity": 1
+            }
+          ],
+          "materials_consumed": [],
+          "durability_before": 72,
+          "durability_after": 82.0,
+          "maximum_durability": 100,
+          "durability_restored": 10.0,
+          "repair_applied": false,
+          "failure_reason": "Item repair_material_basic not found in inventory.",
+          "bounded_flags_clean": true
+        },
+        "inventory_transaction": {
+          "transaction_id": "tx_243390fd-731e-49ca-9b2c-b7c543bf05d4",
+          "inventory_id": "inv_dec1e7b0-9022-4d8f-b6b1-6a229b1b4c80",
+          "player_id": "player_default_001",
+          "transaction_type": "CONSUME_ITEM",
+          "items_added": [],
+          "items_deducted": [],
+          "currency_delta": {
+            "gold": 0,
+            "domain_essence": 0,
+            "stability_shards": 0,
+            "residue_fragments": 0,
+            "rare_materials": 0
+          },
+          "capacity_before": 0,
+          "capacity_after": 0,
+          "inventory_capacity": 40,
+          "transaction_applied": false,
+          "failure_reason": "Item repair_material_basic not found in inventory.",
+          "bounded_flags_clean": true
+        },
+        "updated_equipment_loadout": {
+          "loadout_id": "equipment_loadout_example_001",
+          "player_id": "player_default_001",
+          "equipped_items": [
+            {
+              "equipment_item_id": "ash_blade_alpha",
+              "item_name": "Ash Blade",
+              "category_id": "weapons",
+              "rarity": "uncommon",
+              "durability": {
+                "current": 72,
+                "maximum": 100
+              },
+              "operational_profile": {
+                "repair_pressure": 0.42,
+                "residue_visibility": 0.51,
+                "mutation_affinity": 0.18,
+                "capacity_pressure": 0.22,
+                "risk_profile": 0.47
+              },
+              "bounded_flags": {
+                "grants_invulnerability": false,
+                "grants_infinite_scaling": false,
+                "bypasses_residue": false,
+                "bypasses_defeat": false
+              }
+            },
+            {
+              "equipment_item_id": "stability_lantern_beta",
+              "item_name": "Stability Lantern",
+              "category_id": "stability_focus_items",
+              "rarity": "rare",
+              "durability": {
+                "current": 41,
+                "maximum": 60
+              },
+              "operational_profile": {
+                "repair_pressure": 0.63,
+                "residue_visibility": 0.29,
+                "mutation_affinity": 0.74,
+                "capacity_pressure": 0.31,
+                "risk_profile": 0.58
+              },
+              "bounded_flags": {
+                "grants_invulnerability": false,
+                "grants_infinite_scaling": false,
+                "bypasses_residue": false,
+                "bypasses_defeat": false
+              }
+            }
+          ],
+          "aggregate_pressure": {
+            "repair_pressure": 0.53,
+            "residue_visibility": 0.4,
+            "mutation_affinity": 0.46,
+            "capacity_pressure": 0.26,
+            "risk_profile": 0.52
+          },
+          "bounded_rules_clean": true
+        },
+        "updated_inventory_state": {
+          "inventory_id": "inv_dec1e7b0-9022-4d8f-b6b1-6a229b1b4c80",
+          "player_id": "player_default_001",
+          "items": [],
+          "currency": {
+            "gold": 0.0,
+            "domain_essence": 0.0,
+            "stability_shards": 0.0,
+            "residue_fragments": 0.0,
+            "rare_materials": 0.0
+          },
+          "inventory_capacity": 40,
+          "used_capacity": 0,
+          "updated_at": "2026-05-19T23:31:43.809764+00:00"
+        },
+        "repair_applied": false,
+        "item_id": "repair_material_basic",
+        "quantity_requested": 1,
+        "durability_restored": 10.0,
+        "durability_restored_flag": false,
+        "capacity_pressure_summary": {
+          "ok": true,
+          "inventory_id": "inv_dec1e7b0-9022-4d8f-b6b1-6a229b1b4c80",
+          "used_capacity": 0,
+          "inventory_capacity": 40,
+          "capacity_pressure": 0.0,
+          "capacity_band": "EMPTY",
+          "over_capacity": false,
+          "error": null
+        },
+        "capacity_pressure": 0.0,
+        "capacity_band": "EMPTY",
+        "over_capacity": false
+      },
+      "error": {
+        "message": "Item repair_material_basic not found in inventory.",
+        "type": "TransactionError"
+      }
+    }
+  ],
+  "final_session_active": true,
+  "final_floor": 1,
+  "highest_floor_reached": 1,
+  "mutation_observed": false,
+  "survivor_mark_observed": false,
+  "diff_observed": false,
+  "combat_sessions_observed": 0,
+  "combat_outcomes_observed": [],
+  "combat_defeats_observed": 0,
+  "combat_victories_observed": 0,
+  "combat_retreats_observed": 0,
+  "resource_pressure_observed": false,
+  "residue_pressure_observed": false,
+  "mutation_after_combat_observed": false,
+  "survivor_mark_after_combat_observed": false,
+  "enemy_pressure_profiles_observed": 0,
+  "enemy_archetypes_observed": [],
+  "enemy_adaptation_reasoning_observed": [],
+  "attrition_pressure_observed": false,
+  "counter_pressure_observed": false,
+  "ambush_pressure_observed": false,
+  "baseline_pressure_observed": false,
+  "loot_events_observed": 0,
+  "total_gold_observed": 0,
+  "large_visible_loot_observed": false,
+  "resource_sink_pressure_observed": false,
+  "bounded_reward_flags_clean": true,
+  "loot_sources_observed": [],
+  "resource_sink_summaries": [],
+  "inventory_transactions_observed": 2,
+  "inventory_applications_observed": 0,
+  "inventory_failures_observed": 2,
+  "total_gold_added_to_inventory": 0,
+  "items_added_to_inventory": [],
+  "items_deducted_from_inventory": [],
+  "capacity_pressure_observed": true,
+  "capacity_pressure_values_observed": [
+    0.0,
+    0.0
+  ],
+  "capacity_bands_observed": [
+    "EMPTY"
+  ],
+  "highest_capacity_pressure_observed": 0.0,
+  "over_capacity_failures_observed": 0,
+  "material_burden_summaries": [
+    "Floor 1 Burden: 0/40 (EMPTY)"
+  ],
+  "inventory_summaries": [],
+  "consumable_uses_observed": 0,
+  "consumables_deducted_observed": 0,
+  "failed_consumable_attempts_observed": 1,
+  "potion_drain_observed": false,
+  "total_potions_consumed": 0,
+  "consumable_drain_summaries": [
+    "Failed potion attempt: Failed to consume ash_potion_small: Item ash_potion_small not found in inventory."
+  ],
+  "repair_material_uses_observed": 0,
+  "repair_materials_deducted_observed": 0,
+  "failed_repair_attempts_observed": 1,
+  "repair_material_drain_observed": false,
+  "durability_restoration_observed": false,
+  "repair_drain_summaries": [
+    "Failed repair attempt: Repair failed: Item repair_material_basic not found in inventory."
+  ],
+  "repair_events_observed": 0,
+  "repair_applications_observed": 0,
+  "repair_failures_observed": 1,
+  "total_durability_restored_observed": 0.0,
+  "repair_materials_consumed_observed": 0,
+  "equipment_items_repaired_observed": [],
+  "bounded_repair_clean": true,
+  "repair_runtime_summaries": [
+    "Repair attempt failed: Repair failed: Item repair_material_basic not found in inventory."
+  ],
+  "durability_decay_observed": false,
+  "durability_events_observed": 0,
+  "total_durability_loss_observed": 0.0,
+  "equipment_items_worn_observed": [],
+  "zero_durability_items_observed": [],
+  "durability_pressure_observed": false,
+  "durability_decay_summaries": [],
+  "room_graph_evidence_observed": false,
+  "room_graph_changes_observed": 0,
+  "survivor_mark_rooms_observed": 0,
+  "graph_diff_summaries": [],
+  "errors": [
+    "Failed to consume ash_potion_small: Item ash_potion_small not found in inventory.",
+    "Repair failed: Item repair_material_basic not found in inventory."
+  ],
+  "no_scope_creep_flags": {
+    "combat_runtime_introduced": false,
+    "map_generation_introduced": false,
+    "multiplayer_runtime_introduced": false,
+    "gpu_code_introduced": false
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "patch_id": "TOWER-ENGINE-111",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/dashboard/domain/tests/test_dashboard_domain_claim_evidence.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/dashboard/dashboard_domain_claim_evidence.md",
+      "status": "PASS"
+    },
+    {
+      "check": "derive_domain_claim_summary implemented",
+      "status": "PASS"
+    },
+    {
+      "check": "build_domain_dashboard_snapshot calls summary function",
+      "status": "PASS"
+    },
+    {
+      "check": "summarize_dashboard_snapshot includes claims",
+      "status": "PASS"
+    },
+    {
+      "check": "Dashboard domain claim unit tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/dashboard/domain/tests/test_domain_dashboard_snapshot_builder.py passes",
+      "status": "PASS"
+    }
+  ]
+}

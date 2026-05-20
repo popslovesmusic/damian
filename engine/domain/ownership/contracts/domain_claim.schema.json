@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DomainClaim",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "player_id",
+    "floor_id",
+    "claim_node_id",
+    "claim_type",
+    "status",
+    "maintenance_pressure",
+    "visibility_pressure",
+    "recovery_value",
+    "mutation_threat",
+    "residue_strength",
+    "recoverability_supported",
+    "tower_hostility_preserved",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "claim_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "floor_id": { "type": "integer" },
+    "claim_node_id": { "type": "string" },
+    "claim_type": {
+      "enum": [
+        "recovery_anchor",
+        "supply_cache",
+        "repair_station",
+        "survivor_outpost",
+        "observation_post"
+      ]
+    },
+    "status": {
+      "enum": ["ACTIVE", "DECAYING", "OVERRUN"]
+    },
+    "maintenance_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "visibility_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "recovery_value": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "mutation_threat": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "residue_strength": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+    "recoverability_supported": { "type": "boolean", "const": true },
+    "tower_hostility_preserved": { "type": "boolean", "const": true },
+    "bounded_flags_clean": { "type": "boolean", "const": true }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "boundary_name": "Manual Route Selection",
+  "description": "Defines the pure data contracts for a player choosing between multiple available routes in the Tower. Route selection must preserve operational uncertainty.",
+  "strict_rules": [
+    "no_rendered_map_runtime",
+    "no_real_time_pathfinding",
+    "no_open_world_navigation",
+    "route_selection_must_preserve_operational_uncertainty",
+    "manual_route_selection_must_increase_spatial_agency_without_removing_fear"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "floor_id": 1,
+  "owner_id": "player_default_001",
+  "stability_level": 0.45,
+  "total_shards_invested": 12,
+  "upkeep_cost": {
+    "shards_per_run": 2
+  },
+  "protection_flags": {
+    "mutation_mitigation": true,
+    "recovery_boost": false
+  },
+  "bounded_flags_clean": true
+}

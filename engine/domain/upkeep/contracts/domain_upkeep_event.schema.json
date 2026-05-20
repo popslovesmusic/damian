@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DomainUpkeepEvent",
+  "description": "Records the material cost and state outcome of a foothold upkeep operation.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "claim_id",
+    "floor_id",
+    "shards_requested",
+    "shards_deducted",
+    "previous_state",
+    "current_state",
+    "upkeep_successful",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "claim_id": { "type": "string" },
+    "floor_id": { "type": "integer" },
+    "shards_requested": { "type": "integer", "minimum": 0 },
+    "shards_deducted": { "type": "integer", "minimum": 0 },
+    "previous_state": { "enum": ["ACTIVE", "DECAYING", "OVERRUN", "INITIAL"] },
+    "current_state": { "enum": ["ACTIVE", "DECAYING", "OVERRUN"] },
+    "upkeep_successful": { "type": "boolean" },
+    "bounded_flags_clean": { "type": "boolean", "const": true }
+  }
+}

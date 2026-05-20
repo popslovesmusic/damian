@@ -1,0 +1,27 @@
+{
+  "stage_id": "STAGE-016",
+  "stage_name": "Mutation Scarring and Claim Targeting",
+  "identity_status": "STRONG ALIGNMENT - The Tower now actively notices and scars player-made order, reinforcing territorial control as a material source of escalating risk.",
+  "major_strengths": [
+    "Implemented localized environmental memory via Mutation Scarring.",
+    "Created focused strategic pushback via Claim Targeting.",
+    "Materialized tactical friction through scarring hazard biases.",
+    "Ensured full meta-strategic observability of environmental pushback."
+  ],
+  "major_risks": [
+    "Snowballing Hazard (risk of nodes becoming permanently unusable wasteland).",
+    "Information Overload (risk of dashboard density reducing cognitive clarity).",
+    "Mitigation Gap (lack of active tools to clean scars or hide from targeting)."
+  ],
+  "balance_questions": [
+    "Are upkeep penalties from targeting high enough to force abandonment?",
+    "Should scarring intensity decay when order is absent?",
+    "How does order existence interact with easter egg discovery?"
+  ],
+  "required_followups": [
+    "Implement Manual Route Selection (Stage 017).",
+    "Develop specific mutation events for OVERRUN footholds.",
+    "Review survival dashboard for high-priority hazard surfacing."
+  ],
+  "next_stage_recommendation": "STAGE-017: Manual Route Selection and Spatial Agency"
+}

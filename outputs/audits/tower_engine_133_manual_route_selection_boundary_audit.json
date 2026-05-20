@@ -1,0 +1,42 @@
+{
+  "patch_id": "TOWER-ENGINE-133",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/traversal/routes/manual_route_selection_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/traversal/routes/contracts/manual_route_selection.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/traversal/routes/contracts/example_manual_route_selection.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/routes/mvp_manual_route_selection_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required selection rules",
+      "status": "PASS"
+    },
+    {
+      "check": "Example selection validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example hazard values are in bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "Example bounded_flags_clean is True",
+      "status": "PASS"
+    }
+  ]
+}

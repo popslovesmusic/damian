@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DomainDashboardSnapshot",
+  "type": "object",
+  "required": [
+    "snapshot_id",
+    "player_id",
+    "floor_id",
+    "run_status",
+    "pressure_summary",
+    "equipment_summary",
+    "resource_summary",
+    "route_summary",
+    "residue_summary",
+    "domain_claim_summary",
+    "reclamation_pressure",
+    "mutation_scarring_summary",
+    "route_visibility_summary",
+    "recoverability_status",
+    "bounded_flags_clean"
+  ],
+  "properties": {
+    "snapshot_id": { "type": "string" },
+    "player_id": { "type": "string" },
+    "floor_id": { "type": "integer" },
+    "run_status": {
+      "enum": ["ACTIVE", "RETREATED", "DEFEATED", "RECOVERING"]
+    },
+    "pressure_summary": {
+      "type": "object",
+      "required": [
+        "combat_pressure",
+        "traversal_pressure",
+        "escape_risk",
+        "mutation_pressure",
+        "repair_burden",
+        "capacity_pressure"
+      ],
+      "properties": {
+        "combat_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "traversal_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "escape_risk": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "mutation_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "repair_burden": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "capacity_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "equipment_summary": {
+      "type": "object",
+      "required": ["damaged_items", "zero_durability_items", "repair_materials_remaining"],
+      "properties": {
+        "damaged_items": { "type": "integer", "minimum": 0 },
+        "zero_durability_items": { "type": "integer", "minimum": 0 },
+        "repair_materials_remaining": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "resource_summary": {
+      "type": "object",
+      "required": ["gold", "potions", "rare_materials"],
+      "properties": {
+        "gold": { "type": "number", "minimum": 0.0 },
+        "potions": { "type": "integer", "minimum": 0 },
+        "rare_materials": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "route_summary": {
+      "type": "object",
+      "required": ["routes_traversed", "highest_route_exposure", "escape_failures"],
+      "properties": {
+        "routes_traversed": { "type": "integer", "minimum": 0 },
+        "highest_route_exposure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "escape_failures": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "residue_summary": {
+      "type": "object",
+      "required": ["mutations_triggered", "survivor_marks", "residue_events_logged"],
+      "properties": {
+        "mutations_triggered": { "type": "integer", "minimum": 0 },
+        "survivor_marks": { "type": "integer", "minimum": 0 },
+        "residue_events_logged": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "domain_claim_summary": {
+      "type": "object",
+      "required": [
+        "active_claims",
+        "decaying_claims",
+        "overrun_claims",
+        "highest_maintenance_pressure",
+        "highest_visibility_pressure",
+        "highest_mutation_threat",
+        "total_recovery_value",
+        "tower_hostility_preserved"
+      ],
+      "properties": {
+        "active_claims": { "type": "integer", "minimum": 0 },
+        "decaying_claims": { "type": "integer", "minimum": 0 },
+        "overrun_claims": { "type": "integer", "minimum": 0 },
+        "highest_maintenance_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "highest_visibility_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "highest_mutation_threat": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "total_recovery_value": { "type": "number", "minimum": 0.0 },
+        "tower_hostility_preserved": { "type": "boolean" }
+      }
+    },
+    "reclamation_pressure": {
+      "type": "object",
+      "required": [
+        "floor_id",
+        "total_reclamation_pressure",
+        "visibility_contribution",
+        "decay_contribution",
+        "depth_contribution",
+        "reclamation_band",
+        "mutation_risk_bias",
+        "bounded_flags_clean"
+      ],
+      "properties": {
+        "floor_id": { "type": "integer" },
+        "total_reclamation_pressure": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "visibility_contribution": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "decay_contribution": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "depth_contribution": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "reclamation_band": { "type": "string" },
+        "mutation_risk_bias": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "bounded_flags_clean": { "type": "boolean", "const": true }
+      }
+    },
+    "mutation_scarring_summary": {
+      "type": "object",
+      "required": [
+        "scarred_nodes_count",
+        "highest_scar_intensity",
+        "aggregate_hazard_bias",
+        "bounded_flags_clean"
+      ],
+      "properties": {
+        "scarred_nodes_count": { "type": "integer", "minimum": 0 },
+        "highest_scar_intensity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "aggregate_hazard_bias": { "type": "number", "minimum": 0.0 },
+        "bounded_flags_clean": { "type": "boolean", "const": true }
+      }
+    },
+    "route_visibility_summary": {
+      "type": "object",
+      "required": [
+        "average_information_accuracy",
+        "best_visibility_band",
+        "reconnaissance_level",
+        "bounded_flags_clean"
+      ],
+      "properties": {
+        "average_information_accuracy": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "best_visibility_band": { "type": "string" },
+        "reconnaissance_level": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "bounded_flags_clean": { "type": "boolean", "const": true }
+      }
+    },
+    "recoverability_status": {
+      "type": "object",
+      "required": ["recoverable", "critical_pressure"],
+      "properties": {
+        "recoverable": { "type": "boolean" },
+        "critical_pressure": { "type": "boolean" }
+      }
+    },
+    "bounded_flags_clean": { "type": "boolean", "const": true }
+  }
+}

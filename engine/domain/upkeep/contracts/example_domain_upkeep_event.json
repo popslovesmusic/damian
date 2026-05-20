@@ -1,0 +1,11 @@
+{
+  "event_id": "upk_44d2b291",
+  "claim_id": "claim_7721",
+  "floor_id": 2,
+  "shards_requested": 3,
+  "shards_deducted": 3,
+  "previous_state": "ACTIVE",
+  "current_state": "ACTIVE",
+  "upkeep_successful": true,
+  "bounded_flags_clean": true
+}

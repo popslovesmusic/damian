@@ -1,0 +1,30 @@
+{
+  "boundary_id": "tower_engine_domain_ownership_boundary_v001",
+  "core_principle": "Domain Ownership enables players to transition from survivors to meta-strategic controllers by spending material resources to stabilize the Tower's environment.",
+  "runtime_responsibilities": [
+    "track_floor_dominion",
+    "mitigate_mutation_pressure_via_stability",
+    "consume_stability_shards_for_maintenance",
+    "report_ownership_status",
+    "preserve_defeat_and_residue_identity"
+  ],
+  "runtime_non_goals": [
+    "real_time_territory_map",
+    "multiplayer_domain_sync",
+    "visual_conquest_rendering",
+    "instant_safe_zones",
+    "permanent_consequence_erasure"
+  ],
+  "ownership_policy": {
+    "ownership_requires_material_investment": true,
+    "stability_levels_should_influence_mutation_chance": true,
+    "upkeep_cost_should_scale_with_tower_depth": true,
+    "ownership_should_strengthen_meta_game_persistence": true
+  },
+  "identity_rules": [
+    "ownership_must_not_bypass_defeat",
+    "ownership_must_not_bypass_residue",
+    "ownership_must_not_remove_survival_pressure",
+    "ownership_must_make_stability_auditable"
+  ]
+}

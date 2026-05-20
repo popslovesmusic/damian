@@ -1,0 +1,55 @@
+{
+  "patch_id": "TOWER-ENGINE-112",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/runtime/tests/test_mvp_text_console_domain_claim.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_domain_claim_command.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Command registry updated with domain claim",
+      "status": "PASS"
+    },
+    {
+      "check": "domain_claim_stub imported in console",
+      "status": "PASS"
+    },
+    {
+      "check": "_handle_claim_domain implemented",
+      "status": "PASS"
+    },
+    {
+      "check": "_handle_claim_polymorphic implemented",
+      "status": "PASS"
+    },
+    {
+      "check": "domain_claims initialized in session state",
+      "status": "PASS"
+    },
+    {
+      "check": "Console domain claim integration tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_combat_command.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_traversal_status.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/runtime/tests/test_mvp_text_console_dashboard_status.py passes",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "boundary_id": "tower_engine_domain_dashboard_boundary_v001",
+  "core_principle": "The dashboard exists to make recursive survival pressure cognitively readable without replacing gameplay or collapsing operational uncertainty.",
+  "runtime_responsibilities": [
+    "surface_survival_pressure",
+    "surface_operational_burden",
+    "surface_mutation_pressure",
+    "surface_traversal_pressure",
+    "surface_escape_risk",
+    "surface_equipment_status",
+    "surface_resource_state",
+    "surface_residue_history",
+    "surface_route_history",
+    "preserve_readability"
+  ],
+  "runtime_non_goals": [
+    "real_time_overlay_system",
+    "full_graphics_ui",
+    "rendered_map_runtime",
+    "drag_drop_inventory_ui",
+    "multiplayer_dashboard_sync",
+    "animation_runtime",
+    "web_frontend"
+  ],
+  "dashboard_policy": {
+    "dashboard_should_prioritize_survival_clarity": true,
+    "dashboard_should_not_reveal_hidden_future_information": true,
+    "dashboard_should_preserve_operational_uncertainty": true,
+    "dashboard_should_support_post_run_analysis": true,
+    "dashboard_should_support_manual_playtesting": true
+  },
+  "identity_rules": [
+    "dashboard_must_not_bypass_gameplay",
+    "dashboard_must_not_create_perfect_information",
+    "dashboard_must_not_remove_survival_pressure",
+    "dashboard_must_support_recursive_memory",
+    "dashboard_must_make_pressure_legible_not_safe"
+  ]
+}

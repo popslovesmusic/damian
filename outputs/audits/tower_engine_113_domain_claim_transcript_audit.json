@@ -1,0 +1,47 @@
+{
+  "patch_id": "TOWER-ENGINE-113",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/console/reports/tests/test_console_transcript_domain_claim.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/console/console_transcript_domain_claim.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Required domain claim fields added to reporter",
+      "status": "PASS"
+    },
+    {
+      "check": "patch_id updated to TOWER-ENGINE-113",
+      "status": "PASS"
+    },
+    {
+      "check": "Console transcript domain claim tests pass",
+      "status": "PASS",
+      "reason": null
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_reporter.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_dashboard_snapshot.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Regression test engine/console/reports/tests/test_console_transcript_escape_resolution.py passes",
+      "status": "PASS"
+    },
+    {
+      "check": "Validation transcript generated",
+      "status": "PASS"
+    },
+    {
+      "check": "Validation transcript contains domain claim evidence",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "patch_id": "TOWER-ENGINE-115",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/domain/upkeep/domain_upkeep_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/domain/upkeep/contracts/domain_upkeep_event.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/domain/upkeep/contracts/example_domain_upkeep_event.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/domain/mvp_domain_upkeep_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required upkeep rules",
+      "status": "PASS"
+    },
+    {
+      "check": "Example event validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example bounded_flags_clean is True",
+      "status": "PASS"
+    }
+  ]
+}

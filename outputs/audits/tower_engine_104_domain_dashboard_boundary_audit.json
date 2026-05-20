@@ -1,0 +1,54 @@
+{
+  "patch_id": "TOWER-ENGINE-104",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/dashboard/domain/domain_dashboard_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/dashboard/domain/contracts/domain_dashboard_snapshot.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/dashboard/domain/contracts/example_domain_dashboard_snapshot.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/dashboard/mvp_domain_dashboard_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes uncertainty policy",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes perfect information identity rule",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes overlay system non-goal",
+      "status": "PASS"
+    },
+    {
+      "check": "Example snapshot validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example pressure values are in bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "Example recoverable is True",
+      "status": "PASS"
+    },
+    {
+      "check": "Example bounded_flags_clean is True",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "current_node_id": {
+      "type": "string"
+    },
+    "available_routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "route_id": {
+            "type": "string"
+          },
+          "target_node_id": {
+            "type": "string"
+          },
+          "distance_cost": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "known_hazards": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["route_id", "target_node_id", "distance_cost", "known_hazards"]
+      }
+    },
+    "selected_route_id": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": ["current_node_id", "available_routes"]
+}

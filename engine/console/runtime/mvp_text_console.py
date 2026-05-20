@@ -21,6 +21,14 @@ try:
     from engine.traversal.runtime import traversal_pressure_stub
     from engine.room_graph.runtime import room_graph_builder
     from engine.room_graph.traversal import room_traversal_route_builder
+    from engine.traversal.escape import escape_resolution_stub
+    from engine.dashboard.domain import domain_dashboard_snapshot_builder
+    from engine.domain.ownership import domain_claim_stub
+    from engine.domain.upkeep import domain_upkeep_stub
+    from engine.domain.reclamation import claim_targeting_stub
+    from engine.residue.mutation import mutation_scarring_stub
+    from engine.traversal.routes import manual_route_selection_stub
+    from engine.traversal.routes import route_hazard_visibility_stub
     _dependencies_available = True
 except ImportError as e:
     print(f"ERROR: Console runtime dependencies missing: {e}")
@@ -55,6 +63,8 @@ def make_console_session_state(runtime_context, debug=False):
     if not inventory_state:
         from engine.inventory.runtime import inventory_transaction_stub
         inventory_state = inventory_transaction_stub.make_default_inventory_state(debug=debug)
+        # Give some starting shards for testing (TOWER-ENGINE-117)
+        inventory_state["currency"]["stability_shards"] = 10.0
 
     # Initialize equipment loadout (TOWER-ENGINE-078)
     equipment_loadout = runtime_context.get("equipment_loadout")
@@ -70,6 +80,8 @@ def make_console_session_state(runtime_context, debug=False):
         "runtime_context": runtime_context,
         "inventory_state": inventory_state,
         "equipment_loadout": equipment_loadout,
+        "domain_claims": [], # TOWER-ENGINE-112
+        "last_domain_claim": None, # TOWER-ENGINE-112
         "last_inventory_transaction": None,
         "last_durability_events": [],
         "durability_pressure_observed": False,
@@ -112,15 +124,17 @@ def execute_console_command(session_state, command_struct, debug=False):
     elif command == "marks":
         return _handle_marks(session_state, debug)
     elif command == "claim":
-        if not args:
-            return {"ok": False, "command": "claim", "message": "Missing survivor_mark_id.", "payload": None, "error": "MissingArgument"}
-        return _handle_claim(session_state, args[0], debug)
+        return _handle_claim_polymorphic(session_state, args, debug)
+    elif command == "maintain":
+        return _handle_maintain(session_state, debug)
+    elif command == "routes":
+        return _handle_routes(session_state, debug)
     elif command == "combat":
         return _handle_combat(session_state, args, debug)
-    elif command == "advance":
-        return _handle_traversal_command(session_state, "advance", debug)
+    elif command in ("advance", "traverse"):
+        return _handle_traversal_command(session_state, "advance", args, debug)
     elif command == "escape":
-        return _handle_traversal_command(session_state, "escape_attempt", debug)
+        return _handle_traversal_command(session_state, "escape_attempt", args, debug)
     elif command == "potion":
         return _handle_potion(session_state, args, debug)
     elif command == "repair":
@@ -212,6 +226,24 @@ def _handle_status(session_state, debug):
     if traversal_event:
         status_msg += f" | Traversal Risk: {traversal_event.get('escape_risk'):.2f}"
 
+    # Build Domain Dashboard Snapshot (TOWER-ENGINE-106)
+    dashboard_res = domain_dashboard_snapshot_builder.build_domain_dashboard_snapshot(session_state, debug=debug)
+    dashboard_snapshot = dashboard_res.get("snapshot") if dashboard_res["ok"] else None
+    dashboard_summary = dashboard_res.get("summary") if dashboard_res["ok"] else None
+    
+    # Extract reclamation pressure for payload (TOWER-ENGINE-121)
+    reclamation_record = dashboard_snapshot.get("reclamation_pressure") if dashboard_snapshot else None
+    
+    # Extract scarring and targeting (TOWER-ENGINE-130)
+    scarring_summary = dashboard_snapshot.get("mutation_scarring_summary") if dashboard_snapshot else None
+    targeting_summary = dashboard_snapshot.get("domain_claim_summary") if dashboard_snapshot else None
+    
+    # Extract route visibility (TOWER-ENGINE-139)
+    visibility_summary = dashboard_snapshot.get("route_visibility_summary") if dashboard_snapshot else None
+
+    if visibility_summary:
+        status_msg += f" | Route Recon: {visibility_summary.get('best_visibility_band')} ({visibility_summary.get('average_information_accuracy'):.2f})"
+
     payload = {
         "current_floor": current_floor,
         "highest_floor": highest_floor,
@@ -223,7 +255,7 @@ def _handle_status(session_state, debug):
         "capacity_band": cap_summary.get("capacity_band") if cap_summary else None,
         "over_capacity": cap_summary.get("over_capacity", False) if cap_summary else False,
         "traversal_pressure_summary": traversal_res.get("summary"),
-        "traversal_pressure": traversal_event.get("traversal_pressure", {}).get("total_pressure", 0.0) if traversal_event else None, # Wait, total_pressure is not in schema but derived.
+        "traversal_pressure": traversal_event.get("traversal_pressure", {}).get("total_pressure", 0.0) if traversal_event else None,
         "escape_risk": traversal_event.get("escape_risk") if traversal_event else None,
         "route_exposure": traversal_event.get("route_exposure") if traversal_event else None,
         "traversal_pressure_inputs": {
@@ -231,7 +263,14 @@ def _handle_status(session_state, debug):
             "mutation_pressure": mut_p,
             "combat_exposure": comb_e,
             "repair_burden": rep_b
-        }
+        },
+        "dashboard_snapshot": dashboard_snapshot,
+        "dashboard_summary": dashboard_summary,
+        "dashboard_snapshot_available": dashboard_snapshot is not None,
+        "reclamation_pressure": reclamation_record,
+        "mutation_scarring": scarring_summary,
+        "claim_targeting": targeting_summary,
+        "route_visibility": visibility_summary
     }
     
     # Fix traversal_pressure field name to match schema-derived total
@@ -335,7 +374,8 @@ def _handle_marks(session_state, debug):
     return {"ok": True, "command": "marks", "message": msg, "payload": marks_list, "error": None}
 
 
-def _handle_claim(session_state, mark_id, debug):
+def _handle_claim_mark(session_state, mark_id, debug):
+    """Legacy handler for claiming survivor marks."""
     tower_state = session_state["runtime_context"]["tower_state"]
     current_floor = tower_state.get("current_floor", 1)
     
@@ -361,6 +401,133 @@ def _handle_claim(session_state, mark_id, debug):
     reward = claim_result["payload"]
     msg = f"Mark {mark_id} claimed! Reward: {reward.get('type')} (Value: {reward.get('value')})."
     return {"ok": True, "command": "claim", "message": msg, "payload": reward, "error": None}
+
+
+def _handle_claim_domain(session_state, claim_type, debug):
+    """Handlers creation of localized strategic footholds (TOWER-ENGINE-112)."""
+    tower_state = session_state["runtime_context"]["tower_state"]
+    current_floor = tower_state.get("current_floor", 1)
+    
+    # Simple node selection proxy for MVP console
+    claim_node_id = f"floor_{current_floor}_anchor"
+    
+    claim_res = domain_claim_stub.make_domain_claim(
+        player_id="console_player",
+        floor_id=current_floor,
+        claim_node_id=claim_node_id,
+        claim_type=claim_type,
+        debug=debug
+    )
+    
+    if not claim_res["ok"]:
+         return {"ok": False, "command": "claim", "message": f"Domain claim failed: {claim_res.get('message')}", "payload": None, "error": "ClaimError"}
+
+    claim = claim_res["domain_claim"]
+    
+    # Calculate Targeting and Scarring (TOWER-ENGINE-130)
+    # Get current reclamation baseline
+    dashboard_res = domain_dashboard_snapshot_builder.build_domain_dashboard_snapshot(session_state, debug=debug)
+    rec_press = 0.0
+    if dashboard_res["ok"]:
+        rec_press = dashboard_res["snapshot"]["reclamation_pressure"]["total_reclamation_pressure"]
+    
+    # Get localized scarring for this node
+    scar_res = mutation_scarring_stub.calculate_localized_scarring(claim_node_id, session_state.get("domain_claims", []), current_floor, debug=debug)
+    
+    # Calculate individual targeting
+    target_res = claim_targeting_stub.calculate_claim_targeting(claim, rec_press, local_scarring=scar_res["scar_intensity"], debug=debug)
+    
+    # Append to session (TOWER-ENGINE-112)
+    session_state["domain_claims"].append(claim)
+    session_state["last_domain_claim"] = claim
+    
+    payload = {
+        "domain_claim": claim,
+        "claim_summary": claim_res["summary"],
+        "maintenance_pressure": claim["maintenance_pressure"],
+        "visibility_pressure": claim["visibility_pressure"],
+        "recovery_value": claim["recovery_value"],
+        "mutation_threat": claim["mutation_threat"],
+        "tower_hostility_preserved": claim["tower_hostility_preserved"],
+        "domain_claim_created": True,
+        # TOWER-ENGINE-130 additions
+        "targeting_pressure": target_res["targeting_pressure"],
+        "maintenance_penalty": target_res["maintenance_penalty"],
+        "is_destabilized": target_res["is_destabilized"],
+        "local_scarring": scar_res["scar_intensity"],
+        "hazard_bias": scar_res["hazard_bias"]
+    }
+    
+    msg = f"Foothold established! {claim_res['summary']} Targeting: {target_res['targeting_pressure']:.2f}."
+    return {"ok": True, "command": "claim", "message": msg, "payload": payload, "error": None}
+
+
+def _handle_claim_polymorphic(session_state, args, debug):
+    """Routes 'claim' between domain footholds and survivor marks (TOWER-ENGINE-112)."""
+    valid_domain_types = ["recovery_anchor", "supply_cache", "repair_station", "survivor_outpost", "observation_post"]
+    
+    if not args:
+        # Default domain claim
+        return _handle_claim_domain(session_state, "recovery_anchor", debug)
+        
+    target = args[0]
+    if target in valid_domain_types:
+        return _handle_claim_domain(session_state, target, debug)
+    else:
+        # Assume it's a survivor mark ID
+        return _handle_claim_mark(session_state, target, debug)
+
+
+def _handle_maintain(session_state, debug):
+    """Processes upkeep for all established domain claims (TOWER-ENGINE-117)."""
+    claims = session_state.get("domain_claims", [])
+    inventory = session_state.get("inventory_state", {})
+    
+    if not claims:
+        return {"ok": True, "command": "maintain", "message": "No footholds established to maintain.", "payload": None, "error": None}
+    
+    available_shards = inventory.get("currency", {}).get("stability_shards", 0.0)
+    
+    results = []
+    total_shards_consumed = 0
+    updated_claims = []
+    
+    from engine.domain.upkeep import domain_upkeep_stub
+    from engine.inventory.runtime import inventory_transaction_stub
+    
+    for claim in claims:
+        res = domain_upkeep_stub.process_claim_upkeep(claim, available_shards, debug=debug)
+        if res["ok"]:
+            # Update claim state
+            claim["status"] = res["updated_status"]
+            shards_consumed = res["shards_consumed"]
+            
+            # Deduct shards from available pool for next claim in loop
+            available_shards -= shards_consumed
+            total_shards_consumed += shards_consumed
+            
+            results.append(res["upkeep_event"])
+            updated_claims.append(claim)
+
+    # 4. Apply material deduction to inventory
+    if total_shards_consumed > 0:
+        inv_res = inventory_transaction_stub.deduct_inventory_currency(
+            inventory, {"stability_shards": total_shards_consumed}, debug=debug
+        )
+        if inv_res["ok"]:
+            session_state["inventory_state"] = inv_res["inventory_state"]
+            session_state["last_inventory_transaction"] = inv_res["transaction"]
+
+    msg = f"Maintenance processed for {len(claims)} footholds. Total shards consumed: {total_shards_consumed}."
+    
+    payload = {
+        "upkeep_events": results,
+        "shards_consumed": total_shards_consumed,
+        "updated_claims": updated_claims,
+        "inventory_transaction": session_state.get("last_inventory_transaction")
+    }
+    
+    return {"ok": True, "command": "maintain", "message": msg, "payload": payload, "error": None}
 
 
 def _handle_combat(session_state, args, debug):
@@ -684,9 +851,50 @@ def _handle_save(session_state, debug):
     return {"ok": True, "command": "save", "message": f"Tower state saved to {save_path}.", "payload": {"path": save_path}, "error": None}
 
 
-def _handle_traversal_command(session_state, traversal_type, debug):
+def _handle_routes(session_state, debug):
+    """Lists available traversal routes and their hazard profiles (TOWER-ENGINE-135)."""
+    tower_state = session_state["runtime_context"]["tower_state"]
+    current_floor = tower_state.get("current_floor", 1)
+    
+    # 1. Build or Load Room Graph
+    fr_res = floor_record_builder.make_floor_record(current_floor, debug=debug)
+    if not fr_res["ok"]:
+        return {"ok": False, "command": "routes", "message": "Could not access floor record.", "payload": None, "error": "FloorError"}
+    
+    fm_res = mvp_residue_writer.get_or_create_floor_memory(tower_state, current_floor, debug=debug)
+    has_marks = len(fm_res["payload"].get("unclaimed_easter_eggs", [])) > 0 if fm_res["ok"] else False
+    
+    graph_res = room_graph_builder.build_room_graph(fr_res["payload"], include_survivor_mark_room=has_marks, debug=debug)
+    if not graph_res["ok"]:
+        return {"ok": False, "command": "routes", "message": "Could not build room graph.", "payload": None, "error": "GraphError"}
+    
+    # 2. Build Routes
+    routes_res = room_traversal_route_builder.build_routes_from_room_graph(graph_res["payload"], debug=debug)
+    if not routes_res["ok"]:
+        return {"ok": False, "command": "routes", "message": "Could not build traversal routes.", "payload": None, "error": "RouteError"}
+    
+    routes = routes_res["routes"]
+    
+    msg_lines = [f"Available routes on Floor {current_floor}:"]
+    for r in routes:
+        # Calculate hazards via stub (TOWER-ENGINE-134)
+        hazards = manual_route_selection_stub.calculate_route_hazards(r["route_type"], current_floor, debug=debug)
+        
+        # Integrate visibility (TOWER-ENGINE-139)
+        claims = session_state.get("domain_claims", [])
+        vis_res = route_hazard_visibility_stub.calculate_route_visibility({"route_id": r["route_id"], "hazard_profile": hazards}, claims, current_floor, debug=debug)
+        ph = vis_res["perceived_hazards"]
+        
+        line = f"- {r['route_id']} ({r['route_type']}). Recon: {vis_res['visibility_band']} ({vis_res['information_accuracy']:.2f}). "
+        line += f"Perceived: Combat:{ph['combat']:.2f}, Mutation:{ph['mutation']:.2f}, Drain:{ph['drain']:.2f}"
+        msg_lines.append(line)
+        
+    return {"ok": True, "command": "routes", "message": "\n".join(msg_lines), "payload": {"routes": routes}, "error": None}
+
+
+def _handle_traversal_command(session_state, traversal_type, args, debug):
     """
-    Handles bounded spatial movement (advance or escape) with room-route-aware pressure.
+    Handles bounded spatial movement (advance or escape) with manual route selection (TOWER-ENGINE-135).
     """
     tower_state = session_state["runtime_context"]["tower_state"]
     current_floor = tower_state.get("current_floor", 1)
@@ -713,16 +921,24 @@ def _handle_traversal_command(session_state, traversal_type, debug):
     
     room_routes = routes_res["routes"]
     
-    # 3. Select Appropriate Route
+    # 3. Select Appropriate Route (Manual Selection Support TOWER-ENGINE-135)
     selected_route = None
-    if traversal_type == "advance":
-        # Prefer primary or pressure routes for advancing
-        selected_route = next((r for r in room_routes if r["route_type"] in ["primary_route", "pressure_route"]), None)
+    target_route_id = args[0] if args else None
+    
+    if target_route_id:
+        selected_route = next((r for r in room_routes if r["route_id"] == target_route_id), None)
+        if not selected_route:
+             return {"ok": False, "command": traversal_type, "message": f"Route {target_route_id} not found on this floor.", "payload": None, "error": "InvalidRoute"}
     else:
-        # Prefer escape or recovery routes for retreating
-        selected_route = next((r for r in room_routes if r["route_type"] in ["escape_route", "recovery_route"]), room_routes[0] if room_routes else None)
+        # Fallback to automatic selection if no ID provided
+        if traversal_type == "advance":
+            # Prefer primary or pressure routes for advancing
+            selected_route = next((r for r in room_routes if r["route_type"] in ["primary_route", "pressure_route"]), None)
+        else:
+            # Prefer escape or recovery routes for retreating
+            selected_route = next((r for r in room_routes if r["route_type"] in ["escape_route", "recovery_route"]), room_routes[0] if room_routes else None)
 
-    # 4. Derive Pressure Inputs
+    # 4. Derive Pressure Inputs (TOWER-ENGINE-134 Hazards integrated into traversal)
     cap_p = 0.0
     inventory_state = session_state.get("inventory_state")
     if inventory_state:
@@ -737,13 +953,18 @@ def _handle_traversal_command(session_state, traversal_type, debug):
     if loadout:
         rep_b = loadout.get("aggregate_pressure", {}).get("repair_pressure", 0.0)
 
-    # 5. Calculate Route-Aware Traversal Hazard
+    # 5. Calculate Route-Aware Traversal Hazard (Using manual selection hazards if available)
     from engine.traversal.runtime import traversal_pressure_stub
+    
+    # Map selection hazards to traversal inputs (proxy)
+    route_hazards = manual_route_selection_stub.calculate_route_hazards(selected_route["route_type"], current_floor, debug=debug)
+    
     pressure_inputs = {
         "capacity_pressure": cap_p,
-        "mutation_pressure": mut_p,
-        "combat_exposure": comb_e,
-        "repair_burden": rep_b
+        "mutation_pressure": max(mut_p, route_hazards["mutation_hazard"] if route_hazards else 0.0),
+        "combat_exposure": max(comb_e, route_hazards["combat_hazard"] if route_hazards else 0.0),
+        "repair_burden": rep_b,
+        "route_exposure": selected_route.get("route_exposure", 0.3)
     }
     
     dest_floor = current_floor + 1 if traversal_type == "advance" else 0
@@ -763,9 +984,40 @@ def _handle_traversal_command(session_state, traversal_type, debug):
 
     traversal_event = traversal_res["traversal_event"]
     
-    # 6. Route Result through Outcome Pipeline
-    outcome = "VICTORY_ASCEND" if traversal_type == "advance" else "RETREAT_TO_HUB"
-    pipeline_result = mvp_outcome_pipeline.resolve_mvp_floor_outcome(tower_state, outcome, debug=debug)
+    # 6. Create Manual Selection Artifact (TOWER-ENGINE-134)
+    selection_res = manual_route_selection_stub.make_manual_route_selection(
+        current_floor, selected_route["route_id"], [r["route_id"] for r in room_routes], 
+        strategic_bias="DEFAULT", debug=debug
+    )
+    
+    # 7. Route Result through Outcome Pipeline
+    if traversal_type == "escape_attempt":
+        # Use Escape Resolution Stub (TOWER-ENGINE-101)
+        esc_res = escape_resolution_stub.resolve_escape_attempt(
+            "console_player", current_floor,
+            escape_risk=traversal_event["escape_risk"],
+            route_exposure=traversal_event["route_exposure"],
+            escape_modifier=traversal_event.get("escape_modifier", 0.0),
+            source_route_id=traversal_event.get("route_id"),
+            debug=debug
+        )
+        
+        if not esc_res["ok"]:
+             return {"ok": False, "command": traversal_type, "message": f"Escape resolution failed: {esc_res.get('message')}", "payload": None, "error": "EscapeError"}
+             
+        escape_resolution = esc_res["escape_resolution"]
+        
+        # Route into pipeline
+        pipe_res = escape_resolution_stub.resolve_escape_into_pipeline(tower_state, escape_resolution, debug=debug)
+        if not pipe_res["ok"]:
+             return {"ok": False, "command": traversal_type, "message": f"Escape pipeline failed: {pipe_res.get('message')}", "payload": None, "error": "EscapePipelineError"}
+             
+        pipeline_result = pipe_res["pipeline_result"]
+    else:
+        # Standard Advance
+        outcome = "VICTORY_ASCEND"
+        pipeline_result = mvp_outcome_pipeline.resolve_mvp_floor_outcome(tower_state, outcome, debug=debug)
+        escape_resolution = None
     
     if not pipeline_result["ok"]:
         msg = pipeline_result.get("message")
@@ -776,11 +1028,18 @@ def _handle_traversal_command(session_state, traversal_type, debug):
     # Update state
     session_state["runtime_context"]["tower_state"] = pipeline_result["tower_state"]
     
-    msg = f"Traversal ({traversal_type}) successful. {traversal_res['summary']}"
+    msg = f"Traversal via {selected_route['route_id']} successful. {traversal_res['summary']}"
     if traversal_type == "advance":
         msg += f" New floor: {pipeline_result['current_floor']}."
     else:
-        msg += " Returned to Hub."
+        if escape_resolution:
+            msg = f"Escape via {selected_route['route_id']}: {escape_resolution['outcome']}. {esc_res['summary']}"
+            if escape_resolution["pipeline_outcome"] == "RETREAT_TO_HUB":
+                msg += " Returned to Hub."
+            else:
+                msg += f" Dropped to floor {pipeline_result['current_floor']}."
+        else:
+            msg += " Returned to Hub."
 
     payload = {
         "traversal_event": traversal_event,
@@ -789,14 +1048,25 @@ def _handle_traversal_command(session_state, traversal_type, debug):
         "escape_risk": traversal_event["escape_risk"],
         "route_exposure": traversal_event["route_exposure"],
         "pipeline_result": pipeline_result,
+        "mutation_applied": pipeline_result.get("mutation_applied", False),
+        "survivor_mark_attached": pipeline_result.get("survivor_mark_attached", False),
         "room_graph": room_graph,
         "room_routes": room_routes,
         "selected_route": selected_route,
+        "route_selection": selection_res.get("selection") if selection_res["ok"] else None,
         "route_id": selected_route.get("route_id") if selected_route else None,
         "route_type": selected_route.get("route_type") if selected_route else None,
         "environmental_profile": selected_route.get("environmental_profile") if selected_route else None,
         "escape_modifier": selected_route.get("escape_modifier") if selected_route else None,
-        "route_pressure_used": selected_route is not None
+        "route_pressure_used": selected_route is not None,
+        "escape_resolution": escape_resolution,
+        "escape_outcome": escape_resolution.get("outcome") if escape_resolution else None,
+        "pipeline_outcome": escape_resolution.get("pipeline_outcome") if escape_resolution else ("VICTORY_ASCEND" if traversal_type == "advance" else "RETREAT_TO_HUB"),
+        "residue_written": escape_resolution.get("residue_written", True) if escape_resolution else True,
+        "mutation_pressure_delta": escape_resolution.get("mutation_pressure_delta", 0.0) if escape_resolution else 0.0,
+        "resource_loss": escape_resolution.get("resource_loss") if escape_resolution else None,
+        "recoverability_preserved": escape_resolution.get("recoverability_preserved", True) if escape_resolution else True,
+        "floor_identity_preserved": escape_resolution.get("floor_identity_preserved", True) if escape_resolution else True
     }
     
     return {"ok": True, "command": traversal_type, "message": msg, "payload": payload, "error": None}
@@ -806,13 +1076,15 @@ def _handle_help():
     commands = [
         "status   - Show current tower status.",
         "ascend   - Victory! Ascend to the next floor.",
-        "advance  - Attempt spatial traversal to next floor.",
+        "advance [RID] - Traversal to next floor (optional Route ID).",
         "defeat   - Defeat! Drop back and trigger mutation/marks.",
         "retreat  - Retreat to the Hub.",
-        "escape   - Attempt spatial escape back to Hub.",
+        "escape [RID] - Escape back to Hub (optional Route ID).",
+        "routes   - List available routes and their hazards.",
         "diff     - Show changes from the latest defeat.",
         "marks    - List unclaimed survivor marks on current floor.",
-        "claim ID - Claim a survivor mark by its ID.",
+        "claim [T] - Create localized foothold of type T (default: recovery_anchor) OR claim mark ID.",
+        "maintain - Process material upkeep for all established footholds.",
         "combat V - Resolve combat stub (safe|dangerous|exhausted).",
         "potion Q - Consume Q Ash Potions from inventory (default 1).",
         "repair Q - Deduct Q Repair Materials from inventory (default 1).",

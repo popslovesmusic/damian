@@ -1,0 +1,46 @@
+{
+  "patch_id": "TOWER-ENGINE-119",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/domain/reclamation/tower_reclamation_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/domain/reclamation/contracts/reclamation_pressure.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/domain/reclamation/contracts/example_reclamation_pressure.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/domain/mvp_tower_reclamation_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required reclamation rules",
+      "status": "PASS"
+    },
+    {
+      "check": "Example pressure validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example pressure level is in bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "Example includes valid reclamation band",
+      "status": "PASS"
+    },
+    {
+      "check": "Example bounded_flags_clean is True",
+      "status": "PASS"
+    }
+  ]
+}

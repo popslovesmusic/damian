@@ -1,0 +1,27 @@
+{
+  "boundary_id": "tower_engine_claim_targeting_boundary_v001",
+  "core_principle": "High-visibility and neglected order attract focused environmental pressure (Targeting Pressure).",
+  "runtime_responsibilities": [
+    "calculate_individual_claim_targeting_pressure",
+    "track_targeting_risk_per_foothold",
+    "trigger_destabilization_events",
+    "report_targeting_status"
+  ],
+  "runtime_non_goals": [
+    "instant_deletion_of_footholds",
+    "physical_enemy_sieges",
+    "rendered_structural_damage",
+    "multiplayer_targeting_sync"
+  ],
+  "targeting_rules": {
+    "targeting_scales_with_visibility": true,
+    "targeting_scales_with_local_scarring": true,
+    "targeting_scales_with_reclamation_drive": true,
+    "targeting_must_be_bounded": true
+  },
+  "identity_rules": [
+    "targeting_must_increase_upkeep_cost",
+    "targeting_must_precede_foothold_overrun",
+    "targeting_must_not_create_unrecoverable_dead_ends"
+  ]
+}

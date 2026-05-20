@@ -1,0 +1,22 @@
+{
+  "patch_id": "TOWER-ENGINE-124",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/residue/mutation/mutation_scarring_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/mutation/mvp_mutation_scarring_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required scarring rules",
+      "status": "PASS"
+    }
+  ]
+}

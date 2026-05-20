@@ -1,0 +1,42 @@
+{
+  "patch_id": "TOWER-ENGINE-136",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/traversal/routes/route_hazard_visibility_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/traversal/routes/contracts/route_visibility_snapshot.schema.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/traversal/routes/contracts/example_route_visibility_snapshot.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/routes/route_hazard_visibility_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required visibility rules",
+      "status": "PASS"
+    },
+    {
+      "check": "Example visibility snapshot validates against schema",
+      "status": "PASS"
+    },
+    {
+      "check": "Example accuracy is in bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "Example perceived hazards are in bounds",
+      "status": "PASS"
+    }
+  ]
+}

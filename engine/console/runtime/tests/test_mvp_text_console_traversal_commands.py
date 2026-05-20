@@ -64,7 +64,7 @@ def test_escape_command_retreats_to_hub():
     result = mvp_text_console.execute_console_command(session_state, cmd_struct, debug=True)
     
     assert result["ok"] is True
-    assert "escape_attempt" in result["message"]
+    assert "ESCAPE_SUCCESS" in result["message"]
     assert "Returned to Hub" in result["message"]
     
     # Check state update

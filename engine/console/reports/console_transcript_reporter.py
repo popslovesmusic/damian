@@ -41,7 +41,6 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     enemy_pressure_profiles_observed = 0
     enemy_archetypes_observed = []
     enemy_adaptation_reasoning_observed = []
-    attrition_pressure_observed = True if False else False # Placeholder to avoid unused warnings if needed
     attrition_pressure_observed = False
     counter_pressure_observed = False
     ambush_pressure_observed = False
@@ -120,6 +119,77 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     escape_modifiers_observed = []
     route_pressure_used_observed = False
     room_route_summaries = []
+
+    # Escape resolution observation (TOWER-ENGINE-102)
+    escape_resolutions_observed = 0
+    escape_successes_observed = 0
+    escape_partials_observed = 0
+    escape_failures_observed = 0
+    severe_escape_failures_observed = 0
+    escape_residue_written_observed = False
+    escape_mutation_pressure_observed = False
+    total_escape_mutation_pressure_delta = 0.0
+    escape_resource_losses_observed = []
+    escape_pipeline_outcomes_observed = []
+    escape_recoverability_preserved = True
+    escape_floor_identity_preserved = True
+    escape_resolution_summaries = []
+
+    # Domain dashboard observation (TOWER-ENGINE-107)
+    dashboard_snapshots_observed = 0
+    dashboard_status_observed = False
+    pressure_summaries_observed = []
+    resource_summaries_observed = []
+    equipment_summaries_observed = []
+    route_summaries_observed = []
+    residue_summaries_observed = []
+    recoverability_statuses_observed = []
+    dashboard_survival_summaries = []
+
+    # Domain claim observation (TOWER-ENGINE-113)
+    domain_claims_observed = 0
+    domain_claim_types_observed = []
+    highest_domain_maintenance_pressure_observed = 0.0
+    highest_domain_visibility_pressure_observed = 0.0
+    highest_domain_mutation_threat_observed = 0.0
+    total_domain_recovery_value_observed = 0.0
+    tower_hostility_preserved_observed = True
+    domain_claim_summaries = []
+
+    # Domain upkeep observation (TOWER-ENGINE-122)
+    upkeep_events_observed = 0
+    total_shards_consumed_observed = 0
+    foothold_decay_events_observed = 0
+    foothold_restoration_events_observed = 0
+    upkeep_summaries = []
+
+    # Tower reclamation observation (TOWER-ENGINE-122)
+    reclamation_pressure_observed = False
+    reclamation_pressure_values_observed = []
+    highest_reclamation_pressure_observed = 0.0
+    reclamation_bands_observed = []
+    reclamation_summaries = []
+
+    # Mutation scarring observation (TOWER-ENGINE-131)
+    scarred_nodes_observed = 0
+    highest_scar_intensity_observed = 0.0
+    aggregate_hazard_bias_observed = 0.0
+    scarring_summaries = []
+
+    # Claim targeting observation (TOWER-ENGINE-131)
+    highest_targeting_pressure_observed = 0.0
+    foothold_destabilization_events_observed = 0
+    targeting_summaries = []
+
+    # Manual route selection observation (TOWER-ENGINE-140)
+    route_selections_observed = 0
+    strategic_biases_observed = []
+    route_hazard_visibility_summaries = []
+    
+    # Hazard visibility observation (TOWER-ENGINE-140)
+    average_information_accuracy_observed = 0.0
+    highest_information_accuracy_observed = 0.0
+    visibility_bands_observed = []
 
     # Durability decay observation (TOWER-ENGINE-079)
     durability_decay_observed = False
@@ -437,6 +507,151 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
                             
                         room_route_summaries.append(f"Chose {route_type} route {selected_route.get('route_id')} (Exposure: {selected_route.get('route_exposure')})")
 
+                    # Escape resolution specific (TOWER-ENGINE-102)
+                    if res_cmd == "escape_attempt":
+                        esc_res = payload.get("escape_resolution")
+                        if esc_res:
+                            escape_resolutions_observed += 1
+                            outcome = esc_res.get("outcome")
+                            if outcome == "ESCAPE_SUCCESS":
+                                escape_successes_observed += 1
+                            elif outcome == "ESCAPE_PARTIAL":
+                                escape_partials_observed += 1
+                            elif outcome.startswith("ESCAPE_FAILED"):
+                                escape_failures_observed += 1
+                                if outcome == "ESCAPE_FAILED_RETREAT_DROP":
+                                    severe_escape_failures_observed += 1
+                            
+                            if esc_res.get("residue_written"):
+                                escape_residue_written_observed = True
+                            
+                            delta = esc_res.get("mutation_pressure_delta", 0.0)
+                            if delta > 0:
+                                escape_mutation_pressure_observed = True
+                                total_escape_mutation_pressure_delta += delta
+                                
+                            loss = esc_res.get("resource_loss")
+                            if loss:
+                                escape_resource_losses_observed.append(loss)
+                            
+                            pipe_outcome = esc_res.get("pipeline_outcome")
+                            if pipe_outcome:
+                                escape_pipeline_outcomes_observed.append(pipe_outcome)
+                            
+                            if not esc_res.get("recoverability_preserved"):
+                                escape_recoverability_preserved = False
+                            if not esc_res.get("floor_identity_preserved"):
+                                escape_floor_identity_preserved = False
+                                
+                            escape_resolution_summaries.append(f"Escape resolved to {outcome}. Pipeline: {pipe_outcome}.")
+
+                    # Domain dashboard specific (TOWER-ENGINE-107)
+                    if res_cmd == "status" and result["ok"]:
+                        snapshot = payload.get("dashboard_snapshot")
+                        if snapshot:
+                            dashboard_snapshots_observed += 1
+                            dashboard_status_observed = True
+                            
+                            pressure_summaries_observed.append(snapshot.get("pressure_summary"))
+                            resource_summaries_observed.append(snapshot.get("resource_summary"))
+                            equipment_summaries_observed.append(snapshot.get("equipment_summary"))
+                            route_summaries_observed.append(snapshot.get("route_summary"))
+                            residue_summaries_observed.append(snapshot.get("residue_summary"))
+                            recoverability_statuses_observed.append(snapshot.get("recoverability_status"))
+                            
+                            dashboard_survival_summaries.append(payload.get("dashboard_summary"))
+                            
+                            # Reclamation specific (TOWER-ENGINE-122)
+                            reclamation = payload.get("reclamation_pressure")
+                            if reclamation:
+                                reclamation_pressure_observed = True
+                                reclamation_pressure_values_observed.append(reclamation.get("total_reclamation_pressure", 0.0))
+                                highest_reclamation_pressure_observed = max(highest_reclamation_pressure_observed, reclamation.get("total_reclamation_pressure", 0.0))
+                                rb = reclamation.get("reclamation_band")
+                                if rb and rb not in reclamation_bands_observed:
+                                    reclamation_bands_observed.append(rb)
+                                
+                                rec_sum = f"Floor {reclamation.get('floor_id')} Reclamation: {rb} ({reclamation.get('total_reclamation_pressure'):.2f})"
+                                reclamation_summaries.append(rec_sum)
+                                
+                            # Scarring specific (TOWER-ENGINE-131)
+                            scarring = payload.get("mutation_scarring")
+                            if scarring:
+                                scarred_nodes_observed = max(scarred_nodes_observed, scarring.get("scarred_nodes_count", 0))
+                                highest_scar_intensity_observed = max(highest_scar_intensity_observed, scarring.get("highest_scar_intensity", 0.0))
+                                aggregate_hazard_bias_observed = max(aggregate_hazard_bias_observed, scarring.get("aggregate_hazard_bias", 0.0))
+                                
+                                scar_sum = f"Floor {snapshot.get('floor_id')} Scarring: {scarring.get('highest_scar_intensity'):.2f} ({scarring.get('scarred_nodes_count')} nodes)"
+                                if scar_sum not in scarring_summaries:
+                                    scarring_summaries.append(scar_sum)
+                                    
+                            # Route Visibility specific (TOWER-ENGINE-140)
+                            vis_summary = payload.get("route_visibility")
+                            if vis_summary:
+                                average_information_accuracy_observed = max(average_information_accuracy_observed, vis_summary.get("average_information_accuracy", 0.0))
+                                highest_information_accuracy_observed = max(highest_information_accuracy_observed, vis_summary.get("reconnaissance_level", 0.0))
+                                band = vis_summary.get("best_visibility_band")
+                                if band and band not in visibility_bands_observed:
+                                    visibility_bands_observed.append(band)
+
+            # Domain claim specific (TOWER-ENGINE-113)
+            if res_cmd == "claim" and result["ok"]:
+                claim = payload.get("domain_claim")
+                if claim:
+                    domain_claims_observed += 1
+                    ct = claim.get("claim_type")
+                    if ct and ct not in domain_claim_types_observed:
+                        domain_claim_types_observed.append(ct)
+                    
+                    highest_domain_maintenance_pressure_observed = max(highest_domain_maintenance_pressure_observed, claim.get("maintenance_pressure", 0.0))
+                    highest_domain_visibility_pressure_observed = max(highest_domain_visibility_pressure_observed, claim.get("visibility_pressure", 0.0))
+                    highest_domain_mutation_threat_observed = max(highest_domain_mutation_threat_observed, claim.get("mutation_threat", 0.0))
+                    total_domain_recovery_value_observed += claim.get("recovery_value", 0.0)
+                    
+                    if not claim.get("tower_hostility_preserved", True):
+                        tower_hostility_preserved_observed = False
+                    
+                    claim_sum = payload.get("claim_summary")
+                    if claim_sum:
+                        domain_claim_summaries.append(claim_sum)
+                        
+                    # Targeting specific (TOWER-ENGINE-131)
+                    tp = payload.get("targeting_pressure")
+                    if tp is not None:
+                        highest_targeting_pressure_observed = max(highest_targeting_pressure_observed, tp)
+                        if payload.get("is_destabilized"):
+                            foothold_destabilization_events_observed += 1
+                        
+                        target_sum = f"Claim {claim.get('claim_id')[:8]} Targeted: {tp:.2f}. Penalty: +{payload.get('maintenance_penalty')}."
+                        targeting_summaries.append(target_sum)
+                        
+            # Manual Route Selection specific (TOWER-ENGINE-140)
+            if res_cmd in ["advance", "escape_attempt"] and result["ok"]:
+                selection = payload.get("route_selection")
+                if selection:
+                    route_selections_observed += 1
+                    bias = selection.get("strategic_bias")
+                    if bias and bias not in strategic_biases_observed:
+                        strategic_biases_observed.append(bias)
+                    
+                    hp = selection.get("hazard_profile", {})
+                    vis_sum = f"Chose {selection.get('selected_route_id')} ({bias}). Hazards: C:{hp.get('combat_hazard'):.2f}, M:{hp.get('mutation_hazard'):.2f}."
+                    route_hazard_visibility_summaries.append(vis_sum)
+
+            # Domain upkeep specific (TOWER-ENGINE-122)
+            if res_cmd == "maintain" and result["ok"]:
+                upkeep_events_observed += 1
+                total_shards_consumed_observed += payload.get("shards_consumed", 0)
+                
+                upkeep_events = payload.get("upkeep_events", [])
+                for ue in upkeep_events:
+                    if ue.get("current_state") in ["DECAYING", "OVERRUN"] and ue.get("previous_state") == "ACTIVE":
+                         foothold_decay_events_observed += 1
+                    if ue.get("current_state") == "ACTIVE" and ue.get("previous_state") in ["DECAYING", "OVERRUN"]:
+                         foothold_restoration_events_observed += 1
+                         
+                upkeep_summaries.append(result.get("message"))
+
             inv_summary = payload.get("inventory_state_summary")
             if inv_summary and inv_summary not in inventory_summaries:
                 inventory_summaries.append(inv_summary)
@@ -444,7 +659,7 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     # 3. Final State Capture
     transcript = {
         "transcript_id": transcript_id,
-        "patch_id": "TOWER-ENGINE-096",
+        "patch_id": "TOWER-ENGINE-140",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "ok": len(errors) == 0,
         "commands_requested": commands,
@@ -533,6 +748,65 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
         "escape_modifiers_observed": escape_modifiers_observed,
         "route_pressure_used_observed": route_pressure_used_observed,
         "room_route_summaries": room_route_summaries,
+        "escape_resolutions_observed": escape_resolutions_observed,
+        "escape_successes_observed": escape_successes_observed,
+        "escape_partials_observed": escape_partials_observed,
+        "escape_failures_observed": escape_failures_observed,
+        "severe_escape_failures_observed": severe_escape_failures_observed,
+        "escape_residue_written_observed": escape_residue_written_observed,
+        "escape_mutation_pressure_observed": escape_mutation_pressure_observed,
+        "total_escape_mutation_pressure_delta": total_escape_mutation_pressure_delta,
+        "escape_resource_losses_observed": escape_resource_losses_observed,
+        "escape_pipeline_outcomes_observed": escape_pipeline_outcomes_observed,
+        "escape_recoverability_preserved": escape_recoverability_preserved,
+        "escape_floor_identity_preserved": escape_floor_identity_preserved,
+        "escape_resolution_summaries": escape_resolution_summaries,
+        "dashboard_snapshots_observed": dashboard_snapshots_observed,
+        "dashboard_status_observed": dashboard_status_observed,
+        "pressure_summaries_observed": pressure_summaries_observed,
+        "resource_summaries_observed": resource_summaries_observed,
+        "equipment_summaries_observed": equipment_summaries_observed,
+        "route_summaries_observed": route_summaries_observed,
+        "residue_summaries_observed": residue_summaries_observed,
+        "recoverability_statuses_observed": recoverability_statuses_observed,
+        "dashboard_survival_summaries": dashboard_survival_summaries,
+        "domain_claims_observed": domain_claims_observed,
+        "domain_claim_types_observed": domain_claim_types_observed,
+        "highest_domain_maintenance_pressure_observed": highest_domain_maintenance_pressure_observed,
+        "highest_domain_visibility_pressure_observed": highest_domain_visibility_pressure_observed,
+        "highest_domain_mutation_threat_observed": highest_domain_mutation_threat_observed,
+        "total_domain_recovery_value_observed": total_domain_recovery_value_observed,
+        "tower_hostility_preserved_observed": tower_hostility_preserved_observed,
+        "domain_claim_summaries": domain_claim_summaries,
+        "upkeep_events_observed": upkeep_events_observed,
+        "total_shards_consumed_observed": total_shards_consumed_observed,
+        "foothold_decay_events_observed": foothold_decay_events_observed,
+        "foothold_restoration_events_observed": foothold_restoration_events_observed,
+        "upkeep_summaries": upkeep_summaries,
+        "reclamation_pressure_observed": reclamation_pressure_observed,
+        "reclamation_pressure_values_observed": reclamation_pressure_values_observed,
+        "highest_reclamation_pressure_observed": highest_reclamation_pressure_observed,
+        "reclamation_bands_observed": reclamation_bands_observed,
+        "reclamation_summaries": reclamation_summaries,
+        "scarred_nodes_observed": scarred_nodes_observed,
+        "highest_scar_intensity_observed": highest_scar_intensity_observed,
+        "aggregate_hazard_bias_observed": aggregate_hazard_bias_observed,
+        "scarring_summaries": scarring_summaries,
+        "highest_targeting_pressure_observed": highest_targeting_pressure_observed,
+        "foothold_destabilization_events_observed": foothold_destabilization_events_observed,
+        "targeting_summaries": targeting_summaries,
+        "route_selections_observed": route_selections_observed,
+        "strategic_biases_observed": strategic_biases_observed,
+        "route_hazard_visibility_summaries": route_hazard_visibility_summaries,
+        "average_information_accuracy_observed": average_information_accuracy_observed,
+        "highest_information_accuracy_observed": highest_information_accuracy_observed,
+        "visibility_bands_observed": visibility_bands_observed,
+        "route_selections_observed": route_selections_observed,
+        "strategic_biases_observed": strategic_biases_observed,
+        "route_hazard_visibility_summaries": route_hazard_visibility_summaries,
+        "average_information_accuracy_observed": average_information_accuracy_observed,
+        "highest_information_accuracy_observed": highest_information_accuracy_observed,
+        "visibility_bands_observed": visibility_bands_observed,
         "durability_decay_observed": durability_decay_observed,
         "durability_events_observed": durability_events_observed,
         "total_durability_loss_observed": total_durability_loss_observed,
@@ -553,8 +827,20 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     }
     
     # 4. Write artifact
-    # Specific ID for TOWER-ENGINE-096 validation artifact
-    if transcript_id == "room_route_validation":
+    # Specific ID for TOWER-ENGINE-140 validation artifact
+    if transcript_id == "route_visibility_validation":
+        filename = "tower_engine_140_route_visibility_console_transcript.json"
+    elif transcript_id == "scarring_targeting_validation":
+        filename = "tower_engine_131_scarring_targeting_console_transcript.json"
+    elif transcript_id == "upkeep_reclamation_validation":
+        filename = "tower_engine_122_upkeep_reclamation_console_transcript.json"
+    elif transcript_id == "domain_claim_validation":
+        filename = "tower_engine_113_domain_claim_console_transcript.json"
+    elif transcript_id == "dashboard_snapshot_validation":
+        filename = "tower_engine_107_dashboard_snapshot_console_transcript.json"
+    elif transcript_id == "escape_resolution_validation":
+        filename = "tower_engine_102_escape_resolution_console_transcript.json"
+    elif transcript_id == "room_route_validation":
         filename = "tower_engine_096_room_route_evidence_console_transcript.json"
     elif transcript_id == "traversal_evidence_validation":
         filename = "tower_engine_089_traversal_evidence_console_transcript.json"
@@ -577,7 +863,7 @@ def run_console_transcript(commands, paths=None, output_dir='outputs/console_tra
     elif transcript_id == "graph_combat_validation":
         filename = "tower_engine_045_graph_combat_console_transcript.json"
     else:
-        filename = f"tower_engine_096_console_transcript_{transcript_id[:8]}.json"
+        filename = f"tower_engine_140_console_transcript_{transcript_id[:8]}.json"
 
     output_path = os.path.join(output_dir, filename)
     write_console_transcript(transcript, output_path)
@@ -631,7 +917,7 @@ def summarize_console_transcript(transcript):
 def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
     return {
         "transcript_id": transcript_id,
-        "patch_id": "TOWER-ENGINE-096",
+        "patch_id": "TOWER-ENGINE-140",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "ok": False,
         "commands_requested": commands,
@@ -720,6 +1006,53 @@ def _make_failed_transcript(transcript_id, commands, startup_failure, debug):
         "escape_modifiers_observed": [],
         "route_pressure_used_observed": False,
         "room_route_summaries": [],
+        "escape_resolutions_observed": 0,
+        "escape_successes_observed": 0,
+        "escape_partials_observed": 0,
+        "escape_failures_observed": 0,
+        "severe_escape_failures_observed": 0,
+        "escape_residue_written_observed": False,
+        "escape_mutation_pressure_observed": False,
+        "total_escape_mutation_pressure_delta": 0.0,
+        "escape_resource_losses_observed": [],
+        "escape_pipeline_outcomes_observed": [],
+        "escape_recoverability_preserved": True,
+        "escape_floor_identity_preserved": True,
+        "escape_resolution_summaries": [],
+        "dashboard_snapshots_observed": 0,
+        "dashboard_status_observed": False,
+        "pressure_summaries_observed": [],
+        "resource_summaries_observed": [],
+        "equipment_summaries_observed": [],
+        "route_summaries_observed": [],
+        "residue_summaries_observed": [],
+        "recoverability_statuses_observed": [],
+        "dashboard_survival_summaries": [],
+        "domain_claims_observed": 0,
+        "domain_claim_types_observed": [],
+        "highest_domain_maintenance_pressure_observed": 0.0,
+        "highest_domain_visibility_pressure_observed": 0.0,
+        "highest_domain_mutation_threat_observed": 0.0,
+        "total_domain_recovery_value_observed": 0.0,
+        "tower_hostility_preserved_observed": True,
+        "domain_claim_summaries": [],
+        "upkeep_events_observed": 0,
+        "total_shards_consumed_observed": 0,
+        "foothold_decay_events_observed": 0,
+        "foothold_restoration_events_observed": 0,
+        "upkeep_summaries": [],
+        "reclamation_pressure_observed": False,
+        "reclamation_pressure_values_observed": [],
+        "highest_reclamation_pressure_observed": 0.0,
+        "reclamation_bands_observed": [],
+        "reclamation_summaries": [],
+        "scarred_nodes_observed": 0,
+        "highest_scar_intensity_observed": 0.0,
+        "aggregate_hazard_bias_observed": 0.0,
+        "scarring_summaries": [],
+        "highest_targeting_pressure_observed": 0.0,
+        "foothold_destabilization_events_observed": 0,
+        "targeting_summaries": [],
         "durability_decay_observed": False,
         "durability_events_observed": 0,
         "total_durability_loss_observed": 0.0,

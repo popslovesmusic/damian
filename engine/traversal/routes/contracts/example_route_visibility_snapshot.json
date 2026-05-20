@@ -1,0 +1,6 @@
+{
+  "route_id": "route_a1_b1",
+  "visibility_level": "low",
+  "environmental_cues": ["You see residue traces", "The air feels heavy"],
+  "confirmed_hazards": []
+}

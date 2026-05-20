@@ -1,0 +1,10 @@
+{
+  "floor_id": 3,
+  "total_reclamation_pressure": 0.45,
+  "visibility_contribution": 0.20,
+  "decay_contribution": 0.15,
+  "depth_contribution": 0.10,
+  "reclamation_band": "HOSTILE",
+  "mutation_risk_bias": 0.35,
+  "bounded_flags_clean": true
+}

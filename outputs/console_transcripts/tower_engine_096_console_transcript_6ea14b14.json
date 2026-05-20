@@ -1,0 +1,164 @@
+{
+  "transcript_id": "6ea14b14-7f36-4c34-9630-7cebf554600b",
+  "patch_id": "TOWER-ENGINE-096",
+  "timestamp": "2026-05-20T01:06:16.514370+00:00",
+  "ok": true,
+  "commands_requested": [
+    "status"
+  ],
+  "commands_executed": [
+    "status"
+  ],
+  "command_results": [
+    {
+      "ok": true,
+      "command": "status",
+      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13",
+      "payload": {
+        "current_floor": 1,
+        "highest_floor": 1,
+        "residue_count": 0,
+        "mutation_count": 0,
+        "unclaimed_marks_count": 0,
+        "capacity_pressure_summary": {
+          "ok": true,
+          "inventory_id": "inv_eb44310b-3707-4fc3-ac75-3b9dc31cdad2",
+          "used_capacity": 0,
+          "inventory_capacity": 40,
+          "capacity_pressure": 0.0,
+          "capacity_band": "EMPTY",
+          "over_capacity": false,
+          "error": null
+        },
+        "capacity_pressure": 0.0,
+        "capacity_band": "EMPTY",
+        "over_capacity": false,
+        "traversal_pressure_summary": "Traversal (advance): 1 -> 2. Risk: 0.13, Pressure: 0.10 (Cap:0.00, Mut:0.00)",
+        "traversal_pressure": 0.0615,
+        "escape_risk": 0.131,
+        "route_exposure": 0.2,
+        "traversal_pressure_inputs": {
+          "capacity_pressure": 0.0,
+          "mutation_pressure": 0.0,
+          "combat_exposure": 0.1,
+          "repair_burden": 0.53
+        }
+      },
+      "error": null
+    }
+  ],
+  "final_session_active": true,
+  "final_floor": 1,
+  "highest_floor_reached": 1,
+  "mutation_observed": false,
+  "survivor_mark_observed": false,
+  "diff_observed": false,
+  "combat_sessions_observed": 0,
+  "combat_outcomes_observed": [],
+  "combat_defeats_observed": 0,
+  "combat_victories_observed": 0,
+  "combat_retreats_observed": 0,
+  "resource_pressure_observed": false,
+  "residue_pressure_observed": false,
+  "mutation_after_combat_observed": false,
+  "survivor_mark_after_combat_observed": false,
+  "enemy_pressure_profiles_observed": 0,
+  "enemy_archetypes_observed": [],
+  "enemy_adaptation_reasoning_observed": [],
+  "attrition_pressure_observed": false,
+  "counter_pressure_observed": false,
+  "ambush_pressure_observed": false,
+  "baseline_pressure_observed": false,
+  "loot_events_observed": 0,
+  "total_gold_observed": 0,
+  "large_visible_loot_observed": false,
+  "resource_sink_pressure_observed": false,
+  "bounded_reward_flags_clean": true,
+  "loot_sources_observed": [],
+  "resource_sink_summaries": [],
+  "inventory_transactions_observed": 0,
+  "inventory_applications_observed": 0,
+  "inventory_failures_observed": 0,
+  "total_gold_added_to_inventory": 0,
+  "items_added_to_inventory": [],
+  "items_deducted_from_inventory": [],
+  "capacity_pressure_observed": true,
+  "capacity_pressure_values_observed": [
+    0.0
+  ],
+  "capacity_bands_observed": [
+    "EMPTY"
+  ],
+  "highest_capacity_pressure_observed": 0.0,
+  "over_capacity_failures_observed": 0,
+  "material_burden_summaries": [
+    "Floor 1 Burden: 0/40 (EMPTY)"
+  ],
+  "inventory_summaries": [],
+  "consumable_uses_observed": 0,
+  "consumables_deducted_observed": 0,
+  "failed_consumable_attempts_observed": 0,
+  "potion_drain_observed": false,
+  "total_potions_consumed": 0,
+  "consumable_drain_summaries": [],
+  "repair_material_uses_observed": 0,
+  "repair_materials_deducted_observed": 0,
+  "failed_repair_attempts_observed": 0,
+  "repair_material_drain_observed": false,
+  "durability_restoration_observed": false,
+  "repair_drain_summaries": [],
+  "repair_events_observed": 0,
+  "repair_applications_observed": 0,
+  "repair_failures_observed": 0,
+  "total_durability_restored_observed": 0.0,
+  "repair_materials_consumed_observed": 0,
+  "equipment_items_repaired_observed": [],
+  "bounded_repair_clean": true,
+  "repair_runtime_summaries": [],
+  "traversal_events_observed": 0,
+  "advance_attempts_observed": 0,
+  "escape_attempts_observed": 0,
+  "traversal_pressure_observed": true,
+  "traversal_pressure_values_observed": [
+    0.0615
+  ],
+  "highest_traversal_pressure_observed": 0.0615,
+  "escape_risk_observed": true,
+  "escape_risk_values_observed": [
+    0.131
+  ],
+  "highest_escape_risk_observed": 0.131,
+  "route_exposure_values_observed": [
+    0.2
+  ],
+  "traversal_summaries": [
+    "Status check: Traversal (advance): 1 -> 2. Risk: 0.13, Pressure: 0.10 (Cap:0.00, Mut:0.00)"
+  ],
+  "room_graph_evidence_observed": false,
+  "room_route_evidence_observed": false,
+  "room_routes_observed": 0,
+  "selected_routes_observed": [],
+  "route_types_observed": [],
+  "environmental_profiles_observed": [],
+  "highest_route_exposure_observed": 0.2,
+  "escape_modifiers_observed": [],
+  "route_pressure_used_observed": false,
+  "room_route_summaries": [],
+  "durability_decay_observed": false,
+  "durability_events_observed": 0,
+  "total_durability_loss_observed": 0.0,
+  "equipment_items_worn_observed": [],
+  "zero_durability_items_observed": [],
+  "durability_pressure_observed": false,
+  "durability_decay_summaries": [],
+  "room_graph_changes_observed": 0,
+  "survivor_mark_rooms_observed": 0,
+  "graph_diff_summaries": [],
+  "errors": [],
+  "no_scope_creep_flags": {
+    "combat_runtime_introduced": false,
+    "map_generation_introduced": false,
+    "multiplayer_runtime_introduced": false,
+    "gpu_code_introduced": false
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "transcript_id": "ad628b17-2ea7-4ba8-8528-34bd81dab02b",
+  "patch_id": "TOWER-ENGINE-069",
+  "timestamp": "2026-05-19T21:57:06.955268+00:00",
+  "ok": false,
+  "commands_requested": [
+    "potion 1"
+  ],
+  "commands_executed": [
+    "potion 1"
+  ],
+  "command_results": [
+    {
+      "ok": false,
+      "command": "potion",
+      "message": "Failed to consume ash_potion_small: Item ash_potion_small not found in inventory.",
+      "payload": {
+        "inventory_transaction": {
+          "transaction_id": "tx_2b337827-ee6b-408f-820a-2cd49e19c49f",
+          "inventory_id": "inv_a486b30f-90cd-4271-9464-656e055088bc",
+          "player_id": "player_default_001",
+          "transaction_type": "CONSUME_ITEM",
+          "items_added": [],
+          "items_deducted": [],
+          "currency_delta": {
+            "gold": 0,
+            "domain_essence": 0,
+            "stability_shards": 0,
+            "residue_fragments": 0,
+            "rare_materials": 0
+          },
+          "capacity_before": 0,
+          "capacity_after": 0,
+          "inventory_capacity": 40,
+          "transaction_applied": false,
+          "failure_reason": "Item ash_potion_small not found in inventory.",
+          "bounded_flags_clean": true
+        },
+        "inventory_summary": {
+          "gold": 0.0,
+          "items_count": 0,
+          "capacity": "0/40"
+        },
+        "consumable_used": false,
+        "item_id": "ash_potion_small",
+        "quantity_requested": 1
+      },
+      "error": {
+        "message": "Item ash_potion_small not found in inventory.",
+        "type": "TransactionError"
+      }
+    }
+  ],
+  "final_session_active": true,
+  "final_floor": 1,
+  "highest_floor_reached": 1,
+  "mutation_observed": false,
+  "survivor_mark_observed": false,
+  "diff_observed": false,
+  "combat_sessions_observed": 0,
+  "combat_outcomes_observed": [],
+  "combat_defeats_observed": 0,
+  "combat_victories_observed": 0,
+  "combat_retreats_observed": 0,
+  "resource_pressure_observed": false,
+  "residue_pressure_observed": false,
+  "mutation_after_combat_observed": false,
+  "survivor_mark_after_combat_observed": false,
+  "enemy_pressure_profiles_observed": 0,
+  "enemy_archetypes_observed": [],
+  "enemy_adaptation_reasoning_observed": [],
+  "attrition_pressure_observed": false,
+  "counter_pressure_observed": false,
+  "ambush_pressure_observed": false,
+  "baseline_pressure_observed": false,
+  "loot_events_observed": 0,
+  "total_gold_observed": 0,
+  "large_visible_loot_observed": false,
+  "resource_sink_pressure_observed": false,
+  "bounded_reward_flags_clean": true,
+  "loot_sources_observed": [],
+  "resource_sink_summaries": [],
+  "inventory_transactions_observed": 1,
+  "inventory_applications_observed": 0,
+  "inventory_failures_observed": 1,
+  "total_gold_added_to_inventory": 0,
+  "items_added_to_inventory": [],
+  "items_deducted_from_inventory": [],
+  "capacity_pressure_observed": false,
+  "inventory_summaries": [],
+  "consumable_uses_observed": 0,
+  "consumables_deducted_observed": 0,
+  "failed_consumable_attempts_observed": 1,
+  "potion_drain_observed": false,
+  "total_potions_consumed": 0,
+  "consumable_drain_summaries": [
+    "Failed potion attempt: Failed to consume ash_potion_small: Item ash_potion_small not found in inventory."
+  ],
+  "repair_material_uses_observed": 0,
+  "repair_materials_deducted_observed": 0,
+  "failed_repair_attempts_observed": 0,
+  "repair_material_drain_observed": false,
+  "durability_restoration_observed": false,
+  "repair_drain_summaries": [],
+  "room_graph_evidence_observed": false,
+  "room_graph_changes_observed": 0,
+  "survivor_mark_rooms_observed": 0,
+  "graph_diff_summaries": [],
+  "errors": [
+    "Failed to consume ash_potion_small: Item ash_potion_small not found in inventory."
+  ],
+  "no_scope_creep_flags": {
+    "combat_runtime_introduced": false,
+    "map_generation_introduced": false,
+    "multiplayer_runtime_introduced": false,
+    "gpu_code_introduced": false
+  }
+}

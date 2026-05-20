@@ -1,0 +1,39 @@
+{
+  "snapshot_id": "dashboard_snapshot_example_001",
+  "player_id": "player_default_001",
+  "floor_id": 2,
+  "run_status": "ACTIVE",
+  "pressure_summary": {
+    "combat_pressure": 0.61,
+    "traversal_pressure": 0.58,
+    "escape_risk": 0.46,
+    "mutation_pressure": 0.39,
+    "repair_burden": 0.41,
+    "capacity_pressure": 0.52
+  },
+  "equipment_summary": {
+    "damaged_items": 2,
+    "zero_durability_items": 0,
+    "repair_materials_remaining": 3
+  },
+  "resource_summary": {
+    "gold": 1840,
+    "potions": 2,
+    "rare_materials": 1
+  },
+  "route_summary": {
+    "routes_traversed": 5,
+    "highest_route_exposure": 0.67,
+    "escape_failures": 1
+  },
+  "residue_summary": {
+    "mutations_triggered": 2,
+    "survivor_marks": 1,
+    "residue_events_logged": 14
+  },
+  "recoverability_status": {
+    "recoverable": true,
+    "critical_pressure": false
+  },
+  "bounded_flags_clean": true
+}

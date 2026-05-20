@@ -1,0 +1,22 @@
+{
+  "patch_id": "TOWER-ENGINE-126",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/domain/reclamation/claim_targeting_boundary.json",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/domain/mvp_claim_targeting_boundary.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required responsibilities",
+      "status": "PASS"
+    },
+    {
+      "check": "Boundary includes required targeting rules",
+      "status": "PASS"
+    }
+  ]
+}

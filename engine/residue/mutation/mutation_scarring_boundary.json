@@ -1,0 +1,27 @@
+{
+  "boundary_id": "tower_engine_mutation_scarring_boundary_v001",
+  "core_principle": "Order (footholds) scars the Tower's environment, creating localized hotspots of instability.",
+  "runtime_responsibilities": [
+    "calculate_localized_scarring_pressure",
+    "track_scar_intensity_per_node",
+    "influence_local_hazard_bias_via_scarring",
+    "report_scarring_status"
+  ],
+  "runtime_non_goals": [
+    "visual_terrain_deformation",
+    "real_time_particle_effects",
+    "permanent_map_destruction",
+    "multiplayer_scar_sync"
+  ],
+  "scarring_rules": {
+    "scarring_scales_with_foothold_visibility": true,
+    "scarring_increases_with_order_duration": true,
+    "scarring_must_be_bounded": true,
+    "scarring_must_persist_after_claim_loss": true
+  },
+  "identity_rules": [
+    "scarring_must_increase_tactical_friction",
+    "scarring_must_be_mitigatable_via_maintenance",
+    "scarring_must_not_bypass_residue_identity"
+  ]
+}

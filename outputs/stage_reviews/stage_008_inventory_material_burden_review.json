@@ -1,0 +1,27 @@
+{
+  "stage_id": "STAGE-008",
+  "stage_name": "Inventory Runtime and Material Burden Foundations",
+  "identity_status": "STRONG ALIGNMENT - Phantom economy has been materialized as strategic burden.",
+  "major_strengths": [
+    "Materialized consumable and repair material deductions",
+    "Accumulated Capacity Pressure calculation (0.0-1.0)",
+    "Atomic Safe-Failure transaction logic",
+    "Deep audit trail via InventoryTransaction transcripts"
+  ],
+  "major_risks": [
+    "Hard Cap Cliff (lack of intermediate strategic friction before 100%)",
+    "Durability Disconnect (resources drained but durability static)",
+    "Text-only mental tracking burden for large inventories"
+  ],
+  "balance_questions": [
+    "Does a flat 40-capacity limit provide enough tension?",
+    "Should HIGH/FULL bands increase DEFEAT_DROP risk?",
+    "Should items have variable capacity costs?"
+  ],
+  "required_followups": [
+    "Implement Durability Decay logic in combat",
+    "Implement material Durability Restoration logic",
+    "Integrate capacity pressure into combat resolution biasing"
+  ],
+  "next_stage_recommendation": "STAGE-009: Equipment Runtime and Durability Decay"
+}

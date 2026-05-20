@@ -1,0 +1,1449 @@
+{
+  "transcript_id": "29167471-fedf-4869-9af1-aafff2b887ac",
+  "patch_id": "TOWER-ENGINE-113",
+  "timestamp": "2026-05-20T03:10:43.120655+00:00",
+  "ok": true,
+  "commands_requested": [
+    "status",
+    "advance",
+    "escape"
+  ],
+  "commands_executed": [
+    "status",
+    "advance",
+    "escape"
+  ],
+  "command_results": [
+    {
+      "ok": true,
+      "command": "status",
+      "message": "Floor: 1 | Highest: 1 | Residues: 0 | Mutations: 0 | Unclaimed Marks: 0 | Capacity: EMPTY | Traversal Risk: 0.13",
+      "payload": {
+        "current_floor": 1,
+        "highest_floor": 1,
+        "residue_count": 0,
+        "mutation_count": 0,
+        "unclaimed_marks_count": 0,
+        "capacity_pressure_summary": {
+          "ok": true,
+          "inventory_id": "inv_8becbb13-87c6-409c-b7e0-53bd9001acb5",
+          "used_capacity": 0,
+          "inventory_capacity": 40,
+          "capacity_pressure": 0.0,
+          "capacity_band": "EMPTY",
+          "over_capacity": false,
+          "error": null
+        },
+        "capacity_pressure": 0.0,
+        "capacity_band": "EMPTY",
+        "over_capacity": false,
+        "traversal_pressure_summary": "Traversal (advance): 1 -> 2. Risk: 0.13, Pressure: 0.10 (Cap:0.00, Mut:0.00)",
+        "traversal_pressure": 0.0615,
+        "escape_risk": 0.131,
+        "route_exposure": 0.2,
+        "traversal_pressure_inputs": {
+          "capacity_pressure": 0.0,
+          "mutation_pressure": 0.0,
+          "combat_exposure": 0.1,
+          "repair_burden": 0.53
+        },
+        "dashboard_snapshot": {
+          "snapshot_id": "snap_5924e543-ce35-45d9-9f13-741b86b65149",
+          "player_id": "player_default_001_a9e130f6",
+          "floor_id": 1,
+          "run_status": "ACTIVE",
+          "pressure_summary": {
+            "combat_pressure": 0.1,
+            "traversal_pressure": 0.1015,
+            "escape_risk": 0.131,
+            "mutation_pressure": 0.0,
+            "repair_burden": 0.53,
+            "capacity_pressure": 0.0
+          },
+          "equipment_summary": {
+            "damaged_items": 2,
+            "zero_durability_items": 0,
+            "repair_materials_remaining": 0
+          },
+          "resource_summary": {
+            "gold": 0.0,
+            "potions": 0,
+            "rare_materials": 0
+          },
+          "route_summary": {
+            "routes_traversed": 0,
+            "highest_route_exposure": 0.0,
+            "escape_failures": 0
+          },
+          "residue_summary": {
+            "mutations_triggered": 0,
+            "survivor_marks": 0,
+            "residue_events_logged": 0
+          },
+          "domain_claim_summary": {
+            "active_claims": 0,
+            "decaying_claims": 0,
+            "overrun_claims": 0,
+            "highest_maintenance_pressure": 0.0,
+            "highest_visibility_pressure": 0.0,
+            "highest_mutation_threat": 0.0,
+            "total_recovery_value": 0.0,
+            "tower_hostility_preserved": true
+          },
+          "recoverability_status": {
+            "recoverable": true,
+            "critical_pressure": false
+          },
+          "bounded_flags_clean": true
+        },
+        "dashboard_summary": "Dashboard Snapshot [snap_592]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active).",
+        "dashboard_snapshot_available": true
+      },
+      "error": null
+    },
+    {
+      "ok": true,
+      "command": "advance",
+      "message": "Traversal (advance) successful. Traversal (advance): Route route_1_entry_a_to_combat_a_primary_route (primary_route). 1 -> 2. Risk: 0.16, Pressure: 0.11 (Cap:0.00, Mut:0.00) | Env: Darkness 0.12, Enemy 0.25 New floor: 2.",
+      "payload": {
+        "traversal_event": {
+          "event_id": "traversal_1f62b795-a876-4409-ac5c-b6480f1ef4dd",
+          "player_id": "console_player",
+          "source_floor_id": "1",
+          "destination_floor_id": "2",
+          "traversal_type": "advance",
+          "traversal_pressure": {
+            "capacity_pressure": 0.0,
+            "mutation_pressure": 0.0,
+            "combat_exposure": 0.1,
+            "repair_burden": 0.53,
+            "total_pressure": 0.1142
+          },
+          "escape_risk": 0.158,
+          "route_exposure": 0.1535,
+          "route_id": "route_1_entry_a_to_combat_a_primary_route",
+          "route_type": "primary_route",
+          "environmental_profile": {
+            "darkness": 0.12,
+            "instability": 0.1,
+            "enemy_exposure": 0.25,
+            "resource_drain": 0.07,
+            "mutation_scarring": 0.05
+          },
+          "escape_modifier": -0.032,
+          "route_pressure_used": true,
+          "bounded_flags_clean": true
+        },
+        "traversal_summary": "Traversal (advance): Route route_1_entry_a_to_combat_a_primary_route (primary_route). 1 -> 2. Risk: 0.16, Pressure: 0.11 (Cap:0.00, Mut:0.00) | Env: Darkness 0.12, Enemy 0.25",
+        "traversal_pressure": 0.1142,
+        "escape_risk": 0.158,
+        "route_exposure": 0.1535,
+        "pipeline_result": {
+          "ok": true,
+          "outcome": "VICTORY_ASCEND",
+          "previous_floor": 1,
+          "current_floor": 2,
+          "tower_state": {
+            "tower_state_id": "tower_state_default_99f54fc0-8eba-4a24-874a-d9f6071649ec",
+            "engine_version": "0.0.1",
+            "content_pack_id": "damian",
+            "current_floor": 0,
+            "highest_floor_reached": 2,
+            "total_runs": 0,
+            "total_deaths": 0,
+            "last_outcome": "RETREAT_TO_HUB",
+            "updated_at": "2026-05-20T03:10:43.117347+00:00",
+            "global_residue": {},
+            "floor_memory": [
+              {
+                "floor_id": 1,
+                "visit_count": 1,
+                "death_count": 0,
+                "victory_count": 1,
+                "stability": 1.0,
+                "deviation": 0.0,
+                "mutation_level": 0,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [],
+                "residue_history": [
+                  {
+                    "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                    "floor_id": 1,
+                    "outcome": "VICTORY_ASCEND",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": false,
+                    "mutation_triggered": false,
+                    "notes": [
+                      "Victory Ascend residue."
+                    ]
+                  }
+                ]
+              },
+              {
+                "floor_id": 2,
+                "visit_count": 1,
+                "death_count": 0,
+                "victory_count": 0,
+                "stability": 1.0,
+                "deviation": 0.0,
+                "mutation_level": 0,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [],
+                "residue_history": [
+                  {
+                    "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                    "floor_id": 2,
+                    "outcome": "RETREAT_TO_HUB",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": false,
+                    "mutation_triggered": false,
+                    "notes": [
+                      "Retreat to Hub residue."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "progression_result": {
+            "ok": true,
+            "tower_state": {
+              "tower_state_id": "tower_state_default_99f54fc0-8eba-4a24-874a-d9f6071649ec",
+              "engine_version": "0.0.1",
+              "content_pack_id": "damian",
+              "current_floor": 0,
+              "highest_floor_reached": 2,
+              "total_runs": 0,
+              "total_deaths": 0,
+              "last_outcome": "RETREAT_TO_HUB",
+              "updated_at": "2026-05-20T03:10:43.117347+00:00",
+              "global_residue": {},
+              "floor_memory": [
+                {
+                  "floor_id": 1,
+                  "visit_count": 1,
+                  "death_count": 0,
+                  "victory_count": 1,
+                  "stability": 1.0,
+                  "deviation": 0.0,
+                  "mutation_level": 0,
+                  "known_layout_seed": "unknown_seed",
+                  "active_mutations": [],
+                  "discovered_easter_eggs": [],
+                  "unclaimed_easter_eggs": [],
+                  "residue_history": [
+                    {
+                      "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                      "floor_id": 1,
+                      "outcome": "VICTORY_ASCEND",
+                      "dominant_damage_type": "unknown",
+                      "most_used_skill": "unknown",
+                      "clear_time_seconds": 0.0,
+                      "exploration_percent": 0.0,
+                      "party_size": 1,
+                      "death_event": false,
+                      "mutation_triggered": false,
+                      "notes": [
+                        "Victory Ascend residue."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "floor_id": 2,
+                  "visit_count": 1,
+                  "death_count": 0,
+                  "victory_count": 0,
+                  "stability": 1.0,
+                  "deviation": 0.0,
+                  "mutation_level": 0,
+                  "known_layout_seed": "unknown_seed",
+                  "active_mutations": [],
+                  "discovered_easter_eggs": [],
+                  "unclaimed_easter_eggs": [],
+                  "residue_history": [
+                    {
+                      "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                      "floor_id": 2,
+                      "outcome": "RETREAT_TO_HUB",
+                      "dominant_damage_type": "unknown",
+                      "most_used_skill": "unknown",
+                      "clear_time_seconds": 0.0,
+                      "exploration_percent": 0.0,
+                      "party_size": 1,
+                      "death_event": false,
+                      "mutation_triggered": false,
+                      "notes": [
+                        "Retreat to Hub residue."
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "floor_changed": true
+          },
+          "residue_result": {
+            "ok": true,
+            "payload": {
+              "tower_state": {
+                "tower_state_id": "tower_state_default_99f54fc0-8eba-4a24-874a-d9f6071649ec",
+                "engine_version": "0.0.1",
+                "content_pack_id": "damian",
+                "current_floor": 0,
+                "highest_floor_reached": 2,
+                "total_runs": 0,
+                "total_deaths": 0,
+                "last_outcome": "RETREAT_TO_HUB",
+                "updated_at": "2026-05-20T03:10:43.117347+00:00",
+                "global_residue": {},
+                "floor_memory": [
+                  {
+                    "floor_id": 1,
+                    "visit_count": 1,
+                    "death_count": 0,
+                    "victory_count": 1,
+                    "stability": 1.0,
+                    "deviation": 0.0,
+                    "mutation_level": 0,
+                    "known_layout_seed": "unknown_seed",
+                    "active_mutations": [],
+                    "discovered_easter_eggs": [],
+                    "unclaimed_easter_eggs": [],
+                    "residue_history": [
+                      {
+                        "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                        "floor_id": 1,
+                        "outcome": "VICTORY_ASCEND",
+                        "dominant_damage_type": "unknown",
+                        "most_used_skill": "unknown",
+                        "clear_time_seconds": 0.0,
+                        "exploration_percent": 0.0,
+                        "party_size": 1,
+                        "death_event": false,
+                        "mutation_triggered": false,
+                        "notes": [
+                          "Victory Ascend residue."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "floor_id": 2,
+                    "visit_count": 1,
+                    "death_count": 0,
+                    "victory_count": 0,
+                    "stability": 1.0,
+                    "deviation": 0.0,
+                    "mutation_level": 0,
+                    "known_layout_seed": "unknown_seed",
+                    "active_mutations": [],
+                    "discovered_easter_eggs": [],
+                    "unclaimed_easter_eggs": [],
+                    "residue_history": [
+                      {
+                        "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                        "floor_id": 2,
+                        "outcome": "RETREAT_TO_HUB",
+                        "dominant_damage_type": "unknown",
+                        "most_used_skill": "unknown",
+                        "clear_time_seconds": 0.0,
+                        "exploration_percent": 0.0,
+                        "party_size": 1,
+                        "death_event": false,
+                        "mutation_triggered": false,
+                        "notes": [
+                          "Retreat to Hub residue."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "residue_record": {
+                "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                "floor_id": 1,
+                "outcome": "VICTORY_ASCEND",
+                "dominant_damage_type": "unknown",
+                "most_used_skill": "unknown",
+                "clear_time_seconds": 0.0,
+                "exploration_percent": 0.0,
+                "party_size": 1,
+                "death_event": false,
+                "mutation_triggered": false,
+                "notes": [
+                  "Victory Ascend residue."
+                ]
+              },
+              "floor_memory": {
+                "floor_id": 1,
+                "visit_count": 1,
+                "death_count": 0,
+                "victory_count": 1,
+                "stability": 1.0,
+                "deviation": 0.0,
+                "mutation_level": 0,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [],
+                "residue_history": [
+                  {
+                    "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                    "floor_id": 1,
+                    "outcome": "VICTORY_ASCEND",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": false,
+                    "mutation_triggered": false,
+                    "notes": [
+                      "Victory Ascend residue."
+                    ]
+                  }
+                ]
+              }
+            },
+            "path": ""
+          },
+          "mutation_result": null,
+          "mutation_applied": false,
+          "survivor_mark_result": null,
+          "survivor_mark_attached": false,
+          "error": null
+        },
+        "mutation_applied": false,
+        "survivor_mark_attached": false,
+        "room_graph": {
+          "graph_id": "tower_domain_floor_1_graph",
+          "floor_id": 1,
+          "domain_archetype": "tower_domain",
+          "layout_seed": "seed_1",
+          "nodes": [
+            {
+              "node_id": "entry_a",
+              "node_type": "entry_room",
+              "connections": [
+                "combat_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.1,
+              "stability": 1.0,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "combat_a",
+              "node_type": "combat_room",
+              "connections": [
+                "pressure_a",
+                "recovery_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.4,
+              "stability": 0.8,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "pressure_a",
+              "node_type": "pressure_room",
+              "connections": [
+                "exit_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.7,
+              "stability": 0.6,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "recovery_a",
+              "node_type": "recovery_room",
+              "connections": [
+                "exit_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.2,
+              "stability": 0.9,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "exit_a",
+              "node_type": "exit_room",
+              "connections": [],
+              "mutation_tags": [],
+              "difficulty_rating": 0.0,
+              "stability": 1.0,
+              "supports_survivor_mark": false
+            }
+          ],
+          "entry_node_id": "entry_a",
+          "exit_node_id": "exit_a",
+          "mutation_level": 0,
+          "identity_preserved": true,
+          "playability_preserved": true,
+          "survivor_mark_nodes": []
+        },
+        "room_routes": [
+          {
+            "route_id": "route_1_entry_a_to_combat_a_primary_route",
+            "floor_id": 1,
+            "from_node_id": "entry_a",
+            "to_node_id": "combat_a",
+            "route_type": "primary_route",
+            "environmental_profile": {
+              "darkness": 0.12,
+              "instability": 0.1,
+              "enemy_exposure": 0.25,
+              "resource_drain": 0.07,
+              "mutation_scarring": 0.05
+            },
+            "route_exposure": 0.1535,
+            "escape_modifier": -0.032,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_1_combat_a_to_pressure_a_pressure_route",
+            "floor_id": 1,
+            "from_node_id": "combat_a",
+            "to_node_id": "pressure_a",
+            "route_type": "pressure_route",
+            "environmental_profile": {
+              "darkness": 0.28,
+              "instability": 0.3,
+              "enemy_exposure": 0.66,
+              "resource_drain": 0.26,
+              "mutation_scarring": 0.11
+            },
+            "route_exposure": 0.416,
+            "escape_modifier": -0.188,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_1_combat_a_to_recovery_a_recovery_route",
+            "floor_id": 1,
+            "from_node_id": "combat_a",
+            "to_node_id": "recovery_a",
+            "route_type": "recovery_route",
+            "environmental_profile": {
+              "darkness": 0.15,
+              "instability": 0.15,
+              "enemy_exposure": 0.15,
+              "resource_drain": 0.04,
+              "mutation_scarring": 0.06
+            },
+            "route_exposure": 0.1245,
+            "escape_modifier": 0.105,
+            "supports_survivor_mark": false,
+            "critical_route": false,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_1_pressure_a_to_exit_a_primary_route",
+            "floor_id": 1,
+            "from_node_id": "pressure_a",
+            "to_node_id": "exit_a",
+            "route_type": "primary_route",
+            "environmental_profile": {
+              "darkness": 0.17,
+              "instability": 0.2,
+              "enemy_exposure": 0.35,
+              "resource_drain": 0.1,
+              "mutation_scarring": 0.07
+            },
+            "route_exposure": 0.2275,
+            "escape_modifier": -0.057,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_1_recovery_a_to_exit_a_primary_route",
+            "floor_id": 1,
+            "from_node_id": "recovery_a",
+            "to_node_id": "exit_a",
+            "route_type": "primary_route",
+            "environmental_profile": {
+              "darkness": 0.05,
+              "instability": 0.05,
+              "enemy_exposure": 0.1,
+              "resource_drain": 0.03,
+              "mutation_scarring": 0.02
+            },
+            "route_exposure": 0.064,
+            "escape_modifier": -0.015,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          }
+        ],
+        "selected_route": {
+          "route_id": "route_1_entry_a_to_combat_a_primary_route",
+          "floor_id": 1,
+          "from_node_id": "entry_a",
+          "to_node_id": "combat_a",
+          "route_type": "primary_route",
+          "environmental_profile": {
+            "darkness": 0.12,
+            "instability": 0.1,
+            "enemy_exposure": 0.25,
+            "resource_drain": 0.07,
+            "mutation_scarring": 0.05
+          },
+          "route_exposure": 0.1535,
+          "escape_modifier": -0.032,
+          "supports_survivor_mark": false,
+          "critical_route": true,
+          "playability_preserved": true,
+          "identity_preserved": true,
+          "bounded_flags_clean": true
+        },
+        "route_id": "route_1_entry_a_to_combat_a_primary_route",
+        "route_type": "primary_route",
+        "environmental_profile": {
+          "darkness": 0.12,
+          "instability": 0.1,
+          "enemy_exposure": 0.25,
+          "resource_drain": 0.07,
+          "mutation_scarring": 0.05
+        },
+        "escape_modifier": -0.032,
+        "route_pressure_used": true,
+        "escape_resolution": null,
+        "escape_outcome": null,
+        "pipeline_outcome": "VICTORY_ASCEND",
+        "residue_written": true,
+        "mutation_pressure_delta": 0.0,
+        "resource_loss": null,
+        "recoverability_preserved": true,
+        "floor_identity_preserved": true
+      },
+      "error": null
+    },
+    {
+      "ok": true,
+      "command": "escape_attempt",
+      "message": "Escape resolution: ESCAPE_SUCCESS. Escape Outcome: ESCAPE_SUCCESS. Safe retreat achieved. Returned to Hub.",
+      "payload": {
+        "traversal_event": {
+          "event_id": "traversal_20e85a40-241c-47c6-9526-92b8ddf02131",
+          "player_id": "console_player",
+          "source_floor_id": "2",
+          "destination_floor_id": "0",
+          "traversal_type": "escape_attempt",
+          "traversal_pressure": {
+            "capacity_pressure": 0.0,
+            "mutation_pressure": 0.0,
+            "combat_exposure": 0.1,
+            "repair_burden": 0.53,
+            "total_pressure": 0.1164
+          },
+          "escape_risk": 0.0138,
+          "route_exposure": 0.1245,
+          "route_id": "route_2_combat_a_to_recovery_a_recovery_route",
+          "route_type": "recovery_route",
+          "environmental_profile": {
+            "darkness": 0.15,
+            "instability": 0.15,
+            "enemy_exposure": 0.15,
+            "resource_drain": 0.04,
+            "mutation_scarring": 0.06
+          },
+          "escape_modifier": 0.105,
+          "route_pressure_used": true,
+          "bounded_flags_clean": true
+        },
+        "traversal_summary": "Traversal (escape_attempt): Route route_2_combat_a_to_recovery_a_recovery_route (recovery_route). 2 -> 0. Risk: 0.01, Pressure: 0.12 (Cap:0.00, Mut:0.00) | Env: Darkness 0.15, Enemy 0.15",
+        "traversal_pressure": 0.1164,
+        "escape_risk": 0.0138,
+        "route_exposure": 0.1245,
+        "pipeline_result": {
+          "ok": true,
+          "outcome": "RETREAT_TO_HUB",
+          "previous_floor": 2,
+          "current_floor": 0,
+          "tower_state": {
+            "tower_state_id": "tower_state_default_99f54fc0-8eba-4a24-874a-d9f6071649ec",
+            "engine_version": "0.0.1",
+            "content_pack_id": "damian",
+            "current_floor": 0,
+            "highest_floor_reached": 2,
+            "total_runs": 0,
+            "total_deaths": 0,
+            "last_outcome": "RETREAT_TO_HUB",
+            "updated_at": "2026-05-20T03:10:43.117347+00:00",
+            "global_residue": {},
+            "floor_memory": [
+              {
+                "floor_id": 1,
+                "visit_count": 1,
+                "death_count": 0,
+                "victory_count": 1,
+                "stability": 1.0,
+                "deviation": 0.0,
+                "mutation_level": 0,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [],
+                "residue_history": [
+                  {
+                    "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                    "floor_id": 1,
+                    "outcome": "VICTORY_ASCEND",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": false,
+                    "mutation_triggered": false,
+                    "notes": [
+                      "Victory Ascend residue."
+                    ]
+                  }
+                ]
+              },
+              {
+                "floor_id": 2,
+                "visit_count": 1,
+                "death_count": 0,
+                "victory_count": 0,
+                "stability": 1.0,
+                "deviation": 0.0,
+                "mutation_level": 0,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [],
+                "residue_history": [
+                  {
+                    "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                    "floor_id": 2,
+                    "outcome": "RETREAT_TO_HUB",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": false,
+                    "mutation_triggered": false,
+                    "notes": [
+                      "Retreat to Hub residue."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "progression_result": {
+            "ok": true,
+            "outcome": "RETREAT_TO_HUB",
+            "tower_state": {
+              "tower_state_id": "tower_state_default_99f54fc0-8eba-4a24-874a-d9f6071649ec",
+              "engine_version": "0.0.1",
+              "content_pack_id": "damian",
+              "current_floor": 0,
+              "highest_floor_reached": 2,
+              "total_runs": 0,
+              "total_deaths": 0,
+              "last_outcome": "RETREAT_TO_HUB",
+              "updated_at": "2026-05-20T03:10:43.117347+00:00",
+              "global_residue": {},
+              "floor_memory": [
+                {
+                  "floor_id": 1,
+                  "visit_count": 1,
+                  "death_count": 0,
+                  "victory_count": 1,
+                  "stability": 1.0,
+                  "deviation": 0.0,
+                  "mutation_level": 0,
+                  "known_layout_seed": "unknown_seed",
+                  "active_mutations": [],
+                  "discovered_easter_eggs": [],
+                  "unclaimed_easter_eggs": [],
+                  "residue_history": [
+                    {
+                      "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                      "floor_id": 1,
+                      "outcome": "VICTORY_ASCEND",
+                      "dominant_damage_type": "unknown",
+                      "most_used_skill": "unknown",
+                      "clear_time_seconds": 0.0,
+                      "exploration_percent": 0.0,
+                      "party_size": 1,
+                      "death_event": false,
+                      "mutation_triggered": false,
+                      "notes": [
+                        "Victory Ascend residue."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "floor_id": 2,
+                  "visit_count": 1,
+                  "death_count": 0,
+                  "victory_count": 0,
+                  "stability": 1.0,
+                  "deviation": 0.0,
+                  "mutation_level": 0,
+                  "known_layout_seed": "unknown_seed",
+                  "active_mutations": [],
+                  "discovered_easter_eggs": [],
+                  "unclaimed_easter_eggs": [],
+                  "residue_history": [
+                    {
+                      "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                      "floor_id": 2,
+                      "outcome": "RETREAT_TO_HUB",
+                      "dominant_damage_type": "unknown",
+                      "most_used_skill": "unknown",
+                      "clear_time_seconds": 0.0,
+                      "exploration_percent": 0.0,
+                      "party_size": 1,
+                      "death_event": false,
+                      "mutation_triggered": false,
+                      "notes": [
+                        "Retreat to Hub residue."
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "floor_changed": true
+          },
+          "residue_result": {
+            "ok": true,
+            "payload": {
+              "tower_state": {
+                "tower_state_id": "tower_state_default_99f54fc0-8eba-4a24-874a-d9f6071649ec",
+                "engine_version": "0.0.1",
+                "content_pack_id": "damian",
+                "current_floor": 0,
+                "highest_floor_reached": 2,
+                "total_runs": 0,
+                "total_deaths": 0,
+                "last_outcome": "RETREAT_TO_HUB",
+                "updated_at": "2026-05-20T03:10:43.117347+00:00",
+                "global_residue": {},
+                "floor_memory": [
+                  {
+                    "floor_id": 1,
+                    "visit_count": 1,
+                    "death_count": 0,
+                    "victory_count": 1,
+                    "stability": 1.0,
+                    "deviation": 0.0,
+                    "mutation_level": 0,
+                    "known_layout_seed": "unknown_seed",
+                    "active_mutations": [],
+                    "discovered_easter_eggs": [],
+                    "unclaimed_easter_eggs": [],
+                    "residue_history": [
+                      {
+                        "residue_id": "190bdead-356b-41f5-8239-09694055ba03",
+                        "floor_id": 1,
+                        "outcome": "VICTORY_ASCEND",
+                        "dominant_damage_type": "unknown",
+                        "most_used_skill": "unknown",
+                        "clear_time_seconds": 0.0,
+                        "exploration_percent": 0.0,
+                        "party_size": 1,
+                        "death_event": false,
+                        "mutation_triggered": false,
+                        "notes": [
+                          "Victory Ascend residue."
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "floor_id": 2,
+                    "visit_count": 1,
+                    "death_count": 0,
+                    "victory_count": 0,
+                    "stability": 1.0,
+                    "deviation": 0.0,
+                    "mutation_level": 0,
+                    "known_layout_seed": "unknown_seed",
+                    "active_mutations": [],
+                    "discovered_easter_eggs": [],
+                    "unclaimed_easter_eggs": [],
+                    "residue_history": [
+                      {
+                        "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                        "floor_id": 2,
+                        "outcome": "RETREAT_TO_HUB",
+                        "dominant_damage_type": "unknown",
+                        "most_used_skill": "unknown",
+                        "clear_time_seconds": 0.0,
+                        "exploration_percent": 0.0,
+                        "party_size": 1,
+                        "death_event": false,
+                        "mutation_triggered": false,
+                        "notes": [
+                          "Retreat to Hub residue."
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "residue_record": {
+                "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                "floor_id": 2,
+                "outcome": "RETREAT_TO_HUB",
+                "dominant_damage_type": "unknown",
+                "most_used_skill": "unknown",
+                "clear_time_seconds": 0.0,
+                "exploration_percent": 0.0,
+                "party_size": 1,
+                "death_event": false,
+                "mutation_triggered": false,
+                "notes": [
+                  "Retreat to Hub residue."
+                ]
+              },
+              "floor_memory": {
+                "floor_id": 2,
+                "visit_count": 1,
+                "death_count": 0,
+                "victory_count": 0,
+                "stability": 1.0,
+                "deviation": 0.0,
+                "mutation_level": 0,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [],
+                "residue_history": [
+                  {
+                    "residue_id": "048acf15-8dce-4b7b-9ebf-76a842627618",
+                    "floor_id": 2,
+                    "outcome": "RETREAT_TO_HUB",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": false,
+                    "mutation_triggered": false,
+                    "notes": [
+                      "Retreat to Hub residue."
+                    ]
+                  }
+                ]
+              }
+            },
+            "path": ""
+          },
+          "mutation_result": null,
+          "mutation_applied": false,
+          "survivor_mark_result": null,
+          "survivor_mark_attached": false,
+          "error": null
+        },
+        "mutation_applied": false,
+        "survivor_mark_attached": false,
+        "room_graph": {
+          "graph_id": "tower_domain_floor_2_graph",
+          "floor_id": 2,
+          "domain_archetype": "tower_domain",
+          "layout_seed": "seed_2",
+          "nodes": [
+            {
+              "node_id": "entry_a",
+              "node_type": "entry_room",
+              "connections": [
+                "combat_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.1,
+              "stability": 1.0,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "combat_a",
+              "node_type": "combat_room",
+              "connections": [
+                "pressure_a",
+                "recovery_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.4,
+              "stability": 0.8,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "pressure_a",
+              "node_type": "pressure_room",
+              "connections": [
+                "exit_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.7,
+              "stability": 0.6,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "recovery_a",
+              "node_type": "recovery_room",
+              "connections": [
+                "exit_a"
+              ],
+              "mutation_tags": [],
+              "difficulty_rating": 0.2,
+              "stability": 0.9,
+              "supports_survivor_mark": false
+            },
+            {
+              "node_id": "exit_a",
+              "node_type": "exit_room",
+              "connections": [],
+              "mutation_tags": [],
+              "difficulty_rating": 0.0,
+              "stability": 1.0,
+              "supports_survivor_mark": false
+            }
+          ],
+          "entry_node_id": "entry_a",
+          "exit_node_id": "exit_a",
+          "mutation_level": 0,
+          "identity_preserved": true,
+          "playability_preserved": true,
+          "survivor_mark_nodes": []
+        },
+        "room_routes": [
+          {
+            "route_id": "route_2_entry_a_to_combat_a_primary_route",
+            "floor_id": 2,
+            "from_node_id": "entry_a",
+            "to_node_id": "combat_a",
+            "route_type": "primary_route",
+            "environmental_profile": {
+              "darkness": 0.12,
+              "instability": 0.1,
+              "enemy_exposure": 0.25,
+              "resource_drain": 0.07,
+              "mutation_scarring": 0.05
+            },
+            "route_exposure": 0.1535,
+            "escape_modifier": -0.032,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_2_combat_a_to_pressure_a_pressure_route",
+            "floor_id": 2,
+            "from_node_id": "combat_a",
+            "to_node_id": "pressure_a",
+            "route_type": "pressure_route",
+            "environmental_profile": {
+              "darkness": 0.28,
+              "instability": 0.3,
+              "enemy_exposure": 0.66,
+              "resource_drain": 0.26,
+              "mutation_scarring": 0.11
+            },
+            "route_exposure": 0.416,
+            "escape_modifier": -0.188,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_2_combat_a_to_recovery_a_recovery_route",
+            "floor_id": 2,
+            "from_node_id": "combat_a",
+            "to_node_id": "recovery_a",
+            "route_type": "recovery_route",
+            "environmental_profile": {
+              "darkness": 0.15,
+              "instability": 0.15,
+              "enemy_exposure": 0.15,
+              "resource_drain": 0.04,
+              "mutation_scarring": 0.06
+            },
+            "route_exposure": 0.1245,
+            "escape_modifier": 0.105,
+            "supports_survivor_mark": false,
+            "critical_route": false,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_2_pressure_a_to_exit_a_primary_route",
+            "floor_id": 2,
+            "from_node_id": "pressure_a",
+            "to_node_id": "exit_a",
+            "route_type": "primary_route",
+            "environmental_profile": {
+              "darkness": 0.17,
+              "instability": 0.2,
+              "enemy_exposure": 0.35,
+              "resource_drain": 0.1,
+              "mutation_scarring": 0.07
+            },
+            "route_exposure": 0.2275,
+            "escape_modifier": -0.057,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          },
+          {
+            "route_id": "route_2_recovery_a_to_exit_a_primary_route",
+            "floor_id": 2,
+            "from_node_id": "recovery_a",
+            "to_node_id": "exit_a",
+            "route_type": "primary_route",
+            "environmental_profile": {
+              "darkness": 0.05,
+              "instability": 0.05,
+              "enemy_exposure": 0.1,
+              "resource_drain": 0.03,
+              "mutation_scarring": 0.02
+            },
+            "route_exposure": 0.064,
+            "escape_modifier": -0.015,
+            "supports_survivor_mark": false,
+            "critical_route": true,
+            "playability_preserved": true,
+            "identity_preserved": true,
+            "bounded_flags_clean": true
+          }
+        ],
+        "selected_route": {
+          "route_id": "route_2_combat_a_to_recovery_a_recovery_route",
+          "floor_id": 2,
+          "from_node_id": "combat_a",
+          "to_node_id": "recovery_a",
+          "route_type": "recovery_route",
+          "environmental_profile": {
+            "darkness": 0.15,
+            "instability": 0.15,
+            "enemy_exposure": 0.15,
+            "resource_drain": 0.04,
+            "mutation_scarring": 0.06
+          },
+          "route_exposure": 0.1245,
+          "escape_modifier": 0.105,
+          "supports_survivor_mark": false,
+          "critical_route": false,
+          "playability_preserved": true,
+          "identity_preserved": true,
+          "bounded_flags_clean": true
+        },
+        "route_id": "route_2_combat_a_to_recovery_a_recovery_route",
+        "route_type": "recovery_route",
+        "environmental_profile": {
+          "darkness": 0.15,
+          "instability": 0.15,
+          "enemy_exposure": 0.15,
+          "resource_drain": 0.04,
+          "mutation_scarring": 0.06
+        },
+        "escape_modifier": 0.105,
+        "route_pressure_used": true,
+        "escape_resolution": {
+          "escape_resolution_id": "escape_res_1e6163b5-f945-438a-8793-0530d52c2c05",
+          "player_id": "console_player",
+          "floor_id": 2,
+          "source_route_id": "route_2_combat_a_to_recovery_a_recovery_route",
+          "escape_risk": 0.0138,
+          "route_exposure": 0.1245,
+          "escape_modifier": 0.105,
+          "outcome": "ESCAPE_SUCCESS",
+          "pipeline_outcome": "RETREAT_TO_HUB",
+          "residue_written": true,
+          "mutation_pressure_delta": 0.0,
+          "resource_loss": {
+            "gold": 0.0,
+            "potions": 0,
+            "repair_materials": 0
+          },
+          "recoverability_preserved": true,
+          "floor_identity_preserved": true,
+          "bounded_flags_clean": true
+        },
+        "escape_outcome": "ESCAPE_SUCCESS",
+        "pipeline_outcome": "RETREAT_TO_HUB",
+        "residue_written": true,
+        "mutation_pressure_delta": 0.0,
+        "resource_loss": {
+          "gold": 0.0,
+          "potions": 0,
+          "repair_materials": 0
+        },
+        "recoverability_preserved": true,
+        "floor_identity_preserved": true
+      },
+      "error": null
+    }
+  ],
+  "final_session_active": true,
+  "final_floor": 0,
+  "highest_floor_reached": 1,
+  "mutation_observed": false,
+  "survivor_mark_observed": false,
+  "diff_observed": false,
+  "combat_sessions_observed": 0,
+  "combat_outcomes_observed": [],
+  "combat_defeats_observed": 0,
+  "combat_victories_observed": 0,
+  "combat_retreats_observed": 0,
+  "resource_pressure_observed": false,
+  "residue_pressure_observed": false,
+  "mutation_after_combat_observed": false,
+  "survivor_mark_after_combat_observed": false,
+  "enemy_pressure_profiles_observed": 0,
+  "enemy_archetypes_observed": [],
+  "enemy_adaptation_reasoning_observed": [],
+  "attrition_pressure_observed": false,
+  "counter_pressure_observed": false,
+  "ambush_pressure_observed": false,
+  "baseline_pressure_observed": false,
+  "loot_events_observed": 0,
+  "total_gold_observed": 0,
+  "large_visible_loot_observed": false,
+  "resource_sink_pressure_observed": false,
+  "bounded_reward_flags_clean": true,
+  "loot_sources_observed": [],
+  "resource_sink_summaries": [],
+  "inventory_transactions_observed": 0,
+  "inventory_applications_observed": 0,
+  "inventory_failures_observed": 0,
+  "total_gold_added_to_inventory": 0,
+  "items_added_to_inventory": [],
+  "items_deducted_from_inventory": [],
+  "capacity_pressure_observed": true,
+  "capacity_pressure_values_observed": [
+    0.0
+  ],
+  "capacity_bands_observed": [
+    "EMPTY"
+  ],
+  "highest_capacity_pressure_observed": 0.0,
+  "over_capacity_failures_observed": 0,
+  "material_burden_summaries": [
+    "Floor 1 Burden: 0/40 (EMPTY)"
+  ],
+  "inventory_summaries": [],
+  "consumable_uses_observed": 0,
+  "consumables_deducted_observed": 0,
+  "failed_consumable_attempts_observed": 0,
+  "potion_drain_observed": false,
+  "total_potions_consumed": 0,
+  "consumable_drain_summaries": [],
+  "repair_material_uses_observed": 0,
+  "repair_materials_deducted_observed": 0,
+  "failed_repair_attempts_observed": 0,
+  "repair_material_drain_observed": false,
+  "durability_restoration_observed": false,
+  "repair_drain_summaries": [],
+  "repair_events_observed": 0,
+  "repair_applications_observed": 0,
+  "repair_failures_observed": 0,
+  "total_durability_restored_observed": 0.0,
+  "repair_materials_consumed_observed": 0,
+  "equipment_items_repaired_observed": [],
+  "bounded_repair_clean": true,
+  "repair_runtime_summaries": [],
+  "traversal_events_observed": 2,
+  "advance_attempts_observed": 1,
+  "escape_attempts_observed": 1,
+  "traversal_pressure_observed": true,
+  "traversal_pressure_values_observed": [
+    0.0615,
+    0.1142,
+    0.1164
+  ],
+  "highest_traversal_pressure_observed": 0.1164,
+  "escape_risk_observed": true,
+  "escape_risk_values_observed": [
+    0.131,
+    0.158,
+    0.0138
+  ],
+  "highest_escape_risk_observed": 0.158,
+  "route_exposure_values_observed": [
+    0.2,
+    0.1535,
+    0.1245
+  ],
+  "traversal_summaries": [
+    "Status check: Traversal (advance): 1 -> 2. Risk: 0.13, Pressure: 0.10 (Cap:0.00, Mut:0.00)",
+    "Traversal (advance): Route route_1_entry_a_to_combat_a_primary_route (primary_route). 1 -> 2. Risk: 0.16, Pressure: 0.11 (Cap:0.00, Mut:0.00) | Env: Darkness 0.12, Enemy 0.25",
+    "Traversal (escape_attempt): Route route_2_combat_a_to_recovery_a_recovery_route (recovery_route). 2 -> 0. Risk: 0.01, Pressure: 0.12 (Cap:0.00, Mut:0.00) | Env: Darkness 0.15, Enemy 0.15"
+  ],
+  "room_graph_evidence_observed": true,
+  "room_route_evidence_observed": true,
+  "room_routes_observed": 10,
+  "selected_routes_observed": [
+    "route_1_entry_a_to_combat_a_primary_route",
+    "route_2_combat_a_to_recovery_a_recovery_route"
+  ],
+  "route_types_observed": [
+    "primary_route",
+    "recovery_route"
+  ],
+  "environmental_profiles_observed": [
+    {
+      "darkness": 0.12,
+      "instability": 0.1,
+      "enemy_exposure": 0.25,
+      "resource_drain": 0.07,
+      "mutation_scarring": 0.05
+    },
+    {
+      "darkness": 0.15,
+      "instability": 0.15,
+      "enemy_exposure": 0.15,
+      "resource_drain": 0.04,
+      "mutation_scarring": 0.06
+    }
+  ],
+  "highest_route_exposure_observed": 0.2,
+  "escape_modifiers_observed": [
+    -0.032,
+    0.105
+  ],
+  "route_pressure_used_observed": true,
+  "room_route_summaries": [
+    "Chose primary_route route route_1_entry_a_to_combat_a_primary_route (Exposure: 0.1535)",
+    "Chose recovery_route route route_2_combat_a_to_recovery_a_recovery_route (Exposure: 0.1245)"
+  ],
+  "escape_resolutions_observed": 1,
+  "escape_successes_observed": 1,
+  "escape_partials_observed": 0,
+  "escape_failures_observed": 0,
+  "severe_escape_failures_observed": 0,
+  "escape_residue_written_observed": true,
+  "escape_mutation_pressure_observed": false,
+  "total_escape_mutation_pressure_delta": 0.0,
+  "escape_resource_losses_observed": [
+    {
+      "gold": 0.0,
+      "potions": 0,
+      "repair_materials": 0
+    }
+  ],
+  "escape_pipeline_outcomes_observed": [
+    "RETREAT_TO_HUB"
+  ],
+  "escape_recoverability_preserved": true,
+  "escape_floor_identity_preserved": true,
+  "escape_resolution_summaries": [
+    "Escape resolved to ESCAPE_SUCCESS. Pipeline: RETREAT_TO_HUB."
+  ],
+  "dashboard_snapshots_observed": 1,
+  "dashboard_status_observed": true,
+  "pressure_summaries_observed": [
+    {
+      "combat_pressure": 0.1,
+      "traversal_pressure": 0.1015,
+      "escape_risk": 0.131,
+      "mutation_pressure": 0.0,
+      "repair_burden": 0.53,
+      "capacity_pressure": 0.0
+    }
+  ],
+  "resource_summaries_observed": [
+    {
+      "gold": 0.0,
+      "potions": 0,
+      "rare_materials": 0
+    }
+  ],
+  "equipment_summaries_observed": [
+    {
+      "damaged_items": 2,
+      "zero_durability_items": 0,
+      "repair_materials_remaining": 0
+    }
+  ],
+  "route_summaries_observed": [
+    {
+      "routes_traversed": 0,
+      "highest_route_exposure": 0.0,
+      "escape_failures": 0
+    }
+  ],
+  "residue_summaries_observed": [
+    {
+      "mutations_triggered": 0,
+      "survivor_marks": 0,
+      "residue_events_logged": 0
+    }
+  ],
+  "recoverability_statuses_observed": [
+    {
+      "recoverable": true,
+      "critical_pressure": false
+    }
+  ],
+  "dashboard_survival_summaries": [
+    "Dashboard Snapshot [snap_592]: Floor 1. Pressure (Combat:0.10, Cap:0.00). Resources (Gold:0.0, Potions:0). Gear (2 damaged). Claims (0 active)."
+  ],
+  "domain_claims_observed": 0,
+  "domain_claim_types_observed": [],
+  "highest_domain_maintenance_pressure_observed": 0.0,
+  "highest_domain_visibility_pressure_observed": 0.0,
+  "highest_domain_mutation_threat_observed": 0.0,
+  "total_domain_recovery_value_observed": 0.0,
+  "tower_hostility_preserved_observed": true,
+  "domain_claim_summaries": [],
+  "durability_decay_observed": false,
+  "durability_events_observed": 0,
+  "total_durability_loss_observed": 0.0,
+  "equipment_items_worn_observed": [],
+  "zero_durability_items_observed": [],
+  "durability_pressure_observed": false,
+  "durability_decay_summaries": [],
+  "room_graph_changes_observed": 0,
+  "survivor_mark_rooms_observed": 0,
+  "graph_diff_summaries": [],
+  "errors": [],
+  "no_scope_creep_flags": {
+    "combat_runtime_introduced": false,
+    "map_generation_introduced": false,
+    "multiplayer_runtime_introduced": false,
+    "gpu_code_introduced": false
+  }
+}

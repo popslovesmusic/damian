@@ -1,0 +1,651 @@
+{
+  "transcript_id": "graph_combat_validation",
+  "patch_id": "TOWER-ENGINE-045",
+  "timestamp": "2026-05-19T17:11:37.830362+00:00",
+  "ok": true,
+  "commands_requested": [
+    "combat dangerous",
+    "diff",
+    "quit"
+  ],
+  "commands_executed": [
+    "combat dangerous",
+    "diff",
+    "quit"
+  ],
+  "command_results": [
+    {
+      "ok": true,
+      "command": "combat",
+      "message": "Combat (dangerous) resolved to DEFEAT_DROP. New floor: 1.",
+      "payload": {
+        "resolved_outcome": "DEFEAT_DROP",
+        "combat_session": {
+          "combat_session_id": "combat_f447002c-8a51-49ed-9dfd-ffd726e0b494",
+          "floor_id": 1,
+          "player_id": "console_player",
+          "enemy_group_id": "enemy_group_1",
+          "combat_tick": 0,
+          "player_stats": {
+            "health": 20.0,
+            "damage": 10.0,
+            "defense": 5.0,
+            "speed": 1.0,
+            "recovery": 0.5
+          },
+          "enemy_pressure_rating": 0.95,
+          "resource_usage": {
+            "potions_used": 0,
+            "repair_items_used": 0,
+            "recovery_events": 0
+          },
+          "residue_pressure": {
+            "dominant_build_visibility": 0.0,
+            "strategy_repetition_pressure": 0.0,
+            "counter_pressure": 0.0
+          },
+          "predicted_outcome": "DEFEAT_DROP",
+          "forbidden_flags": {
+            "permanent_invulnerability": false,
+            "infinite_damage_scaling": false,
+            "resource_bypass": false,
+            "pipeline_bypass": false
+          },
+          "enemy_pressure_profile": null,
+          "enemy_archetype_id": null,
+          "enemy_adaptation_reasoning": []
+        },
+        "pipeline_result": {
+          "ok": true,
+          "outcome": "DEFEAT_DROP",
+          "previous_floor": 1,
+          "current_floor": 1,
+          "tower_state": {
+            "tower_state_id": "audit_tower",
+            "engine_version": "0.0.1",
+            "content_pack_id": "damian",
+            "current_floor": 1,
+            "highest_floor_reached": 1,
+            "total_runs": 1,
+            "total_deaths": 1,
+            "floor_memory": [
+              {
+                "floor_id": 1,
+                "visit_count": 1,
+                "death_count": 1,
+                "victory_count": 0,
+                "stability": 0.9627202838776063,
+                "deviation": 0.03710981532805608,
+                "mutation_level": 2,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [
+                  "mvp_defeat_mutation",
+                  "minor_corridor_shift_stub",
+                  "survivor_mark_opportunity_stub",
+                  "minor_deviation_increase_stub"
+                ],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [
+                  "mark_1_1_83fa11e4"
+                ],
+                "residue_history": [
+                  {
+                    "residue_id": "ca5dd95a-d9d9-464f-9b39-cb670df8ff37",
+                    "floor_id": 1,
+                    "outcome": "DEFEAT_DROP",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": true,
+                    "mutation_triggered": true,
+                    "notes": [
+                      "Defeat Drop residue."
+                    ]
+                  }
+                ]
+              }
+            ],
+            "global_residue": {},
+            "last_outcome": "DEFEAT_DROP",
+            "updated_at": "2026-05-19T17:11:37.776285+00:00"
+          },
+          "progression_result": {
+            "ok": true,
+            "tower_state": {
+              "tower_state_id": "audit_tower",
+              "engine_version": "0.0.1",
+              "content_pack_id": "damian",
+              "current_floor": 1,
+              "highest_floor_reached": 1,
+              "total_runs": 1,
+              "total_deaths": 1,
+              "floor_memory": [
+                {
+                  "floor_id": 1,
+                  "visit_count": 1,
+                  "death_count": 1,
+                  "victory_count": 0,
+                  "stability": 0.9627202838776063,
+                  "deviation": 0.03710981532805608,
+                  "mutation_level": 2,
+                  "known_layout_seed": "unknown_seed",
+                  "active_mutations": [
+                    "mvp_defeat_mutation",
+                    "minor_corridor_shift_stub",
+                    "survivor_mark_opportunity_stub",
+                    "minor_deviation_increase_stub"
+                  ],
+                  "discovered_easter_eggs": [],
+                  "unclaimed_easter_eggs": [
+                    "mark_1_1_83fa11e4"
+                  ],
+                  "residue_history": [
+                    {
+                      "residue_id": "ca5dd95a-d9d9-464f-9b39-cb670df8ff37",
+                      "floor_id": 1,
+                      "outcome": "DEFEAT_DROP",
+                      "dominant_damage_type": "unknown",
+                      "most_used_skill": "unknown",
+                      "clear_time_seconds": 0.0,
+                      "exploration_percent": 0.0,
+                      "party_size": 1,
+                      "death_event": true,
+                      "mutation_triggered": true,
+                      "notes": [
+                        "Defeat Drop residue."
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "global_residue": {},
+              "last_outcome": "DEFEAT_DROP",
+              "updated_at": "2026-05-19T17:11:37.776285+00:00"
+            },
+            "floor_changed": false
+          },
+          "residue_result": {
+            "ok": true,
+            "payload": {
+              "tower_state": {
+                "tower_state_id": "audit_tower",
+                "engine_version": "0.0.1",
+                "content_pack_id": "damian",
+                "current_floor": 1,
+                "highest_floor_reached": 1,
+                "total_runs": 1,
+                "total_deaths": 1,
+                "floor_memory": [
+                  {
+                    "floor_id": 1,
+                    "visit_count": 1,
+                    "death_count": 1,
+                    "victory_count": 0,
+                    "stability": 0.9627202838776063,
+                    "deviation": 0.03710981532805608,
+                    "mutation_level": 2,
+                    "known_layout_seed": "unknown_seed",
+                    "active_mutations": [
+                      "mvp_defeat_mutation",
+                      "minor_corridor_shift_stub",
+                      "survivor_mark_opportunity_stub",
+                      "minor_deviation_increase_stub"
+                    ],
+                    "discovered_easter_eggs": [],
+                    "unclaimed_easter_eggs": [
+                      "mark_1_1_83fa11e4"
+                    ],
+                    "residue_history": [
+                      {
+                        "residue_id": "ca5dd95a-d9d9-464f-9b39-cb670df8ff37",
+                        "floor_id": 1,
+                        "outcome": "DEFEAT_DROP",
+                        "dominant_damage_type": "unknown",
+                        "most_used_skill": "unknown",
+                        "clear_time_seconds": 0.0,
+                        "exploration_percent": 0.0,
+                        "party_size": 1,
+                        "death_event": true,
+                        "mutation_triggered": true,
+                        "notes": [
+                          "Defeat Drop residue."
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "global_residue": {},
+                "last_outcome": "DEFEAT_DROP",
+                "updated_at": "2026-05-19T17:11:37.776285+00:00"
+              },
+              "residue_record": {
+                "residue_id": "ca5dd95a-d9d9-464f-9b39-cb670df8ff37",
+                "floor_id": 1,
+                "outcome": "DEFEAT_DROP",
+                "dominant_damage_type": "unknown",
+                "most_used_skill": "unknown",
+                "clear_time_seconds": 0.0,
+                "exploration_percent": 0.0,
+                "party_size": 1,
+                "death_event": true,
+                "mutation_triggered": true,
+                "notes": [
+                  "Defeat Drop residue."
+                ]
+              },
+              "floor_memory": {
+                "floor_id": 1,
+                "visit_count": 1,
+                "death_count": 1,
+                "victory_count": 0,
+                "stability": 0.9627202838776063,
+                "deviation": 0.03710981532805608,
+                "mutation_level": 2,
+                "known_layout_seed": "unknown_seed",
+                "active_mutations": [
+                  "mvp_defeat_mutation",
+                  "minor_corridor_shift_stub",
+                  "survivor_mark_opportunity_stub",
+                  "minor_deviation_increase_stub"
+                ],
+                "discovered_easter_eggs": [],
+                "unclaimed_easter_eggs": [
+                  "mark_1_1_83fa11e4"
+                ],
+                "residue_history": [
+                  {
+                    "residue_id": "ca5dd95a-d9d9-464f-9b39-cb670df8ff37",
+                    "floor_id": 1,
+                    "outcome": "DEFEAT_DROP",
+                    "dominant_damage_type": "unknown",
+                    "most_used_skill": "unknown",
+                    "clear_time_seconds": 0.0,
+                    "exploration_percent": 0.0,
+                    "party_size": 1,
+                    "death_event": true,
+                    "mutation_triggered": true,
+                    "notes": [
+                      "Defeat Drop residue."
+                    ]
+                  }
+                ]
+              }
+            },
+            "path": ""
+          },
+          "mutation_result": {
+            "ok": true,
+            "payload": {
+              "tower_state_id": "audit_tower",
+              "engine_version": "0.0.1",
+              "content_pack_id": "damian",
+              "current_floor": 1,
+              "highest_floor_reached": 1,
+              "total_runs": 1,
+              "total_deaths": 1,
+              "floor_memory": [
+                {
+                  "floor_id": 1,
+                  "visit_count": 1,
+                  "death_count": 1,
+                  "victory_count": 0,
+                  "stability": 0.9627202838776063,
+                  "deviation": 0.03710981532805608,
+                  "mutation_level": 2,
+                  "known_layout_seed": "unknown_seed",
+                  "active_mutations": [
+                    "mvp_defeat_mutation",
+                    "minor_corridor_shift_stub",
+                    "survivor_mark_opportunity_stub",
+                    "minor_deviation_increase_stub"
+                  ],
+                  "discovered_easter_eggs": [],
+                  "unclaimed_easter_eggs": [
+                    "mark_1_1_83fa11e4"
+                  ],
+                  "residue_history": [
+                    {
+                      "residue_id": "ca5dd95a-d9d9-464f-9b39-cb670df8ff37",
+                      "floor_id": 1,
+                      "outcome": "DEFEAT_DROP",
+                      "dominant_damage_type": "unknown",
+                      "most_used_skill": "unknown",
+                      "clear_time_seconds": 0.0,
+                      "exploration_percent": 0.0,
+                      "party_size": 1,
+                      "death_event": true,
+                      "mutation_triggered": true,
+                      "notes": [
+                        "Defeat Drop residue."
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "global_residue": {},
+              "last_outcome": "DEFEAT_DROP",
+              "updated_at": "2026-05-19T17:11:37.776285+00:00"
+            },
+            "path": ""
+          },
+          "mutation_applied": true,
+          "survivor_mark_result": {
+            "survivor_mark_id": "mark_1_1_83fa11e4",
+            "floor_id": 1,
+            "source_mutation_event_id": "ca5dd95a-d9d9-464f-9b39-cb670df8ff37",
+            "mark_class_id": "visual_glyph",
+            "hint_modes": [
+              "visual_hint",
+              "angle_visibility",
+              "lighting_reveal"
+            ],
+            "placement_context": "Generated for floor 1 mutation.",
+            "claim_condition": "player_interacts_with_mark_after_revealing_hint",
+            "reward_class_id": "minor_cache",
+            "reward_payload_ref": "mvp_reward_placeholder",
+            "is_optional": true,
+            "is_discoverable": true,
+            "claimed": false,
+            "can_mutate_if_unclaimed": true,
+            "progression_break_risk": "LOW"
+          },
+          "survivor_mark_attached": true,
+          "error": null
+        },
+        "mutation_applied": true,
+        "survivor_mark_attached": true,
+        "resource_pressure_observed": false,
+        "residue_pressure_observed": false
+      },
+      "error": null
+    },
+    {
+      "ok": true,
+      "command": "diff",
+      "message": "Floor identity appears preserved (conceptual check).\nMutation level increased by 2.\nNew active mutations: minor_corridor_shift_stub, minor_deviation_increase_stub, mvp_defeat_mutation, survivor_mark_opportunity_stub.\nNew unclaimed survivor marks detected: mark_1_1_83fa11e4.\nResidue history count increased by 1.\nRoom graph layout mutated (Level delta: 2).\nA new survivor mark room has been manifested in the graph.\nFloor identity and landmark anchors preserved.\nCritical path from entry to exit remains valid.",
+      "payload": {
+        "report_id": "floor_diff_675b7909",
+        "ok": true,
+        "floor_id": 1,
+        "changed": true,
+        "before": {
+          "floor_id": 1,
+          "visit_count": 0,
+          "death_count": 0,
+          "victory_count": 0,
+          "stability": 1.0,
+          "deviation": 0.0,
+          "mutation_level": 0,
+          "known_layout_seed": "unknown_seed",
+          "active_mutations": [],
+          "discovered_easter_eggs": [],
+          "unclaimed_easter_eggs": [],
+          "residue_history_count": 0
+        },
+        "after": {
+          "floor_id": 1,
+          "visit_count": 1,
+          "death_count": 1,
+          "victory_count": 0,
+          "stability": 0.9627202838776063,
+          "deviation": 0.03710981532805608,
+          "mutation_level": 2,
+          "known_layout_seed": "unknown_seed",
+          "active_mutations": [
+            "minor_corridor_shift_stub",
+            "minor_deviation_increase_stub",
+            "mvp_defeat_mutation",
+            "survivor_mark_opportunity_stub"
+          ],
+          "discovered_easter_eggs": [],
+          "unclaimed_easter_eggs": [
+            "mark_1_1_83fa11e4"
+          ],
+          "residue_history_count": 1
+        },
+        "changes": {
+          "mutation_level_delta": 2,
+          "stability_delta": -0.03727971612239367,
+          "deviation_delta": 0.03710981532805608,
+          "new_active_mutations": [
+            "minor_corridor_shift_stub",
+            "minor_deviation_increase_stub",
+            "mvp_defeat_mutation",
+            "survivor_mark_opportunity_stub"
+          ],
+          "new_unclaimed_survivor_marks": [
+            "mark_1_1_83fa11e4"
+          ],
+          "new_discovered_survivor_marks": [],
+          "residue_history_delta": 1
+        },
+        "readable_summary": [
+          "Floor identity appears preserved (conceptual check).",
+          "Mutation level increased by 2.",
+          "New active mutations: minor_corridor_shift_stub, minor_deviation_increase_stub, mvp_defeat_mutation, survivor_mark_opportunity_stub.",
+          "New unclaimed survivor marks detected: mark_1_1_83fa11e4.",
+          "Residue history count increased by 1.",
+          "Room graph layout mutated (Level delta: 2).",
+          "A new survivor mark room has been manifested in the graph.",
+          "Floor identity and landmark anchors preserved.",
+          "Critical path from entry to exit remains valid."
+        ],
+        "error": null,
+        "room_graph_evidence": {
+          "evidence_id": "room_graph_evidence_ea57f07b",
+          "ok": true,
+          "floor_id": 1,
+          "before_graph": {
+            "graph_id": "tower_domain_floor_1_graph",
+            "floor_id": 1,
+            "domain_archetype": "tower_domain",
+            "layout_seed": "seed_1",
+            "nodes": [
+              {
+                "node_id": "entry_a",
+                "node_type": "entry_room",
+                "connections": [
+                  "combat_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.1,
+                "stability": 1.0,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "combat_a",
+                "node_type": "combat_room",
+                "connections": [
+                  "pressure_a",
+                  "recovery_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.4,
+                "stability": 0.8,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "pressure_a",
+                "node_type": "pressure_room",
+                "connections": [
+                  "exit_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.7,
+                "stability": 0.6,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "recovery_a",
+                "node_type": "recovery_room",
+                "connections": [
+                  "exit_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.2,
+                "stability": 0.9,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "exit_a",
+                "node_type": "exit_room",
+                "connections": [],
+                "mutation_tags": [],
+                "difficulty_rating": 0.0,
+                "stability": 1.0,
+                "supports_survivor_mark": false
+              }
+            ],
+            "entry_node_id": "entry_a",
+            "exit_node_id": "exit_a",
+            "mutation_level": 0,
+            "identity_preserved": true,
+            "playability_preserved": true,
+            "survivor_mark_nodes": []
+          },
+          "after_graph": {
+            "graph_id": "tower_domain_floor_1_graph",
+            "floor_id": 1,
+            "domain_archetype": "tower_domain",
+            "layout_seed": "seed_1",
+            "nodes": [
+              {
+                "node_id": "entry_a",
+                "node_type": "entry_room",
+                "connections": [
+                  "combat_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.1,
+                "stability": 1.0,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "combat_a",
+                "node_type": "combat_room",
+                "connections": [
+                  "pressure_a",
+                  "recovery_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.4,
+                "stability": 0.8,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "pressure_a",
+                "node_type": "pressure_room",
+                "connections": [
+                  "survivor_mark_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.7,
+                "stability": 0.6,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "recovery_a",
+                "node_type": "recovery_room",
+                "connections": [
+                  "survivor_mark_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.2,
+                "stability": 0.9,
+                "supports_survivor_mark": false
+              },
+              {
+                "node_id": "survivor_mark_a",
+                "node_type": "survivor_mark_room",
+                "connections": [
+                  "exit_a"
+                ],
+                "mutation_tags": [],
+                "difficulty_rating": 0.3,
+                "stability": 0.75,
+                "supports_survivor_mark": true
+              },
+              {
+                "node_id": "exit_a",
+                "node_type": "exit_room",
+                "connections": [],
+                "mutation_tags": [],
+                "difficulty_rating": 0.0,
+                "stability": 1.0,
+                "supports_survivor_mark": false
+              }
+            ],
+            "entry_node_id": "entry_a",
+            "exit_node_id": "exit_a",
+            "mutation_level": 2,
+            "identity_preserved": true,
+            "playability_preserved": true,
+            "survivor_mark_nodes": [
+              "survivor_mark_a"
+            ]
+          },
+          "graph_changed": true,
+          "new_room_types": [
+            "survivor_mark_room"
+          ],
+          "survivor_mark_room_added": true,
+          "mutation_level_delta": 2,
+          "identity_preserved": true,
+          "playability_preserved": true,
+          "readable_summary": [
+            "Room graph layout mutated (Level delta: 2).",
+            "A new survivor mark room has been manifested in the graph.",
+            "Floor identity and landmark anchors preserved.",
+            "Critical path from entry to exit remains valid."
+          ],
+          "error": null
+        },
+        "graph_changed": true,
+        "survivor_mark_room_added": true
+      },
+      "error": null
+    },
+    {
+      "ok": true,
+      "command": "quit",
+      "message": "Session terminated.",
+      "payload": null,
+      "error": null
+    }
+  ],
+  "final_session_active": false,
+  "final_floor": 1,
+  "highest_floor_reached": 1,
+  "mutation_observed": true,
+  "survivor_mark_observed": true,
+  "diff_observed": true,
+  "combat_sessions_observed": 1,
+  "combat_outcomes_observed": [
+    "DEFEAT_DROP"
+  ],
+  "combat_defeats_observed": 1,
+  "combat_victories_observed": 0,
+  "combat_retreats_observed": 0,
+  "resource_pressure_observed": false,
+  "residue_pressure_observed": false,
+  "mutation_after_combat_observed": true,
+  "survivor_mark_after_combat_observed": true,
+  "room_graph_evidence_observed": true,
+  "room_graph_changes_observed": 1,
+  "survivor_mark_rooms_observed": 1,
+  "graph_diff_summaries": [
+    "Room graph layout mutated (Level delta: 2).",
+    "A new survivor mark room has been manifested in the graph.",
+    "Floor identity and landmark anchors preserved.",
+    "Critical path from entry to exit remains valid."
+  ],
+  "errors": [],
+  "no_scope_creep_flags": {
+    "combat_runtime_introduced": false,
+    "map_generation_introduced": false,
+    "multiplayer_runtime_introduced": false,
+    "gpu_code_introduced": false
+  }
+}

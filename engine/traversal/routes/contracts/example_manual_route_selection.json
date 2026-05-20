@@ -1,0 +1,18 @@
+{
+  "current_node_id": "room_a1",
+  "available_routes": [
+    {
+      "route_id": "route_a1_b1",
+      "target_node_id": "room_b1",
+      "distance_cost": 2,
+      "known_hazards": ["residue_trace"]
+    },
+    {
+      "route_id": "route_a1_b2",
+      "target_node_id": "room_b2",
+      "distance_cost": 3,
+      "known_hazards": ["heavy_air", "distant_scratching"]
+    }
+  ],
+  "selected_route_id": "route_a1_b1"
+}

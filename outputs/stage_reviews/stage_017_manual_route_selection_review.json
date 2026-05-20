@@ -1,0 +1,22 @@
+{
+  "stage_id": "STAGE-017",
+  "title": "Manual Route Selection and Spatial Agency",
+  "review_status": "APPROVED",
+  "summary": "Successfully integrated manual route selection and partial hazard visibility into the console traversal system.",
+  "strengths": [
+    "Defined clear boundaries for manual route selection and route hazard visibility.",
+    "Integrated traversal stubs to calculate context-aware hazards and partial information.",
+    "Updated console command `traverse` (as alias for advance) to accept specific route IDs.",
+    "Console status and transcripts now capture and report 'Route Recon' based on partial visibility data.",
+    "Preserved core rules by ensuring no perfect information and no fully deterministic pathfinding."
+  ],
+  "weaknesses": [
+    "Currently uses simple percentage-based visibility bands instead of deep contextual descriptions.",
+    "Ties heavily into the text console; UI representations will require adaptation."
+  ],
+  "opportunities": [
+    "Future stages can layer 'Territorial Instability and Foothold Collapse' (STAGE-018) onto the explicit route selection to force players to abandon safe routes.",
+    "Can introduce new consumable items (e.g. 'Scouting Lanterns') that temporarily boost visibility accuracy."
+  ],
+  "next_stage": "STAGE-018: Territorial Instability and Foothold Collapse"
+}

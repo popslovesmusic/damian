@@ -1,0 +1,39 @@
+{
+  "patch_id": "TOWER-ENGINE-110",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/domain/ownership/domain_claim_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/domain/ownership/tests/test_domain_claim_stub.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/domain/minimal_domain_claim_stub.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: make_domain_claim",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: calculate_domain_claim_pressure",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_domain_claim",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_domain_claim",
+      "status": "PASS"
+    },
+    {
+      "check": "Domain claim stub unit tests pass",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

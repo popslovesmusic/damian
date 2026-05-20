@@ -1,0 +1,27 @@
+{
+  "boundary_id": "tower_engine_reclamation_boundary_v001",
+  "core_principle": "Establishing Order (footholds) generates environmental pushback from the Tower (Reclamation Pressure).",
+  "runtime_responsibilities": [
+    "calculate_aggregate_reclamation_pressure",
+    "track_reclamation_risk_per_floor",
+    "influence_mutation_generation_via_reclamation",
+    "report_reclamation_status"
+  ],
+  "runtime_non_goals": [
+    "rendered_environmental_animations",
+    "real_time_wave_defense",
+    "multiplayer_reclamation_sync",
+    "permanent_tower_pacification"
+  ],
+  "reclamation_rules": {
+    "pressure_scales_with_claim_visibility": true,
+    "pressure_scales_with_claim_decay": true,
+    "pressure_scales_with_tower_depth": true,
+    "reclamation_must_be_bounded": true
+  },
+  "identity_rules": [
+    "reclamation_must_not_bypass_residue",
+    "reclamation_must_increase_strategic_uncertainty",
+    "successful_reclamation_must_degrade_order"
+  ]
+}

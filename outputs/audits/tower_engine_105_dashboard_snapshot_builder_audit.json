@@ -1,0 +1,59 @@
+{
+  "patch_id": "TOWER-ENGINE-105",
+  "verdict": "PASS",
+  "checks": [
+    {
+      "check": "File exists: engine/dashboard/domain/domain_dashboard_snapshot_builder.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: engine/dashboard/domain/tests/test_domain_dashboard_snapshot_builder.py",
+      "status": "PASS"
+    },
+    {
+      "check": "File exists: docs/design/dashboard/minimal_domain_dashboard_snapshot_builder.md",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: build_domain_dashboard_snapshot",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: derive_pressure_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: derive_equipment_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: derive_resource_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: derive_route_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: derive_residue_summary",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: derive_recoverability_status",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: validate_dashboard_snapshot",
+      "status": "PASS"
+    },
+    {
+      "check": "Function exists: summarize_dashboard_snapshot",
+      "status": "PASS"
+    },
+    {
+      "check": "Dashboard snapshot builder unit tests pass",
+      "status": "PASS",
+      "reason": null
+    }
+  ]
+}

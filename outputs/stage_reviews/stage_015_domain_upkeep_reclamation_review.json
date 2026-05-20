@@ -1,0 +1,28 @@
+{
+  "stage_id": "STAGE-015",
+  "stage_name": "Domain Upkeep and Tower Reclamation Pressure",
+  "identity_status": "STRONG ALIGNMENT - Territory management is now a material strategic burden that invites escalating environmental pushback.",
+  "major_strengths": [
+    "Materialized the 'cost of order' via Stability Shard upkeep and drain.",
+    "Implemented a deterministic decay state machine (Active -> Decaying -> Overrun).",
+    "Created Tower Reclamation Pressure as a dynamic environmental counter-force.",
+    "Surfaced reclamation threat levels in the Domain Dashboard for survival cognition.",
+    "Ensured longitudinal auditability of the conquest economy in transcripts."
+  ],
+  "major_risks": [
+    "Shard Scarcity/Inflation (risk of making ownership impossible or trivial).",
+    "Micro-management Fatigue (risk of territory maintenance becoming a chore).",
+    "State Complexity (interaction between overrun footholds and mutation hazards)."
+  ],
+  "balance_questions": [
+    "Does upkeep cost scaling sufficiently discourage infinite expansion?",
+    "Does visibility risk generate enough environmental irritation?",
+    "Should overrun footholds accelerate local reclamation drive?"
+  ],
+  "required_followups": [
+    "Implement Mutation Scarring and Claim Targeting (Stage 016).",
+    "Refine reclamation heuristics based on successful takeover events.",
+    "Audit Stability Shard economy Carrying Capacity."
+  ],
+  "next_stage_recommendation": "STAGE-016: Mutation Scarring and Claim Targeting"
+}

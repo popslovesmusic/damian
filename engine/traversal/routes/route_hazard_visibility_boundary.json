@@ -1,0 +1,10 @@
+{
+  "boundary_name": "Route Hazard Visibility",
+  "description": "Defines what a player can 'see' about a route before committing to it. This information must be partial to maintain the operational uncertainty.",
+  "strict_rules": [
+    "route_visibility_must_be_partial_not_perfect_information",
+    "route_selection_must_preserve_operational_uncertainty",
+    "no_rendered_map_runtime",
+    "no_full_minimap_system"
+  ]
+}
