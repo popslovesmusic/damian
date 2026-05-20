@@ -1,0 +1,40 @@
+{
+  "contract_id": "admin-terminal-command-contract-v1",
+  "commands": [
+    {
+      "command": "status",
+      "family": "status",
+      "description": "Show general Tower OS status."
+    },
+    {
+      "command": "persistence info",
+      "family": "persistence",
+      "description": "Show TOWER_DATA mount and initialization state."
+    },
+    {
+      "command": "diag health",
+      "family": "diagnostics",
+      "description": "Run system health diagnostics."
+    },
+    {
+      "command": "logs list",
+      "family": "logs",
+      "description": "List available maintenance logs."
+    },
+    {
+      "command": "hash verify <path>",
+      "family": "hash_check",
+      "description": "Verify integrity of a bounded file."
+    },
+    {
+      "command": "exit",
+      "family": "exit",
+      "description": "Close maintenance hatch."
+    }
+  ],
+  "validation_rules": {
+    "max_command_length": 256,
+    "disallowed_characters": [";", "|", "&", ">", "<", "$", "(", ")", "`"],
+    "enforce_family_match": true
+  }
+}

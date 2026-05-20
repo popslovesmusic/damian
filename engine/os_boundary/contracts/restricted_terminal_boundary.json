@@ -1,0 +1,41 @@
+{
+  "boundary_name": "Restricted Admin Terminal",
+  "version": "1.0",
+  "safety_rules": {
+    "no_unrestricted_shell": true,
+    "no_sudo_escape": true,
+    "terminal_commands_must_be_allowlisted": true,
+    "terminal_must_not_modify_TOWER_OS": true,
+    "writes_must_target_TOWER_DATA_only": true,
+    "terminal_output_must_be_auditable": true
+  },
+  "command_policy": {
+    "allowed_families": [
+      "status",
+      "persistence",
+      "diagnostics",
+      "logs",
+      "transcripts",
+      "content_packs",
+      "hash_check",
+      "safe_repair",
+      "exit"
+    ],
+    "forbidden_families": [
+      "shell_exec",
+      "sudo",
+      "mount_host_disk",
+      "format",
+      "partition",
+      "package_install",
+      "network_admin",
+      "kernel_module",
+      "bootloader_install",
+      "raw_device_write"
+    ]
+  },
+  "audit_config": {
+    "audit_log_path": "logs/admin_terminal_audit.log",
+    "log_retention_days": 30
+  }
+}
