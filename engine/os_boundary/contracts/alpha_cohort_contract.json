@@ -1,0 +1,19 @@
+{
+  "contract_id": "alpha-cohort-contract-v1",
+  "required_fields": [
+    "cohort_id",
+    "participant_ids",
+    "deployment_date",
+    "target_os_version",
+    "stress_test_parameters",
+    "telemetry_collection_profile",
+    "feedback_schema_version",
+    "bounded_flags",
+    "cohort_hash"
+  ],
+  "validation_rules": {
+    "max_participants": 50,
+    "require_explicit_consent_flag": true,
+    "enforce_offline_telemetry": true
+  }
+}

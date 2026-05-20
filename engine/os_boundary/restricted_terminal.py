@@ -97,6 +97,8 @@ class RestrictedAdminTerminal:
              return self._cmd_politics(parts[1:])
         elif base_cmd == "mvp":
              return self._cmd_mvp(parts[1:])
+        elif base_cmd == "alpha":
+             return self._cmd_alpha(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -586,6 +588,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: MVP runtime smoke test evidence missing."
                  
         return f"ERROR: Unknown mvp subcommand '{args[0]}'."
+
+    def _cmd_alpha(self, args):
+        if not args:
+            return "Usage: alpha status | alpha audit"
+            
+        if args[0] == "status":
+             # Report current closed alpha cohort evidence
+             evidence_path = "outputs/audits/alpha_cohort_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("alpha status", "SUCCESS")
+                 return f"Closed Alpha Cohort Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("alpha status", "MISSING_EVIDENCE")
+                 return "ERROR: Alpha cohort evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/offline_telemetry_export_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("alpha audit", "SUCCESS")
+                 return f"Closed Alpha Telemetry Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("alpha audit", "MISSING_EVIDENCE")
+                 return "ERROR: Alpha telemetry evidence missing."
+                 
+        return f"ERROR: Unknown alpha subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

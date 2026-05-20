@@ -187,6 +187,16 @@
       "description": "Report full MVP player-facing loop smoke test evidence."
     },
     {
+      "command": "alpha status",
+      "family": "status",
+      "description": "Report closed alpha cohort and deployment status."
+    },
+    {
+      "command": "alpha audit",
+      "family": "logs",
+      "description": "Report offline telemetry export and structured feedback evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

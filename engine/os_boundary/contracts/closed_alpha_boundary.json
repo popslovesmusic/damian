@@ -1,0 +1,18 @@
+{
+  "boundary_name": "Closed Alpha Deployment",
+  "version": "1.0",
+  "safety_rules": {
+    "no_public_internet_exposure": true,
+    "no_uncontrolled_cohort_expansion": true,
+    "no_live_monetization": true,
+    "no_unbounded_telemetry_collection": true,
+    "alpha_feedback_must_be_bounded_and_structured": true,
+    "stress_testing_must_preserve_host_safety": true,
+    "cohort_identity_must_be_hash_verified": true
+  },
+  "deployment_policy": {
+    "allowed_distribution": "manual_usb_flash",
+    "cohort_size_limit": 50,
+    "telemetry_reporting": "asynchronous_offline_export"
+  }
+}
