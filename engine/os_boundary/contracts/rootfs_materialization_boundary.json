@@ -1,0 +1,28 @@
+{
+  "boundary_name": "Real RootFS Materialization",
+  "version": "1.0",
+  "safety_rules": {
+    "no_host_partitioning": true,
+    "no_auto_formatting": true,
+    "no_bootloader_install_execution": true,
+    "no_usb_device_writes": true,
+    "materialization_must_be_project_local": true,
+    "all_rootfs_outputs_must_stay_inside_build_dir": true
+  },
+  "staged_layout": {
+    "base_path": "build/live_os/rootfs_staging/",
+    "required_subdirs": [
+      "bin",
+      "etc",
+      "lib",
+      "usr",
+      "var",
+      "mnt/tower_data"
+    ]
+  },
+  "integrity_constraints": {
+    "must_be_hashable": true,
+    "dry_run_required": true,
+    "no_host_binary_leaks": true
+  }
+}

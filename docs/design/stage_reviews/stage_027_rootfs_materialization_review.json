@@ -1,0 +1,14 @@
+{
+  "stage_id": "STAGE-027",
+  "verdict": "PASS",
+  "summary": "Real RootFS materialization boundary successfully established and validated.",
+  "checks": {
+    "rootfs_materialization_boundary_defined": true,
+    "package_manifest_validates": true,
+    "materialization_plan_generated": true,
+    "project_local_staging_stub_passes": true,
+    "integrity_validator_passes": true,
+    "no_host_modification_possible_by_default": true
+  },
+  "rootfs_hash": "38063e32279954cf321905a082f8c2f63d71e76960d4b9cb0e2940468523cde8"
+}

@@ -1,0 +1,34 @@
+{
+  "package_id": "tower-os-rootfs-v1",
+  "base_os": "debian-stable-minimal",
+  "core_packages": [
+    "systemd",
+    "util-linux",
+    "bash",
+    "python3-minimal",
+    "squashfs-tools"
+  ],
+  "engine_components": [
+    {
+      "name": "kiosk-launcher",
+      "source": "engine/os_boundary/kiosk_launcher.py",
+      "target": "/usr/bin/damian-launcher",
+      "mode": "0755"
+    },
+    {
+      "name": "kiosk-service",
+      "source": "os/kiosk/templates/tower-kiosk.service",
+      "target": "/etc/systemd/system/tower-kiosk.service",
+      "mode": "0644"
+    },
+    {
+      "name": "data-mount",
+      "source": "os/kiosk/templates/tower-data.mount",
+      "target": "/etc/systemd/system/mnt-tower_data.mount",
+      "mode": "0644"
+    }
+  ],
+  "verified_content": [
+    "content/damian/content_pack.json"
+  ]
+}
