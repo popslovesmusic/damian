@@ -85,6 +85,8 @@ class RestrictedAdminTerminal:
              return self._cmd_transit(parts[1:])
         elif base_cmd == "relay":
              return self._cmd_relay(parts[1:])
+        elif base_cmd == "event":
+             return self._cmd_event(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -396,6 +398,46 @@ class RestrictedAdminTerminal:
                  return "ERROR: Relay visibility evidence missing."
                  
         return f"ERROR: Unknown relay subcommand '{args[0]}'."
+
+    def _cmd_event(self, args):
+        if not args:
+            return "Usage: event status | event forecast | event audit"
+            
+        if args[0] == "status":
+             # Report active event wave status
+             evidence_path = "outputs/audits/event_wave_generation_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("event status", "SUCCESS")
+                 return f"Active Event Wave Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("event status", "MISSING_EVIDENCE")
+                 return "ERROR: Event wave evidence missing."
+                 
+        elif args[0] == "forecast":
+             evidence_path = "outputs/audits/global_pressure_forecast_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("event forecast", "SUCCESS")
+                 return f"Global Pressure Forecast:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("event forecast", "MISSING_EVIDENCE")
+                 return "ERROR: Pressure forecast evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/relay_pressure_propagation_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("event audit", "SUCCESS")
+                 return f"Event Wave Audit Log:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("event audit", "MISSING_EVIDENCE")
+                 return "ERROR: Event wave audit evidence missing."
+                 
+        return f"ERROR: Unknown event subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

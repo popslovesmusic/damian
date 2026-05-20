@@ -1,0 +1,37 @@
+{
+  "contract_id": "global-procedural-pressure-v1",
+  "required_fields": [
+    "event_wave_id",
+    "event_type",
+    "origin_pressure_signature",
+    "relay_propagation_profile",
+    "treaty_visibility_modifier",
+    "domain_echo_impact_profile",
+    "forecast_instability",
+    "survivor_warning_signals",
+    "event_scar_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "event_hash"
+  ],
+  "allowed_event_types": [
+    "RECLAMATION_WAVE",
+    "MUTATION_BLOOM",
+    "RELAY_FRAGMENTATION",
+    "SURVIVOR_SIGNAL_STORM",
+    "PRESSURE_CASCADE",
+    "TREATY_COLLAPSE_EVENT",
+    "ECHO_HUNTER_SURGE"
+  ],
+  "forbidden_event_types": [
+    "GLOBAL_SAVE_WIPE",
+    "UNRECOVERABLE_WORLD_COLLAPSE",
+    "FORCED_REAL_TIME_SYNC",
+    "OS_LEVEL_EVENT"
+  ],
+  "validation_rules": {
+    "require_probabilistic_forecast": true,
+    "enforce_async_propagation": true,
+    "mandatory_recoverability_audit": true
+  }
+}

@@ -122,6 +122,21 @@
       "description": "Report history of relay visibility and fragmentation evidence."
     },
     {
+      "command": "event status",
+      "family": "status",
+      "description": "Report status of active asynchronous Tower event waves."
+    },
+    {
+      "command": "event forecast",
+      "family": "status",
+      "description": "Report probabilistic forecast of impending procedural pressure."
+    },
+    {
+      "command": "event audit",
+      "family": "logs",
+      "description": "Report distributed pressure propagation evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

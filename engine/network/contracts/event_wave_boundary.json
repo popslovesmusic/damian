@@ -1,0 +1,18 @@
+{
+  "boundary_name": "Tower Event Wave",
+  "version": "1.0",
+  "safety_rules": {
+    "no_real_time_global_world_simulation": true,
+    "no_centralized_live_event_authority": true,
+    "no_unrecoverable_global_wipe_event": true,
+    "no_permanent_player_lockout": true,
+    "event_waves_must_be_async_by_default": true,
+    "event_scars_must_preserve_recoverability": true,
+    "all_global_pressure_events_must_be_auditable": true
+  },
+  "propagation_policy": {
+    "relay_nodes_must_propagate_contextually": true,
+    "treaties_must_increase_event_visibility": true,
+    "warning_signals_must_be_partial_not_omniscient": true
+  }
+}
