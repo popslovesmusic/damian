@@ -1,0 +1,34 @@
+{
+  "manifest_id": "rootfs-proto-001",
+  "directories": [
+    "/usr/bin",
+    "/usr/lib/damian",
+    "/etc/systemd/system",
+    "/mnt/tower_data",
+    "/var/log/damian",
+    "/home/tower/.damian"
+  ],
+  "files": [
+    {
+      "source": "engine/binaries/launcher.sh",
+      "destination": "/usr/bin/damian-launcher",
+      "mode": "0755"
+    },
+    {
+      "source": "os/kiosk/templates/tower-kiosk.service",
+      "destination": "/etc/systemd/system/tower-kiosk.service",
+      "mode": "0644"
+    },
+    {
+      "source": "os/kiosk/templates/tower-data.mount",
+      "destination": "/etc/systemd/system/mnt-tower_data.mount",
+      "mode": "0644"
+    }
+  ],
+  "symlinks": [
+    {
+      "target": "/mnt/tower_data/saves",
+      "link": "/home/tower/.damian/saves"
+    }
+  ]
+}

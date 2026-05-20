@@ -1,0 +1,30 @@
+{
+  "build_id": "damian-live-kiosk-proto-001",
+  "target_os": "debian-stable-minimal",
+  "architecture": "amd64",
+  "partitions": {
+    "TOWER_OS": {
+      "size": "2G",
+      "filesystem": "squashfs",
+      "mount_point": "/",
+      "mode": "ro"
+    },
+    "TOWER_DATA": {
+      "size": "max",
+      "filesystem": "ext4",
+      "mount_point": "/mnt/tower_data",
+      "mode": "rw"
+    }
+  },
+  "kiosk_config": {
+    "user": "tower",
+    "auto_login": true,
+    "launcher_binary": "/usr/bin/damian-launcher",
+    "hide_cursor": true
+  },
+  "paths": {
+    "build_root": "build/live_os/",
+    "staging_area": "build/live_os/staging",
+    "output_image": "outputs/builds/damian-live.iso"
+  }
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=Damian Tower Kiosk Launcher
+After=network.target mnt-tower_data.mount
+Requires=mnt-tower_data.mount
+
+[Service]
+Type=simple
+User=tower
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/damian-launcher
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
