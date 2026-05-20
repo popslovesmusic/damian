@@ -67,6 +67,16 @@
       "description": "Report update and patch migration evidence."
     },
     {
+      "command": "echo export",
+      "family": "content_packs",
+      "description": "Export a hash-verified Domain Echo snapshot."
+    },
+    {
+      "command": "echo report",
+      "family": "logs",
+      "description": "Report results of offline attacks against Domain Echoes."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

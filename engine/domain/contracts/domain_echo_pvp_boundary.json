@@ -1,0 +1,38 @@
+{
+  "boundary_name": "Asynchronous Domain Echo PvP",
+  "version": "1.0",
+  "safety_rules": {
+    "no_real_time_multiplayer_combat": true,
+    "no_live_state_mutation_by_attacker": true,
+    "no_save_wiping": true,
+    "no_permanent_domain_deletion": true,
+    "no_unbounded_inventory_theft": true,
+    "no_remote_code_execution": true,
+    "no_direct_os_or_file_access": true,
+    "no_unverified_snapshot_import": true,
+    "domain_echo_exports_must_be_hash_verified": true,
+    "anti_griefing_limits_required": true
+  },
+  "consequence_policy": {
+    "allowed": [
+      "increase_visibility_pressure",
+      "increase_reclamation_pressure",
+      "scar_claim",
+      "damage_supply_cache",
+      "reduce_recovery_value",
+      "add_mutation_pressure",
+      "generate_defense_transcript",
+      "create_retaliation_trace",
+      "mark_domain_echo_as_attacked"
+    ],
+    "forbidden": [
+      "delete_domain_permanently",
+      "wipe_owner_save",
+      "steal_unbounded_inventory",
+      "force_unrecoverable_state",
+      "modify_TOWER_OS",
+      "execute_attacker_payload",
+      "require_owner_online_presence"
+    ]
+  }
+}

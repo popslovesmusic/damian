@@ -1,0 +1,15 @@
+{
+  "contract_id": "delayed-consequence-report-v1",
+  "required_fields": [
+    "consequence_id",
+    "original_attack_id",
+    "target_owner_id",
+    "domain_id",
+    "applied_pressure",
+    "applied_scars",
+    "supply_loss_summary",
+    "recovery_instructions",
+    "timestamp_applied",
+    "lineage_preserved"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "contract_id": "offline-attack-resolution-v1",
+  "resolution_rules": {
+    "outcome_must_be_bounded": true,
+    "owner_consequences_must_be_delayed": true,
+    "attacker_rewards_must_not_destroy_owner_state": true,
+    "recoverability_must_be_preserved": true
+  },
+  "allowed_outcomes": [
+    "ATTACK_REPELLED",
+    "ATTACK_PARTIAL_SUCCESS",
+    "ATTACK_PRESSURE_SPIKE",
+    "ATTACK_SCAR_APPLIED",
+    "ATTACK_SUPPLY_DAMAGE"
+  ],
+  "required_result_fields": [
+    "attack_id",
+    "attacker_id",
+    "domain_echo_id",
+    "attack_timestamp",
+    "attack_vector",
+    "attack_pressure",
+    "defense_pressure",
+    "outcome",
+    "owner_consequence",
+    "attacker_reward",
+    "recoverability_preserved",
+    "anti_griefing_clean",
+    "result_hash"
+  ]
+}

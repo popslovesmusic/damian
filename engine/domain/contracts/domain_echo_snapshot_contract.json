@@ -1,0 +1,23 @@
+{
+  "contract_id": "domain-echo-snapshot-v1",
+  "required_fields": [
+    "domain_echo_id",
+    "owner_player_id",
+    "export_timestamp",
+    "source_dashboard_snapshot_id",
+    "domain_claim_summary",
+    "route_summary",
+    "residue_summary",
+    "pressure_summary",
+    "scarring_summary",
+    "reclamation_summary",
+    "defense_profile",
+    "bounded_flags",
+    "sha256"
+  ],
+  "validation_rules": {
+    "max_snapshot_size_kb": 512,
+    "enforce_read_only_flags": true,
+    "require_valid_hashes": true
+  }
+}

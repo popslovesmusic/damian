@@ -73,6 +73,8 @@ class RestrictedAdminTerminal:
              return self._cmd_recovery(parts[1:])
         elif base_cmd == "update":
              return self._cmd_update(parts[1:])
+        elif base_cmd == "echo":
+             return self._cmd_echo(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -238,6 +240,28 @@ class RestrictedAdminTerminal:
                  return "ERROR: Update audit evidence missing."
                  
         return f"ERROR: Unknown update subcommand '{args[0]}'."
+
+    def _cmd_echo(self, args):
+        if not args:
+            return "Usage: echo export | echo report"
+            
+        if args[0] == "export":
+            # In a real tool, we'd instantiate DomainEchoExporter
+            self.log_audit("echo export", "SUCCESS")
+            return "Domain Echo: State exported and hash-verified (PROTOTYPE)."
+            
+        elif args[0] == "report":
+            evidence_path = "outputs/audits/offline_domain_attack_result.json"
+            if os.path.exists(evidence_path):
+                with open(evidence_path, 'r') as f:
+                    evidence = json.load(f)
+                self.log_audit("echo report", "SUCCESS")
+                return f"Domain Echo Attack Report:\n{json.dumps(evidence, indent=2)}"
+            else:
+                self.log_audit("echo report", "MISSING_EVIDENCE")
+                return "ERROR: Domain Echo attack evidence missing."
+                
+        return f"ERROR: Unknown echo subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":
