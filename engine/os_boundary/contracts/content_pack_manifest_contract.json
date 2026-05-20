@@ -1,0 +1,37 @@
+{
+  "contract_id": "content-pack-cartridge-manifest-v1",
+  "required_fields": [
+    "content_pack_id",
+    "display_name",
+    "version",
+    "engine_min_version",
+    "pack_type",
+    "world_identity",
+    "entry_content",
+    "allowed_asset_dirs",
+    "declared_files",
+    "sha256_manifest",
+    "bounded_flags"
+  ],
+  "forbidden_fields": [
+    "post_install_script",
+    "shell_command",
+    "binary_entrypoint",
+    "kernel_module",
+    "device_access",
+    "network_admin"
+  ],
+  "pack_types": [
+    "tower_world",
+    "domain_world",
+    "story_module",
+    "quest_module",
+    "cosmetic_module",
+    "audio_module"
+  ],
+  "validation_rules": {
+    "max_manifest_size_kb": 1024,
+    "path_traversal_detection": true,
+    "enforce_read_only_flags": true
+  }
+}

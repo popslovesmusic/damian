@@ -1,0 +1,23 @@
+{
+  "boundary_name": "Content Pack Cartridge Verification",
+  "version": "1.0",
+  "safety_rules": {
+    "no_untrusted_code_execution": true,
+    "no_content_pack_shell_scripts": true,
+    "no_content_pack_binary_execution": true,
+    "no_os_core_mutation": true,
+    "content_packs_must_be_read_only_by_default": true,
+    "content_pack_hashes_must_be_verified": true,
+    "unsafe_paths_must_be_rejected": true
+  },
+  "location_policy": {
+    "default_packs": "TOWER_OS",
+    "overrides": "TOWER_DATA",
+    "mounting_mode": "read_only"
+  },
+  "verification_layers": {
+    "HASH_VERIFICATION": "Ensures integrity of declared files.",
+    "SAFETY_SCAN": "Rejects executable payloads and path traversals.",
+    "MANIFEST_AUDIT": "Confirms presence of required fields and absence of forbidden fields."
+  }
+}

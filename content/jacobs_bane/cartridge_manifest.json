@@ -1,0 +1,26 @@
+{
+  "content_pack_id": "jacobs_bane",
+  "display_name": "Jacob's Bane",
+  "version": "1.0.0",
+  "engine_min_version": "0.0.1",
+  "pack_type": "tower_world",
+  "world_identity": "jacobs_bane_core",
+  "entry_content": "floors/floor_1.json",
+  "allowed_asset_dirs": [
+    "enemies",
+    "floors",
+    "items",
+    "story"
+  ],
+  "declared_files": [
+    "content_pack.json",
+    "domain_binding.json"
+  ],
+  "sha256_manifest": {
+    "content_pack.json": "0582d6f3044df81eb64015ac7f6221d2a44436b8e4629486655adbc6518867d2",
+    "domain_binding.json": "d40941b549f97cb6ba1dee46fc40b1f76fcaa7471f8739557cb1c4f60b4f56d0"
+  },
+  "bounded_flags": {
+    "immutable": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "content_pack_id": "damian",
+  "display_name": "Damian: What Survives the Tower",
+  "version": "1.0.0",
+  "engine_min_version": "0.0.1",
+  "pack_type": "tower_world",
+  "world_identity": "damian_core",
+  "entry_content": "floors/floor_1.json",
+  "allowed_asset_dirs": [
+    "enemies",
+    "floors",
+    "items",
+    "story"
+  ],
+  "declared_files": [
+    "content_pack.json",
+    "domain_binding.json"
+  ],
+  "sha256_manifest": {
+    "content_pack.json": "f5cde48c147686fea0cb664090dd539106a46bda52725698cc00d9aed5365acc",
+    "domain_binding.json": "2451bde71e80f5cf1e2a3f2309c8601deff1933c1a7ef9cf7a19cfab93c9921e"
+  },
+  "bounded_flags": {
+    "immutable": true
+  }
+}

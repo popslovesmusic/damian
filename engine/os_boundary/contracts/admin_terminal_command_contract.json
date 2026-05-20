@@ -17,6 +17,11 @@
       "description": "Run system health diagnostics."
     },
     {
+      "command": "content status",
+      "family": "content_packs",
+      "description": "Report content pack cartridge verification status."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

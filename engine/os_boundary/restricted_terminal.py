@@ -61,6 +61,8 @@ class RestrictedAdminTerminal:
             return self._cmd_persistence(parts[1:])
         elif base_cmd == "diag":
             return self._cmd_diag(parts[1:])
+        elif base_cmd == "content":
+             return self._cmd_content(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -98,6 +100,21 @@ class RestrictedAdminTerminal:
         }
         self.log_audit("diag health", "SUCCESS")
         return f"System Health:\n{json.dumps(health, indent=2)}"
+
+    def _cmd_content(self, args):
+        if not args or args[0] != "status":
+            return "Usage: content status"
+        
+        # Report cartridge evidence from audit file if it exists
+        evidence_path = "outputs/audits/kiosk_launcher_cartridge_verification_result.json"
+        if os.path.exists(evidence_path):
+            with open(evidence_path, 'r') as f:
+                evidence = json.load(f)
+            self.log_audit("content status", "SUCCESS")
+            return f"Cartridge Verification Status:\n{json.dumps(evidence, indent=2)}"
+        else:
+            self.log_audit("content status", "MISSING_EVIDENCE")
+            return "ERROR: Cartridge verification evidence missing."
 
 if __name__ == "__main__":
     # Test stub
