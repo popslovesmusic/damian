@@ -157,6 +157,16 @@
       "description": "Report history of contract failures and procedural scars."
     },
     {
+      "command": "faction status",
+      "family": "status",
+      "description": "Report current emergent survivor blocs and social factions."
+    },
+    {
+      "command": "faction audit",
+      "family": "logs",
+      "description": "Report faction stability, growth, and fracture evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

@@ -91,6 +91,8 @@ class RestrictedAdminTerminal:
              return self._cmd_market(parts[1:])
         elif base_cmd == "quest":
              return self._cmd_quest(parts[1:])
+        elif base_cmd == "faction":
+             return self._cmd_faction(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -500,6 +502,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Contract audit evidence missing."
                  
         return f"ERROR: Unknown quest subcommand '{args[0]}'."
+
+    def _cmd_faction(self, args):
+        if not args:
+            return "Usage: faction status | faction audit"
+            
+        if args[0] == "status":
+             # Report current faction bloc evidence
+             evidence_path = "outputs/audits/faction_emergence_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("faction status", "SUCCESS")
+                 return f"Survivor Bloc Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("faction status", "MISSING_EVIDENCE")
+                 return "ERROR: Faction evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/faction_stability_fracture_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("faction audit", "SUCCESS")
+                 return f"Faction Stability Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("faction audit", "MISSING_EVIDENCE")
+                 return "ERROR: Faction stability evidence missing."
+                 
+        return f"ERROR: Unknown faction subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

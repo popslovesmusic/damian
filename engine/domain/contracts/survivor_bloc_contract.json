@@ -1,0 +1,40 @@
+{
+  "contract_id": "survivor-bloc-contract-v1",
+  "required_fields": [
+    "bloc_id",
+    "bloc_name",
+    "emergence_source",
+    "member_survivor_ids",
+    "dominant_residue_signature",
+    "treaty_network_summary",
+    "market_influence_profile",
+    "contract_activity_profile",
+    "relay_presence_profile",
+    "stability_profile",
+    "fracture_pressure",
+    "tower_attention_pressure",
+    "bounded_flags",
+    "bloc_hash"
+  ],
+  "allowed_emergence_sources": [
+    "treaty_cluster",
+    "shared_relay_hub",
+    "market_cluster",
+    "contract_network_cluster",
+    "shared_reputation_residue",
+    "domain_echo_defense_cluster"
+  ],
+  "fracture_states": [
+    "STABLE",
+    "STRAINED",
+    "FRACTURING",
+    "SCARRED",
+    "SPLINTERED",
+    "RECOVERING"
+  ],
+  "validation_rules": {
+    "require_emergence_residue": true,
+    "enforce_instability_scaling": true,
+    "mandatory_fracture_recovery_path": true
+  }
+}

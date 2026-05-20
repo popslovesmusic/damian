@@ -1,0 +1,20 @@
+{
+  "boundary_name": "Procedural Faction",
+  "version": "1.0",
+  "safety_rules": {
+    "no_static_guild_system": true,
+    "no_centralized_mmo_faction_authority": true,
+    "no_permanent_player_government": true,
+    "no_unbounded_faction_inventory": true,
+    "no_global_faction_safe_zone": true,
+    "no_live_world_control_transfer": true,
+    "no_real_time_faction_war": true,
+    "factions_must_emerge_from_residue": true,
+    "factions_must_be_contextual_and_unstable": true
+  },
+  "tradeoff_policy": {
+    "faction_growth_must_increase_tower_attention": true,
+    "faction_fracture_must_be_possible": true,
+    "faction_benefits_must_create_tradeoffs": true
+  }
+}
