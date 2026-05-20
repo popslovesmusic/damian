@@ -87,6 +87,8 @@ class RestrictedAdminTerminal:
              return self._cmd_relay(parts[1:])
         elif base_cmd == "event":
              return self._cmd_event(parts[1:])
+        elif base_cmd == "market":
+             return self._cmd_market(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -438,6 +440,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Event wave audit evidence missing."
                  
         return f"ERROR: Unknown event subcommand '{args[0]}'."
+
+    def _cmd_market(self, args):
+        if not args:
+            return "Usage: market status | market audit"
+            
+        if args[0] == "status":
+             # Report current market listing evidence
+             evidence_path = "outputs/audits/market_listing_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("market status", "SUCCESS")
+                 return f"Survivor Market Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("market status", "MISSING_EVIDENCE")
+                 return "ERROR: Market evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/market_instability_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("market audit", "SUCCESS")
+                 return f"Market Instability Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("market audit", "MISSING_EVIDENCE")
+                 return "ERROR: Market instability evidence missing."
+                 
+        return f"ERROR: Unknown market subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

@@ -1,0 +1,37 @@
+{
+  "contract_id": "resource-exchange-contract-v1",
+  "required_fields": [
+    "listing_id",
+    "seller_survivor_id",
+    "listing_type",
+    "resource_profile",
+    "requested_exchange_profile",
+    "visibility_pressure_modifier",
+    "market_instability_modifier",
+    "relay_visibility_profile",
+    "trade_lineage",
+    "bounded_flags",
+    "listing_hash"
+  ],
+  "allowed_listing_types": [
+    "resource_trade",
+    "residue_artifact",
+    "world_token",
+    "treaty_favor",
+    "inventory_echo_fragment",
+    "relay_signal_map",
+    "warning_intelligence"
+  ],
+  "forbidden_listing_types": [
+    "os_level_artifact",
+    "admin_override",
+    "unsafe_executable_payload",
+    "global_safe_pass",
+    "unbounded_currency_creation"
+  ],
+  "validation_rules": {
+    "require_async_listing": true,
+    "enforce_hoarding_limits": true,
+    "mandatory_trade_lineage": true
+  }
+}

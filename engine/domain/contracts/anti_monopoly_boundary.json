@@ -1,0 +1,22 @@
+{
+  "boundary_name": "Anti-Monopoly and Anti-Hoarding",
+  "version": "1.0",
+  "required_controls": [
+    "listing_decay",
+    "visibility_cost_scaling",
+    "bounded_storage_pressure",
+    "relay_instability_under_concentration",
+    "distributed_market_preference"
+  ],
+  "forbidden_conditions": [
+    "single_global_market_owner",
+    "infinite_resource_locking",
+    "permanent_market_control",
+    "resource_generation_without_cost"
+  ],
+  "enforcement": {
+    "max_active_listings_per_survivor": 5,
+    "listing_duration_days": 3,
+    "visibility_escalation_factor": 1.2
+  }
+}

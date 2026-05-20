@@ -137,6 +137,16 @@
       "description": "Report distributed pressure propagation evidence."
     },
     {
+      "command": "market status",
+      "family": "status",
+      "description": "Report current survivor market and asynchronous trade status."
+    },
+    {
+      "command": "market audit",
+      "family": "logs",
+      "description": "Report market instability and resource exchange evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

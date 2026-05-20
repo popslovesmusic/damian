@@ -1,0 +1,19 @@
+{
+  "boundary_name": "Procedural Survivor Market",
+  "version": "1.0",
+  "safety_rules": {
+    "no_global_unbounded_auction_house": true,
+    "no_real_money_required": true,
+    "no_pay_to_win_progression": true,
+    "no_unbounded_inventory_duplication": true,
+    "no_instant_global_market_visibility": true,
+    "no_market_admin_resource_spawning": true,
+    "no_cross_world_balance_bypass": true,
+    "markets_must_be_async_and_auditable": true
+  },
+  "tradeoff_policy": {
+    "trade_visibility_must_increase_tower_attention": true,
+    "market_instability_must_exist": true,
+    "resource_flow_must_be_bounded": true
+  }
+}
