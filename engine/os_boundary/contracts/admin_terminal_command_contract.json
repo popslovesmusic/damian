@@ -77,6 +77,11 @@
       "description": "Report results of offline attacks against Domain Echoes."
     },
     {
+      "command": "audio status",
+      "family": "status",
+      "description": "Report live audio chat session status."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

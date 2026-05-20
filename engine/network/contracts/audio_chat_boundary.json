@@ -1,0 +1,31 @@
+{
+  "boundary_name": "Live Audio Chat",
+  "version": "1.0",
+  "safety_rules": {
+    "no_real_time_combat_authority": true,
+    "no_peer_to_peer_os_access": true,
+    "no_remote_shell_access": true,
+    "no_live_state_mutation_through_voice": true,
+    "no_unmoderated_global_voice_by_default": true,
+    "no_background_recording_without_explicit_flag": true,
+    "voice_presence_must_be_separate_from_game_authority": true,
+    "voice_sessions_must_be_bounded_and_auditable": true,
+    "voice_disconnect_must_not_affect_game_state": true,
+    "audio_chat_must_fail_safely": true
+  },
+  "presence_policy": {
+    "allowed_states": [
+      "ONLINE",
+      "IN_TOWER",
+      "IN_DOMAIN_ECHO",
+      "IN_TREATY_CHANNEL",
+      "MUTED",
+      "PUSH_TO_TALK"
+    ],
+    "forbidden_states": [
+      "REMOTE_CONTROL",
+      "GAME_STATE_AUTHORITY",
+      "OS_ADMIN_AUTHORITY"
+    ]
+  }
+}

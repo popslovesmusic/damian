@@ -1,0 +1,31 @@
+{
+  "contract_id": "audio-session-contract-v1",
+  "required_fields": [
+    "session_id",
+    "host_player_id",
+    "participant_ids",
+    "session_mode",
+    "push_to_talk_enabled",
+    "voice_presence_state",
+    "created_timestamp",
+    "bounded_flags",
+    "session_hash"
+  ],
+  "allowed_modes": [
+    "private_party",
+    "treaty_channel",
+    "domain_echo_observer",
+    "local_lan_voice",
+    "debug_voice"
+  ],
+  "forbidden_modes": [
+    "global_unrestricted_voice",
+    "anonymous_mass_voice",
+    "voice_admin_shell"
+  ],
+  "validation_rules": {
+    "max_participants_per_session": 16,
+    "require_push_to_talk_by_default": true,
+    "audit_session_lifecycle": true
+  }
+}

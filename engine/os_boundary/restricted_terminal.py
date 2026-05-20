@@ -75,6 +75,8 @@ class RestrictedAdminTerminal:
              return self._cmd_update(parts[1:])
         elif base_cmd == "echo":
              return self._cmd_echo(parts[1:])
+        elif base_cmd == "audio":
+             return self._cmd_audio(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -262,6 +264,21 @@ class RestrictedAdminTerminal:
                 return "ERROR: Domain Echo attack evidence missing."
                 
         return f"ERROR: Unknown echo subcommand '{args[0]}'."
+
+    def _cmd_audio(self, args):
+        if not args or args[0] != "status":
+            return "Usage: audio status"
+        
+        # Report live audio session status
+        evidence_path = "outputs/audits/voice_session_stub_result.json"
+        if os.path.exists(evidence_path):
+            with open(evidence_path, 'r') as f:
+                evidence = json.load(f)
+            self.log_audit("audio status", "SUCCESS")
+            return f"Live Audio Session Status:\n{json.dumps(evidence, indent=2)}"
+        else:
+            self.log_audit("audio status", "MISSING_EVIDENCE")
+            return "ERROR: Audio session evidence missing."
 
 
 if __name__ == "__main__":

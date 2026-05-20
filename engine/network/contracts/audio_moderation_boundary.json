@@ -1,0 +1,23 @@
+{
+  "boundary_name": "Audio Moderation and Safety",
+  "version": "1.0",
+  "required_features": [
+    "mute",
+    "disconnect",
+    "session_lock",
+    "presence_visibility_toggle",
+    "local_audio_disable",
+    "audit_flagging"
+  ],
+  "forbidden_features": [
+    "silent_background_recording",
+    "hidden_listener_mode",
+    "voice-triggered_os_commands",
+    "live_remote_administration"
+  ],
+  "safety_defaults": {
+    "local_mic_default": "MUTED",
+    "remote_audio_default": "ALLOWED_FOR_TREATY_ONLY",
+    "audit_persistence": "TOWER_DATA"
+  }
+}
