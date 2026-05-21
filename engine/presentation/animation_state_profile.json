@@ -1,0 +1,15 @@
+{
+  "player": {
+    "idle": "player_idle_01",
+    "walk": "player_walk_01",
+    "run": "player_run_01",
+    "attack": "player_attack_01",
+    "hurt": "player_hurt_01",
+    "death": "player_death_01"
+  },
+  "enemy": {
+    "idle": "enemy_idle_01",
+    "hunting": "enemy_hunt_01",
+    "attack": "enemy_attack_01"
+  }
+}

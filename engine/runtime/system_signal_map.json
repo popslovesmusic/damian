@@ -1,0 +1,4 @@
+{
+  "pressure": ["audio_pressure", "visual_lighting", "enemy_hunt"],
+  "hunt_state": ["animation", "audio_event", "visual_vignette"]
+}

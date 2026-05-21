@@ -1,0 +1,7 @@
+{
+  "version": "1.0",
+  "render_mode": "isometric",
+  "default_tile_size": [32, 32],
+  "layer_order": ["background", "floor", "objects", "entities", "fog", "ui"],
+  "validation_level": "strict"
+}

@@ -1,0 +1,9 @@
+{
+  "visual_identity": "dark fantasy industrial survival",
+  "camera": "fixed_isometric",
+  "priority": "readability_first",
+  "lighting": {
+    "types": ["fog", "pressure_darkness", "warm_cold_contrast"]
+  },
+  "world_feel_keywords": ["old_stone", "metal", "steam", "ritual_decay", "hostile_machinery"]
+}

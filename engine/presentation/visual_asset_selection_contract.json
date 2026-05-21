@@ -1,0 +1,4 @@
+{
+  "version": "1.0",
+  "allowed_categories": ["floor_wall", "dungeon_cave", "enemies", "props", "effects", "ui", "tower_landmark"]
+}

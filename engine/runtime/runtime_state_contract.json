@@ -1,0 +1,4 @@
+{
+  "version": "1.0",
+  "required_keys": ["pressure", "enemy_hunt_state", "health", "current_room_id"]
+}

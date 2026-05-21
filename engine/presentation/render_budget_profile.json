@@ -1,0 +1,7 @@
+{
+  "target_fps": 60,
+  "min_fps": 30,
+  "max_dynamic_effects": 32,
+  "max_animated_entities": 24,
+  "max_fog_layers": 3
+}

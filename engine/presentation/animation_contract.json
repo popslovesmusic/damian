@@ -1,0 +1,5 @@
+{
+  "version": "1.0",
+  "fps": 12,
+  "default_fallback": "static_sprite"
+}

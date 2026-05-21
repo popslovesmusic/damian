@@ -1,0 +1,12 @@
+{
+  "hunted": {
+    "brightness": 0.3,
+    "flicker": true,
+    "tint": "#FF0000"
+  },
+  "critical": {
+    "brightness": 0.1,
+    "flicker": true,
+    "tint": "#000000"
+  }
+}

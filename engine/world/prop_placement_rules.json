@@ -1,0 +1,4 @@
+{
+  "placement_strategy": "random_bounded",
+  "avoid_path_blocking": true
+}

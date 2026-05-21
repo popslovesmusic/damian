@@ -1,0 +1,16 @@
+{
+  "low_pressure": {
+    "brightness": 0.8,
+    "flicker": false,
+    "color_tint": "#FFFFFF"
+  },
+  "high_pressure": {
+    "brightness": 0.2,
+    "flicker": true,
+    "color_tint": "#FF0000"
+  },
+  "thresholds": {
+    "medium": 40,
+    "high": 75
+  }
+}

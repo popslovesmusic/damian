@@ -1,0 +1,4 @@
+{
+  "version": "1.0",
+  "active_landmark_types": ["historical", "ritual", "faction", "memory"]
+}

@@ -1,0 +1,6 @@
+{
+  "entry": ["sign_broken"],
+  "combat": ["cover_debris", "weapon_broken"],
+  "resource": ["crates_stack", "barrels_stack"],
+  "hazard": ["steam_pipe", "collapse_debris"]
+}

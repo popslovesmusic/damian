@@ -1,0 +1,17 @@
+{
+  "paths": {
+    "source": "TOWER_DATA/assets/visual/source/",
+    "processed": "TOWER_DATA/assets/visual/processed/",
+    "runtime": "TOWER_DATA/assets/visual/runtime/"
+  },
+  "rules": [
+    "extract_only_selected_candidate_packs",
+    "preserve_source_archives_untouched",
+    "copy_runtime_ready_to_runtime_folder",
+    "normalize_naming",
+    "record_source_attribution",
+    "record_license_status",
+    "flag_unknown_licenses",
+    "generate_thumbnails"
+  ]
+}

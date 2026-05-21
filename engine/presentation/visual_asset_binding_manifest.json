@@ -1,0 +1,11 @@
+{
+  "bindings": {
+    "floor_tiles": "isometric_floor_wall",
+    "walls": "isometric_wall_pack",
+    "hazards": "dungeon_cave",
+    "props": "dark_fantasy_props",
+    "enemies": "characters_enemies",
+    "effects": "effects",
+    "tower_landmarks": "tower_specific"
+  }
+}

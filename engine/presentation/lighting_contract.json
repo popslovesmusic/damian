@@ -1,0 +1,5 @@
+{
+  "version": "1.0",
+  "default_ambient": 0.8,
+  "flicker_enabled": true
+}

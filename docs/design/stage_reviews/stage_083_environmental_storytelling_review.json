@@ -1,0 +1,13 @@
+{
+  "stage_id": "STAGE-083",
+  "review_date": "2026-05-21",
+  "status": "COMPLETED",
+  "summary": "Implemented landmark storytelling system to transform procedural rooms into historically weighted spaces.",
+  "achievements": [
+    "Created LandmarkStorytellingManager for landmark generation.",
+    "Defined contracts and profiles for historical, ritual, and faction landmarks.",
+    "Integrated landmark generation into the floor generation pipeline.",
+    "Ensured landmarks are persistent via world memory.",
+    "Validated storytelling logic with automated tests."
+  ]
+}

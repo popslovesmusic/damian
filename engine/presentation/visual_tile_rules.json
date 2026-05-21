@@ -1,0 +1,15 @@
+{
+  "floor_tiles": {
+    "default": "stone_floor_01",
+    "hazard": "floor_hazard_base",
+    "corruption": "corruption_stain"
+  },
+  "walls": {
+    "vertical": "wall_vertical_01",
+    "horizontal": "wall_horizontal_01"
+  },
+  "occlusion": {
+    "enabled": true,
+    "method": "alpha_fade"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "version": "1.0",
+  "active_layers": ["movement", "interaction", "enemy_hunt", "hazards", "residue", "ghost_presence", "domain_echo"]
+}

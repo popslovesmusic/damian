@@ -1,0 +1,6 @@
+{
+  "enemy_type_map": {
+    "predator": "predator_anim_profile",
+    "scavenger": "scavenger_anim_profile"
+  }
+}

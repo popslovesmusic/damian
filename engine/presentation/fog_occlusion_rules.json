@@ -1,0 +1,6 @@
+{
+  "fog_density_base": 0.3,
+  "fog_density_high": 0.8,
+  "occlusion_radius": 5,
+  "depth_fade": true
+}

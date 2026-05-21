@@ -1,0 +1,5 @@
+{
+  "wall_fade_radius": 3,
+  "cutaway_enabled": true,
+  "shadow_depth_bias": 0.5
+}
