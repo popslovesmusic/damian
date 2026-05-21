@@ -25,6 +25,7 @@ from engine.presentation.room_identity_auditor import RoomIdentityAuditor
 from engine.runtime.contact_boundary_manager import ContactBoundaryManager
 from engine.runtime.combat_contact_manager import CombatContactManager
 from engine.runtime.traversal_contact_manager import TraversalContactManager
+from engine.runtime.hazard_contact_manager import HazardContactManager
 
 # STAGE-069 runtime layering planner
 from engine.audio.audio_pressure_manager import AudioPressureManager
@@ -157,6 +158,13 @@ class PlayableSliceManager:
             os.path.join(base_path, "runtime/movement_resolution_rules.json"),
             os.path.join(base_path, "runtime/stamina_movement_profile.json"),
             os.path.join(base_path, "runtime/route_contact_profile.json"),
+            self.cbm,
+        )
+        self.hcm = HazardContactManager(
+            os.path.join(base_path, "runtime/hazard_contact_contract.json"),
+            os.path.join(base_path, "runtime/hazard_damage_rules.json"),
+            os.path.join(base_path, "runtime/environmental_damage_profile.json"),
+            os.path.join(base_path, "runtime/hazard_warning_profile.json"),
             self.cbm,
         )
         self.ccm = CombatContactManager(
@@ -586,6 +594,14 @@ class PlayableSliceManager:
                 self._last_edge = {"from": chosen.get("from"), "to": chosen.get("to"), "route_type": chosen.get("route_type")}
                 # Edge costs
                 self.state["stamina"] = max(0, int(self.state["stamina"]) - int(chosen.get("stamina_cost", 1)))
+                
+                # STAGE-089: resolve hazard contact
+                hazard_effect = self.hcm.resolve_hazard(self.state["current_room_id"], {"x": 0, "y": 0})
+                if hazard_effect:
+                    self.state["health"] = max(0, self.state["health"] - hazard_effect["damage"])
+                    self.state["pressure"] = min(100, self.state["pressure"] + hazard_effect["pressure"])
+                    audio_events.append({"type": hazard_effect["event"], "id": f"{self.state['current_room_id']}_hazard"})
+
                 try:
                     bias = (self.route_rules.get("route_type_bias") or {}).get(chosen.get("route_type")) or {}
                     self.state["pressure"] = min(100, int(self.state["pressure"]) + int(bias.get("pressure_delta", 0)))
