@@ -26,6 +26,12 @@ def package_prototype():
         f.write("@echo off\npython run_tower_windowed.py\npause")
     with open(os.path.join(dist_dir, "run_tower_debug.bat"), "w") as f:
         f.write("@echo off\npython run_tower_windowed.py\npause")
+
+    # Create ps1 scripts
+    with open(os.path.join(dist_dir, "run_tower.ps1"), "w") as f:
+        f.write("python run_tower_windowed.py")
+    with open(os.path.join(dist_dir, "run_tower_debug.ps1"), "w") as f:
+        f.write("python run_tower_windowed.py")
         
     print(f"Prototype packaged to {dist_dir}")
 
