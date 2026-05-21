@@ -1,0 +1,7 @@
+{
+  "base_damage": 10,
+  "modifiers": {
+    "heavy": 1.5,
+    "backstab": 2.0
+  }
+}

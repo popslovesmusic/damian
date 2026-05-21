@@ -23,6 +23,7 @@ from engine.world.landmark_storytelling_manager import LandmarkStorytellingManag
 from engine.world.room_dressing_manager import RoomDressingManager
 from engine.presentation.room_identity_auditor import RoomIdentityAuditor
 from engine.runtime.contact_boundary_manager import ContactBoundaryManager
+from engine.runtime.combat_contact_manager import CombatContactManager
 
 # STAGE-069 runtime layering planner
 from engine.audio.audio_pressure_manager import AudioPressureManager
@@ -143,6 +144,19 @@ class PlayableSliceManager:
             os.path.join(base_path, "world/environmental_story_profile.json"),
             os.path.join(base_path, "world/faction_ruin_profile.json"),
             os.path.join(base_path, "world/ritual_space_profile.json"),
+        )
+        self.cbm = ContactBoundaryManager(
+            os.path.join(base_path, "runtime/contact_boundary_contract.json"),
+            os.path.join(base_path, "runtime/boundary_priority_rules.json"),
+            os.path.join(base_path, "runtime/interaction_volume_profile.json"),
+            os.path.join(base_path, "runtime/hazard_contact_profile.json"),
+        )
+        self.ccm = CombatContactManager(
+            os.path.join(base_path, "runtime/combat_contact_contract.json"),
+            os.path.join(base_path, "runtime/damage_resolution_rules.json"),
+            os.path.join(base_path, "runtime/weapon_contact_profile.json"),
+            os.path.join(base_path, "runtime/hurt_volume_profile.json"),
+            self.cbm,
         )
         self.ria = RoomIdentityAuditor(
             os.path.join(base_path, "presentation/room_identity_contract.json"),
@@ -647,7 +661,10 @@ class PlayableSliceManager:
     def _simulate_combat(self, enemy_type):
         enemy_profile = self.eem.generate_enemy_profile(enemy_type, self.state["pressure"], 50)
 
-        damage = random.randint(10, 30)
+        damage = self.ccm.resolve_attack("player", "enemy_0", self.state["current_room_id"], "sword")
+        if damage is None:
+            return {"status": "MISSED"}
+
         feedback = self.cfm.generate_hit_feedback("PLAYER_HIT_ENEMY", damage, self.state["pressure"])
         self.state["pressure"] = min(100, self.state["pressure"] + 10)
 

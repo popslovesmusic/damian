@@ -1,0 +1,4 @@
+{
+  "sword": {"arc_angle": 90, "range": 2.0},
+  "heavy_attack": {"arc_angle": 45, "range": 3.0}
+}
