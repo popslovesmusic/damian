@@ -23,19 +23,31 @@ class IsometricRenderManager:
             with open(fallback_profile_path, 'r') as f:
                 self.fallback_profile = json.load(f)
 
+        # Mock sprite lookup table
+        self.sprite_map = {
+            "stone_floor_01": "[ . ]",
+            "player_idle_01": " @ ",
+            "wall_vertical_01": " | ",
+            "wall_horizontal_01": "---"
+        }
+
     def render_room(self, room_data, pressure, player_pos, feedback_layers=None, animation_state=None, lighting_params=None):
         """Generates a text-based isometric view of a room."""
         brightness = lighting_params.get("brightness", 0.8) if lighting_params else 0.8
         
-        # This is a simplified isometric layout for the prototype
+        # Sprite-based rendering instead of hardcoded ASCII
+        # Get floor asset
+        floor_asset = self.tile_rules["floor_tiles"]["default"]
+        floor_sprite = self.sprite_map.get(floor_asset, " . ")
+        player_sprite = self.sprite_map.get(animation_state, " @ ")
+        
+        # Simplified tile map
         render_output = [
             f"--- Isometric View | Pressure: {pressure} | Light: {brightness} ---",
             f"Room: {room_data.get('room_id')}",
-            r"   / \   ",
-            r"  /   \  ",
-            " |     | ",
-            r"  \   /  ",
-            r"   \ /   "
+            f"{floor_sprite} {floor_sprite} {floor_sprite}",
+            f"{floor_sprite} {player_sprite} {floor_sprite}",
+            f"{floor_sprite} {floor_sprite} {floor_sprite}"
         ]
         
         # Simplified hazard overlay
@@ -52,13 +64,21 @@ class IsometricRenderManager:
 
         if animation_state:
             # Check asset approval
-            if self.asset_selection_manager and not self.asset_selection_manager.is_asset_approved("enemies", animation_state):
+            if self.asset_selection_manager and not self.asset_selection_manager.is_asset_approved("player", animation_state):
                 render_output.append(f"Animations: [UNAPPROVED] {animation_state}")
-                self.asset_selection_manager.log_rejection("enemies", animation_state, "unapproved asset")
+                self.asset_selection_manager.log_rejection("player", animation_state, "unapproved asset")
             else:
                 render_output.append(f"Animations: {animation_state}")
             if self.performance_manager:
                 self.performance_manager.report_usage("entities", 1)
+        
+        # Debug ASCII Overlay
+        render_output.append("--- DEBUG ASCII ---")
+        render_output.append("   / \\   ")
+        render_output.append("  /   \\  ")
+        render_output.append(" |     | ")
+        render_output.append("  \\   /  ")
+        render_output.append("   \\ /   ")
         
         return "\n".join(render_output)
 

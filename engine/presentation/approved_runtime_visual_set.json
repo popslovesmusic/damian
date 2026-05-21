@@ -1,5 +1,6 @@
 {
   "floor_wall": ["stone_floor_01", "wall_vertical_01", "wall_horizontal_01"],
+  "player": ["player_idle_01"],
   "enemies": ["spider_large", "spider_giant", "gargoyle_placeholder"],
   "props": ["runes", "monolith", "rocks"],
   "effects": ["steam_leak_anim", "flicker_overlay_anim"],
