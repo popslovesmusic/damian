@@ -117,8 +117,13 @@ class RestrictedAdminTerminal:
              return self._cmd_onboarding(parts[1:])
         elif base_cmd == "biome":
              return self._cmd_biome(parts[1:])
+        elif base_cmd == "biome":
+             return self._cmd_biome(parts[1:])
+        elif base_cmd == "beta":
+             return self._cmd_beta(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
+
         
         self.log_audit(command_str, "NOT_IMPLEMENTED")
         return "ERROR: Command logic not implemented in prototype."
@@ -904,6 +909,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Biome audit evidence missing."
                  
         return f"ERROR: Unknown biome subcommand '{args[0]}'."
+
+    def _cmd_beta(self, args):
+        if not args:
+            return "Usage: beta status | beta audit"
+            
+        if args[0] == "status":
+             # Report current beta operations evidence
+             evidence_path = "outputs/audits/long_term_persistence_contract_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("beta status", "SUCCESS")
+                 return f"Closed Beta Operations Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("beta status", "MISSING_EVIDENCE")
+                 return "ERROR: Beta operations evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/beta_scaling_smoke_test_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("beta audit", "SUCCESS")
+                 return f"Beta Scaling Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("beta audit", "MISSING_EVIDENCE")
+                 return "ERROR: Beta scaling audit evidence missing."
+                 
+        return f"ERROR: Unknown beta subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

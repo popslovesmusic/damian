@@ -1,0 +1,22 @@
+{
+  "boundary_name": "Closed Beta Scaling",
+  "version": "1.0",
+  "safety_rules": {
+    "no_live_service_identity_drift": true,
+    "no_unbounded_player_scaling": true,
+    "no_centralized_mmo_authority": true,
+    "no_pay_to_win_economy": true,
+    "no_irreversible_world_memory_bloat": true,
+    "no_permanent_social_exile": true,
+    "all_beta_operations_must_be_auditable": true,
+    "all_population_scaling_must_preserve_recoverability": true,
+    "relay_scaling_must_remain_bounded": true,
+    "save_migration_must_preserve_identity_continuity": true,
+    "community_operations_must_support_social_recovery": true
+  },
+  "scaling_policy": {
+    "max_concurrent_relays_per_cluster": 100,
+    "world_memory_compression_threshold_mb": 50,
+    "mandatory_save_migration_dry_run": true
+  }
+}

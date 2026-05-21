@@ -1,0 +1,39 @@
+{
+  "contract_id": "long-term-persistence-contract-v1",
+  "required_fields": [
+    "beta_cycle_id",
+    "population_profile",
+    "relay_scaling_profile",
+    "world_memory_profile",
+    "economy_stability_profile",
+    "cartridge_distribution_profile",
+    "retention_profile",
+    "social_recovery_profile",
+    "save_migration_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "persistence_hash"
+  ],
+  "allowed_beta_domains": [
+    "population_scaling",
+    "relay_growth",
+    "market_stability",
+    "world_memory_evolution",
+    "author_expansion_distribution",
+    "social_recovery",
+    "save_continuity",
+    "long_term_survivor_cycles"
+  ],
+  "forbidden_beta_domains": [
+    "unbounded_live_service_growth",
+    "forced_online_presence",
+    "pay_to_win_expansion",
+    "permanent_world_lock",
+    "unsafe_runtime_modification"
+  ],
+  "validation_rules": {
+    "require_compression_logic": true,
+    "enforce_inflation_caps": true,
+    "mandatory_audit_trail": true
+  }
+}
