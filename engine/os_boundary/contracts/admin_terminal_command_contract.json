@@ -317,6 +317,16 @@
       "description": "Report history of historical compression, legacy preservation, and economy shifts."
     },
     {
+      "command": "sustain status",
+      "family": "status",
+      "description": "Report current infinite Tower sustainability and narrative saturation status."
+    },
+    {
+      "command": "sustain audit",
+      "family": "logs",
+      "description": "Report history of recursive content mutation, meta decay, and relay civilization drift."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

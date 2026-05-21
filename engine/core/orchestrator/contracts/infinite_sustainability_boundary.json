@@ -1,0 +1,24 @@
+{
+  "boundary_name": "Infinite Tower Sustainability",
+  "version": "1.0",
+  "safety_rules": {
+    "no_final_content_exhaustion": true,
+    "no_permanent_meta_stability": true,
+    "no_static_endgame_state": true,
+    "no_complete_world_reset": true,
+    "no_total_historical_erasure": true,
+    "no_infinite_complexity_bloat": true,
+    "no_identityless_procedural_noise": true,
+    "tower_identity_must_remain_recognizable": true,
+    "narrative_reinterpretation_must_preserve_lineage": true,
+    "civilization_growth_must_create_new_pressures": true,
+    "meta_dominance_must_decay_over_time": true,
+    "all_long_term_evolution_must_remain_auditable": true
+  },
+  "sustainability_policy": {
+    "recursive_content_generation": true,
+    "historical_myth_compression": true,
+    "anti_stagnation_mechanisms": true,
+    "adaptive_relay_civilization_drift": true
+  }
+}

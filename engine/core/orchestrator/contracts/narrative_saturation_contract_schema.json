@@ -1,0 +1,42 @@
+{
+  "contract_id": "terminal-narrative-saturation-contract-v1",
+  "required_fields": [
+    "sustainability_cycle_id",
+    "narrative_drift_profile",
+    "content_mutation_profile",
+    "historical_compression_profile",
+    "biome_mutation_profile",
+    "civilization_pressure_profile",
+    "meta_decay_profile",
+    "relay_evolution_profile",
+    "expansion_compatibility_profile",
+    "tower_identity_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "sustainability_hash"
+  ],
+  "allowed_infinite_domains": [
+    "historical_reinterpretation",
+    "ecology_mutation",
+    "contract_evolution",
+    "survivor_legend_mutation",
+    "relay_civilization_growth",
+    "market_restructuring",
+    "event_wave_cycles",
+    "faction_decay_and_rebirth",
+    "biome_scarring",
+    "tower_depth_transformation"
+  ],
+  "forbidden_infinite_domains": [
+    "complete_identity_replacement",
+    "infinite_unbounded_complexity",
+    "permanent_optimal_strategy",
+    "static_endgame_equilibrium",
+    "unsafe_recursive_generation"
+  ],
+  "validation_rules": {
+    "require_narrative_lineage": true,
+    "enforce_meta_decay": true,
+    "mandatory_identity_checkpoints": true
+  }
+}
