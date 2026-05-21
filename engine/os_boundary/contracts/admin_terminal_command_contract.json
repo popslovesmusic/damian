@@ -297,6 +297,16 @@
       "description": "Report history of world memory compression, anti-inflation, and save migrations."
     },
     {
+      "command": "launch status",
+      "family": "status",
+      "description": "Report current public launch readiness and distribution status."
+    },
+    {
+      "command": "launch audit",
+      "family": "logs",
+      "description": "Report history of release artifact verification, telemetry, and support recovery."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

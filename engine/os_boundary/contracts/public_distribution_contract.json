@@ -1,0 +1,40 @@
+{
+  "contract_id": "public-distribution-contract-v1",
+  "required_fields": [
+    "release_id",
+    "release_channel",
+    "artifact_type",
+    "artifact_hashes",
+    "engine_version",
+    "content_pack_versions",
+    "minimum_hardware_profile",
+    "persistence_compatibility_profile",
+    "relay_compatibility_profile",
+    "update_policy",
+    "rollback_policy",
+    "support_recovery_profile",
+    "bounded_flags",
+    "release_hash"
+  ],
+  "allowed_release_channels": [
+    "closed_beta",
+    "public_alpha",
+    "early_access",
+    "direct_download",
+    "live_usb_image",
+    "cartridge_bundle",
+    "relay_distributed_release"
+  ],
+  "forbidden_release_channels": [
+    "silent_forced_update",
+    "unverified_mirror",
+    "pay_to_win_bundle",
+    "unsafe_binary_mod_pack",
+    "os_core_unverified_patch"
+  ],
+  "validation_rules": {
+    "require_hash_verification": true,
+    "enforce_rollback_path": true,
+    "mandatory_telemetry_opt_in_disclosure": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "boundary_name": "Public Launch Readiness",
+  "version": "1.0",
+  "safety_rules": {
+    "no_unverified_public_artifacts": true,
+    "no_silent_launcher_updates": true,
+    "no_forced_online_presence": true,
+    "no_pay_to_win_launch_economy": true,
+    "no_unbounded_public_relay_authority": true,
+    "no_irreversible_public_moderation_action": true,
+    "no_hidden_background_surveillance": true,
+    "no_live_global_world_sync": true,
+    "all_release_artifacts_must_be_hash_verified": true,
+    "all_cartridges_must_be_manifest_verified": true,
+    "all_save_repair_paths_must_preserve_lineage": true,
+    "telemetry_must_be_minimal_explicit_and_auditable": true,
+    "public_support_must_preserve_recoverability": true
+  },
+  "deployment_policy": {
+    "launcher_must_support_offline_mode": true,
+    "live_image_must_be_bootable_standalone": true,
+    "relay_infrastructure_must_be_geo_distributed": true,
+    "telemetry_collection_must_be_opt_in": true
+  }
+}
