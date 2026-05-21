@@ -1,0 +1,12 @@
+{
+  "stage_id": "STAGE-091",
+  "review_date": "2026-05-21",
+  "status": "COMPLETED",
+  "summary": "Implemented loot, resource contact, and survival economy runtime.",
+  "achievements": [
+    "Created LootResourceManager for resolving container loot, faction tax, and resource decay.",
+    "Defined contracts and profiles for loot/resources.",
+    "Integrated loot resource handling into the playable slice manager and economy loop.",
+    "Validated loot resource pickup and tax logic with automated tests."
+  ]
+}

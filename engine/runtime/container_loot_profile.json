@@ -1,0 +1,4 @@
+{
+  "crate": {"FOOD": 5, "SCRAP": 2},
+  "barrel": {"WATER": 5, "FUEL": 1}
+}

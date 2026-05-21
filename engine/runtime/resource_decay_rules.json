@@ -1,0 +1,4 @@
+{
+  "decay_rate": 0.05,
+  "min_resource_threshold": 1
+}
