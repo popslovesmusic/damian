@@ -130,6 +130,7 @@ class PlayableSliceManager:
                 os.path.join(base_path, "presentation/render_budget_profile.json"),
                 os.path.join(base_path, "presentation/visual_readability_metrics.json"),
             ),
+            fallback_profile_path=os.path.join(base_path, "runtime/runtime_fallback_profile.json"),
         )
         self.vfm = VisualFeedbackManager(
             os.path.join(base_path, "presentation/visual_feedback_contract.json"),

@@ -2,7 +2,7 @@ import json
 import os
 
 class IsometricRenderManager:
-    def __init__(self, contract_path, tile_rules_path, lighting_path, fog_path, manifest_path, animation_manager=None, lighting_manager=None, asset_selection_manager=None, performance_manager=None):
+    def __init__(self, contract_path, tile_rules_path, lighting_path, fog_path, manifest_path, animation_manager=None, lighting_manager=None, asset_selection_manager=None, performance_manager=None, fallback_profile_path=None):
         with open(contract_path, 'r') as f:
             self.contract = json.load(f)
         with open(tile_rules_path, 'r') as f:
@@ -17,6 +17,11 @@ class IsometricRenderManager:
         self.lighting_manager = lighting_manager
         self.asset_selection_manager = asset_selection_manager
         self.performance_manager = performance_manager
+        
+        self.fallback_profile = {}
+        if fallback_profile_path and os.path.exists(fallback_profile_path):
+            with open(fallback_profile_path, 'r') as f:
+                self.fallback_profile = json.load(f)
 
     def render_room(self, room_data, pressure, player_pos, feedback_layers=None, animation_state=None, lighting_params=None):
         """Generates a text-based isometric view of a room."""
