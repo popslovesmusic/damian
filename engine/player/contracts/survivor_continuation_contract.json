@@ -1,0 +1,37 @@
+{
+  "contract_id": "survivor-continuation-contract-v1",
+  "required_fields": [
+    "continuation_id",
+    "survivor_id",
+    "death_event_id",
+    "defeat_context",
+    "residue_carryover_profile",
+    "inheritance_profile",
+    "domain_impact_profile",
+    "world_memory_delta",
+    "recovery_options",
+    "legacy_markers",
+    "recoverability_profile",
+    "bounded_flags",
+    "continuation_hash"
+  ],
+  "allowed_outcomes": [
+    "SURVIVOR_RECOVERED",
+    "LEGACY_CONTINUES",
+    "DOMAIN_SCARRED",
+    "ECHO_REMNANT_CREATED",
+    "RECOVERY_RUN_AVAILABLE",
+    "RESCUE_CONTRACT_GENERATED"
+  ],
+  "forbidden_outcomes": [
+    "TOTAL_SAVE_WIPE",
+    "PERMANENT_ACCOUNT_DELETION",
+    "IRREVERSIBLE_IDENTITY_ERASURE",
+    "FREE_RESET_WITHOUT_RESIDUE"
+  ],
+  "validation_rules": {
+    "require_legacy_inheritance": true,
+    "enforce_recovery_cost": true,
+    "mandatory_world_memory_update": true
+  }
+}

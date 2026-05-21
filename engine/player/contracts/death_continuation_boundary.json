@@ -1,0 +1,19 @@
+{
+  "boundary_name": "Survivor Death and Continuation",
+  "version": "1.0",
+  "safety_rules": {
+    "no_permanent_account_death": true,
+    "no_total_save_wipe": true,
+    "no_unrecoverable_identity_loss": true,
+    "no_free_death_reset": true,
+    "death_must_preserve_residue": true,
+    "recoverability_must_be_preserved": true,
+    "continuation_must_be_auditable": true
+  },
+  "death_policy": {
+    "must_create_world_memory": true,
+    "must_affect_domains_and_echoes": true,
+    "inheritance_must_be_bounded": true,
+    "recovery_must_cost_resources_or_pressure": true
+  }
+}

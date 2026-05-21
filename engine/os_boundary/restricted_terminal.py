@@ -111,6 +111,8 @@ class RestrictedAdminTerminal:
              return self._cmd_enemy(parts[1:])
         elif base_cmd == "economy":
              return self._cmd_economy(parts[1:])
+        elif base_cmd == "continuation":
+             return self._cmd_continuation(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -811,6 +813,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Economy audit evidence missing."
                  
         return f"ERROR: Unknown economy subcommand '{args[0]}'."
+
+    def _cmd_continuation(self, args):
+        if not args:
+            return "Usage: continuation status | continuation audit"
+            
+        if args[0] == "status":
+             # Report current survivor continuation status
+             evidence_path = "outputs/audits/survivor_continuation_contract_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("continuation status", "SUCCESS")
+                 return f"Survivor Continuation Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("continuation status", "MISSING_EVIDENCE")
+                 return "ERROR: Continuation evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/death_scar_world_memory_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("continuation audit", "SUCCESS")
+                 return f"Survivor Continuation Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("continuation audit", "MISSING_EVIDENCE")
+                 return "ERROR: Continuation audit evidence missing."
+                 
+        return f"ERROR: Unknown continuation subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

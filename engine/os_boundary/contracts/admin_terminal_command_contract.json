@@ -257,6 +257,16 @@
       "description": "Report history of resource distribution, decay, and crafting pressure evidence."
     },
     {
+      "command": "continuation status",
+      "family": "status",
+      "description": "Report current survivor continuation and legacy inheritance status."
+    },
+    {
+      "command": "continuation audit",
+      "family": "logs",
+      "description": "Report history of survivor deaths, world memory delta, and recovery runs."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."
