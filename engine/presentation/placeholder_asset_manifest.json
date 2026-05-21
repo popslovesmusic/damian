@@ -1,0 +1,26 @@
+{
+  "manifest_id": "placeholder-assets-v1",
+  "assets": {
+    "character_player": {
+      "representation": "@"
+    },
+    "enemy_generic": {
+      "representation": "E"
+    },
+    "resource_item": {
+      "representation": "i"
+    },
+    "hud_pressure_low": {
+      "representation": "(LOW)"
+    },
+    "hud_pressure_medium": {
+      "representation": "(MED)"
+    },
+    "hud_pressure_high": {
+      "representation": "(HIGH)"
+    }
+  },
+  "bounded_flags": {
+    "placeholder_only": true
+  }
+}

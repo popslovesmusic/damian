@@ -1,0 +1,8 @@
+{
+  "contract_id": "visual-presentation-contract-v1",
+  "visual_elements": {},
+  "feedback_priorities": [],
+  "bounded_flags": {
+    "placeholder_only": true
+  }
+}

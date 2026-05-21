@@ -10,6 +10,7 @@ from engine.combat.runtime.combat_feel_manager import CombatFeelManager
 from engine.enemies.runtime.enemy_ecology_manager import EnemyEcologyManager
 from engine.economy.runtime.survival_economy_manager import SurvivalEconomyManager
 from engine.player.runtime.continuation_manager import ContinuationManager
+from engine.presentation.visual_scaffold_manager import VisualScaffoldManager # NEW
 
 class PlayableSliceManager:
     def __init__(self, contract_path):
@@ -54,14 +55,23 @@ class PlayableSliceManager:
             os.path.join(base_path, "player/contracts/death_continuation_boundary.json"),
             os.path.join(base_path, "player/contracts/survivor_continuation_contract.json")
         )
+        # Initialize VisualScaffoldManager (NEW)
+        self.vsm = VisualScaffoldManager(
+            os.path.join(base_path, "presentation/visual_presentation_contract.json"),
+            os.path.join(base_path, "presentation/hud_profile.json"),
+            os.path.join(base_path, "presentation/placeholder_asset_manifest.json")
+        )
+        self.visual_log = [] # To store visual output for each step
 
     def _log_audit(self, event, details):
         self.audits.append({"timestamp": time.time(), "event": event, "details": details})
+        # Generate and log visual state after each action
+        self.visual_log.append(self.vsm.get_full_presentation(self.state, self.audits, self.state.get("recovery_manifest")))
 
     def simulate_player_input(self, action, value=None):
         """Simulates basic player actions."""
         self._log_audit("PLAYER_INPUT", {"action": action, "value": value})
-        
+
         if action == "MOVE":
             return self._simulate_movement(value)
         elif action == "ATTACK":
@@ -79,7 +89,7 @@ class PlayableSliceManager:
         """Integrates movement_feel_manager."""
         mode = "STANDARD"
         if self.state["stamina"] < 20: mode = "INJURED"
-        
+
         profile = self.mfm.generate_movement_profile(mode, self.state["pressure"], 100 - self.state["stamina"])
         self.state["stamina"] -= 5
         self.state["pressure"] = min(100, self.state["pressure"] + 2)
@@ -90,11 +100,11 @@ class PlayableSliceManager:
     def _simulate_combat(self, enemy_type):
         """Integrates combat_feel_manager and enemy_ecology_manager."""
         enemy_profile = self.eem.generate_enemy_profile(enemy_type, self.state["pressure"], 50) # Assuming route usage
-        
+
         damage = random.randint(10, 30)
         feedback = self.cfm.generate_hit_feedback("PLAYER_HIT_ENEMY", damage, self.state["pressure"])
         self.state["pressure"] = min(100, self.state["pressure"] + 10)
-        
+
         self._log_audit("COMBAT", {"enemy": enemy_profile["enemy_profile_id"], "feedback": feedback["feedback_id"]})
         return {"status": "ENEMY_HIT", "damage_dealt": damage, "feedback": feedback}
 
@@ -127,12 +137,12 @@ class PlayableSliceManager:
         """Integrates continuation_manager."""
         self.state["has_died"] = True
         self._log_audit("DEATH_EVENT", {"survivor_id": self.state["survivor_id"], "context": "ZERO_HEALTH"})
-        
+
         manifest = self.cm.generate_continuation_manifest(
             self.state["survivor_id"], f"death_{self.state['play_session_id']}", "ZERO_HEALTH"
         )
-        self.state["recovery_manifest"] = manifest
-        
+        self.state["recovery_manifest"] = manifest # Store manifest for visual display
+
         self._log_audit("CONTINUATION_MANIFEST", {"manifest_id": manifest["continuation_id"]})
         return {"status": "DEFEATED", "manifest_id": manifest["continuation_id"]}
 
@@ -140,25 +150,27 @@ class PlayableSliceManager:
         """Simulates recovery after death."""
         if not self.state["has_died"] or not self.state.get("recovery_manifest"):
             return {"status": "NO_DEFEAT_TO_RECOVER"}
-        
+
         # Simulate selecting a recovery option
         recovery_report = self.cm.resolve_legacy_recovery(self.state["recovery_manifest"], "RECOVERY_RUN")
-        
+
         # Reset state (simplified)
         self.state["health"] = 50
         self.state["stamina"] = 50
         self.state["pressure"] = 10
         self.state["has_died"] = False
         self.state["location"] = "Recovery Zone"
-        del self.state["recovery_manifest"]
-        
+        # recovery_manifest is cleared after recovery, so death screen no longer shown
+        self.state["recover_status"] = recovery_report["status"] # Store recovery status for display
+        del self.state["recovery_manifest"] 
+
         self._log_audit("RECOVERY", {"report": recovery_report["status"]})
         return {"status": "RECOVERED", "details": recovery_report}
 
     def run_playable_loop(self):
         """Runs a full simulated playable loop: Onboarding -> Play -> Death -> Recovery."""
         self._log_audit("PLAY_LOOP_START", {"session": self.state["play_session_id"]})
-        
+
         # 1. Onboarding
         onboarding_profile = self.om.generate_onboarding_profile(self.state["survivor_id"])
         self.om.advance_onboarding(onboarding_profile, "FIRST_MOVEMENT")
@@ -175,23 +187,22 @@ class PlayableSliceManager:
                 self.simulate_player_input("PICKUP", random.choice(["FOOD", "SCRAP"]))
             if self.state["health"] < 70 and self.state["resources"].get("FOOD", 0) > 0:
                 self.simulate_player_input("USE_RESOURCE", "FOOD")
-        
+
         # Force a death event if not already dead
         if self.state["health"] > 0:
             self._simulate_damage(self.state["health"] + 10) # Overkill to ensure death
-        
+
         # 3. Recovery
         if self.state["has_died"]:
             self.simulate_recovery()
-        
+
         self._log_audit("PLAY_LOOP_END", {"final_state": self.state})
-        
-        return {"session_id": self.state["play_session_id"], "final_state": self.state, "audits": self.audits}
+
+        return {"session_id": self.state["play_session_id"], "final_state": self.state, "audits": self.audits, "visual_log": self.visual_log}
 
     def get_audit_report(self):
         """Returns the full audit log of the session."""
-        return {"session_id": self.state["play_session_id"], "audits": self.audits, "final_state": self.state}
-
+        return {"session_id": self.state["play_session_id"], "audits": self.audits, "final_state": self.state, "visual_log": self.visual_log}
 if __name__ == "__main__":
     # Ensure audit directory exists for sub-managers
     os.makedirs("outputs/audits", exist_ok=True)

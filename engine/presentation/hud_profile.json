@@ -1,0 +1,11 @@
+{
+  "hud_profile_id": "minimal-survival-hud-v1",
+  "elements": {
+    "pressure_indicator": {
+      "high_threshold": 70
+    }
+  },
+  "bounded_flags": {
+    "survival_critical_only": true
+  }
+}
