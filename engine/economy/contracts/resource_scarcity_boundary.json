@@ -1,0 +1,24 @@
+{
+  "boundary_name": "Resource Scarcity Runtime",
+  "version": "1.0",
+  "safety_rules": {
+    "resources_must_remain_scarce": true,
+    "no_infinite_resource_generation": true,
+    "crafting_must_have_tradeoffs": true,
+    "resource_visibility_must_increase_risk": true,
+    "inventory_weight_must_affect_survival": true,
+    "resource_decay_must_exist": true,
+    "repair_burden_must_be_meaningful": true,
+    "cache_storage_must_be_vulnerable": true,
+    "survival_economy_must_remain_recoverable": true,
+    "all_resource_systems_must_be_auditable": true,
+    "improvisation_must_be_viable_but_imperfect": true
+  },
+  "scarcity_policy": {
+    "regional_resource_variation": true,
+    "event_wave_resource_disruption": true,
+    "market_pressure_influence": true,
+    "route_based_supply_risk": true,
+    "scavenger_pressure": true
+  }
+}

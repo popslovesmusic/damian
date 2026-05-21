@@ -109,6 +109,8 @@ class RestrictedAdminTerminal:
              return self._cmd_traversal(parts[1:])
         elif base_cmd == "enemy":
              return self._cmd_enemy(parts[1:])
+        elif base_cmd == "economy":
+             return self._cmd_economy(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -780,6 +782,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Enemy ecology boundary evidence missing."
                  
         return f"ERROR: Unknown enemy subcommand '{args[0]}'."
+
+    def _cmd_economy(self, args):
+        if not args:
+            return "Usage: economy status | economy audit"
+            
+        if args[0] == "status":
+             # Report current survival economy evidence
+             evidence_path = "outputs/audits/survival_economy_contract_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("economy status", "SUCCESS")
+                 return f"Survival Economy Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("economy status", "MISSING_EVIDENCE")
+                 return "ERROR: Economy evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/resource_distribution_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("economy audit", "SUCCESS")
+                 return f"Survival Economy Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("economy audit", "MISSING_EVIDENCE")
+                 return "ERROR: Economy audit evidence missing."
+                 
+        return f"ERROR: Unknown economy subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

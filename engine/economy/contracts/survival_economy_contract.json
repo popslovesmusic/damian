@@ -1,0 +1,44 @@
+{
+  "contract_id": "survival-economy-contract-v1",
+  "required_fields": [
+    "resource_profile_id",
+    "resource_type",
+    "scarcity_profile",
+    "decay_profile",
+    "visibility_profile",
+    "weight_profile",
+    "repair_cost_profile",
+    "crafting_requirements",
+    "cache_risk_profile",
+    "predator_attraction_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "resource_hash"
+  ],
+  "resource_types": [
+    "FOOD",
+    "WATER",
+    "MEDICAL",
+    "TOOLS",
+    "AMMUNITION",
+    "RELAY_COMPONENTS",
+    "POWER_CELLS",
+    "SCRAP",
+    "MUTATED_MATERIAL",
+    "CONTRACT_ITEMS",
+    "FACTION_SUPPLIES"
+  ],
+  "crafting_modes": [
+    "IMPROVISED",
+    "STABLE",
+    "DAMAGED",
+    "FIELD_REPAIR",
+    "SALVAGE",
+    "PRESSURE_CRAFT"
+  ],
+  "validation_rules": {
+    "require_decay_logic": true,
+    "enforce_weight_penalty": true,
+    "mandatory_visibility_coupling": true
+  }
+}

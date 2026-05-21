@@ -247,6 +247,16 @@
       "description": "Report history of procedural enemy profiles and migration evidence."
     },
     {
+      "command": "economy status",
+      "family": "status",
+      "description": "Report current survival economy and resource scarcity status."
+    },
+    {
+      "command": "economy audit",
+      "family": "logs",
+      "description": "Report history of resource distribution, decay, and crafting pressure evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."
