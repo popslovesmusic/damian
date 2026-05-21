@@ -1,0 +1,4 @@
+{
+  "steam": {"damage": 5, "pressure": 10},
+  "corruption": {"damage": 2, "pressure": 5}
+}

@@ -21,6 +21,8 @@ from engine.presentation.graphics_performance_manager import GraphicsPerformance
 from engine.runtime.runtime_integration_auditor import RuntimeIntegrationAuditor
 from engine.world.landmark_storytelling_manager import LandmarkStorytellingManager
 from engine.world.room_dressing_manager import RoomDressingManager
+from engine.presentation.room_identity_auditor import RoomIdentityAuditor
+from engine.runtime.contact_boundary_manager import ContactBoundaryManager
 
 # STAGE-069 runtime layering planner
 from engine.audio.audio_pressure_manager import AudioPressureManager
@@ -141,6 +143,11 @@ class PlayableSliceManager:
             os.path.join(base_path, "world/environmental_story_profile.json"),
             os.path.join(base_path, "world/faction_ruin_profile.json"),
             os.path.join(base_path, "world/ritual_space_profile.json"),
+        )
+        self.ria = RoomIdentityAuditor(
+            os.path.join(base_path, "presentation/room_identity_contract.json"),
+            os.path.join(base_path, "presentation/room_readability_rules.json"),
+            os.path.join(base_path, "presentation/room_identity_score_profile.json"),
         )
         self.auditor = RuntimeIntegrationAuditor(self)
 
@@ -288,6 +295,12 @@ class PlayableSliceManager:
         audio_events = []
         if not room:
             return {"audio_events": audio_events}
+
+        # STAGE-085: audit room visual identity
+        if self.ria:
+            audit_result = self.ria.audit_room(room)
+            if audit_result["status"] == "FAIL":
+                self._log_audit("ROOM_IDENTITY_FAIL", {"room_id": room.get("room_id"), "score": audit_result["score"]})
 
         # Pressure zone -> pressure delta + audio hook
         try:

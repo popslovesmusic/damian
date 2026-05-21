@@ -1,0 +1,3 @@
+{
+  "priority_order": ["hard_collision", "instant_hazard", "interaction", "visibility"]
+}

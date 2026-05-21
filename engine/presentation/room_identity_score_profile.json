@@ -1,0 +1,5 @@
+{
+  "combat": {"min_props": 3, "required_props": ["cover_debris"]},
+  "resource": {"min_props": 2, "required_props": ["crates_stack"]},
+  "hazard": {"min_props": 2, "required_props": ["steam_pipe"]}
+}
