@@ -29,6 +29,7 @@ from engine.runtime.hazard_contact_manager import HazardContactManager
 from engine.runtime.interaction_object_manager import InteractionObjectManager
 from engine.runtime.loot_resource_manager import LootResourceManager
 from engine.runtime.inventory_manager import InventoryManager
+from engine.runtime.playtest_telemetry_manager import PlaytestTelemetryManager
 
 # STAGE-069 runtime layering planner
 from engine.audio.audio_pressure_manager import AudioPressureManager
@@ -176,6 +177,12 @@ class PlayableSliceManager:
             os.path.join(base_path, "runtime/resource_spawn_rules.json"),
             os.path.join(base_path, "runtime/resource_decay_rules.json"),
             os.path.join(base_path, "runtime/container_loot_profile.json"),
+        )
+        self.ptm = PlaytestTelemetryManager(
+            os.path.join(base_path, "runtime/playtest_telemetry_contract.json"),
+            os.path.join(base_path, "runtime/feel_metrics_profile.json"),
+            os.path.join(base_path, "runtime/session_heatmap_rules.json"),
+            os.path.join(base_path, "runtime/player_confusion_rules.json"),
         )
         self.ccm = CombatContactManager(
             os.path.join(base_path, "runtime/combat_contact_contract.json"),

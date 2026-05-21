@@ -1,0 +1,12 @@
+{
+  "stage_id": "STAGE-095",
+  "review_date": "2026-05-21",
+  "status": "COMPLETED",
+  "summary": "Implemented local playtest telemetry capture system.",
+  "achievements": [
+    "Created PlaytestTelemetryManager to capture movement, combat, and performance metrics.",
+    "Defined contracts and profiles for telemetry and heatmaps.",
+    "Integrated telemetry capture into PlayableSliceManager's audit loop.",
+    "Validated metric capture with automated tests."
+  ]
+}
