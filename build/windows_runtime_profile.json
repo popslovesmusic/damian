@@ -1,0 +1,4 @@
+{
+  "runtime": "python3",
+  "windows_scripts": ["run_tower.bat", "run_tower_debug.bat"]
+}
