@@ -1,0 +1,5 @@
+{
+  "door": {"can_open": true, "can_lock": true},
+  "loot": {"can_pickup": true},
+  "switch": {"can_activate": true}
+}

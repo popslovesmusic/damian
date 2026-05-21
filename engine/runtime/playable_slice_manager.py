@@ -26,6 +26,7 @@ from engine.runtime.contact_boundary_manager import ContactBoundaryManager
 from engine.runtime.combat_contact_manager import CombatContactManager
 from engine.runtime.traversal_contact_manager import TraversalContactManager
 from engine.runtime.hazard_contact_manager import HazardContactManager
+from engine.runtime.interaction_object_manager import InteractionObjectManager
 
 # STAGE-069 runtime layering planner
 from engine.audio.audio_pressure_manager import AudioPressureManager

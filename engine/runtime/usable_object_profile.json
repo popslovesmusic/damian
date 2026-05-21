@@ -1,0 +1,4 @@
+{
+  "door_small": {"id": "door_small_01", "type": "door"},
+  "crate_small": {"id": "crate_small_01", "type": "loot"}
+}
