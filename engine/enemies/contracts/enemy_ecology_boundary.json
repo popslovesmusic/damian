@@ -1,0 +1,23 @@
+{
+  "boundary_name": "Enemy Ecology",
+  "version": "1.0",
+  "safety_rules": {
+    "enemy_behavior_must_be_readable": true,
+    "enemies_must_react_to_world_pressure": true,
+    "no_perfect_enemy_omniscience": true,
+    "no_unavoidable_random_death": true,
+    "enemy_adaptation_must_be_bounded": true,
+    "event_wave_mutation_must_preserve_recognizability": true,
+    "faction_activity_must_increase_hostility_visibility": true,
+    "route_overuse_must_change_ecology": true,
+    "enemy_persistence_must_preserve_recoverability": true,
+    "pressure_ai_must_scale_to_legacy_hardware": true,
+    "enemy_systems_must_remain_auditable": true,
+    "threat_telegraphs_must_remain_clear_under_stress": true
+  },
+  "readability_policy": {
+    "min_telegraph_duration_ms": 300,
+    "max_active_stalkers": 3,
+    "pressure_threshold_for_mutation": 60.0
+  }
+}

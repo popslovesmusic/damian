@@ -237,6 +237,16 @@
       "description": "Report history of traversal feedback and exhaustion movement evidence."
     },
     {
+      "command": "enemy status",
+      "family": "status",
+      "description": "Report current enemy ecology and procedural adaptation status."
+    },
+    {
+      "command": "enemy audit",
+      "family": "logs",
+      "description": "Report history of procedural enemy profiles and migration evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

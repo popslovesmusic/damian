@@ -107,6 +107,8 @@ class RestrictedAdminTerminal:
              return self._cmd_combat(parts[1:])
         elif base_cmd == "traversal":
              return self._cmd_traversal(parts[1:])
+        elif base_cmd == "enemy":
+             return self._cmd_enemy(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -749,6 +751,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Traversal boundary evidence missing."
                  
         return f"ERROR: Unknown traversal subcommand '{args[0]}'."
+
+    def _cmd_enemy(self, args):
+        if not args:
+            return "Usage: enemy status | enemy audit"
+            
+        if args[0] == "status":
+             # Report current enemy ecology evidence
+             evidence_path = "outputs/audits/enemy_behavior_contract_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("enemy status", "SUCCESS")
+                 return f"Enemy Ecology Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("enemy status", "MISSING_EVIDENCE")
+                 return "ERROR: Enemy ecology evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/enemy_ecology_boundary_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("enemy audit", "SUCCESS")
+                 return f"Enemy Ecology Boundary Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("enemy audit", "MISSING_EVIDENCE")
+                 return "ERROR: Enemy ecology boundary evidence missing."
+                 
+        return f"ERROR: Unknown enemy subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

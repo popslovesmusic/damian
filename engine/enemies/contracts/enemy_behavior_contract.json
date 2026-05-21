@@ -1,0 +1,33 @@
+{
+  "contract_id": "procedural-enemy-behavior-v1",
+  "required_fields": [
+    "enemy_profile_id",
+    "ecology_type",
+    "pressure_response_profile",
+    "migration_behavior",
+    "hunt_behavior",
+    "mutation_profile",
+    "visibility_response_profile",
+    "faction_aggression_profile",
+    "route_usage_response",
+    "telegraph_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "enemy_hash"
+  ],
+  "ecology_types": [
+    "SCAVENGER",
+    "PREDATOR",
+    "PRESSURE_FEEDER",
+    "RECLAMATION_HUNTER",
+    "EVENT_MUTANT",
+    "RELAY_STALKER",
+    "TREATY_PARASITE",
+    "ECHO_TRACKER"
+  ],
+  "validation_rules": {
+    "require_telegraph_clarity": true,
+    "enforce_pressure_scaling": true,
+    "mandatory_integrity_hash": true
+  }
+}
