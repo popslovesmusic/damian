@@ -23,9 +23,9 @@ def package_prototype():
             
     # Create bat scripts
     with open(os.path.join(dist_dir, "run_tower.bat"), "w") as f:
-        f.write("@echo off\npython run_tower_walkable.py\npause")
+        f.write("@echo off\npython run_tower_windowed.py\npause")
     with open(os.path.join(dist_dir, "run_tower_debug.bat"), "w") as f:
-        f.write("@echo off\npython run_tower_walkable_debug.py\npause")
+        f.write("@echo off\npython run_tower_windowed.py\npause")
         
     print(f"Prototype packaged to {dist_dir}")
 

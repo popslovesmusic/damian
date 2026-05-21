@@ -1,3 +1,3 @@
 @echo off
-python run_tower_walkable_debug.py
+python run_tower_windowed.py
 pause
