@@ -1,0 +1,37 @@
+{
+  "manifest_id": "music-layer-manifest-v1",
+  "version": "1.0",
+  "layers": {
+    "base_ambient": {
+      "filename": "ambient_drone.mp3",
+      "conditions": "ALWAYS_ON",
+      "volume_scale": 0.3
+    },
+    "pressure_layer_low": {
+      "filename": "tension_low.mp3",
+      "conditions": "PRESSURE_GT_30",
+      "volume_scale": 0.5
+    },
+    "pressure_layer_high": {
+      "filename": "tension_high.mp3",
+      "conditions": "PRESSURE_GT_70",
+      "volume_scale": 0.8
+    },
+    "combat_layer": {
+      "filename": "combat_rhythm.mp3",
+      "conditions": "IN_COMBAT",
+      "volume_scale": 1.0,
+      "fade_out_duration": 3.0
+    },
+    "death_recovery_stinger": {
+      "filename": "death_sting.mp3",
+      "conditions": "ON_DEATH_EVENT",
+      "volume_scale": 1.0,
+      "play_once": true
+    }
+  },
+  "bounded_flags": {
+    "placeholder_only": true,
+    "dynamic_layering_only": true
+  }
+}

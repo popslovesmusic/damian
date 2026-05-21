@@ -1,0 +1,35 @@
+{
+  "contract_id": "audio-state-contract-v1",
+  "version": "1.0",
+  "objective": "Define procedural sound, environmental audio, and survival-state feedback.",
+  "core_rules": [
+    "audio_must_reflect_runtime_pressure_state",
+    "silence_must_be_used_intentionally",
+    "enemy_audio_cues_must_remain_readable",
+    "music_layers_must_react_procedurally",
+    "audio_cannot_overwhelm_survival_clarity",
+    "all_audio_assets_must_remain_replaceable_placeholders"
+  ],
+  "audio_elements": {
+    "ambient_tower": "LOW_HUM_ATMOSPHERIC",
+    "combat_impact_player_hit": "THUD_SOUND_EFFECT",
+    "combat_impact_enemy_hit": "CRUNCH_SOUND_EFFECT",
+    "traversal_footsteps": "DYNAMIC_PACE_SOUND",
+    "pressure_escalation": "RISING_TENSION_EFFECT",
+    "survival_stress_heartbeat": "LOW_HEALTH_PULSATE",
+    "enemy_proximity_growl": "SUBTLE_GROWL",
+    "death_recovery_stinger": "SHORT_REVERB_STINGER"
+  },
+  "feedback_priorities": [
+    "critical_health_low_stamina",
+    "high_pressure_zone",
+    "imminent_threat",
+    "successful_action",
+    "environmental_change"
+  ],
+  "bounded_flags": {
+    "placeholder_only": true,
+    "debug_readable": true,
+    "performance_optimized": true
+  }
+}

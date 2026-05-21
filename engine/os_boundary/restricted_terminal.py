@@ -117,8 +117,6 @@ class RestrictedAdminTerminal:
              return self._cmd_onboarding(parts[1:])
         elif base_cmd == "biome":
              return self._cmd_biome(parts[1:])
-        elif base_cmd == "biome":
-             return self._cmd_biome(parts[1:])
         elif base_cmd == "beta":
              return self._cmd_beta(parts[1:])
         elif base_cmd == "launch":
@@ -129,6 +127,10 @@ class RestrictedAdminTerminal:
              return self._cmd_sustain(parts[1:])
         elif base_cmd == "slice":
              return self._cmd_slice(parts[1:])
+        elif base_cmd == "visual": # NEW for STAGE-068
+             return self._cmd_visual(parts[1:])
+        elif base_cmd == "audio": # Already present, ensuring it's in the correct final position
+             return self._cmd_audio(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
 
@@ -1070,6 +1072,78 @@ class RestrictedAdminTerminal:
                  return "ERROR: Playable slice audit evidence missing."
                  
         return f"ERROR: Unknown slice subcommand '{args[0]}'."
+
+    def _cmd_visual(self, args):
+        if not args:
+            return "Usage: visual status | visual audit"
+            
+        if args[0] == "status":
+             # Report current visual presentation scaffold status
+             evidence_path = "outputs/audits/stage_068_visual_presentation_scaffold_audit.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 # Extract a high-level summary for status
+                 summary = {
+                     "verdict": evidence["verdict"],
+                     "visual_output_generated": evidence["checks"][0]["status"],
+                     "placeholder_safe": evidence["checks"][1]["status"],
+                     "hud_critical_state": evidence["checks"][2]["status"]
+                 }
+                 self.log_audit("visual status", "SUCCESS")
+                 return f"Visual Presentation Scaffold Status:\n{json.dumps(summary, indent=2)}"
+             else:
+                 self.log_audit("visual status", "MISSING_EVIDENCE")
+                 return "ERROR: Visual scaffold audit evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/stage_068_visual_presentation_scaffold_audit.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("visual audit", "SUCCESS")
+                 return f"Visual Presentation Scaffold Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("visual audit", "MISSING_EVIDENCE")
+                 return "ERROR: Visual scaffold audit evidence missing."
+                 
+        return f"ERROR: Unknown visual subcommand '{args[0]}'."
+
+    def _cmd_audio(self, args):
+        if not args:
+            return "Usage: audio status | audio audit"
+            
+        if args[0] == "status":
+             # Report current audio atmosphere and pressure feedback status
+             evidence_path = "outputs/audits/stage_069_audio_pressure_audit.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 # Extract a high-level summary for status
+                 summary = {
+                     "verdict": evidence["verdict"],
+                     "audio_output_generated": evidence["checks"][0]["status"],
+                     "audio_reflects_pressure": evidence["checks"][1]["status"],
+                     "enemy_audio_readable": evidence["checks"][2]["status"]
+                 }
+                 self.log_audit("audio status", "SUCCESS")
+                 return f"Audio Pressure Runtime Status:\n{json.dumps(summary, indent=2)}"
+             else:
+                 self.log_audit("audio status", "MISSING_EVIDENCE")
+                 return "ERROR: Audio pressure audit evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/stage_069_audio_pressure_audit.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("audio audit", "SUCCESS")
+                 return f"Audio Pressure Runtime Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("audio audit", "MISSING_EVIDENCE")
+                 return "ERROR: Audio pressure audit evidence missing."
+                 
+        return f"ERROR: Unknown audio subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

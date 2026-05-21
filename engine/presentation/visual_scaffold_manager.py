@@ -47,6 +47,7 @@ class VisualScaffoldManager:
         hud_lines.append(self._generate_pressure_indicator(game_state["pressure"]))
         hud_lines.append(self._generate_resource_counts(game_state["resources"]))
         hud_lines.append(f"Location: {game_state['location']}")
+        hud_lines.append(f"Audio: {game_state.get('audio_state', 'No Audio')}") # NEW
         
         return "\n".join(hud_lines)
 

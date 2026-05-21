@@ -4,212 +4,97 @@
     {
       "command": "status",
       "family": "status",
-      "description": "Show general Tower OS status."
-    },
-    {
-      "command": "persistence info",
-      "family": "persistence",
-      "description": "Show TOWER_DATA mount and initialization state."
+      "description": "Report overall Tower OS status."
     },
     {
       "command": "diag health",
-      "family": "diagnostics",
-      "description": "Run system health diagnostics."
+      "family": "diag",
+      "description": "Report subsystem health."
     },
     {
-      "command": "content status",
-      "family": "content_packs",
-      "description": "Report content pack cartridge verification status."
-    },
-    {
-      "command": "lineage status",
+      "command": "persistence info",
       "family": "status",
-      "description": "Report artifact lineage and version migration status."
-    },
-    {
-      "command": "flash status",
-      "family": "status",
-      "description": "Report physical USB flashing handoff status."
-    },
-    {
-      "command": "boot status",
-      "family": "status",
-      "description": "Report physical boot and persistence validation status."
-    },
-    {
-      "command": "recovery scan",
-      "family": "diagnostics",
-      "description": "Scan TOWER_DATA for integrity violations."
-    },
-    {
-      "command": "recovery simulate <snapshot_id>",
-      "family": "diagnostics",
-      "description": "Simulate restoration of a specific save snapshot."
+      "description": "Report persistence layer status."
     },
     {
       "command": "recovery audit",
       "family": "logs",
-      "description": "Report recovery and repair lineage evidence."
+      "description": "Report system recovery history."
     },
     {
-      "command": "update scan <path>",
+      "command": "update status",
       "family": "status",
-      "description": "Scan and verify an offline update cartridge."
-    },
-    {
-      "command": "update plan",
-      "family": "status",
-      "description": "Generate a dry-run migration plan for a verified update."
+      "description": "Report update cartridge status."
     },
     {
       "command": "update audit",
       "family": "logs",
-      "description": "Report update and patch migration evidence."
+      "description": "Report update history."
     },
     {
-      "command": "echo export",
-      "family": "content_packs",
-      "description": "Export a hash-verified Domain Echo snapshot."
+      "command": "network status",
+      "family": "status",
+      "description": "Report network subsystem status."
     },
     {
-      "command": "echo report",
+      "command": "network audit",
       "family": "logs",
-      "description": "Report results of offline attacks against Domain Echoes."
-    },
-    {
-      "command": "audio status",
-      "family": "status",
-      "description": "Report live audio chat session status."
-    },
-    {
-      "command": "treaty status",
-      "family": "status",
-      "description": "Report active treaty asynchronous cooperation status."
-    },
-    {
-      "command": "treaty audit",
-      "family": "logs",
-      "description": "Report shared burden and reward evidence from active treaties."
-    },
-    {
-      "command": "reputation status",
-      "family": "status",
-      "description": "Report current survivor residue reputation snapshot."
-    },
-    {
-      "command": "reputation audit",
-      "family": "logs",
-      "description": "Report history of generated reputation signals."
-    },
-    {
-      "command": "transit export",
-      "family": "content_packs",
-      "description": "Export survivor identity for cross-world cartridge transit."
-    },
-    {
-      "command": "transit status",
-      "family": "status",
-      "description": "Report cross-world transit and identity continuity evidence."
-    },
-    {
-      "command": "relay status",
-      "family": "status",
-      "description": "Report current relay hub and social presence status."
-    },
-    {
-      "command": "relay audit",
-      "family": "logs",
-      "description": "Report history of relay visibility and fragmentation evidence."
-    },
-    {
-      "command": "event status",
-      "family": "status",
-      "description": "Report status of active asynchronous Tower event waves."
-    },
-    {
-      "command": "event forecast",
-      "family": "status",
-      "description": "Report probabilistic forecast of impending procedural pressure."
-    },
-    {
-      "command": "event audit",
-      "family": "logs",
-      "description": "Report distributed pressure propagation evidence."
+      "description": "Report network traffic and event history."
     },
     {
       "command": "market status",
       "family": "status",
-      "description": "Report current survivor market and asynchronous trade status."
+      "description": "Report market hub status."
     },
     {
       "command": "market audit",
       "family": "logs",
-      "description": "Report market instability and resource exchange evidence."
+      "description": "Report market transaction history."
     },
     {
-      "command": "quest status",
+      "command": "contract status",
       "family": "status",
-      "description": "Report current active survivor contracts and objectives."
+      "description": "Report procedural contract status."
     },
     {
-      "command": "quest audit",
+      "command": "contract audit",
       "family": "logs",
-      "description": "Report history of contract failures and procedural scars."
+      "description": "Report contract fulfillment history."
     },
     {
       "command": "faction status",
       "family": "status",
-      "description": "Report current emergent survivor blocs and social factions."
+      "description": "Report faction dynamics status."
     },
     {
       "command": "faction audit",
       "family": "logs",
-      "description": "Report faction stability, growth, and fracture evidence."
-    },
-    {
-      "command": "politics status",
-      "family": "status",
-      "description": "Report current faction schisms and ideological residue."
-    },
-    {
-      "command": "politics audit",
-      "family": "logs",
-      "description": "Report political recovery, reconciliation, and betrayal evidence."
-    },
-    {
-      "command": "mvp status",
-      "family": "status",
-      "description": "Report current MVP vertical slice runtime status."
-    },
-    {
-      "command": "mvp audit",
-      "family": "logs",
-      "description": "Report full MVP player-facing loop smoke test evidence."
-    },
-    {
-      "command": "alpha status",
-      "family": "status",
-      "description": "Report closed alpha enrollment, cohort status, and stress-test metrics."
-    },
-    {
-      "command": "alpha audit",
-      "family": "logs",
-      "description": "Report full alpha stress test evidence, telemetry, and structured feedback."
+      "description": "Report faction history and schism events."
     },
     {
       "command": "narrative status",
       "family": "status",
-      "description": "Report current aggregate world memory and historical residue."
+      "description": "Report procedural narrative status."
     },
     {
       "command": "narrative audit",
       "family": "logs",
-      "description": "Report history of procedural narrative drift and mythology formation."
+      "description": "Report narrative drift history."
+    },
+    {
+      "command": "transit status",
+      "family": "status",
+      "description": "Report cross-world transit status."
+    },
+    {
+      "command": "transit audit",
+      "family": "logs",
+      "description": "Report transit history and identity translations."
     },
     {
       "command": "sdk validate",
       "family": "status",
-      "description": "Report recent expansion validation status."
+      "description": "Validate Author SDK payloads."
     },
     {
       "command": "sdk audit",
@@ -307,16 +192,6 @@
       "description": "Report history of release artifact verification, telemetry, and support recovery."
     },
     {
-      "command": "evolution status",
-      "family": "status",
-      "description": "Report current world mutation, relay ecosystem, and seasonal evolution status."
-    },
-    {
-      "command": "evolution audit",
-      "family": "logs",
-      "description": "Report history of historical compression, legacy preservation, and economy shifts."
-    },
-    {
       "command": "sustain status",
       "family": "status",
       "description": "Report current infinite Tower sustainability and narrative saturation status."
@@ -337,18 +212,23 @@
       "description": "Report full playable loop audit, including input, combat, death, and recovery lineage."
     },
     {
-      "command": "logs list",
-      "family": "logs",
-      "description": "List available maintenance logs."
+      "command": "audio status",
+      "family": "status",
+      "description": "Report current audio atmosphere and pressure feedback status."
     },
     {
-      "command": "hash verify <path>",
-      "family": "hash_check",
-      "description": "Verify integrity of a bounded file."
+      "command": "audio audit",
+      "family": "logs",
+      "description": "Audit the generated audio output and music layers."
+    },
+    {
+      "command": "logs list",
+      "family": "logs",
+      "description": "List available audit logs."
     },
     {
       "command": "exit",
-      "family": "exit",
+      "family": "system",
       "description": "Close maintenance hatch."
     }
   ],
