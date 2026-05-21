@@ -1,0 +1,4 @@
+{
+  "sword": {"type": "weapon", "damage": 15},
+  "torch": {"type": "light", "radius": 5}
+}

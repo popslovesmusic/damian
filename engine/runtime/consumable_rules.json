@@ -1,0 +1,4 @@
+{
+  "FOOD": {"effect": "heal", "value": 10},
+  "WATER": {"effect": "stamina_restore", "value": 15}
+}

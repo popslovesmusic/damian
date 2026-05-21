@@ -28,6 +28,7 @@ from engine.runtime.traversal_contact_manager import TraversalContactManager
 from engine.runtime.hazard_contact_manager import HazardContactManager
 from engine.runtime.interaction_object_manager import InteractionObjectManager
 from engine.runtime.loot_resource_manager import LootResourceManager
+from engine.runtime.inventory_manager import InventoryManager
 
 # STAGE-069 runtime layering planner
 from engine.audio.audio_pressure_manager import AudioPressureManager
