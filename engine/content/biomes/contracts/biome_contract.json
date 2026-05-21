@@ -1,0 +1,41 @@
+{
+  "contract_id": "biome-content-contract-v1",
+  "required_fields": [
+    "biome_id",
+    "biome_identity",
+    "environmental_pressure_profile",
+    "hazard_ecology_profile",
+    "resource_distribution_profile",
+    "enemy_pressure_profile",
+    "landmark_profile",
+    "relay_presence_profile",
+    "visibility_profile",
+    "audio_visual_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "biome_hash"
+  ],
+  "allowed_biome_types": [
+    "COLLAPSED_INDUSTRIAL",
+    "MUTATED_GROWTH_ZONE",
+    "FLOODED_INFRASTRUCTURE",
+    "RELAY_GRAVEYARD",
+    "EVENT_SCARRED_REGION",
+    "FACTION_WARZONE",
+    "PRESSURE_FOG_REGION",
+    "RECLAMATION_DEPTHS",
+    "ABANDONED_MARKET_HIVE",
+    "FRACTURED_SIGNAL_ZONE"
+  ],
+  "forbidden_patterns": [
+    "perfect_safe_region",
+    "theme_park_loot_zone",
+    "disconnected_fantasy_region",
+    "pressure_free_environment"
+  ],
+  "validation_rules": {
+    "require_landmark_coherence": true,
+    "enforce_pressure_identity": true,
+    "mandatory_integrity_hash": true
+  }
+}

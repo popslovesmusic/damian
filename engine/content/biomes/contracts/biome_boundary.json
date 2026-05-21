@@ -1,0 +1,19 @@
+{
+  "boundary_name": "Procedural Biome",
+  "version": "1.0",
+  "safety_rules": {
+    "biomes_must_preserve_tower_identity": true,
+    "no_disconnected_theme_park_zones": true,
+    "environmental_pressure_must_be_readable": true,
+    "biome_generation_must_be_bounded": true,
+    "resource_distribution_must_support_survival_pressure": true,
+    "author_expansion_support_required": true,
+    "all_biome_systems_must_be_auditable": true,
+    "procedural_generation_must_preserve_recoverability": true
+  },
+  "identity_policy": {
+    "environmental_storytelling_required": true,
+    "landmark_recognition_required": true,
+    "audio_visual_consistency_required": true
+  }
+}

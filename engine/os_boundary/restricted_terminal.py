@@ -115,6 +115,8 @@ class RestrictedAdminTerminal:
              return self._cmd_continuation(parts[1:])
         elif base_cmd == "onboarding":
              return self._cmd_onboarding(parts[1:])
+        elif base_cmd == "biome":
+             return self._cmd_biome(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -873,6 +875,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Onboarding audit evidence missing."
                  
         return f"ERROR: Unknown onboarding subcommand '{args[0]}'."
+
+    def _cmd_biome(self, args):
+        if not args:
+            return "Usage: biome status | biome audit"
+            
+        if args[0] == "status":
+             # Report current procedural biome evidence
+             evidence_path = "outputs/audits/biome_generation_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("biome status", "SUCCESS")
+                 return f"Procedural Biome Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("biome status", "MISSING_EVIDENCE")
+                 return "ERROR: Biome evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/biome_smoke_test_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("biome audit", "SUCCESS")
+                 return f"Biome Expansion Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("biome audit", "MISSING_EVIDENCE")
+                 return "ERROR: Biome audit evidence missing."
+                 
+        return f"ERROR: Unknown biome subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

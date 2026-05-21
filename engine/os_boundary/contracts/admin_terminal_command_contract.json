@@ -277,6 +277,16 @@
       "description": "Report history of entry sequences, learning milestones, and first-hour UX evidence."
     },
     {
+      "command": "biome status",
+      "family": "status",
+      "description": "Report current procedural biome profiles and environmental identity status."
+    },
+    {
+      "command": "biome audit",
+      "family": "logs",
+      "description": "Report history of biome generation, hazard ecology, and expansion evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."
