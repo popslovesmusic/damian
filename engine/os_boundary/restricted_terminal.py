@@ -127,6 +127,8 @@ class RestrictedAdminTerminal:
              return self._cmd_evolution(parts[1:])
         elif base_cmd == "sustain":
              return self._cmd_sustain(parts[1:])
+        elif base_cmd == "slice":
+             return self._cmd_slice(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
 
@@ -1031,6 +1033,43 @@ class RestrictedAdminTerminal:
                  return "ERROR: Infinite sustainability audit evidence missing."
                  
         return f"ERROR: Unknown sustain subcommand '{args[0]}'."
+
+    def _cmd_slice(self, args):
+        if not args:
+            return "Usage: slice status | slice audit"
+            
+        if args[0] == "status":
+             # Report current playable slice status
+             evidence_path = "outputs/audits/stage_067_playable_vertical_slice_audit.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 # Extract a high-level summary for status
+                 summary = {
+                     "verdict": evidence["verdict"],
+                     "play_session_id": evidence["play_session_id"],
+                     "final_health": evidence["final_state"]["health"],
+                     "has_died": evidence["final_state"]["has_died"],
+                     "recover_status": evidence["final_state"].get("recover_status", "N/A")
+                 }
+                 self.log_audit("slice status", "SUCCESS")
+                 return f"Playable Vertical Slice Status:\n{json.dumps(summary, indent=2)}"
+             else:
+                 self.log_audit("slice status", "MISSING_EVIDENCE")
+                 return "ERROR: Playable slice audit evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/stage_067_playable_vertical_slice_audit.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("slice audit", "SUCCESS")
+                 return f"Playable Vertical Slice Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("slice audit", "MISSING_EVIDENCE")
+                 return "ERROR: Playable slice audit evidence missing."
+                 
+        return f"ERROR: Unknown slice subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

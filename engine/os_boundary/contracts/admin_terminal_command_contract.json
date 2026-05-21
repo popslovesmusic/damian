@@ -327,6 +327,16 @@
       "description": "Report history of recursive content mutation, meta decay, and relay civilization drift."
     },
     {
+      "command": "slice status",
+      "family": "status",
+      "description": "Report current playable vertical slice status and integrated manager states."
+    },
+    {
+      "command": "slice audit",
+      "family": "logs",
+      "description": "Report full playable loop audit, including input, combat, death, and recovery lineage."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

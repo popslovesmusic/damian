@@ -1,0 +1,37 @@
+{
+  "contract_id": "vertical-slice-grounding-v1",
+  "version": "1.0",
+  "objective": "Integrate core engine components into a bounded playable prototype.",
+  "primary_goal": "Demonstrate a single, auditable loop of play: entry -> movement -> combat -> resource -> death -> recovery.",
+  "included_features": [
+    "player_input_loop",
+    "basic_movement_traversal",
+    "basic_combat_feel",
+    "enemy_encounter_prototype",
+    "resource_pickup_use",
+    "death_continuation_event",
+    "minimal_hud"
+  ],
+  "excluded_features": [
+    "public_multiplayer",
+    "full_economy",
+    "author_sdk_expansion",
+    "seasonal_systems",
+    "infinite_content_mutation",
+    "graphics_polish_beyond_placeholders"
+  ],
+  "manager_dependencies": [
+    "onboarding_manager.py",
+    "movement_feel_manager.py",
+    "combat_feel_manager.py",
+    "enemy_ecology_manager.py",
+    "survival_economy_manager.py",
+    "continuation_manager.py"
+  ],
+  "success_criteria": "The Tower can be played, failed, recovered from, and audited in one bounded loop.",
+  "bounded_flags": {
+    "functional_prototype": true,
+    "auditable_loop": true,
+    "identity_consistent": true
+  }
+}
