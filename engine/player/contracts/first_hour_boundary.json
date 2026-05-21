@@ -1,0 +1,19 @@
+{
+  "boundary_name": "First-Hour Experience",
+  "version": "1.0",
+  "safety_rules": {
+    "no_theme_park_tutorialization": true,
+    "no_forced_lengthy_text_dumps": true,
+    "no_information_overload": true,
+    "tutorials_must_be_contextual": true,
+    "failure_must_be_teachable_not_punitive": true,
+    "first_hour_must_preserve_tower_hostility": true,
+    "players_must_reach_meaningful_agency_quickly": true
+  },
+  "learning_policy": {
+    "environmental_teaching": true,
+    "progressive_system_reveal": true,
+    "demonstrate_recoverability": true,
+    "demonstrate_pressure_early": true
+  }
+}

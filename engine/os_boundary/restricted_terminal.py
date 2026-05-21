@@ -113,6 +113,8 @@ class RestrictedAdminTerminal:
              return self._cmd_economy(parts[1:])
         elif base_cmd == "continuation":
              return self._cmd_continuation(parts[1:])
+        elif base_cmd == "onboarding":
+             return self._cmd_onboarding(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -842,6 +844,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Continuation audit evidence missing."
                  
         return f"ERROR: Unknown continuation subcommand '{args[0]}'."
+
+    def _cmd_onboarding(self, args):
+        if not args:
+            return "Usage: onboarding status | onboarding audit"
+            
+        if args[0] == "status":
+             # Report current survivor onboarding status
+             evidence_path = "outputs/audits/survivor_entry_sequence_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("onboarding status", "SUCCESS")
+                 return f"Survivor Onboarding Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("onboarding status", "MISSING_EVIDENCE")
+                 return "ERROR: Onboarding evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/first_hour_smoke_test_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("onboarding audit", "SUCCESS")
+                 return f"First-Hour UX Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("onboarding audit", "MISSING_EVIDENCE")
+                 return "ERROR: Onboarding audit evidence missing."
+                 
+        return f"ERROR: Unknown onboarding subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

@@ -267,6 +267,16 @@
       "description": "Report history of survivor deaths, world memory delta, and recovery runs."
     },
     {
+      "command": "onboarding status",
+      "family": "status",
+      "description": "Report current survivor onboarding and first-hour experience status."
+    },
+    {
+      "command": "onboarding audit",
+      "family": "logs",
+      "description": "Report history of entry sequences, learning milestones, and first-hour UX evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

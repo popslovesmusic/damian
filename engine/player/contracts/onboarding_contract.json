@@ -1,0 +1,41 @@
+{
+  "contract_id": "onboarding-flow-contract-v1",
+  "required_fields": [
+    "onboarding_profile_id",
+    "entry_sequence_profile",
+    "combat_teaching_profile",
+    "traversal_teaching_profile",
+    "dashboard_exposure_profile",
+    "domain_echo_intro_profile",
+    "failure_teaching_profile",
+    "cognitive_load_profile",
+    "narrative_pressure_profile",
+    "recoverability_profile",
+    "bounded_flags",
+    "onboarding_hash"
+  ],
+  "required_topics": [
+    "movement",
+    "combat",
+    "pressure",
+    "resource_loss",
+    "dashboard_awareness",
+    "route_choice",
+    "recoverability",
+    "relay_presence",
+    "domain_echoes",
+    "world_instability"
+  ],
+  "forbidden_patterns": [
+    "long_static_tutorial",
+    "wall_of_text_exposition",
+    "perfect_safe_zone",
+    "information_saturation",
+    "theme_park_quest_chain"
+  ],
+  "validation_rules": {
+    "require_incremental_reveal": true,
+    "enforce_hostile_pacing": true,
+    "mandatory_failure_event": true
+  }
+}
