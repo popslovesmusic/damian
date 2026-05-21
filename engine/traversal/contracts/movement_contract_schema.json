@@ -1,0 +1,40 @@
+{
+  "contract_id": "movement-feel-contract-v1",
+  "required_fields": [
+    "movement_profile_id",
+    "movement_mode",
+    "pressure_load",
+    "visibility_modifier",
+    "stamina_or_exhaustion_profile",
+    "route_risk_profile",
+    "environmental_instability_profile",
+    "camera_behavior_profile",
+    "audio_feedback_profile",
+    "readability_score",
+    "bounded_flags",
+    "movement_hash"
+  ],
+  "movement_modes": [
+    "CAUTIOUS",
+    "STANDARD",
+    "RUSH",
+    "ESCAPE",
+    "OVERBURDENED",
+    "INJURED",
+    "STEALTH_PRESSURE"
+  ],
+  "environmental_hazards": [
+    "DARKNESS",
+    "COLLAPSE_RISK",
+    "PRESSURE_FOG",
+    "MUTATION_GROWTH",
+    "RECLAMATION_ZONES",
+    "RELAY_INTERFERENCE",
+    "EVENT_SCARRING"
+  ],
+  "validation_rules": {
+    "require_movement_weight_logic": true,
+    "enforce_visibility_coupling": true,
+    "mandatory_integrity_hash": true
+  }
+}

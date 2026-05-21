@@ -227,6 +227,16 @@
       "description": "Report history of combat feedback profiles and timing verification."
     },
     {
+      "command": "traversal status",
+      "family": "status",
+      "description": "Report current movement feel and route exposure configuration."
+    },
+    {
+      "command": "traversal audit",
+      "family": "logs",
+      "description": "Report history of traversal feedback and exhaustion movement evidence."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."

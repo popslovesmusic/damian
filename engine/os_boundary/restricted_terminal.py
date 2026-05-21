@@ -105,6 +105,8 @@ class RestrictedAdminTerminal:
              return self._cmd_sdk(parts[1:])
         elif base_cmd == "combat":
              return self._cmd_combat(parts[1:])
+        elif base_cmd == "traversal":
+             return self._cmd_traversal(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
         
@@ -718,6 +720,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Combat boundary evidence missing."
                  
         return f"ERROR: Unknown combat subcommand '{args[0]}'."
+
+    def _cmd_traversal(self, args):
+        if not args:
+            return "Usage: traversal status | traversal audit"
+            
+        if args[0] == "status":
+             # Report current movement feel evidence
+             evidence_path = "outputs/audits/movement_contract_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("traversal status", "SUCCESS")
+                 return f"Movement Profile Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("traversal status", "MISSING_EVIDENCE")
+                 return "ERROR: Movement evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/traversal_boundary_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("traversal audit", "SUCCESS")
+                 return f"Traversal Boundary Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("traversal audit", "MISSING_EVIDENCE")
+                 return "ERROR: Traversal boundary evidence missing."
+                 
+        return f"ERROR: Unknown traversal subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

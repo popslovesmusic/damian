@@ -1,0 +1,19 @@
+{
+  "boundary_name": "Traversal Runtime",
+  "version": "1.0",
+  "safety_rules": {
+    "movement_must_prioritize_readability": true,
+    "route_choice_must_have_tradeoffs": true,
+    "traversal_speed_must_affect_visibility": true,
+    "hazards_must_be_readable": true,
+    "environmental_instability_must_affect_navigation": true,
+    "no_frictionless_universal_fast_travel": true,
+    "route_memory_must_preserve_world_scarring": true,
+    "movement_systems_must_remain_auditable": true
+  },
+  "readability_policy": {
+    "mandatory_camera_shake_on_heavy_landing": true,
+    "exposure_threshold_for_detection": 75.0,
+    "max_traversal_audio_layers": 4
+  }
+}
