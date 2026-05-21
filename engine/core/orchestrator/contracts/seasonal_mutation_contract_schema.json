@@ -1,0 +1,40 @@
+{
+  "contract_id": "seasonal-mutation-contract-v1",
+  "required_fields": [
+    "mutation_cycle_id",
+    "world_mutation_profile",
+    "historical_layer_profile",
+    "relay_mutation_profile",
+    "economy_shift_profile",
+    "event_wave_profile",
+    "survivor_legacy_profile",
+    "expansion_integration_profile",
+    "recoverability_profile",
+    "rollback_profile",
+    "bounded_flags",
+    "mutation_hash"
+  ],
+  "allowed_mutation_domains": [
+    "biome_evolution",
+    "enemy_ecology_shift",
+    "relay_restructuring",
+    "market_pressure_shift",
+    "event_wave_variation",
+    "resource_distribution_change",
+    "historical_contract_emergence",
+    "faction_fragmentation",
+    "tower_depth_mutation"
+  ],
+  "forbidden_mutation_domains": [
+    "hard_character_reset",
+    "permanent_world_wipe",
+    "identity_erasure",
+    "forced_expansion_invalidation",
+    "unsafe_runtime_mutation"
+  ],
+  "validation_rules": {
+    "require_lineage_preservation": true,
+    "enforce_recoverability_paths": true,
+    "mandatory_rollback_plan": true
+  }
+}

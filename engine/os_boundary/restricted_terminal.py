@@ -123,6 +123,8 @@ class RestrictedAdminTerminal:
              return self._cmd_beta(parts[1:])
         elif base_cmd == "launch":
              return self._cmd_launch(parts[1:])
+        elif base_cmd == "evolution":
+             return self._cmd_evolution(parts[1:])
         elif base_cmd == "exit":
             return "Closing maintenance hatch..."
 
@@ -969,6 +971,35 @@ class RestrictedAdminTerminal:
                  return "ERROR: Launch audit evidence missing."
                  
         return f"ERROR: Unknown launch subcommand '{args[0]}'."
+
+    def _cmd_evolution(self, args):
+        if not args:
+            return "Usage: evolution status | evolution audit"
+            
+        if args[0] == "status":
+             # Report current evolution operations evidence
+             evidence_path = "outputs/audits/seasonal_mutation_contract_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("evolution status", "SUCCESS")
+                 return f"Tower Evolution Status:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("evolution status", "MISSING_EVIDENCE")
+                 return "ERROR: Tower evolution evidence missing."
+                 
+        elif args[0] == "audit":
+             evidence_path = "outputs/audits/tower_evolution_smoke_test_result.json"
+             if os.path.exists(evidence_path):
+                 with open(evidence_path, 'r') as f:
+                     evidence = json.load(f)
+                 self.log_audit("evolution audit", "SUCCESS")
+                 return f"Tower Evolution Audit:\n{json.dumps(evidence, indent=2)}"
+             else:
+                 self.log_audit("evolution audit", "MISSING_EVIDENCE")
+                 return "ERROR: Tower evolution audit evidence missing."
+                 
+        return f"ERROR: Unknown evolution subcommand '{args[0]}'."
 
 
 if __name__ == "__main__":

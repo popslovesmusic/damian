@@ -307,6 +307,16 @@
       "description": "Report history of release artifact verification, telemetry, and support recovery."
     },
     {
+      "command": "evolution status",
+      "family": "status",
+      "description": "Report current world mutation, relay ecosystem, and seasonal evolution status."
+    },
+    {
+      "command": "evolution audit",
+      "family": "logs",
+      "description": "Report history of historical compression, legacy preservation, and economy shifts."
+    },
+    {
       "command": "logs list",
       "family": "logs",
       "description": "List available maintenance logs."
