@@ -24,6 +24,7 @@ from engine.world.room_dressing_manager import RoomDressingManager
 from engine.presentation.room_identity_auditor import RoomIdentityAuditor
 from engine.runtime.contact_boundary_manager import ContactBoundaryManager
 from engine.runtime.combat_contact_manager import CombatContactManager
+from engine.runtime.traversal_contact_manager import TraversalContactManager
 
 # STAGE-069 runtime layering planner
 from engine.audio.audio_pressure_manager import AudioPressureManager
@@ -150,6 +151,13 @@ class PlayableSliceManager:
             os.path.join(base_path, "runtime/boundary_priority_rules.json"),
             os.path.join(base_path, "runtime/interaction_volume_profile.json"),
             os.path.join(base_path, "runtime/hazard_contact_profile.json"),
+        )
+        self.tcm = TraversalContactManager(
+            os.path.join(base_path, "runtime/traversal_contact_contract.json"),
+            os.path.join(base_path, "runtime/movement_resolution_rules.json"),
+            os.path.join(base_path, "runtime/stamina_movement_profile.json"),
+            os.path.join(base_path, "runtime/route_contact_profile.json"),
+            self.cbm,
         )
         self.ccm = CombatContactManager(
             os.path.join(base_path, "runtime/combat_contact_contract.json"),

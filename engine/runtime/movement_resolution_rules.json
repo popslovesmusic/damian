@@ -1,0 +1,5 @@
+{
+  "walk": {"speed": 1.0, "noise": 0.2, "stamina_cost": 0},
+  "run": {"speed": 2.0, "noise": 0.8, "stamina_cost": 5},
+  "crouch": {"speed": 0.5, "noise": 0.05, "stamina_cost": 1}
+}
