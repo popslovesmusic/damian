@@ -1,0 +1,12 @@
+{
+  "stage_id": "STAGE-097",
+  "review_date": "2026-05-21",
+  "status": "COMPLETED",
+  "summary": "Implemented a windowed prototype using tkinter for real-time visualization and input.",
+  "achievements": [
+    "Created run_tower_windowed.py entry point.",
+    "Created WindowedInputLoop for real-time interaction and drawing.",
+    "Mapped keyboard inputs (WASD) to game actions.",
+    "Maintained rendering via IsometricRenderManager (ASCII-in-window)."
+  ]
+}
